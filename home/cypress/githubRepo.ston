@@ -1,0 +1,1 @@
+TDObjectGatewayNode{#name:'githubRepo',#contents:'| repo |\nrepo := CypressFileSystemRepository\n  onUrl: \'cypress:/opt/git/CypressReferenceImplementation/\' asUrl\n  alias: \'Cypress\'.\nrepo gemStoneFileoutsEnabled: true.\nrepo'}

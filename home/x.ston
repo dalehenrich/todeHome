@@ -1,0 +1,1 @@
+TDScriptLeafNode{#name:'x',#contents:'[ :topez :objIn :tokens :windowId | \n| coll |\n\tcoll := RcIdentityBag new.\n\tcoll addAll: #(1 2 3).\n\tcoll sorted: [:a :b | a <= b ].  ]',#creationTime:DateAndTime['2013-12-06T17:02:01.51304888725281-08:00'],#modificationTime:@2}

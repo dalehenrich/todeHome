@@ -1,0 +1,1 @@
+TDScriptLeafNode{#name:'topaz_tests',#contents:'[ :topez :objIn :tokens :windowId | \n| tstTool tpz |\ntpz := TDTopezServer for: 1.\ntstTool := tpz toolInstanceFor: \'test\'.\ntstTool testpackage: \'Index-Tests\' ]',#creationTime:DateAndTime['2013-12-06T17:02:00.59087109565735-08:00'],#modificationTime:@2}

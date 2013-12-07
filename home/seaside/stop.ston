@@ -1,0 +1,1 @@
+TDSmalltalkLeafNode{#name:'stop',#contents:'AJPGemStoneAdaptor default ifNotNil: [ :adaptor | adaptor stop ]',#creationTime:DateAndTime['2013-12-06T17:02:01.27627110481262-08:00'],#modificationTime:@2}

@@ -1,1 +1,1 @@
-TDSmalltalkLeafNode{#name:'seeded',#contents:'| random coll |\nrandom := Lag25000CmwcRandom new.\ncoll := {}.\n10 timesRepeat: [ coll add: random integer ].\ncoll',#creationTime:DateAndTime['2013-12-06T16:36:19.2712779045105-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'seeded',#contents:'| random coll |\nrandom := Lag25000CmwcRandom new.\ncoll := {}.\n10 timesRepeat: [ coll add: random integer ].\ncoll',#creationTime:DateAndTime['2013-12-06T17:02:00.13571095466614-08:00'],#modificationTime:@2}

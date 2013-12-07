@@ -1,0 +1,1 @@
+TDObjectGatewayNode{#name:'cypressRepo',#contents:'| repo |\nrepo := CypressFileSystemRepository\n  onUrl: \'cypressft:/opt/git/PetitParser/packages/\' asUrl\n  alias: \'Petit Parser\'.\nrepo gemStoneFileoutsEnabled: true.\nrepo'}

@@ -1,0 +1,1 @@
+TDSmalltalkLeafNode{#name:'filter',#contents:'[ :definition | \ndefinition configurationOf\n  ifNil: [ false ]\n  ifNotNil: [ :configurationDef | configurationDef configurationName = \'Indexing\' ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.68720889091492-08:00'],#modificationTime:@2}

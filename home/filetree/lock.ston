@@ -1,0 +1,1 @@
+TDSmalltalkLeafNode{#name:'lock',#contents:'Metacello new\n  baseline: \'FileTree\';\n  repository: \'filetree:///opt/git/gs/filetree/repository\';\n  lock',#creationTime:DateAndTime['2013-12-06T17:02:00.30767893791199-08:00'],#modificationTime:@2}
