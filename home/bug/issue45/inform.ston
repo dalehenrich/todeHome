@@ -1,0 +1,1 @@
+TDScriptLeafNode{#name:'inform',#contents:'[ :topez :objIn :tokens :windowId | self inform: \'Consider yourself informed!\' ]',#creationTime:DateAndTime['2013-12-06T16:45:44.19454002380371-08:00'],#modificationTime:@2}

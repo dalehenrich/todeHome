@@ -1,0 +1,1 @@
+TDScriptLeafNode{#name:'interact',#contents:'[ :topez :objIn :tokens :windowId | \n[ (GsConfirmInteraction prompt: \'answer\') signal ]\n  on: GsInteractionRequest\n  do: [ :ex | \n    | interaction |\n    interaction := ex interaction.\n    ex response: interaction ok ] ]',#creationTime:DateAndTime['2013-12-06T16:45:44.19748401641846-08:00'],#modificationTime:@2}

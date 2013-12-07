@@ -1,0 +1,1 @@
+TDScriptLeafNode{#name:'doit',#contents:'[ :topez :objIn :tokens :windowId | \n| mcTool |\nmcTool := topez toolInstanceFor: \'mc\'.\nmcTool\n  halt mccopy: \'Metacello-Base-dkh.113\'\n  from: \'@repo\'\n  to: {\'http://smalltalkhub.com/mc/dkh/metacello/main\'} ]',#creationTime:DateAndTime['2013-12-06T16:45:44.191330909729-08:00'],#modificationTime:@2}
