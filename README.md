@@ -1,4 +1,4 @@
-# My tODE script structure
+# Shared tODE scripts
 
 The `.ston` files sprinkled throught this directory hierarchy are the serialized remnants of script objects.
 
