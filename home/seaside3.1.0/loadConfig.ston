@@ -1,1 +1,2 @@
-TDTopezLeafNode{#name:'loadConfig',#contents:'mc load ConfigurationOfGrease @configRepo\n/home/bin/loadConfig Seaside3 #bleedingEdge http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main CI ',#creationTime:DateAndTime['2013-12-06T17:02:01.30220198631287-08:00'],#modificationTime:@2}
+TDTopezLeafNode{#name:'loadConfig',#contents:'mc load ConfigurationOfGrease @configRepo
+/home/bin/loadConfig Seaside3 #bleedingEdge http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main CI ',#creationTime:DateAndTime['2013-12-06T17:30:33.01064300537109-08:00'],#modificationTime:@2}

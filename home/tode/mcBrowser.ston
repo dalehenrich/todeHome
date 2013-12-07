@@ -1,1 +1,10 @@
-TDScriptLeafNode{#name:'mcBrowser',#contents:'[ :topez :objIn :tokens :windowId | \n| browser mcTool workingCopies |\nmcTool := topez toolInstanceFor: \'mc\'.\nworkingCopies := MCWorkingCopy allManagers select: [ :wc | wc modified ].\nbrowser := TDMonticelloBrowser new\n  topez: topez;\n  mcTool: mcTool;\n  workingCopies: workingCopies;\n  yourself.\n\tbrowser open ]',#creationTime:DateAndTime['2013-12-06T14:59:34.68937110900879-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'mcBrowser',#contents:'[ :topez :objIn :tokens :windowId | 
+| browser mcTool workingCopies |
+mcTool := topez toolInstanceFor: \'mc\'.
+workingCopies := MCWorkingCopy allManagers select: [ :wc | wc modified ].
+browser := TDMonticelloBrowser new
+  topez: topez;
+  mcTool: mcTool;
+  workingCopies: workingCopies;
+  yourself.
+\tbrowser open ]',#creationTime:DateAndTime['2013-12-06T17:30:33.22255706787109-08:00'],#modificationTime:@2}

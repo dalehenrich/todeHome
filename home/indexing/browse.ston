@@ -1,1 +1,11 @@
-TDScriptLeafNode{#name:'browse',#contents:'[ :topez :objIn :tokens :windowId | \n| findTool defs indexSpecDefs indexSpecClassNames |\nfindTool := topez toolInstanceFor: \'find\'.\ndefs := findTool findProjectDefinitions: \'Indexing\'.\nindexSpecDefs := findTool findClassHierarchy: \'AbstractIndexSpecification\'.\n\tindexSpecDefs := indexSpecDefs reject: [:def | def className == #Object].\nindexSpecClassNames := indexSpecDefs collect: [ :def | def className ].\ndefs := defs reject: [ :def | indexSpecClassNames includes: def className ].\ndefs addAll: indexSpecDefs.\nfindTool browseClasses: defs.\ndefs ]',#creationTime:DateAndTime['2013-12-06T17:02:00.65554308891296-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'browse',#contents:'[ :topez :objIn :tokens :windowId | 
+| findTool defs indexSpecDefs indexSpecClassNames |
+findTool := topez toolInstanceFor: \'find\'.
+defs := findTool findProjectDefinitions: \'Indexing\'.
+indexSpecDefs := findTool findClassHierarchy: \'AbstractIndexSpecification\'.
+\tindexSpecDefs := indexSpecDefs reject: [:def | def className == #Object].
+indexSpecClassNames := indexSpecDefs collect: [ :def | def className ].
+defs := defs reject: [ :def | indexSpecClassNames includes: def className ].
+defs addAll: indexSpecDefs.
+findTool browseClasses: defs.
+defs ]',#creationTime:DateAndTime['2013-12-06T17:30:31.68237400054932-08:00'],#modificationTime:@2}

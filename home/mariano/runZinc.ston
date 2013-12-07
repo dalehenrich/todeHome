@@ -1,1 +1,43 @@
-TDScriptLeafNode{#name:'runZinc',#contents:'[ :topez :objIn :tokens :command | \n| opts args portNumber |\n\"for help: ./runZinc -h\"\ncommand\n  getOptsMixedLongShort:\n    {#(\'help\' $h #\'none\').\n    #(\'port\' $p #\'required\').\n    #(\'wagszinc\' nil #\'none\').\n    #(\'znzinc\' nil #\'none\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nopts\n  at: \'port\'\n  ifAbsent: [ portNumber := 4343 ]\n  ifPresent: [:port | portNumber := port asNumber].\nopts\n  at: \'wagszinc\'\n  ifAbsent: [  ]\n  ifPresent: [:ignored| (WAGsZincAdaptor port: portNumber) start ].\nopts\n  at: \'znzinc\'\n  ifAbsent: [  ]\n  ifPresent: [:ignored| (ZnZincServerAdaptor port: portNumber) start ].\nopts\n  at: \'help\'\n  ifAbsent: [  ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  runZinc - runZinc sript utility template\nSYNOPSIS\n  runZinc [-h|--help] [--wagszinc] [--znzinc] [--port=<port-number>]\nDESCRIPTION\n  run WAGsZincAdaptor with --wagszinc\n  run ZnZincServerAdaptor with --znzinc\nEXAMPLES\n  ./runZinc --wagszinc\n  ./runZinc --znzinc\n\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:01.01688694953918-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'runZinc',#contents:'[ :topez :objIn :tokens :command | 
+| opts args portNumber |
+\"for help: ./runZinc -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'port\' $p #\'required\').
+    #(\'wagszinc\' nil #\'none\').
+    #(\'znzinc\' nil #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'port\'
+  ifAbsent: [ portNumber := 4343 ]
+  ifPresent: [:port | portNumber := port asNumber].
+opts
+  at: \'wagszinc\'
+  ifAbsent: [  ]
+  ifPresent: [:ignored| (WAGsZincAdaptor port: portNumber) start ].
+opts
+  at: \'znzinc\'
+  ifAbsent: [  ]
+  ifPresent: [:ignored| (ZnZincServerAdaptor port: portNumber) start ].
+opts
+  at: \'help\'
+  ifAbsent: [  ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  runZinc - runZinc sript utility template
+SYNOPSIS
+  runZinc [-h|--help] [--wagszinc] [--znzinc] [--port=<port-number>]
+DESCRIPTION
+  run WAGsZincAdaptor with --wagszinc
+  run ZnZincServerAdaptor with --znzinc
+EXAMPLES
+  ./runZinc --wagszinc
+  ./runZinc --znzinc
+
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:32.39621305465698-08:00'],#modificationTime:@2}

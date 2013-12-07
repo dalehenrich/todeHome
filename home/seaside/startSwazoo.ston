@@ -1,1 +1,5 @@
-TDSmalltalkLeafNode{#name:'startSwazoo',#contents:'WAGemStoneRunSeasideGems default\n  name: \'Swazoo\';\n  adaptorClass: WAGsSwazooAdaptor;\n  ports: #(8383).\nWAGemStoneRunSeasideGems restartGems\t\"execute runSeasideGems30 script\"',#creationTime:DateAndTime['2013-12-06T17:02:01.27114200592041-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'startSwazoo',#contents:'WAGemStoneRunSeasideGems default
+  name: \'Swazoo\';
+  adaptorClass: WAGsSwazooAdaptor;
+  ports: #(8383).
+WAGemStoneRunSeasideGems restartGems\t\"execute runSeasideGems30 script\"',#creationTime:DateAndTime['2013-12-06T17:30:32.93834090232849-08:00'],#modificationTime:@2}

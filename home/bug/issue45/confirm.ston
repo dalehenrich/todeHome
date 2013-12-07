@@ -1,1 +1,5 @@
-TDScriptLeafNode{#name:'confirm',#contents:'[ :topez :objIn :tokens :windowId | \n(GsConfirmInteraction\n  prompt: \'Warning: \'\'you have been warned\'\'. Press \'\'Proceed\'\' to continue.\'\n  confirm: \'Proceed\'\n  cancel: \'Debug\') halt signal ]',#creationTime:DateAndTime['2013-12-06T16:45:44.18765807151794-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'confirm',#contents:'[ :topez :objIn :tokens :windowId | 
+(GsConfirmInteraction
+  prompt: \'Warning: \'\'you have been warned\'\'. Press \'\'Proceed\'\' to continue.\'
+  confirm: \'Proceed\'
+  cancel: \'Debug\') halt signal ]',#creationTime:DateAndTime['2013-12-06T17:30:30.26119303703308-08:00'],#modificationTime:@2}

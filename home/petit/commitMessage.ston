@@ -1,1 +1,3 @@
-TDTxtLeafNode{#name:'commitMessage',#contents:Text{#string:'port PetitParser and PetitSmalltalk to GLASS:\n\n  move Character>>sameAs: to PetitGemStone-Extensions package',#runs:RunArray{#runs:[54,54],#values:[[],[TextColor{#color:Color{#rgb:1072693248}}]],#lastIndex:55,#lastRun:2,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:02:01.18963289260864-08:00'],#modificationTime:@10}
+TDTxtLeafNode{#name:'commitMessage',#contents:Text{#string:'port PetitParser and PetitSmalltalk to GLASS:
+
+  move Character>>sameAs: to PetitGemStone-Extensions package',#runs:RunArray{#runs:[54,54],#values:[[],[TextColor{#color:Color{#rgb:1072693248}}]],#lastIndex:55,#lastRun:2,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:32.77822208404541-08:00'],#modificationTime:@10}

@@ -1,1 +1,4 @@
-TDSmalltalkLeafNode{#name:'start',#contents:'AJPGemStoneAdaptor default ifNil: [ AJPGemStoneAdaptor port: 8003 ].\nAJPGemStoneAdaptor default\n  port: 8003;\n  start',#creationTime:DateAndTime['2013-12-06T17:02:01.26886391639709-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'start',#contents:'AJPGemStoneAdaptor default ifNil: [ AJPGemStoneAdaptor port: 8003 ].
+AJPGemStoneAdaptor default
+  port: 8003;
+  start',#creationTime:DateAndTime['2013-12-06T17:30:32.93346405029297-08:00'],#modificationTime:@2}

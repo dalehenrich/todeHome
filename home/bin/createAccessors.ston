@@ -1,1 +1,29 @@
-TDScriptLeafNode{#name:'createAccessors',#contents:'[ :topez :objIn :tokens :windowId | \"/home/bin/createAccessors class\" | theClass newLine varName className target|\n\tclassName := tokens at: 2.\n\ttarget := Smalltalk at: className asSymbol ifAbsent: [ ^nil error: \'Class \', className printString, \' not found.\'].\n  newLine := Character lf asString.\n  theClass := target theNonMetaClass.\n  varName := \'newValue\'.\n  theClass instVarNames\n    do: [ :aSymbol | \n      | aSelector |\n      aSelector := aSymbol asString.\n      (theClass includesSelector: aSymbol)\n        ifFalse: [ \n          theClass\n            compileMethod:\n              aSelector , newLine , newLine\n                , \'   \"Return the value of the instance variable \'\'\' , aSelector\n                , \'\'\'.\"\' , newLine , \'   ^\' , aSelector , newLine\n            dictionaries: #()\n            category: #\'accessing\' ].\n      (theClass includesSelector: (aSelector , \':\') asSymbol)\n        ifFalse: [ \n          theClass\n            compileMethod:\n              aSelector , \': \' , varName , newLine , newLine\n                , \'   \"Modify the value of the instance variable \'\'\' , aSelector\n                , \'\'\'.\"\' , newLine , \'   \' , aSelector , \' := \' , varName\n                , newLine\n            dictionaries: #()\n            category: #\'updating\' ] ]] ',#creationTime:DateAndTime['2013-12-06T16:50:18.52661609649658-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'createAccessors',#contents:'[ :topez :objIn :tokens :windowId | \"/home/bin/createAccessors class\" | theClass newLine varName className target|
+\tclassName := tokens at: 2.
+\ttarget := Smalltalk at: className asSymbol ifAbsent: [ ^nil error: \'Class \', className printString, \' not found.\'].
+  newLine := Character lf asString.
+  theClass := target theNonMetaClass.
+  varName := \'newValue\'.
+  theClass instVarNames
+    do: [ :aSymbol | 
+      | aSelector |
+      aSelector := aSymbol asString.
+      (theClass includesSelector: aSymbol)
+        ifFalse: [ 
+          theClass
+            compileMethod:
+              aSelector , newLine , newLine
+                , \'   \"Return the value of the instance variable \'\'\' , aSelector
+                , \'\'\'.\"\' , newLine , \'   ^\' , aSelector , newLine
+            dictionaries: #()
+            category: #\'accessing\' ].
+      (theClass includesSelector: (aSelector , \':\') asSymbol)
+        ifFalse: [ 
+          theClass
+            compileMethod:
+              aSelector , \': \' , varName , newLine , newLine
+                , \'   \"Modify the value of the instance variable \'\'\' , aSelector
+                , \'\'\'.\"\' , newLine , \'   \' , aSelector , \' := \' , varName
+                , newLine
+            dictionaries: #()
+            category: #\'updating\' ] ]] ',#creationTime:DateAndTime['2013-12-06T17:30:30.04811191558838-08:00'],#modificationTime:@2}

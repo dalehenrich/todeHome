@@ -1,1 +1,6 @@
-TDSmalltalkLeafNode{#name:'classFileout',#contents:'| file |\n#(\'PackageOrganizer\')\n  do: [ :name | \n    file := GsFile openWriteOnServer: \'/Users/dhenrich/cypress/\' , name , \'.gs\'.\n    (Smalltalk at: name asSymbol) fileOutClassOn: file.\n    file close ]',#creationTime:DateAndTime['2013-12-06T17:02:01.23614406585693-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'classFileout',#contents:'| file |
+#(\'PackageOrganizer\')
+  do: [ :name | 
+    file := GsFile openWriteOnServer: \'/Users/dhenrich/cypress/\' , name , \'.gs\'.
+    (Smalltalk at: name asSymbol) fileOutClassOn: file.
+    file close ]',#creationTime:DateAndTime['2013-12-06T17:30:32.86767101287842-08:00'],#modificationTime:@2}

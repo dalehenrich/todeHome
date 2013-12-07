@@ -1,1 +1,22 @@
-TDScriptLeafNode{#name:'x',#contents:'[ :topez :objIn :tokens :windowId | \n| allClasses legalCharacters detectBlock bad |\nlegalCharacters := (32 to: 126) collect: [ :each | Character codePoint: each ].\nlegalCharacters := legalCharacters asIdentitySet\n  add: Character tab;\n  add: Character lf;\n  yourself.\nallClasses := Globals select: [ :each | each isBehavior ].\ndetectBlock := [ :aClass :eachSelector | \n| source characters |\nsource := aClass sourceCodeAt: eachSelector.\ncharacters := source asIdentitySet - legalCharacters.\ncharacters := characters collect: [ :each | each codePoint ].\ncharacters isEmpty ].\nbad := Array new.\nallClasses\n  do: [ :eachClass | \n    eachClass selectors\n      do: [ :sel | \n        (detectBlock value: eachClass value: sel)\n          ifFalse: [ bad add: eachClass -> sel ] ] ].\n\tbad ]',#creationTime:DateAndTime['2013-12-06T17:02:00.24573397636414-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'x',#contents:'[ :topez :objIn :tokens :windowId | 
+| allClasses legalCharacters detectBlock bad |
+legalCharacters := (32 to: 126) collect: [ :each | Character codePoint: each ].
+legalCharacters := legalCharacters asIdentitySet
+  add: Character tab;
+  add: Character lf;
+  yourself.
+allClasses := Globals select: [ :each | each isBehavior ].
+detectBlock := [ :aClass :eachSelector | 
+| source characters |
+source := aClass sourceCodeAt: eachSelector.
+characters := source asIdentitySet - legalCharacters.
+characters := characters collect: [ :each | each codePoint ].
+characters isEmpty ].
+bad := Array new.
+allClasses
+  do: [ :eachClass | 
+    eachClass selectors
+      do: [ :sel | 
+        (detectBlock value: eachClass value: sel)
+          ifFalse: [ bad add: eachClass -> sel ] ] ].
+\tbad ]',#creationTime:DateAndTime['2013-12-06T17:30:30.58796191215515-08:00'],#modificationTime:@2}

@@ -1,1 +1,40 @@
-TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :windowId | \n| projectName loads repo description loaded |\n\"/home/bin/load Tode `GemStone Dev`\"\nprojectName := tokens at: 2.\nloads := \'default\'.\ntokens size > 2\n  ifTrue: [ loads := tokens copyFrom: 3 to: tokens size ].\nrepo := (topez lookup: \'repo\') dotSelfObject.\ndescription := repo description.\nMetacello new\n  baseline: projectName;\n  repository: description;\n  get.\n\nloaded := Metacello new\n  baseline: projectName;\n  repository: description;\n  onConflict: [ :ex | ex allow ];\n\t\t  onWarning: [ :ex | \n        Transcript\n          cr;\n          show: \'WARNING: \' , ex description.\n        ex resume ];\n  load: loads\t.\nrepo class description = MCFileTreeRepository description\n  ifTrue: [ \n    | gitRepo gitTool statusNode status |\n    gitRepo := (topez lookup: \'gitRepo\') dotSelfObject.\n    gitTool := topez toolInstanceFor: \'git\'.\n    status := gitTool performGitCommand: \'log\' in: gitRepo with: \'-1\'.\n    statusNode := topez\n      lookup: \'status\'\n      ifAbsent: [ \n        topez currentNode\n          addChildNode:\n            (TDTxtLeafNode new\n              name: \'status\';\n              yourself) ].\n    statusNode contents: status ].\nloaded ]',#creationTime:DateAndTime['2013-12-06T16:50:18.55046510696411-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :windowId | 
+| projectName loads repo description loaded |
+\"/home/bin/load Tode `GemStone Dev`\"
+projectName := tokens at: 2.
+loads := \'default\'.
+tokens size > 2
+  ifTrue: [ loads := tokens copyFrom: 3 to: tokens size ].
+repo := (topez lookup: \'repo\') dotSelfObject.
+description := repo description.
+Metacello new
+  baseline: projectName;
+  repository: description;
+  get.
+
+loaded := Metacello new
+  baseline: projectName;
+  repository: description;
+  onConflict: [ :ex | ex allow ];
+\t\t  onWarning: [ :ex | 
+        Transcript
+          cr;
+          show: \'WARNING: \' , ex description.
+        ex resume ];
+  load: loads\t.
+repo class description = MCFileTreeRepository description
+  ifTrue: [ 
+    | gitRepo gitTool statusNode status |
+    gitRepo := (topez lookup: \'gitRepo\') dotSelfObject.
+    gitTool := topez toolInstanceFor: \'git\'.
+    status := gitTool performGitCommand: \'log\' in: gitRepo with: \'-1\'.
+    statusNode := topez
+      lookup: \'status\'
+      ifAbsent: [ 
+        topez currentNode
+          addChildNode:
+            (TDTxtLeafNode new
+              name: \'status\';
+              yourself) ].
+    statusNode contents: status ].
+loaded ]',#creationTime:DateAndTime['2013-12-06T17:30:30.08409190177917-08:00'],#modificationTime:@2}

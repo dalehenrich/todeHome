@@ -1,1 +1,67 @@
-TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :windowId | \n| gsTool path classToFilenameMap externalMethodMap current packages package packagePrefixes |\ngsTool := topez toolInstanceFor: \'gs\'.\npath := \'/export/foos2/users/dhenrich/3.0/k_gss64bit/changes\'.\nclassToFilenameMap := Dictionary new\n  at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');\n  at: #\'Array\' put: #(\'array2.gs\');\n  at: #\'CollectionBasedPathEvaluator\' put: #(\'idxquerymethods.gs\');\n  at: #\'Gs32DisjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsAbstractQueryPredicate\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsAbstractReferenceAssociation\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsOptions\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsIndexOptions\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsIndexSpec\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsPathPathPredicate\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQuery\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryFormula\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryGrammar\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryLiteral\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryOptions\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryParser\' put: #(\'idxquerymethods.gs\');\n  at: #\'GsQueryPredicate\' put: #(\'idxquerymethods.gs\');\n  at: #\'IndexedQueryEvaluator\' put: #(\'indexquery.gs\');\n  at: #\'SetValuedPathTerm\' put: #(\'setpathterm.gs\');\n  at: #\'UnicodeIndexSpecification\' put: #(\'idxquerymethods.gs\');\n  yourself.\nexternalMethodMap := Dictionary new.\ncurrent := GsPackagePolicy current.\npackages := {}.\ncurrent packages_Do: [ :pkg | packages add: pkg ].\npackage := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].\npackagePrefixes := MCWorkingCopy allManagers\n  collect: [ :wc | \'*\' , wc packageName asLowercase ].\npackage\n  behaviorAndMethodDictDo: [ :beh :methodDict | \n    methodDict keys\n      do: [ :selector | \n        | cat meth set |\n        (beh == Behavior and: [ selector == #\'_compileMethod:category:using:\' ])\n          not\n          ifTrue: [ \n            meth := MethodReference class: beh selector: selector asSymbol.\n            cat := (beh categoryOfSelector: selector) asString asLowercase.\n            (cat beginsWith: \'*\')\n              ifTrue: [ \n                (packagePrefixes detect: [ :prefix | cat beginsWith: prefix ] ifNone: [  ])\n                  ifNil: [ \n                    set := externalMethodMap\n                      at: meth actualClass theNonMetaClass name\n                      ifAbsent: [ externalMethodMap at: meth actualClass name put: Set new ].\n                    set add: meth ] ]\n              ifFalse: [ \n                set := externalMethodMap\n                  at: meth actualClass theNonMetaClass name\n                  ifAbsent: [ externalMethodMap at: meth actualClass name put: Set new ].\n                set add: meth ] ] ] ].\ngsTool\n  gsfileout: path\n  externalMethodMap: externalMethodMap\n  classToFilenameMap: classToFilenameMap\n  defaultHeader:\n    \'!=========================================================================\n! Copyright (C) GemTalk Systems, LLC. 2013.  All Rights Reserved.\n!=========================================================================\n\n\'\n      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:02:00.21739602088928-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
+| gsTool path classToFilenameMap externalMethodMap current packages package packagePrefixes |
+gsTool := topez toolInstanceFor: \'gs\'.
+path := \'/export/foos2/users/dhenrich/3.0/k_gss64bit/changes\'.
+classToFilenameMap := Dictionary new
+  at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
+  at: #\'Array\' put: #(\'array2.gs\');
+  at: #\'CollectionBasedPathEvaluator\' put: #(\'idxquerymethods.gs\');
+  at: #\'Gs32DisjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsAbstractQueryPredicate\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsAbstractReferenceAssociation\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsOptions\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsIndexOptions\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsIndexSpec\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsPathPathPredicate\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQuery\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryFormula\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryGrammar\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryLiteral\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryOptions\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryParser\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryPredicate\' put: #(\'idxquerymethods.gs\');
+  at: #\'IndexedQueryEvaluator\' put: #(\'indexquery.gs\');
+  at: #\'SetValuedPathTerm\' put: #(\'setpathterm.gs\');
+  at: #\'UnicodeIndexSpecification\' put: #(\'idxquerymethods.gs\');
+  yourself.
+externalMethodMap := Dictionary new.
+current := GsPackagePolicy current.
+packages := {}.
+current packages_Do: [ :pkg | packages add: pkg ].
+package := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].
+packagePrefixes := MCWorkingCopy allManagers
+  collect: [ :wc | \'*\' , wc packageName asLowercase ].
+package
+  behaviorAndMethodDictDo: [ :beh :methodDict | 
+    methodDict keys
+      do: [ :selector | 
+        | cat meth set |
+        (beh == Behavior and: [ selector == #\'_compileMethod:category:using:\' ])
+          not
+          ifTrue: [ 
+            meth := MethodReference class: beh selector: selector asSymbol.
+            cat := (beh categoryOfSelector: selector) asString asLowercase.
+            (cat beginsWith: \'*\')
+              ifTrue: [ 
+                (packagePrefixes detect: [ :prefix | cat beginsWith: prefix ] ifNone: [  ])
+                  ifNil: [ 
+                    set := externalMethodMap
+                      at: meth actualClass theNonMetaClass name
+                      ifAbsent: [ externalMethodMap at: meth actualClass name put: Set new ].
+                    set add: meth ] ]
+              ifFalse: [ 
+                set := externalMethodMap
+                  at: meth actualClass theNonMetaClass name
+                  ifAbsent: [ externalMethodMap at: meth actualClass name put: Set new ].
+                set add: meth ] ] ] ].
+gsTool
+  gsfileout: path
+  externalMethodMap: externalMethodMap
+  classToFilenameMap: classToFilenameMap
+  defaultHeader:
+    \'!=========================================================================
+! Copyright (C) GemTalk Systems, LLC. 2013.  All Rights Reserved.
+!=========================================================================
+
+\'
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:30.53353810310364-08:00'],#modificationTime:@2}

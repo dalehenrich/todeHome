@@ -1,1 +1,4 @@
-TDSmalltalkLeafNode{#name:'filter',#contents:'[ :definition | \ndefinition configurationOf\n  ifNil: [ false ]\n  ifNotNil: [ :configurationDef | configurationDef configurationName = \'Tode\' ] ]',#creationTime:DateAndTime['2013-12-06T14:59:34.66708993911743-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'filter',#contents:'[ :definition | 
+definition configurationOf
+  ifNil: [ false ]
+  ifNotNil: [ :configurationDef | configurationDef configurationName = \'Tode\' ] ]',#creationTime:DateAndTime['2013-12-06T17:30:33.17999792098999-08:00'],#modificationTime:@2}

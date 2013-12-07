@@ -1,1 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 036cfc826aaef9df201c844f6db109a7763d4ee5\nAuthor: Dale Henrichs <dale.henrichs@gemtalksystems.com>\nDate:   Sat Aug 31 16:11:02 2013 -0700\n\n    PetitGemStone-Extensions not loaded into GLASS\n',#creationTime:DateAndTime['2013-12-06T17:02:01.20145297050476-08:00'],#modificationTime:@2}
+TDTxtLeafNode{#name:'status',#contents:'commit 036cfc826aaef9df201c844f6db109a7763d4ee5
+Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
+Date:   Sat Aug 31 16:11:02 2013 -0700
+
+    PetitGemStone-Extensions not loaded into GLASS
+',#creationTime:DateAndTime['2013-12-06T17:30:32.8026659488678-08:00'],#modificationTime:@2}

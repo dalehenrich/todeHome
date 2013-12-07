@@ -1,1 +1,31 @@
-TDTxtLeafNode{#name:'sample',#contents:Text{#string:'  query := \'((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\'\n    asQueryOn: nsc.\n\n  options := query queryOptions.\n  query queryOptions: options - GsQueryOptions autoOptimize.\n\n  query.\n    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\n  query optimizedFormula.\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n  query originalFormula.\n    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\n  query withOptimizedFormula.\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n  query withOriginalFormula.\n    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\n\n  options := query queryOptions.\n  query queryOptions: options + GsQueryOptions autoOptimize.\n\n  query.\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n  query optimizedFormula.\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n  query originalFormula.\n    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\n  query withOptimizedFormula.\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n  query withOriginalFormula\n    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)\n',#runs:RunArray{#runs:[1206],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:762,#lastRun:1,#lastOffset:761}},#creationTime:DateAndTime['2013-12-06T17:02:00.77522110939026-08:00'],#modificationTime:@9}
+TDTxtLeafNode{#name:'sample',#contents:Text{#string:'  query := \'((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not\'
+    asQueryOn: nsc.
+
+  options := query queryOptions.
+  query queryOptions: options - GsQueryOptions autoOptimize.
+
+  query.
+    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not
+  query optimizedFormula.
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+  query originalFormula.
+    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not
+  query withOptimizedFormula.
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+  query withOriginalFormula.
+    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not
+
+  options := query queryOptions.
+  query queryOptions: options + GsQueryOptions autoOptimize.
+
+  query.
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+  query optimizedFormula.
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+  query originalFormula.
+    ((1 <= each.numberOfChildren) not & (each.numberOfChildren <= 3)) not
+  query withOptimizedFormula.
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+  query withOriginalFormula
+    (each.numberOfChildren >= 1) | (each.numberOfChildren > 3)
+',#runs:RunArray{#runs:[1206],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:762,#lastRun:1,#lastOffset:761}},#creationTime:DateAndTime['2013-12-06T17:30:31.98859691619873-08:00'],#modificationTime:@9}

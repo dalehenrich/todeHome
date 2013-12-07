@@ -1,1 +1,57 @@
-TDScriptLeafNode{#name:'profile',#contents:'[ :topez :objIn :tokens :windowId | \n| nsc evaluator evaluatorBlock bagBlock repeat evaluatorResult enumerator enumeratorResult test value |\ntest := false.\ntokens size > 1\n  ifTrue: [ test := (tokens at: 2) = \'test\' ].\nnsc := (topez lookup: \'/home/index/population\') dotSelfObject population.\nnsc do: [ :each | each numberOfChildren ].\nevaluator := PathEvaluator basicNew.\n#(#\'unicodeField\') do: [ :term | evaluator add: term ].\nvalue := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.\nevaluator initialize asMostSpecificType.\nevaluator nsc: nsc.\nevaluator collator: IcuCollator default.\nrepeat := 500.\nevaluatorBlock := [ repeat timesRepeat: [ evaluatorResult := evaluator findAllValuesEqualTo: value ] ].\nenumerator := BagUnicodeEnumerator new\n  evaluator: evaluator;\n  compareEqual;\n  yourself.\nbagBlock := [ repeat timesRepeat: [ enumeratorResult := enumerator findAllValuesFor: value ] ].\nevaluatorBlock := [ \nrepeat\n  timesRepeat: [ \n    | tmpHolder |\n    tmpHolder := evaluator tmpHolder.\n    enumerator findAllValuesFor: value do: [ :each | tmpHolder add: each ].\n    evaluatorResult := tmpHolder completeBag ] ].\ntest\n  ifTrue: [ \n    bagBlock value.\n    evaluatorBlock value ]\n  ifFalse: [ \n    | elapsed1 elapsed2 profMon pfTool |\n    pfTool := topez toolInstanceFor: \'pf\'.\n    pfTool pfmonitor: evaluatorBlock.\n    profMon := pfTool pfview: \'Evaluator \'.\n    pfTool pfclean.\n    elapsed1 := profMon elapsedTime.\n    profMon := pfTool pfmonitor: bagBlock.\n    profMon := pfTool pfview: \'Bag \'.\n    pfTool pfclean.\n    elapsed2 := profMon elapsedTime.\n    Transcript\n      cr;\n      show: elapsed1 printString , \' -- \' , elapsed2 printString.\n    Transcript\n      cr;\n      show:\n          ((elapsed1 - elapsed2) / elapsed1 * 100 asScaledDecimal: 2) printString\n              , \'% faster\' ].\nTranscript\n  cr;\n  show:\n      \'Results: \' , evaluatorResult size printString , \' -- \'\n          , enumeratorResult size printString.\n{evaluatorResult.\nenumeratorResult} ]',#creationTime:DateAndTime['2013-12-06T17:02:00.35535407066345-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'profile',#contents:'[ :topez :objIn :tokens :windowId | 
+| nsc evaluator evaluatorBlock bagBlock repeat evaluatorResult enumerator enumeratorResult test value |
+test := false.
+tokens size > 1
+  ifTrue: [ test := (tokens at: 2) = \'test\' ].
+nsc := (topez lookup: \'/home/index/population\') dotSelfObject population.
+nsc do: [ :each | each numberOfChildren ].
+evaluator := PathEvaluator basicNew.
+#(#\'unicodeField\') do: [ :term | evaluator add: term ].
+value := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.
+evaluator initialize asMostSpecificType.
+evaluator nsc: nsc.
+evaluator collator: IcuCollator default.
+repeat := 500.
+evaluatorBlock := [ repeat timesRepeat: [ evaluatorResult := evaluator findAllValuesEqualTo: value ] ].
+enumerator := BagUnicodeEnumerator new
+  evaluator: evaluator;
+  compareEqual;
+  yourself.
+bagBlock := [ repeat timesRepeat: [ enumeratorResult := enumerator findAllValuesFor: value ] ].
+evaluatorBlock := [ 
+repeat
+  timesRepeat: [ 
+    | tmpHolder |
+    tmpHolder := evaluator tmpHolder.
+    enumerator findAllValuesFor: value do: [ :each | tmpHolder add: each ].
+    evaluatorResult := tmpHolder completeBag ] ].
+test
+  ifTrue: [ 
+    bagBlock value.
+    evaluatorBlock value ]
+  ifFalse: [ 
+    | elapsed1 elapsed2 profMon pfTool |
+    pfTool := topez toolInstanceFor: \'pf\'.
+    pfTool pfmonitor: evaluatorBlock.
+    profMon := pfTool pfview: \'Evaluator \'.
+    pfTool pfclean.
+    elapsed1 := profMon elapsedTime.
+    profMon := pfTool pfmonitor: bagBlock.
+    profMon := pfTool pfview: \'Bag \'.
+    pfTool pfclean.
+    elapsed2 := profMon elapsedTime.
+    Transcript
+      cr;
+      show: elapsed1 printString , \' -- \' , elapsed2 printString.
+    Transcript
+      cr;
+      show:
+          ((elapsed1 - elapsed2) / elapsed1 * 100 asScaledDecimal: 2) printString
+              , \'% faster\' ].
+Transcript
+  cr;
+  show:
+      \'Results: \' , evaluatorResult size printString , \' -- \'
+          , enumeratorResult size printString.
+{evaluatorResult.
+enumeratorResult} ]',#creationTime:DateAndTime['2013-12-06T17:30:30.96391606330872-08:00'],#modificationTime:@2}

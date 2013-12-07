@@ -1,1 +1,20 @@
-TDScriptLeafNode{#name:'setIndex',#contents:'[ :topez :objIn :tokens :windowId | \n| nsc set val indexSpec query |\nnsc := Bag new.\nset := Set new.\n1 to: 5 do: [ :index | set add: index printString -> 5 ].\nval := \'5\' -> set.\nnsc\n  add: val;\n  add: \'1\' -> (Set with: \'1\' -> 1);\n  add: \'2\' -> (Set with: \'2\' -> 2).\nindexSpec := GsIndexSpec new\n  equalityIndex: \'each.value.*.value\' lastElementClass: Integer;\n  yourself.\n[ \nindexSpec createIndexesOn: nsc.\nquery := (GsQuery fromString: \'each.value.*.value = 5\')\n  on: nsc;\n  yourself.\nquery  queryResult ]\n  ensure: [ indexSpec removeIndexesFrom: nsc ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.54728507995605-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'setIndex',#contents:'[ :topez :objIn :tokens :windowId | 
+| nsc set val indexSpec query |
+nsc := Bag new.
+set := Set new.
+1 to: 5 do: [ :index | set add: index printString -> 5 ].
+val := \'5\' -> set.
+nsc
+  add: val;
+  add: \'1\' -> (Set with: \'1\' -> 1);
+  add: \'2\' -> (Set with: \'2\' -> 2).
+indexSpec := GsIndexSpec new
+  equalityIndex: \'each.value.*.value\' lastElementClass: Integer;
+  yourself.
+[ 
+indexSpec createIndexesOn: nsc.
+query := (GsQuery fromString: \'each.value.*.value = 5\')
+  on: nsc;
+  yourself.
+query  queryResult ]
+  ensure: [ indexSpec removeIndexesFrom: nsc ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.3424870967865-08:00'],#modificationTime:@2}

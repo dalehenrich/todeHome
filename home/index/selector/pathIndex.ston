@@ -1,1 +1,44 @@
-TDScriptLeafNode{#name:'pathIndex',#contents:'[ :topez :objIn :tokens :windowId | \n| tree population populationIndexSpec query halt create result |\ncreate := halt := false.\ntokens size > 1\n  ifTrue: [ \n    create := (tokens at: 2) = \'create\'.\n    tokens size > 2\n      ifTrue: [ halt := (tokens at: 3) = \'halt\' ] ].\ntree := (topez lookup: \'/home/index/family\') dotSelfObject.\npopulation := tree population.\npopulationIndexSpec := GsIndexSpec new\n  equalityIndex: \'each.#mother.middleName\' lastElementClass: String;\n  yourself.\nIndexManager current removeAllIncompleteIndexesOn: population.\n[ \ncreate\n  ifTrue: [ populationIndexSpec createIndexesOn: population ].\nresult := halt\n  ifTrue: [ \n    population halt.\n    population ]\n  ifFalse: [ \n    | expected options name |\n    options := GsQuery defaultQueryOptions + GsQueryOptions cacheQueryResult.\n    name := \'Penny\'.\n    expected := population\n      select: [ :each | each mother ifNil: [ false ] ifNotNil: [ :mother | mother middleName = name ] ].\n    query := (GsQuery\n      fromString: \'each.#mother.middleName = name\'\n      options: options)\n      bind: \'name\' to: name;\n      on: population;\n      yourself.\n    expected size = query size\n      ifFalse: [ nil error: \'size mismatch\' ].\n    expected\n      do: [ :each | \n        (query includes: each)\n          ifFalse: [ nil error: \'contents mismatch\' ] ].\n    query queryResult ] ]\n  ensure: [ IndexManager current removeAllIncompleteIndexesOn: population ].\ntrue\n  ifTrue: [ populationIndexSpec removeIndexesFrom: population ].\nresult ]',#creationTime:DateAndTime['2013-12-06T17:02:00.53422594070435-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'pathIndex',#contents:'[ :topez :objIn :tokens :windowId | 
+| tree population populationIndexSpec query halt create result |
+create := halt := false.
+tokens size > 1
+  ifTrue: [ 
+    create := (tokens at: 2) = \'create\'.
+    tokens size > 2
+      ifTrue: [ halt := (tokens at: 3) = \'halt\' ] ].
+tree := (topez lookup: \'/home/index/family\') dotSelfObject.
+population := tree population.
+populationIndexSpec := GsIndexSpec new
+  equalityIndex: \'each.#mother.middleName\' lastElementClass: String;
+  yourself.
+IndexManager current removeAllIncompleteIndexesOn: population.
+[ 
+create
+  ifTrue: [ populationIndexSpec createIndexesOn: population ].
+result := halt
+  ifTrue: [ 
+    population halt.
+    population ]
+  ifFalse: [ 
+    | expected options name |
+    options := GsQuery defaultQueryOptions + GsQueryOptions cacheQueryResult.
+    name := \'Penny\'.
+    expected := population
+      select: [ :each | each mother ifNil: [ false ] ifNotNil: [ :mother | mother middleName = name ] ].
+    query := (GsQuery
+      fromString: \'each.#mother.middleName = name\'
+      options: options)
+      bind: \'name\' to: name;
+      on: population;
+      yourself.
+    expected size = query size
+      ifFalse: [ nil error: \'size mismatch\' ].
+    expected
+      do: [ :each | 
+        (query includes: each)
+          ifFalse: [ nil error: \'contents mismatch\' ] ].
+    query queryResult ] ]
+  ensure: [ IndexManager current removeAllIncompleteIndexesOn: population ].
+true
+  ifTrue: [ populationIndexSpec removeIndexesFrom: population ].
+result ]',#creationTime:DateAndTime['2013-12-06T17:30:31.31688594818115-08:00'],#modificationTime:@2}

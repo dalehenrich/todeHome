@@ -1,1 +1,44 @@
-TDScriptLeafNode{#name:'looseChanges',#contents:'[ :topez :objIn :tokens :windowId | \n| current packages package loose packagePrefixes |\ncurrent := GsPackagePolicy current.\npackages := {}.\ncurrent packages_Do: [ :pkg | packages add: pkg ].\npackage := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].\nloose := {}.\npackagePrefixes := MCWorkingCopy allManagers\n  collect: [ :wc | \'*\' , wc packageName asLowercase ].\npackage\n  behaviorAndMethodDictDo: [ :beh :methodDict | \n    methodDict keys\n      do: [ :selector | \n        | cat |\n        (beh == Behavior and: [ selector == #\'_compileMethod:category:using:\' ])\n          not\n          ifTrue: [ \n            | add |\n            add := false.\n            cat := (beh categoryOfSelector: selector) asString asLowercase.\n            (cat beginsWith: \'*\')\n              ifTrue: [ \n                packagePrefixes\n                  detect: [ :prefix | cat beginsWith: prefix ]\n                  ifNone: [ add := true ] ]\n              ifFalse: [ add := true ].\n            add\n              ifTrue: [ \n                | ar persistentMethodDict sessionMethod |\n\t\t\t\t\tar := {beh.\n                            cat.\n                            selector} .\n                persistentMethodDict := beh persistentMethodDictForEnv: 0.\n                (persistentMethodDict at: selector ifAbsent: [  ])\n\t\t\t\t\tifNil:[loose\n                          add:ar]\n                  ifNotNil: [ :baseMethod | \n                    sessionMethod := beh compiledMethodAt: selector.\n                    sessionMethod sourceString ~= baseMethod sourceString\n                      ifTrue: [ \n                        loose\n                          add:ar\n                            ] ] ] ] ] ].\nloose ]',#creationTime:DateAndTime['2013-12-06T17:02:00.47407698631287-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'looseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
+| current packages package loose packagePrefixes |
+current := GsPackagePolicy current.
+packages := {}.
+current packages_Do: [ :pkg | packages add: pkg ].
+package := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].
+loose := {}.
+packagePrefixes := MCWorkingCopy allManagers
+  collect: [ :wc | \'*\' , wc packageName asLowercase ].
+package
+  behaviorAndMethodDictDo: [ :beh :methodDict | 
+    methodDict keys
+      do: [ :selector | 
+        | cat |
+        (beh == Behavior and: [ selector == #\'_compileMethod:category:using:\' ])
+          not
+          ifTrue: [ 
+            | add |
+            add := false.
+            cat := (beh categoryOfSelector: selector) asString asLowercase.
+            (cat beginsWith: \'*\')
+              ifTrue: [ 
+                packagePrefixes
+                  detect: [ :prefix | cat beginsWith: prefix ]
+                  ifNone: [ add := true ] ]
+              ifFalse: [ add := true ].
+            add
+              ifTrue: [ 
+                | ar persistentMethodDict sessionMethod |
+\t\t\t\t\tar := {beh.
+                            cat.
+                            selector} .
+                persistentMethodDict := beh persistentMethodDictForEnv: 0.
+                (persistentMethodDict at: selector ifAbsent: [  ])
+\t\t\t\t\tifNil:[loose
+                          add:ar]
+                  ifNotNil: [ :baseMethod | 
+                    sessionMethod := beh compiledMethodAt: selector.
+                    sessionMethod sourceString ~= baseMethod sourceString
+                      ifTrue: [ 
+                        loose
+                          add:ar
+                            ] ] ] ] ] ].
+loose ]',#creationTime:DateAndTime['2013-12-06T17:30:31.236083984375-08:00'],#modificationTime:@2}

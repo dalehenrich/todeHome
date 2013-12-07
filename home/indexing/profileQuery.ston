@@ -1,1 +1,73 @@
-TDScriptLeafNode{#name:'profileQuery',#contents:'[ :topez :objIn :tokens :windowId | \n| nsc indexSpec query inst pfTool sampleBlock bruteForceBlock elementValueBlock selectBlock profiles repeat |\n\"profile [[indexed|query|brute|element|select|debug]...]\"\nprofiles := #(\'query\' \'indexed\' \'brute\' \'element\' ).\ntokens size > 1\n  ifTrue: [ profiles := tokens copyFrom: 2 to: tokens size ].\nnsc := (IXFamilyTree createFamily: 6) population.\nindexSpec := GsIndexSpec new\n  equalityIndex: \'each.sons.*.numberOfChildren\' lastElementClass: Integer;\n  yourself.\nquery := (GsQuery fromString: \'2 < each.sons.*.numberOfChildren <= 4\')\n  on: nsc;\n  yourself.\nrepeat := 100.\nsampleBlock := [ repeat timesRepeat: [ query asIdentityBag ] ].\nbruteForceBlock := [ \n| expected |\nrepeat\n  timesRepeat: [ \n    expected := IdentitySet new.\n    nsc\n      do: [ :each | \n        each.sons\n          ifNotNil: [ :sons | \n            sons\n              do: [ :son | \n                son.numberOfChildren\n                  ifNotNil: [ :numberOfChildren | \n                    2 < numberOfChildren & (numberOfChildren <= 4)\n                      ifTrue: [ expected add: each ] ] ] ] ] ] ].\nelementValueBlock := [ repeat timesRepeat: [ nsc select: [ :each | query elementValue: each ] ] ].\nselectBlock := [ \nrepeat\n  timesRepeat: [ \n    nsc\n      select: { :each | \n        \"2 < each.sons.*.numberOfChildren <= 4\"\n        true } ] ].\npfTool := topez toolInstanceFor: \'pf\'.\n(profiles includes: \'indexed\')\n  ifTrue: [ \n    [ \n    indexSpec createIndexesOn: nsc.\n    query optimize.\n    pfTool\n      pfmonitor: sampleBlock;\n      pfview: \'Indexed: \' , nsc size printString;\n      pfclean ]\n      ensure: [ indexSpec removeIndexesFrom: nsc ] ].\n(profiles includes: \'query\')\n  ifTrue: [ \n    query optimize.\n    pfTool\n      pfmonitor: sampleBlock;\n      pfview: \'Query: \' , nsc size printString;\n      pfclean ].\n(profiles includes: \'brute\')\n  ifTrue: [ \n    pfTool\n      pfmonitor: bruteForceBlock;\n      pfview: \'Brute force: \' , nsc size printString;\n      pfclean ].\n(profiles includes: \'element\')\n  ifTrue: [ \n    query bindForElementValue.\n    pfTool\n      pfmonitor: elementValueBlock;\n      pfview: \'Element value: \' , nsc size printString;\n      pfclean ].\n(profiles includes: \'debug\')\n  ifTrue: [ \n    query bindForElementValue.\n    bruteForceBlock value ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.72742700576782-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'profileQuery',#contents:'[ :topez :objIn :tokens :windowId | 
+| nsc indexSpec query inst pfTool sampleBlock bruteForceBlock elementValueBlock selectBlock profiles repeat |
+\"profile [[indexed|query|brute|element|select|debug]...]\"
+profiles := #(\'query\' \'indexed\' \'brute\' \'element\' ).
+tokens size > 1
+  ifTrue: [ profiles := tokens copyFrom: 2 to: tokens size ].
+nsc := (IXFamilyTree createFamily: 6) population.
+indexSpec := GsIndexSpec new
+  equalityIndex: \'each.sons.*.numberOfChildren\' lastElementClass: Integer;
+  yourself.
+query := (GsQuery fromString: \'2 < each.sons.*.numberOfChildren <= 4\')
+  on: nsc;
+  yourself.
+repeat := 100.
+sampleBlock := [ repeat timesRepeat: [ query asIdentityBag ] ].
+bruteForceBlock := [ 
+| expected |
+repeat
+  timesRepeat: [ 
+    expected := IdentitySet new.
+    nsc
+      do: [ :each | 
+        each.sons
+          ifNotNil: [ :sons | 
+            sons
+              do: [ :son | 
+                son.numberOfChildren
+                  ifNotNil: [ :numberOfChildren | 
+                    2 < numberOfChildren & (numberOfChildren <= 4)
+                      ifTrue: [ expected add: each ] ] ] ] ] ] ].
+elementValueBlock := [ repeat timesRepeat: [ nsc select: [ :each | query elementValue: each ] ] ].
+selectBlock := [ 
+repeat
+  timesRepeat: [ 
+    nsc
+      select: { :each | 
+        \"2 < each.sons.*.numberOfChildren <= 4\"
+        true } ] ].
+pfTool := topez toolInstanceFor: \'pf\'.
+(profiles includes: \'indexed\')
+  ifTrue: [ 
+    [ 
+    indexSpec createIndexesOn: nsc.
+    query optimize.
+    pfTool
+      pfmonitor: sampleBlock;
+      pfview: \'Indexed: \' , nsc size printString;
+      pfclean ]
+      ensure: [ indexSpec removeIndexesFrom: nsc ] ].
+(profiles includes: \'query\')
+  ifTrue: [ 
+    query optimize.
+    pfTool
+      pfmonitor: sampleBlock;
+      pfview: \'Query: \' , nsc size printString;
+      pfclean ].
+(profiles includes: \'brute\')
+  ifTrue: [ 
+    pfTool
+      pfmonitor: bruteForceBlock;
+      pfview: \'Brute force: \' , nsc size printString;
+      pfclean ].
+(profiles includes: \'element\')
+  ifTrue: [ 
+    query bindForElementValue.
+    pfTool
+      pfmonitor: elementValueBlock;
+      pfview: \'Element value: \' , nsc size printString;
+      pfclean ].
+(profiles includes: \'debug\')
+  ifTrue: [ 
+    query bindForElementValue.
+    bruteForceBlock value ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.87725210189819-08:00'],#modificationTime:@2}

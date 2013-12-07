@@ -1,1 +1,3 @@
-TDObjectGatewayNode{#name:'repo',#contents:'(TDMonticelloRepository\n  fromDescription: \'filetree:///opt/git/PharoCompatibility/repository\')\n  repository'}
+TDObjectGatewayNode{#name:'repo',#contents:'(TDMonticelloRepository
+  fromDescription: \'filetree:///opt/git/PharoCompatibility/repository\')
+  repository'}

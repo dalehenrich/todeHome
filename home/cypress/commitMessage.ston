@@ -1,1 +1,5 @@
-TDTxtLeafNode{#name:'commitMessage',#contents:Text{#string:'move methods to GLASS base:\n\n  Url class>>absoluteFromText:\n  Url class>>schemeName\n  Url class>>urlClassForScheme:',#runs:RunArray{#runs:[31,28,3,53],#values:[[],[TextColor{#color:Color{#rgb:1072693248}}],[],[TextColor{#color:@9}]],#lastIndex:85,#lastRun:4,#lastOffset:22}},#creationTime:DateAndTime['2013-12-06T17:02:00.15949201583862-08:00'],#modificationTime:@13}
+TDTxtLeafNode{#name:'commitMessage',#contents:Text{#string:'move methods to GLASS base:
+
+  Url class>>absoluteFromText:
+  Url class>>schemeName
+  Url class>>urlClassForScheme:',#runs:RunArray{#runs:[31,28,3,53],#values:[[],[TextColor{#color:Color{#rgb:1072693248}}],[],[TextColor{#color:@9}]],#lastIndex:85,#lastRun:4,#lastOffset:22}},#creationTime:DateAndTime['2013-12-06T17:30:30.3726179599762-08:00'],#modificationTime:@13}

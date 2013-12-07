@@ -1,1 +1,7 @@
-TDScriptLeafNode{#name:'distribute',#contents:'\"This is source for a block.  \" \n ^ [ :topez :objIn :tokens :windowId | \n  (MCMetacelloTodeTool\n    topez: topez\n    objIn: objIn\n    tokens: tokens\n    windowId: windowId) distribute ]',#creationTime:DateAndTime['2013-12-06T17:02:01.05944991111755-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'distribute',#contents:'\"This is source for a block.  \" 
+ ^ [ :topez :objIn :tokens :windowId | 
+  (MCMetacelloTodeTool
+    topez: topez
+    objIn: objIn
+    tokens: tokens
+    windowId: windowId) distribute ]',#creationTime:DateAndTime['2013-12-06T17:30:32.5097279548645-08:00'],#modificationTime:@2}

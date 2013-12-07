@@ -1,1 +1,6 @@
-TDSmalltalkLeafNode{#name:'xx',#contents:'| blk |\nUUIDGenerator initialize.\nblk := [ 1000 timesRepeat: [ UUID new ] ].\ntrue\n  ifTrue: [ blk timeToRun ]\n  ifFalse: [ ProfMonitor monitorBlock: blk ]',#creationTime:DateAndTime['2013-12-06T17:02:00.14155602455139-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'xx',#contents:'| blk |
+UUIDGenerator initialize.
+blk := [ 1000 timesRepeat: [ UUID new ] ].
+true
+  ifTrue: [ blk timeToRun ]
+  ifFalse: [ ProfMonitor monitorBlock: blk ]',#creationTime:DateAndTime['2013-12-06T17:30:30.31370091438293-08:00'],#modificationTime:@2}

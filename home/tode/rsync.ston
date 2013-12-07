@@ -1,1 +1,6 @@
-TDScriptLeafNode{#name:'rsync',#contents:'[ :topez :objIn :tokens :todeCommand | \n| stonTool command |\ncommand := TDCommandLine commandLine: \'ston --update rsync rsyncDest\' redirectTarget: nil.\nstonTool := topez toolInstanceFor: \'ston\'.\nstonTool todeCommand: command.\nstonTool stonrsync ]',#creationTime:DateAndTime['2013-12-06T17:02:01.40455794334412-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'rsync',#contents:'[ :topez :objIn :tokens :todeCommand | 
+| stonTool command |
+command := TDCommandLine commandLine: \'ston --update rsync rsyncDest\' redirectTarget: nil.
+stonTool := topez toolInstanceFor: \'ston\'.
+stonTool todeCommand: command.
+stonTool stonrsync ]',#creationTime:DateAndTime['2013-12-06T17:30:33.26900291442871-08:00'],#modificationTime:@2}

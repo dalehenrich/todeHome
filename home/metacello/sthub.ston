@@ -1,1 +1,2 @@
-TDObjectGatewayNode{#name:'sthub',#contents:'(TDMonticelloRepository\n  fromDescription: \'http://smalltalkhub.com/mc/dkh/metacello/main\') repository'}
+TDObjectGatewayNode{#name:'sthub',#contents:'(TDMonticelloRepository
+  fromDescription: \'http://smalltalkhub.com/mc/dkh/metacello/main\') repository'}

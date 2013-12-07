@@ -1,1 +1,7 @@
-TDScriptLeafNode{#name:'browse',#contents:'[ :topez :objIn :tokens :windowId | \n| findTool defs |\nfindTool := topez toolInstanceFor: \'find\'.\ndefs := OrderedCollection new.\n#(\'PetitParser-cypress\' \'PetitTests\' \'PetitSmalltalk\')\n  do: [ :packageName | defs addAll: (findTool findPackageDefinitions: packageName) ].\n(topez toolInstanceFor: \'browse\') browseClasses: defs ]',#creationTime:DateAndTime['2013-12-06T17:02:01.18567895889282-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'browse',#contents:'[ :topez :objIn :tokens :windowId | 
+| findTool defs |
+findTool := topez toolInstanceFor: \'find\'.
+defs := OrderedCollection new.
+#(\'PetitParser-cypress\' \'PetitTests\' \'PetitSmalltalk\')
+  do: [ :packageName | defs addAll: (findTool findPackageDefinitions: packageName) ].
+(topez toolInstanceFor: \'browse\') browseClasses: defs ]',#creationTime:DateAndTime['2013-12-06T17:30:32.76762509346008-08:00'],#modificationTime:@2}

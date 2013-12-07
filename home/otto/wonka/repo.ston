@@ -1,1 +1,2 @@
-TDObjectGatewayNode{#name:'repo',#contents:'(TDMonticelloRepository fromDescription: \'server:///Users/dhenrich/monticello\')\n  repository'}
+TDObjectGatewayNode{#name:'repo',#contents:'(TDMonticelloRepository fromDescription: \'server:///Users/dhenrich/monticello\')
+  repository'}

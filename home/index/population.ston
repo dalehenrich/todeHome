@@ -1,1 +1,6 @@
-TDObjectGatewayNode{#name:'population',#contents:'UserGlobals\n  at: #\'FamilyTree\'\n  ifAbsent: [ \n    | tree |\n    tree := IXFamilyTree createFamily: 6.\n    UserGlobals at: #\'FamilyTree\' put: tree ]'}
+TDObjectGatewayNode{#name:'population',#contents:'UserGlobals
+  at: #\'FamilyTree\'
+  ifAbsent: [ 
+    | tree |
+    tree := IXFamilyTree createFamily: 6.
+    UserGlobals at: #\'FamilyTree\' put: tree ]'}

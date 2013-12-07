@@ -1,1 +1,4 @@
-TDSmalltalkLeafNode{#name:'halt',#contents:'\"opportunity to use debugger\"\n| block |\nblock := [:arg | arg halt].\nblock value: 100',#creationTime:DateAndTime['2013-12-06T16:50:18.53970789909363-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'halt',#contents:'\"opportunity to use debugger\"
+| block |
+block := [:arg | arg halt].
+block value: 100',#creationTime:DateAndTime['2013-12-06T17:30:30.06689190864563-08:00'],#modificationTime:@2}

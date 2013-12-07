@@ -1,1 +1,49 @@
-TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :command | \n| opts args repo loads |\n\"for help: ./load -h\"\ncommand\n  getOptsMixedLongShort:\n    {#(\'help\' $h #\'none\').\n    #(\'repo\' $r #\'required\').\n    #(\'load\' $l #\'required\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nopts\n  at: \'load\'\n  ifAbsent: [ loads := \'default\' ]\n  ifPresent: [ :loadList | loads := loadList findTokens: \' \' ].\nopts\n  at: \'repo\'\n  ifAbsent: [ repo := (topez lookup: \'repo\') dotSelfObject ]\n  ifPresent: [ :description | \n    | mc |\n    mc := topez toolInstanceFor: \'mc\'.\n    repo := mc resolveRepositoryReference: description ].\nopts\n  at: \'help\'\n  ifAbsent: [ \n    Metacello new\n      baseline: \'PharoCompatibility\';\n      repository: repo description;\n      load: loads ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  load - load sript utility template\nSYNOPSIS\n  load [-h|--help]\n       [--repo=<repository-reference>]\n       [--load=<load-list>]\nDESCRIPTION\n  default <repository-reference> is ./repo.\n  default <load-list> is default.\nEXAMPLES\n  ./load\n  ./load --load=Core\n  ./load --load=`Core Tests`\n  ./load --repo=@repo\n  ./load --repo=filetree://opt/git/PharoCompatibility/repository\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:01.208988904953-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :command | 
+| opts args repo loads |
+\"for help: ./load -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'repo\' $r #\'required\').
+    #(\'load\' $l #\'required\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'load\'
+  ifAbsent: [ loads := \'default\' ]
+  ifPresent: [ :loadList | loads := loadList findTokens: \' \' ].
+opts
+  at: \'repo\'
+  ifAbsent: [ repo := (topez lookup: \'repo\') dotSelfObject ]
+  ifPresent: [ :description | 
+    | mc |
+    mc := topez toolInstanceFor: \'mc\'.
+    repo := mc resolveRepositoryReference: description ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    Metacello new
+      baseline: \'PharoCompatibility\';
+      repository: repo description;
+      load: loads ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  load - load sript utility template
+SYNOPSIS
+  load [-h|--help]
+       [--repo=<repository-reference>]
+       [--load=<load-list>]
+DESCRIPTION
+  default <repository-reference> is ./repo.
+  default <load-list> is default.
+EXAMPLES
+  ./load
+  ./load --load=Core
+  ./load --load=`Core Tests`
+  ./load --repo=@repo
+  ./load --repo=filetree://opt/git/PharoCompatibility/repository
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:32.81732892990112-08:00'],#modificationTime:@2}

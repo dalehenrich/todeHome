@@ -1,1 +1,24 @@
-TDScriptLeafNode{#name:'testBug38383',#contents:'[ :topez :objIn :tokens :windowId | \n| allClasses legalCharacters detectBlock bad |\nlegalCharacters := (32 to: 126) collect: [ :each | Character codePoint: each ].\nlegalCharacters := legalCharacters asIdentitySet\n  add: Character tab;\n  add: Character lf;\n  yourself.\nallClasses := Globals select: [ :each | each isBehavior ].\ndetectBlock := [ :aClass :eachSelector | \n| source characters |\nsource := aClass sourceCodeAt: eachSelector.\ncharacters := source asIdentitySet - legalCharacters.\ncharacters := characters collect: [ :each | each codePoint ].\n\t\t{characters. source} ].\nbad := Array new.\nallClasses\n  do: [ :eachClass | \n    eachClass selectors\n      do: [ :sel | \n        | ar |\n        ar := detectBlock value: eachClass value: sel.\n        (ar at: 1) isEmpty\n          ifFalse: [ bad add: eachClass -> {sel. ar} ] ] ].\nbad ]',#creationTime:DateAndTime['2013-12-06T17:02:00.24103689193726-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'testBug38383',#contents:'[ :topez :objIn :tokens :windowId | 
+| allClasses legalCharacters detectBlock bad |
+legalCharacters := (32 to: 126) collect: [ :each | Character codePoint: each ].
+legalCharacters := legalCharacters asIdentitySet
+  add: Character tab;
+  add: Character lf;
+  yourself.
+allClasses := Globals select: [ :each | each isBehavior ].
+detectBlock := [ :aClass :eachSelector | 
+| source characters |
+source := aClass sourceCodeAt: eachSelector.
+characters := source asIdentitySet - legalCharacters.
+characters := characters collect: [ :each | each codePoint ].
+\t\t{characters. source} ].
+bad := Array new.
+allClasses
+  do: [ :eachClass | 
+    eachClass selectors
+      do: [ :sel | 
+        | ar |
+        ar := detectBlock value: eachClass value: sel.
+        (ar at: 1) isEmpty
+          ifFalse: [ bad add: eachClass -> {sel. ar} ] ] ].
+bad ]',#creationTime:DateAndTime['2013-12-06T17:30:30.57850694656372-08:00'],#modificationTime:@2}

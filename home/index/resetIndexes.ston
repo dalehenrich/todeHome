@@ -1,1 +1,57 @@
-TDScriptLeafNode{#name:'resetIndexes',#contents:'[ :topez :objIn :tokens :command | \n| opts args |\n\"for help: ./resetIndexes -h\"\ncommand\n  getOptsMixedLongShort:\n    {#(\'help\' $h #\'none\').\n    #(\'hard\' nil #\'none\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nopts\n  at: \'help\'\n  ifAbsent: [ \n    UserGlobals removeKey: #\'FamilyTree\' ifAbsent: [  ].\n    IXQueryTestResource reset.\n    opts\n      at: \'hard\'\n      ifAbsent: [ \n        IndexManager\n          removeAllIncompleteIndexes;\n          removeAllIndexes ]\n      ifPresent: [ :ignored | \n        IndexManager current resetAllIndexes.\n        DependencyList depMapKeys\n          do: [ :obj | DependencyList set: nil for: obj ].\n        DependencyList depMapKeys ] ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  resetIndexes - remove indexes from all collections in repository\nSYNOPSIS\n  resetIndexes [-h|--help][--hard]\nDESCRIPTION\n  Unconditionally removes FamilyTree global and resets IXQueryTestREsource:\n\n    UserGlobals removeKey: #\'\'FamilyTree\'\' ifAbsent: [  ].\n    IXQueryTestResource current reset.\n\n  With no --hard option, tries to gently remove indexes:\n\n    IndexManager\n      removeAllIncompleteIndexes;\n      removeAllIndexes \n\n  With --hard takes extreme measures to remove indexes:\n\n    IndexManager current resetAllIndexes.\n      DependencyList depMapKeys\n        do: [ :obj | DependencyList set: nil for: obj ].\n      DependencyList depMapKeys \nEXAMPLES\n\n  ./resetIndexes \n  ./resetIndexes --hard\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.48757410049438-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'resetIndexes',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./resetIndexes -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'hard\' nil #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    UserGlobals removeKey: #\'FamilyTree\' ifAbsent: [  ].
+    IXQueryTestResource reset.
+    opts
+      at: \'hard\'
+      ifAbsent: [ 
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes ]
+      ifPresent: [ :ignored | 
+        IndexManager current resetAllIndexes.
+        DependencyList depMapKeys
+          do: [ :obj | DependencyList set: nil for: obj ].
+        DependencyList depMapKeys ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  resetIndexes - remove indexes from all collections in repository
+SYNOPSIS
+  resetIndexes [-h|--help][--hard]
+DESCRIPTION
+  Unconditionally removes FamilyTree global and resets IXQueryTestREsource:
+
+    UserGlobals removeKey: #\'\'FamilyTree\'\' ifAbsent: [  ].
+    IXQueryTestResource current reset.
+
+  With no --hard option, tries to gently remove indexes:
+
+    IndexManager
+      removeAllIncompleteIndexes;
+      removeAllIndexes 
+
+  With --hard takes extreme measures to remove indexes:
+
+    IndexManager current resetAllIndexes.
+      DependencyList depMapKeys
+        do: [ :obj | DependencyList set: nil for: obj ].
+      DependencyList depMapKeys 
+EXAMPLES
+
+  ./resetIndexes 
+  ./resetIndexes --hard
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.26237010955811-08:00'],#modificationTime:@2}

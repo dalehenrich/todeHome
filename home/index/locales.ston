@@ -1,1 +1,3 @@
-TDObjectGatewayNode{#name:'locales',#contents:'{(IcuLocale availableLocales).\n(IcuLocale isoCountries).\n(IcuLocale isoLanguages)}'}
+TDObjectGatewayNode{#name:'locales',#contents:'{(IcuLocale availableLocales).
+(IcuLocale isoCountries).
+(IcuLocale isoLanguages)}'}

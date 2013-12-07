@@ -1,1 +1,38 @@
-TDSmalltalkLeafNode{#name:'repackage',#contents:'| family evaluators query tests |\nfamily := TDPackageDefinition new packageName: \'Index-Family\'.\nevaluators := TDPackageDefinition new packageName: \'Index-Evaluators\'.\nquery := TDPackageDefinition new packageName: \'Index-Query\'.\ntests := TDPackageDefinition new packageName: \'Index-Tests\'.\nfamily classDefinitions\n  do: [ :classDef | \n    (classDef isKindOf: TDExtensionClassDefinition)\n      ifTrue: [ \n        classDef instanceMethods , classDef classMethods\n          do: [ :methodDef | \n            ((methodDef className includesString: \'IndexSpecification\')\n              or: [ methodDef className includesString: \'RBParser\' ])\n              ifTrue: [ query pasteTDDefinition: methodDef ]\n              ifFalse: [ \n                ((methodDef className includesString: \'Evaluator\')\n                  or: [ \n                    (methodDef className includesString: \'PathTerm\')\n                      or: [ methodDef className includesString: \'Index\' ] ])\n                  ifTrue: [ evaluators pasteTDDefinition: methodDef ]\n                  ifFalse: [ \n                    ((methodDef className includesString: \'Executer\')\n                      or: [ methodDef className includesString: \'PathTerm\' ])\n                      ifTrue: [ evaluators pasteTDDefinition: methodDef ]\n                      ifFalse: [ evaluators pasteTDDefinition: methodDef ] ] ] ] ]\n      ifFalse: [ \n        ((classDef className beginsWith: \'Gs\')\n          or: [ classDef className beginsWith: \'RB\' ])\n          ifTrue: [ query pasteTDDefinition: classDef ]\n          ifFalse: [ \n            (classDef theClass inheritsFrom: TestCase)\n              ifTrue: [ tests pasteTDDefinition: classDef ]\n              ifFalse: [ \n                (classDef className includesString: \'IndexSpecification\')\n                  ifTrue: [ query pasteTDDefinition: classDef ]\n                  ifFalse: [ \n                    (classDef theClass inheritsFrom: PathEvaluator)\n                      ifTrue: [ evaluators pasteTDDefinition: classDef ] ] ] ] ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.74955701828003-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'repackage',#contents:'| family evaluators query tests |
+family := TDPackageDefinition new packageName: \'Index-Family\'.
+evaluators := TDPackageDefinition new packageName: \'Index-Evaluators\'.
+query := TDPackageDefinition new packageName: \'Index-Query\'.
+tests := TDPackageDefinition new packageName: \'Index-Tests\'.
+family classDefinitions
+  do: [ :classDef | 
+    (classDef isKindOf: TDExtensionClassDefinition)
+      ifTrue: [ 
+        classDef instanceMethods , classDef classMethods
+          do: [ :methodDef | 
+            ((methodDef className includesString: \'IndexSpecification\')
+              or: [ methodDef className includesString: \'RBParser\' ])
+              ifTrue: [ query pasteTDDefinition: methodDef ]
+              ifFalse: [ 
+                ((methodDef className includesString: \'Evaluator\')
+                  or: [ 
+                    (methodDef className includesString: \'PathTerm\')
+                      or: [ methodDef className includesString: \'Index\' ] ])
+                  ifTrue: [ evaluators pasteTDDefinition: methodDef ]
+                  ifFalse: [ 
+                    ((methodDef className includesString: \'Executer\')
+                      or: [ methodDef className includesString: \'PathTerm\' ])
+                      ifTrue: [ evaluators pasteTDDefinition: methodDef ]
+                      ifFalse: [ evaluators pasteTDDefinition: methodDef ] ] ] ] ]
+      ifFalse: [ 
+        ((classDef className beginsWith: \'Gs\')
+          or: [ classDef className beginsWith: \'RB\' ])
+          ifTrue: [ query pasteTDDefinition: classDef ]
+          ifFalse: [ 
+            (classDef theClass inheritsFrom: TestCase)
+              ifTrue: [ tests pasteTDDefinition: classDef ]
+              ifFalse: [ 
+                (classDef className includesString: \'IndexSpecification\')
+                  ifTrue: [ query pasteTDDefinition: classDef ]
+                  ifFalse: [ 
+                    (classDef theClass inheritsFrom: PathEvaluator)
+                      ifTrue: [ evaluators pasteTDDefinition: classDef ] ] ] ] ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.9245491027832-08:00'],#modificationTime:@2}

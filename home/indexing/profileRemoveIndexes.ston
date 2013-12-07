@@ -1,1 +1,27 @@
-TDScriptLeafNode{#name:'profileRemoveIndexes',#contents:'[ :topez :objIn :tokens :windowId | \n| nsc indexSpec query inst pfTool sampleBlock profiles repeat nscList |\n\"profile [[indexed]...]\"\nprofiles := #(\'indexed\').\ntokens size > 1\n  ifTrue: [ profiles := tokens copyFrom: 2 to: tokens size ].\nnsc := (IXFamilyTree createFamily: 6) population.\nindexSpec := GsIndexSpec new\n  equalityIndex: \'each.sons.*.numberOfChildren\' lastElementClass: Integer;\n  yourself.\nquery := (GsQuery fromString: \'2 < each.sons.*.numberOfChildren <= 4\')\n  on: nsc;\n  yourself.\nrepeat := 10.\nnscList := {}.\nrepeat timesRepeat: [ nscList add: nsc copy ].\nnscList do: [ :each | indexSpec createIndexesOn: each ].\nsampleBlock := [ nscList do: [ :each | indexSpec removeIndexesFrom: each ] ].\npfTool := topez toolInstanceFor: \'pf\'.\n[ \nindexSpec createIndexesOn: nsc.\nquery optimize.\npfTool\n  pfmonitor: sampleBlock;\n  pfview: \'Indexed: \' , nsc size printString;\n  pfclean ]\n  ensure: [ nscList do: [ :each | each _hasIndexes ifTrue: [ indexSpec removeIndexesFrom: each ]] ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.73770403862-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'profileRemoveIndexes',#contents:'[ :topez :objIn :tokens :windowId | 
+| nsc indexSpec query inst pfTool sampleBlock profiles repeat nscList |
+\"profile [[indexed]...]\"
+profiles := #(\'indexed\').
+tokens size > 1
+  ifTrue: [ profiles := tokens copyFrom: 2 to: tokens size ].
+nsc := (IXFamilyTree createFamily: 6) population.
+indexSpec := GsIndexSpec new
+  equalityIndex: \'each.sons.*.numberOfChildren\' lastElementClass: Integer;
+  yourself.
+query := (GsQuery fromString: \'2 < each.sons.*.numberOfChildren <= 4\')
+  on: nsc;
+  yourself.
+repeat := 10.
+nscList := {}.
+repeat timesRepeat: [ nscList add: nsc copy ].
+nscList do: [ :each | indexSpec createIndexesOn: each ].
+sampleBlock := [ nscList do: [ :each | indexSpec removeIndexesFrom: each ] ].
+pfTool := topez toolInstanceFor: \'pf\'.
+[ 
+indexSpec createIndexesOn: nsc.
+query optimize.
+pfTool
+  pfmonitor: sampleBlock;
+  pfview: \'Indexed: \' , nsc size printString;
+  pfclean ]
+  ensure: [ nscList do: [ :each | each _hasIndexes ifTrue: [ indexSpec removeIndexesFrom: each ]] ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.89638710021973-08:00'],#modificationTime:@2}

@@ -1,1 +1,10 @@
-TDScriptLeafNode{#name:'ernieDebug',#contents:'[ :topez :objIn :tokens :windowId | \n| symbolList cls testClassName testSelector |\ntestClassName := tokens at: 2.\ntestSelector := tokens at: 3.\nsymbolList := (AllUsers\n  userWithId: \'Ernie\'\n  ifAbsent: [ self error: \'No user named\' , self username printString , \' found.\' ])\n  symbolList.\ncls := symbolList objectNamed: testClassName asSymbol.\ncls debug: testSelector asSymbol ]',#creationTime:DateAndTime['2013-12-06T17:02:00.41369891166687-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'ernieDebug',#contents:'[ :topez :objIn :tokens :windowId | 
+| symbolList cls testClassName testSelector |
+testClassName := tokens at: 2.
+testSelector := tokens at: 3.
+symbolList := (AllUsers
+  userWithId: \'Ernie\'
+  ifAbsent: [ self error: \'No user named\' , self username printString , \' found.\' ])
+  symbolList.
+cls := symbolList objectNamed: testClassName asSymbol.
+cls debug: testSelector asSymbol ]',#creationTime:DateAndTime['2013-12-06T17:30:31.09942507743835-08:00'],#modificationTime:@2}

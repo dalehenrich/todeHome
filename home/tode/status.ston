@@ -1,1 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit b91b435bd0d3f17539d6ecddbfa530d9b0ad2d12\nAuthor: Dale Henrichs <dale.henrichs@gemtalksystems.com>\nDate:   Fri Dec 6 17:08:52 2013 -0800\n\n    Issue #37: fix an rsync bug ... when copying more than one directory...\n',#creationTime:DateAndTime['2013-12-06T17:02:01.4707190990448-08:00'],#modificationTime:DateAndTime['2013-12-06T17:08:55.57236909866333-08:00']}
+TDTxtLeafNode{#name:'status',#contents:'commit b91b435bd0d3f17539d6ecddbfa530d9b0ad2d12
+Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
+Date:   Fri Dec 6 17:08:52 2013 -0800
+
+    Issue #37: fix an rsync bug ... when copying more than one directory...
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:@2}

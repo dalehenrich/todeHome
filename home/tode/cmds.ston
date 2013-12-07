@@ -1,1 +1,8 @@
-TDScriptLeafNode{#name:'cmds',#contents:'[ :topez :objIn :tokens :windowId | \n| parser options nonOptions|\n\toptions := {}.\n\tnonOptions := {}.\nparser := TDCommandLineParser parse: (ReadStream on: \'testopt -a -b\').\n\tparser parseOptions: \'ab\' do: [:opt :optArg |\n\t\toptions add: opt-> optArg] nonOptionsDo: [:nonOption |nonOptions add: nonOption].\n\t{options. nonOptions} ]',#creationTime:DateAndTime['2013-12-06T14:56:50.02944111824036-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'cmds',#contents:'[ :topez :objIn :tokens :windowId | 
+| parser options nonOptions|
+\toptions := {}.
+\tnonOptions := {}.
+parser := TDCommandLineParser parse: (ReadStream on: \'testopt -a -b\').
+\tparser parseOptions: \'ab\' do: [:opt :optArg |
+\t\toptions add: opt-> optArg] nonOptionsDo: [:nonOption |nonOptions add: nonOption].
+\t{options. nonOptions} ]',#creationTime:DateAndTime['2013-12-06T17:30:33.14828109741211-08:00'],#modificationTime:@2}

@@ -1,1 +1,18 @@
-TDScriptLeafNode{#name:'bagIndex',#contents:'[ :topez :objIn :tokens :windowId | \n| nsc val indexSpec query |\nnsc := Bag new.\nval := \'5\' -> 5.\n5 timesRepeat: [ nsc add: val ].\nnsc\n  add: \'1\' -> 1;\n  add: \'2\' -> 2.\nindexSpec := GsIndexSpec new\n  equalityIndex: \'each.value\' lastElementClass: Integer;\n  yourself.\n[ \nindexSpec createIndexesOn: nsc.\nquery := (GsQuery fromString: \'each.value = 5\')\n  on: nsc;\n  yourself.\nquery queryResult ]\n  ensure: [ indexSpec removeIndexesFrom: nsc ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.36329388618469-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'bagIndex',#contents:'[ :topez :objIn :tokens :windowId | 
+| nsc val indexSpec query |
+nsc := Bag new.
+val := \'5\' -> 5.
+5 timesRepeat: [ nsc add: val ].
+nsc
+  add: \'1\' -> 1;
+  add: \'2\' -> 2.
+indexSpec := GsIndexSpec new
+  equalityIndex: \'each.value\' lastElementClass: Integer;
+  yourself.
+[ 
+indexSpec createIndexesOn: nsc.
+query := (GsQuery fromString: \'each.value = 5\')
+  on: nsc;
+  yourself.
+query queryResult ]
+  ensure: [ indexSpec removeIndexesFrom: nsc ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.97835206985474-08:00'],#modificationTime:@2}

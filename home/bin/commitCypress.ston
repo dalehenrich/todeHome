@@ -1,1 +1,33 @@
-TDScriptLeafNode{#name:'commitCypress',#contents:'[ :topez :objIn :tokens :windowId | \n| projectName commitMessage cypressTool cypressRepo gitRepoDir gitTool status statusNode commitMessageFileName |\n\"/home/bin/commitCypress Cypress  @cypressRepo @commitMessage\"\ncypressTool := topez toolInstanceFor: \'cym\'.\nprojectName := tokens at: 2.\ncypressRepo := cypressTool resolveAtPathReference: (tokens at: 3).\ncommitMessage := (cypressTool resolveAtPathReference: (tokens at: 4)) asString.\nTranscript\n  cr;\n  show: \'======= committing \' , projectName printString , \'=======\'.\ncypressTool cymSave: projectName to: cypressRepo.\ngitRepoDir := (topez lookup: \'gitRepo\') dotSelfObject.\ngitTool := topez toolInstanceFor: \'git\'.\ncommitMessageFileName := gitTool createTmpFileWith: commitMessage.\ngitTool\n  gitaddIn: gitRepoDir with: \'.\';\n  gitstatusIn: gitRepoDir with: \'\';\n  gitcommitIn: gitRepoDir with: \'-a --file=\' , commitMessageFileName;\n  gitstatusIn: gitRepoDir with: \'\'.\nstatus := gitTool gitlogIn: gitRepoDir with: \'-1\'.\nTranscript\n  cr;\n  show: \'==============\'.\nstatusNode := topez\n  lookup: \'status\'\n  ifAbsent: [ \n    topez currentNode\n      addChildNode:\n        (TDTxtLeafNode new\n          name: \'status\';\n          yourself) ].\nstatusNode contents: status.\nstatus ]',#creationTime:DateAndTime['2013-12-06T16:50:18.49913811683655-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'commitCypress',#contents:'[ :topez :objIn :tokens :windowId | 
+| projectName commitMessage cypressTool cypressRepo gitRepoDir gitTool status statusNode commitMessageFileName |
+\"/home/bin/commitCypress Cypress  @cypressRepo @commitMessage\"
+cypressTool := topez toolInstanceFor: \'cym\'.
+projectName := tokens at: 2.
+cypressRepo := cypressTool resolveAtPathReference: (tokens at: 3).
+commitMessage := (cypressTool resolveAtPathReference: (tokens at: 4)) asString.
+Transcript
+  cr;
+  show: \'======= committing \' , projectName printString , \'=======\'.
+cypressTool cymSave: projectName to: cypressRepo.
+gitRepoDir := (topez lookup: \'gitRepo\') dotSelfObject.
+gitTool := topez toolInstanceFor: \'git\'.
+commitMessageFileName := gitTool createTmpFileWith: commitMessage.
+gitTool
+  gitaddIn: gitRepoDir with: \'.\';
+  gitstatusIn: gitRepoDir with: \'\';
+  gitcommitIn: gitRepoDir with: \'-a --file=\' , commitMessageFileName;
+  gitstatusIn: gitRepoDir with: \'\'.
+status := gitTool gitlogIn: gitRepoDir with: \'-1\'.
+Transcript
+  cr;
+  show: \'==============\'.
+statusNode := topez
+  lookup: \'status\'
+  ifAbsent: [ 
+    topez currentNode
+      addChildNode:
+        (TDTxtLeafNode new
+          name: \'status\';
+          yourself) ].
+statusNode contents: status.
+status ]',#creationTime:DateAndTime['2013-12-06T17:30:30.00566291809082-08:00'],#modificationTime:@2}

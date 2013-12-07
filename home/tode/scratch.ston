@@ -1,1 +1,8 @@
-TDTxtLeafNode{#name:'scratch',#contents:Text{#string:'    GsIndexSpec new\n      unicodeIndex: \'each.#car.color\' \n        collator: IcuCollator default;\n      rcUnicodeIndex: \'each.firstName\' \n        collator: (IcuCollator forLocaleNamed: \'en_GB\')\n        requireUnicodeStrings: true;\n      createIndexesOn: myEmployees.\n',#runs:RunArray{#runs:[267],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:232,#lastRun:1,#lastOffset:231}},#creationTime:DateAndTime['2013-12-06T17:02:01.45696210861206-08:00'],#modificationTime:@9}
+TDTxtLeafNode{#name:'scratch',#contents:Text{#string:'    GsIndexSpec new
+      unicodeIndex: \'each.#car.color\' 
+        collator: IcuCollator default;
+      rcUnicodeIndex: \'each.firstName\' 
+        collator: (IcuCollator forLocaleNamed: \'en_GB\')
+        requireUnicodeStrings: true;
+      createIndexesOn: myEmployees.
+',#runs:RunArray{#runs:[267],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:232,#lastRun:1,#lastOffset:231}},#creationTime:DateAndTime['2013-12-06T17:30:33.3066930770874-08:00'],#modificationTime:@9}

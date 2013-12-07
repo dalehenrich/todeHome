@@ -1,1 +1,15 @@
-TDScriptLeafNode{#name:'reset',#contents:'[ :topez :objIn :tokens :windowId | \n| resetAll indexManager |\n\"./reset [true|false]\"\nresetAll := false.\ntokens size > 1\n  ifTrue: [ resetAll := (tokens at: 2) = \'true\' ].\nIXQueryTestResource reset.\nindexManager := IndexManager current.\nresetAll\n  ifTrue: [ \n    indexManager\n      removeAllIndexes;\n      resetAllIndexes ].\n\tIXQueryTestResource current. \"force creation of new resources\"\nindexManager ]',#creationTime:DateAndTime['2013-12-06T17:02:00.76213693618774-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'reset',#contents:'[ :topez :objIn :tokens :windowId | 
+| resetAll indexManager |
+\"./reset [true|false]\"
+resetAll := false.
+tokens size > 1
+  ifTrue: [ resetAll := (tokens at: 2) = \'true\' ].
+IXQueryTestResource reset.
+indexManager := IndexManager current.
+resetAll
+  ifTrue: [ 
+    indexManager
+      removeAllIndexes;
+      resetAllIndexes ].
+\tIXQueryTestResource current. \"force creation of new resources\"
+indexManager ]',#creationTime:DateAndTime['2013-12-06T17:30:31.94664001464844-08:00'],#modificationTime:@2}

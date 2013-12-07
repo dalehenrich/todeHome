@@ -1,1 +1,10 @@
-TDTopezLeafNode{#name:'testx',#contents:'./resetPP\n#test class GsQueryParserTests GsQueryGrammarTests\n#test project Indexing\n#ts list errors failures\n#ts list\n#ts run IXQuerySetValuedPathTermTests>>testQuery3\n#test class IXQuerySetValuedPathTermTests\n#ts list errors failures\n#ts list\nts run IXQuerySetValuedPathTermTests>>testQuery3',#creationTime:DateAndTime['2013-12-06T17:02:00.9626190662384-08:00'],#modificationTime:@2}
+TDTopezLeafNode{#name:'testx',#contents:'./resetPP
+#test class GsQueryParserTests GsQueryGrammarTests
+#test project Indexing
+#ts list errors failures
+#ts list
+#ts run IXQuerySetValuedPathTermTests>>testQuery3
+#test class IXQuerySetValuedPathTermTests
+#ts list errors failures
+#ts list
+ts run IXQuerySetValuedPathTermTests>>testQuery3',#creationTime:DateAndTime['2013-12-06T17:30:32.30291104316711-08:00'],#modificationTime:@2}

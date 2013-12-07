@@ -1,1 +1,2 @@
-TDObjectGatewayNode{#name:'gemsource',#contents:'(TDMonticelloRepository\n  fromDescription: \'http://seaside.gemtalksystems.com/ss/metacello\') repository'}
+TDObjectGatewayNode{#name:'gemsource',#contents:'(TDMonticelloRepository
+  fromDescription: \'http://seaside.gemtalksystems.com/ss/metacello\') repository'}

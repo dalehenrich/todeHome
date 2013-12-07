@@ -1,1 +1,5 @@
-TDTopezLeafNode{#name:'browse',#contents:'browse hierarchy PathEvaluator\nbrowse hierarchy PathTerm\nbrowse hierarchy IdentityIndex\nbrowse hierarchy IndexManager\nbrowse category ^Index',#creationTime:DateAndTime['2013-12-06T17:02:00.37044811248779-08:00'],#modificationTime:@2}
+TDTopezLeafNode{#name:'browse',#contents:'browse hierarchy PathEvaluator
+browse hierarchy PathTerm
+browse hierarchy IdentityIndex
+browse hierarchy IndexManager
+browse category ^Index',#creationTime:DateAndTime['2013-12-06T17:30:30.99756598472595-08:00'],#modificationTime:@2}

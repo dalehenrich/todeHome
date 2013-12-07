@@ -1,1 +1,2 @@
-TDObjectGatewayNode{#name:'alternateDir',#contents:'(TDMonticelloRepository\n  fromDescription: \'filetree:///opt/git/otto/alternate/repository\') repository'}
+TDObjectGatewayNode{#name:'alternateDir',#contents:'(TDMonticelloRepository
+  fromDescription: \'filetree:///opt/git/otto/alternate/repository\') repository'}

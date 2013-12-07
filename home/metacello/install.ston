@@ -1,1 +1,10 @@
-TDScriptLeafNode{#name:'install',#contents:'[ :topez :objIn :tokens :windowId | \n\tMetacello new\n\tbaseline: \'Metacello\';\n\trepository: \'filetree:///opt/git/metacello-work/repository\';\n\tget.\n\tMetacello new\n\tbaseline: \'Metacello\';\n\trepository: \'filetree:///opt/git/metacello-work/repository\';\n\tload: \'ALL\'.\n\t]',#creationTime:DateAndTime['2013-12-06T17:02:01.06564998626709-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'install',#contents:'[ :topez :objIn :tokens :windowId | 
+\tMetacello new
+\tbaseline: \'Metacello\';
+\trepository: \'filetree:///opt/git/metacello-work/repository\';
+\tget.
+\tMetacello new
+\tbaseline: \'Metacello\';
+\trepository: \'filetree:///opt/git/metacello-work/repository\';
+\tload: \'ALL\'.
+\t]',#creationTime:DateAndTime['2013-12-06T17:30:32.52275395393372-08:00'],#modificationTime:@2}

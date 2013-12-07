@@ -1,1 +1,40 @@
-TDScriptLeafNode{#name:'commitConfig',#contents:'[ :topez :objIn :tokens :windowId | \n| projectName commitMessage mmTool commitedVersions |\n\"/home/bin/commitConfig Seaside30 `commit message`\n/home/bin/commitConfig Seaside30 @commitMessage\"\nprojectName := tokens at: 2.\ncommitMessage := tokens at: 3.\nmmTool := topez toolInstanceFor: \'mm\'.\n(commitMessage beginsWith: \'@\')\n  ifTrue: [ commitMessage := (mmTool resolveAtPathReference: commitMessage) asString ].\nTranscript\n  cr;\n  show: \'======= committing \' , projectName printString , \'=======\'.\ncommitedVersions := mmTool mmCommit: projectName commitMessage: commitMessage.\ncommitedVersions isEmpty\n  ifTrue: [ \'No dirty packages to commit\' ]\n  ifFalse: [ \n    | statusNode status version projectSpec |\n    projectSpec := Metacello image\n      project: projectName;\n      list.\n    MetacelloToolBox\n      updateDevelopment: projectSpec versionString\n      for: projectName\n      updatePackages: true\n      description: commitMessage.\n\tstatus := \'Committed Configuration: \' , projectName printString , \' version \'\n      , version printString , \' \' , commitMessage printString.\n    Transcript\n      cr;\n      show: \'==============\'.\n    statusNode := topez\n      lookup: \'status\'\n      ifAbsent: [ \n        topez currentNode\n          addChildNode:\n            (TDTxtLeafNode new\n              name: \'status\';\n              yourself) ].\n    statusNode contents: status.\n    status ] ]',#creationTime:DateAndTime['2013-12-06T16:50:18.48999309539795-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'commitConfig',#contents:'[ :topez :objIn :tokens :windowId | 
+| projectName commitMessage mmTool commitedVersions |
+\"/home/bin/commitConfig Seaside30 `commit message`
+/home/bin/commitConfig Seaside30 @commitMessage\"
+projectName := tokens at: 2.
+commitMessage := tokens at: 3.
+mmTool := topez toolInstanceFor: \'mm\'.
+(commitMessage beginsWith: \'@\')
+  ifTrue: [ commitMessage := (mmTool resolveAtPathReference: commitMessage) asString ].
+Transcript
+  cr;
+  show: \'======= committing \' , projectName printString , \'=======\'.
+commitedVersions := mmTool mmCommit: projectName commitMessage: commitMessage.
+commitedVersions isEmpty
+  ifTrue: [ \'No dirty packages to commit\' ]
+  ifFalse: [ 
+    | statusNode status version projectSpec |
+    projectSpec := Metacello image
+      project: projectName;
+      list.
+    MetacelloToolBox
+      updateDevelopment: projectSpec versionString
+      for: projectName
+      updatePackages: true
+      description: commitMessage.
+\tstatus := \'Committed Configuration: \' , projectName printString , \' version \'
+      , version printString , \' \' , commitMessage printString.
+    Transcript
+      cr;
+      show: \'==============\'.
+    statusNode := topez
+      lookup: \'status\'
+      ifAbsent: [ 
+        topez currentNode
+          addChildNode:
+            (TDTxtLeafNode new
+              name: \'status\';
+              yourself) ].
+    statusNode contents: status.
+    status ] ]',#creationTime:DateAndTime['2013-12-06T17:30:29.9919331073761-08:00'],#modificationTime:@2}

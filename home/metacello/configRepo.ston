@@ -1,1 +1,3 @@
-TDObjectGatewayNode{#name:'configRepo',#contents:'(TDMonticelloRepository\n  fromDescription: \'filetree:///opt/git/configurations/metacello-work\')\n  repository'}
+TDObjectGatewayNode{#name:'configRepo',#contents:'(TDMonticelloRepository
+  fromDescription: \'filetree:///opt/git/configurations/metacello-work\')
+  repository'}

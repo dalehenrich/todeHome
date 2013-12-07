@@ -1,1 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit f067b7fe5d170078e4da00c35c8046deee3890e5\nAuthor: Dale Henrichs <dale.henrichs@gemtalksystems.com>\nDate:   Sat Nov 9 15:30:44 2013 -0800\n\n    implement GsInspectInteraction to support tODE and GemTools\n',#creationTime:DateAndTime['2013-12-06T17:02:00.33450198173523-08:00'],#modificationTime:@2}
+TDTxtLeafNode{#name:'status',#contents:'commit f067b7fe5d170078e4da00c35c8046deee3890e5
+Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
+Date:   Sat Nov 9 15:30:44 2013 -0800
+
+    implement GsInspectInteraction to support tODE and GemTools
+',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:@2}

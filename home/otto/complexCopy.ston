@@ -1,1 +1,74 @@
-TDScriptLeafNode{#name:'complexCopy',#contents:'[ :topez :objIn :tokens :command | \n| opts args |\n\"for help: ./complexCopy -h\"\ncommand\n  getOptsMixedLongShort:\n    {#(\'help\' $h #\'none\').\n    #(\'project\' $p #\'required\').\n    #(\'version\' $v #\'required\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nopts\n  at: \'help\'\n  ifAbsent: [ \n    | cacheRepository version configClass mcTool versionString |\n    opts\n      at: \'project\'\n      ifAbsent: [ self error: \'Must specify a project (--project=<project-name>)\' ]\n      ifPresent: [ :name | configClass := Smalltalk at: (MetacelloToolBox configurationNameFrom: name) ].\n    opts\n      at: \'version\'\n      ifAbsent: [ self error: \'Must specify a version (--version=<project-version>)\' ]\n      ifPresent: [ :version | versionString := version ].\n    args size ~= 1\n      ifTrue: [ self error: \'Must specify a repository description)\' ].\n    mcTool := topez toolInstanceFor: \'mc\'.\n    cacheRepository := mcTool resolveRepositoryReference: (args at: 1).\n    cacheRepository := MCRepositoryGroup default repositories\n      detect: [ :each | each = cacheRepository ]\n      ifNone: [ cacheRepository ].\n    version := configClass project version: versionString.\n    version ignoreImage: true.\n    (version record: \'ALL\') loadDirective\n      versionDirectivesDo: [ :versionDirective | \n        | p pClass |\n        versionDirective spec ~~ nil\n          ifTrue: [ \n            p := versionDirective spec project.\n            pClass := p configuration class.\t\"save packages for configClass only\"\n            pClass == configClass\n              ifTrue: [ \n                | policy |\n                policy := (Smalltalk at: #\'MetacelloLoaderPolicy\') new\n                  cacheRepository: cacheRepository;\n                  ignoreImage: true;\n                  yourself.\n                p fetchProject: policy.\n                versionDirective\n                  packagesDo: [ :packageDirective | \n                    \"skip nested configurations\"\n                    (packageDirective spec name beginsWith: \'ConfigurationOf\')\n                      ifFalse: [ \n                        \"fetch mcz file\"\n                        packageDirective spec fetchPackage: policy ] ] ] ] ] ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  complexCopy - complexCopy sript utility \nSYNOPSIS\n  complexCopy [-h|--help] \n\t          --project=<configuration-project-name> \n\t          --version=<project-version>\n\t          <repository-description>\nDESCRIPTION\n  Copy packages from the named configuration to the specified <repository-description>.\nEXAMPLES\n  ./complexCopy --help\n  ./complexCopy -h\n\n  ./complexCopy --project=External @repo\n  ./complexCopy --project=External --version=1.0.0 @externalDir\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:01.10095191001892-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'complexCopy',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./complexCopy -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'project\' $p #\'required\').
+    #(\'version\' $v #\'required\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | cacheRepository version configClass mcTool versionString |
+    opts
+      at: \'project\'
+      ifAbsent: [ self error: \'Must specify a project (--project=<project-name>)\' ]
+      ifPresent: [ :name | configClass := Smalltalk at: (MetacelloToolBox configurationNameFrom: name) ].
+    opts
+      at: \'version\'
+      ifAbsent: [ self error: \'Must specify a version (--version=<project-version>)\' ]
+      ifPresent: [ :version | versionString := version ].
+    args size ~= 1
+      ifTrue: [ self error: \'Must specify a repository description)\' ].
+    mcTool := topez toolInstanceFor: \'mc\'.
+    cacheRepository := mcTool resolveRepositoryReference: (args at: 1).
+    cacheRepository := MCRepositoryGroup default repositories
+      detect: [ :each | each = cacheRepository ]
+      ifNone: [ cacheRepository ].
+    version := configClass project version: versionString.
+    version ignoreImage: true.
+    (version record: \'ALL\') loadDirective
+      versionDirectivesDo: [ :versionDirective | 
+        | p pClass |
+        versionDirective spec ~~ nil
+          ifTrue: [ 
+            p := versionDirective spec project.
+            pClass := p configuration class.\t\"save packages for configClass only\"
+            pClass == configClass
+              ifTrue: [ 
+                | policy |
+                policy := (Smalltalk at: #\'MetacelloLoaderPolicy\') new
+                  cacheRepository: cacheRepository;
+                  ignoreImage: true;
+                  yourself.
+                p fetchProject: policy.
+                versionDirective
+                  packagesDo: [ :packageDirective | 
+                    \"skip nested configurations\"
+                    (packageDirective spec name beginsWith: \'ConfigurationOf\')
+                      ifFalse: [ 
+                        \"fetch mcz file\"
+                        packageDirective spec fetchPackage: policy ] ] ] ] ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  complexCopy - complexCopy sript utility 
+SYNOPSIS
+  complexCopy [-h|--help] 
+\t          --project=<configuration-project-name> 
+\t          --version=<project-version>
+\t          <repository-description>
+DESCRIPTION
+  Copy packages from the named configuration to the specified <repository-description>.
+EXAMPLES
+  ./complexCopy --help
+  ./complexCopy -h
+
+  ./complexCopy --project=External @repo
+  ./complexCopy --project=External --version=1.0.0 @externalDir
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:32.63239502906799-08:00'],#modificationTime:@2}

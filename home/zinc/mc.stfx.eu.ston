@@ -1,1 +1,2 @@
-TDObjectGatewayNode{#name:'mc.stfx.eu',#contents:'(TDMonticelloRepository fromDescription: \'http://mc.stfx.eu/ZincHTTPComponents\')\n  repository'}
+TDObjectGatewayNode{#name:'mc.stfx.eu',#contents:'(TDMonticelloRepository fromDescription: \'http://mc.stfx.eu/ZincHTTPComponents\')
+  repository'}

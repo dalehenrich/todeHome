@@ -1,1 +1,31 @@
-TDScriptLeafNode{#name:'looseChanges',#contents:'[ :topez :objIn :tokens :windowId | \n| current packages package loose packagePrefixes |\ncurrent := GsPackagePolicy current.\npackages := {}.\ncurrent packages_Do: [ :pkg | packages add: pkg ].\npackage := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].\nloose := {}.\npackagePrefixes := MCWorkingCopy allManagers\n  collect: [ :wc | \'*\' , wc packageName asLowercase ].\npackage\n  behaviorAndMethodDictDo: [ :beh :methodDict | \n    methodDict keys\n      do: [ :selector | \n        | cat |\n        cat := (beh categoryOfSelector: selector) asString asLowercase.\n        (cat beginsWith: \'*\')\n          ifTrue: [ \n            (packagePrefixes detect: [ :prefix | cat beginsWith: prefix ] ifNone: [  ])\n              ifNil: [ \n                loose\n                  add:\n                    {beh.\n                    cat.\n                    selector} ] ]\n          ifFalse: [ \n            loose\n              add:\n                {beh.\n                cat.\n                selector} ] ] ].\nloose ]',#creationTime:DateAndTime['2013-12-06T17:02:00.22930097579956-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'looseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
+| current packages package loose packagePrefixes |
+current := GsPackagePolicy current.
+packages := {}.
+current packages_Do: [ :pkg | packages add: pkg ].
+package := packages detect: [ :pkg | pkg symbolDict name == #\'UserGlobals\' ].
+loose := {}.
+packagePrefixes := MCWorkingCopy allManagers
+  collect: [ :wc | \'*\' , wc packageName asLowercase ].
+package
+  behaviorAndMethodDictDo: [ :beh :methodDict | 
+    methodDict keys
+      do: [ :selector | 
+        | cat |
+        cat := (beh categoryOfSelector: selector) asString asLowercase.
+        (cat beginsWith: \'*\')
+          ifTrue: [ 
+            (packagePrefixes detect: [ :prefix | cat beginsWith: prefix ] ifNone: [  ])
+              ifNil: [ 
+                loose
+                  add:
+                    {beh.
+                    cat.
+                    selector} ] ]
+          ifFalse: [ 
+            loose
+              add:
+                {beh.
+                cat.
+                selector} ] ] ].
+loose ]',#creationTime:DateAndTime['2013-12-06T17:30:30.55393505096436-08:00'],#modificationTime:@2}

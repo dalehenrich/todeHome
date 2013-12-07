@@ -1,1 +1,4 @@
-TDTopezLeafNode{#name:'x',#contents:'#mc compare image Squeak Squeak-dkh.290 @tstRepo\n#mc merge Monticello Monticello.g-dkh.447 @tstRepo\ncyp merge d499ce35246e539782c28ddcfc3b48ce665099e6 d499ce35246e539782c28ddcfc3b48ce665099e6 @gitRepo\n',#creationTime:DateAndTime['2013-12-06T17:02:01.50023102760315-08:00'],#modificationTime:@2}
+TDTopezLeafNode{#name:'x',#contents:'#mc compare image Squeak Squeak-dkh.290 @tstRepo
+#mc merge Monticello Monticello.g-dkh.447 @tstRepo
+cyp merge d499ce35246e539782c28ddcfc3b48ce665099e6 d499ce35246e539782c28ddcfc3b48ce665099e6 @gitRepo
+',#creationTime:DateAndTime['2013-12-06T17:30:33.37507796287537-08:00'],#modificationTime:@2}

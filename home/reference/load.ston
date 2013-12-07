@@ -1,1 +1,4 @@
-TDSmalltalkLeafNode{#name:'load',#contents:'Metacello new\n  baseline: \'CypressReference\';\n  repository: \'github://dalehenrich/Cypress-reference:master/repository\';\n  load: #(\'Core\' \'Tests\')',#creationTime:DateAndTime['2013-12-06T17:02:01.24150896072388-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'load',#contents:'Metacello new
+  baseline: \'CypressReference\';
+  repository: \'github://dalehenrich/Cypress-reference:master/repository\';
+  load: #(\'Core\' \'Tests\')',#creationTime:DateAndTime['2013-12-06T17:30:32.87868595123291-08:00'],#modificationTime:@2}

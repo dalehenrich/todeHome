@@ -1,1 +1,12 @@
-TDSmalltalkLeafNode{#name:'test',#contents:'Object readSixxFrom: \'<sixx.object sixx.id=\"72\"\n        sixx.name=\"cllOrarioServizioSaturday\" sixx.type=\"SortedCollection\"\n        >\n                                                                <sixx.object sixx.id=\"76\" sixx.type=\"SmallInteger\"\n                                                                 >30</sixx.object>\n                                                                 <sixx.object sixx.id=\"77\" sixx.type=\"SmallInteger\"\n                                                                 >40</sixx.object>\n                                                                 <sixx.object sixx.id=\"78\" sixx.type=\"SmallInteger\"\n                                                                 >20</sixx.object>\n                                                                <sixx.object sixx.id=\"79\" sixx.type=\"SmallInteger\"\n                                                                 >50</sixx.object>\n                                                         </sixx.object>\'',#creationTime:DateAndTime['2013-12-06T17:02:01.32928109169006-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'test',#contents:'Object readSixxFrom: \'<sixx.object sixx.id=\"72\"
+        sixx.name=\"cllOrarioServizioSaturday\" sixx.type=\"SortedCollection\"
+        >
+                                                                <sixx.object sixx.id=\"76\" sixx.type=\"SmallInteger\"
+                                                                 >30</sixx.object>
+                                                                 <sixx.object sixx.id=\"77\" sixx.type=\"SmallInteger\"
+                                                                 >40</sixx.object>
+                                                                 <sixx.object sixx.id=\"78\" sixx.type=\"SmallInteger\"
+                                                                 >20</sixx.object>
+                                                                <sixx.object sixx.id=\"79\" sixx.type=\"SmallInteger\"
+                                                                 >50</sixx.object>
+                                                         </sixx.object>\'',#creationTime:DateAndTime['2013-12-06T17:30:33.05925989151001-08:00'],#modificationTime:@2}

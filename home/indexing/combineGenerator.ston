@@ -1,1 +1,19 @@
-TDSmalltalkLeafNode{#name:'combineGenerator',#contents:'| formatter combineWith negateWith |\ncombineWith := \'combineWith: aGsQueryOptions \'.\nnegateWith := \'negateWith: aGsQueryOptions \'.\n#(#\'applyDeMorgansLaws\' #\'cacheQueryResult\' #\'consolidateEnumerablePredicates\' #\'consolidateRangePredicates\' #\'normalizePredicates\' #\'removeRedundantPredicates\' #\'reorderPredicates\' #\'transformCommonPaths\')\n  do: [ :ivSym | \n    | iv |\n    iv := ivSym asString.\n    combineWith := combineWith , \' self \' , iv\n      , \' ifTrue: [ aGsQueryOptions set\' , iv capitalized , \' ]. \'.\n    negateWith := negateWith , \' self \' , iv\n      , \' ifTrue: [ aGsQueryOptions clear\' , iv capitalized , \' ]. \' ].\ncombineWith := combineWith , \' ^ aGsQueryOptions\'.\nnegateWith := negateWith , \' ^ aGsQueryOptions\'.\nformatter := [ :aString | \n(RBParser parseMethod: aString asString onError: [ :err :pos | ^ aString ])\n  formattedCode ].\nGsQueryOptions\n  compile: (formatter value: combineWith);\n  compile: (formatter value: negateWith)',#creationTime:DateAndTime['2013-12-06T17:02:00.65881896018982-08:00'],#modificationTime:@2}
+TDSmalltalkLeafNode{#name:'combineGenerator',#contents:'| formatter combineWith negateWith |
+combineWith := \'combineWith: aGsQueryOptions \'.
+negateWith := \'negateWith: aGsQueryOptions \'.
+#(#\'applyDeMorgansLaws\' #\'cacheQueryResult\' #\'consolidateEnumerablePredicates\' #\'consolidateRangePredicates\' #\'normalizePredicates\' #\'removeRedundantPredicates\' #\'reorderPredicates\' #\'transformCommonPaths\')
+  do: [ :ivSym | 
+    | iv |
+    iv := ivSym asString.
+    combineWith := combineWith , \' self \' , iv
+      , \' ifTrue: [ aGsQueryOptions set\' , iv capitalized , \' ]. \'.
+    negateWith := negateWith , \' self \' , iv
+      , \' ifTrue: [ aGsQueryOptions clear\' , iv capitalized , \' ]. \' ].
+combineWith := combineWith , \' ^ aGsQueryOptions\'.
+negateWith := negateWith , \' ^ aGsQueryOptions\'.
+formatter := [ :aString | 
+(RBParser parseMethod: aString asString onError: [ :err :pos | ^ aString ])
+  formattedCode ].
+GsQueryOptions
+  compile: (formatter value: combineWith);
+  compile: (formatter value: negateWith)',#creationTime:DateAndTime['2013-12-06T17:30:31.69373202323914-08:00'],#modificationTime:@2}

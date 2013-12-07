@@ -1,1 +1,121 @@
-TDScriptLeafNode{#name:'create',#contents:'[ :topez :objIn :tokens :windowId | \n| directoryName projectName repositoryDescription directoryNode status useConfig useCypress |\n\"/home/bin/create tode Tode filetree:///opt/git/tode/repository [baseline|config|cypress]\"\ndirectoryName := tokens at: 2.\nprojectName := tokens at: 3.\nrepositoryDescription := tokens at: 4.\nuseConfig := false.\nuseCypress := false.\ntokens size > 4\n  ifTrue: [ \n    useConfig := (tokens at: 5) = \'config\'.\n    useCypress := (tokens at: 5) = \'cypress\' ].\ndirectoryNode := topez\n  lookup: directoryName\n  ifAbsent: [ \n    topez currentNode\n      addChildNode:\n        (TDDirectoryNode new\n          name: directoryName;\n          yourself) ].\nuseConfig\n  ifTrue: [ \n    status := \'edit ./load to set correct project version number and load list\'.\n    directoryNode\n      addChildNode:\n          (TDTopezLeafNode new\n              name: \'commit\';\n              contents:\n                  \'/home/bin/commitConfig \' , projectName , \' @commitMessage\';\n              yourself);\n      addChildNode:\n          (TDTopezLeafNode new\n              name: \'load\';\n              contents: \'/home/bin/loadConfig \' , projectName , \' 1.0.0 default\';\n              yourself);\n      yourself ]\n  ifFalse: [ \n    useCypress\n      ifTrue: [ \n    status := \'edit ./load if you don\'\'t want to use default and you are good to go & edit ./cypressRepo\'.\n        directoryNode\n          addChildNode:\n            (TDTopezLeafNode new\n              name: \'commit\';\n              contents:\n                  \'/home/bin/commitCypress \' , projectName , \' @cypressRepo @commitMessage\';\n              yourself) ]\n      ifFalse: [ \n    status := \'edit ./load if you don\'\'t want to use default and you are good to go\'.\n        directoryNode\n          addChildNode:\n            (TDTopezLeafNode new\n              name: \'commit\';\n              contents: \'/home/bin/commit \' , projectName , \' @commitMessage\';\n              yourself) ].\n    directoryNode\n      addChildNode:\n        (TDTopezLeafNode new\n          name: \'load\';\n          contents: \'/home/bin/load \' , projectName , \' default\';\n          yourself) ].\ndirectoryNode\n  addChildNode:\n      (TDTopezLeafNode new\n          name: \'browse\';\n          contents: \'browse project \' , projectName;\n          yourself);\n  addChildNode:\n      (TDTxtLeafNode new\n          name: \'commitMessage\';\n          contents: \'\';\n          yourself).\nuseCypress\n  ifTrue: [ \n    directoryNode\n      addChildNode:\n          (TDTopezLeafNode new\n              name: \'cypressRepo\';\n              contents: \'| repo |\nrepo := CypressFileSystemRepository\n  onUrl:\n    \' , repositoryDescription printString , \' asUrl\n  alias: \' , projectName printString , \'.\nrepo gemStoneFileoutsEnabled: true.\nrepo\';\n              yourself);\n      addChildNode:\n          (TDTopezLeafNode new\n              name: \'diff\';\n              contents: \'cym diff \' , projectName , \' @cypressRepo\';\n              yourself);\n      yourself ]\n  ifFalse: [ \n    directoryNode\n      addChildNode:\n        (TDTopezLeafNode new\n          name: \'diff\';\n          contents: \'mm diff \' , projectName;\n          yourself) ].\ndirectoryNode\n  addChildNode:\n      (TDObjectGatewayNode new\n          name: \'gitRepo\';\n          contents: \'| repo |\nrepo := (self topez lookup: \'\'repo\'\') dotSelfObject.\nrepo directory containingDirectory\';\n          yourself);\n  addChildNode:\n      (TDObjectGatewayNode new\n          name: \'repo\';\n          contents:\n              \'(TDMonticelloRepository fromDescription: \' , repositoryDescription printString\n                  , \') repository\';\n          yourself);\n  addChildNode:\n      (TDTxtLeafNode new\n          name: \'status\';\n          contents: status;\n          yourself);\n  yourself.\nstatus ]',#creationTime:DateAndTime['2013-12-06T16:50:18.51039791107178-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'create',#contents:'[ :topez :objIn :tokens :windowId | 
+| directoryName projectName repositoryDescription directoryNode status useConfig useCypress |
+\"/home/bin/create tode Tode filetree:///opt/git/tode/repository [baseline|config|cypress]\"
+directoryName := tokens at: 2.
+projectName := tokens at: 3.
+repositoryDescription := tokens at: 4.
+useConfig := false.
+useCypress := false.
+tokens size > 4
+  ifTrue: [ 
+    useConfig := (tokens at: 5) = \'config\'.
+    useCypress := (tokens at: 5) = \'cypress\' ].
+directoryNode := topez
+  lookup: directoryName
+  ifAbsent: [ 
+    topez currentNode
+      addChildNode:
+        (TDDirectoryNode new
+          name: directoryName;
+          yourself) ].
+useConfig
+  ifTrue: [ 
+    status := \'edit ./load to set correct project version number and load list\'.
+    directoryNode
+      addChildNode:
+          (TDTopezLeafNode new
+              name: \'commit\';
+              contents:
+                  \'/home/bin/commitConfig \' , projectName , \' @commitMessage\';
+              yourself);
+      addChildNode:
+          (TDTopezLeafNode new
+              name: \'load\';
+              contents: \'/home/bin/loadConfig \' , projectName , \' 1.0.0 default\';
+              yourself);
+      yourself ]
+  ifFalse: [ 
+    useCypress
+      ifTrue: [ 
+    status := \'edit ./load if you don\'\'t want to use default and you are good to go & edit ./cypressRepo\'.
+        directoryNode
+          addChildNode:
+            (TDTopezLeafNode new
+              name: \'commit\';
+              contents:
+                  \'/home/bin/commitCypress \' , projectName , \' @cypressRepo @commitMessage\';
+              yourself) ]
+      ifFalse: [ 
+    status := \'edit ./load if you don\'\'t want to use default and you are good to go\'.
+        directoryNode
+          addChildNode:
+            (TDTopezLeafNode new
+              name: \'commit\';
+              contents: \'/home/bin/commit \' , projectName , \' @commitMessage\';
+              yourself) ].
+    directoryNode
+      addChildNode:
+        (TDTopezLeafNode new
+          name: \'load\';
+          contents: \'/home/bin/load \' , projectName , \' default\';
+          yourself) ].
+directoryNode
+  addChildNode:
+      (TDTopezLeafNode new
+          name: \'browse\';
+          contents: \'browse project \' , projectName;
+          yourself);
+  addChildNode:
+      (TDTxtLeafNode new
+          name: \'commitMessage\';
+          contents: \'\';
+          yourself).
+useCypress
+  ifTrue: [ 
+    directoryNode
+      addChildNode:
+          (TDTopezLeafNode new
+              name: \'cypressRepo\';
+              contents: \'| repo |
+repo := CypressFileSystemRepository
+  onUrl:
+    \' , repositoryDescription printString , \' asUrl
+  alias: \' , projectName printString , \'.
+repo gemStoneFileoutsEnabled: true.
+repo\';
+              yourself);
+      addChildNode:
+          (TDTopezLeafNode new
+              name: \'diff\';
+              contents: \'cym diff \' , projectName , \' @cypressRepo\';
+              yourself);
+      yourself ]
+  ifFalse: [ 
+    directoryNode
+      addChildNode:
+        (TDTopezLeafNode new
+          name: \'diff\';
+          contents: \'mm diff \' , projectName;
+          yourself) ].
+directoryNode
+  addChildNode:
+      (TDObjectGatewayNode new
+          name: \'gitRepo\';
+          contents: \'| repo |
+repo := (self topez lookup: \'\'repo\'\') dotSelfObject.
+repo directory containingDirectory\';
+          yourself);
+  addChildNode:
+      (TDObjectGatewayNode new
+          name: \'repo\';
+          contents:
+              \'(TDMonticelloRepository fromDescription: \' , repositoryDescription printString
+                  , \') repository\';
+          yourself);
+  addChildNode:
+      (TDTxtLeafNode new
+          name: \'status\';
+          contents: status;
+          yourself);
+  yourself.
+status ]',#creationTime:DateAndTime['2013-12-06T17:30:30.02457404136658-08:00'],#modificationTime:@2}

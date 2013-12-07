@@ -1,1 +1,33 @@
-TDScriptLeafNode{#name:'boom',#contents:'[ :topez :objIn :tokens :command | \n| opts args |\n\"for help: ./boom -h\"\ncommand\n  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nopts at: \'option\' ifAbsent: [  ] ifPresent: [ :optValue |  ].\nopts\n  at: \'help\'\n  ifAbsent: [ \n    IXQueryTestResource reset.\n    IXQueryTestResource current theTree ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  boom - boom sript utility template\nSYNOPSIS\n  boom [-h|--help]\nDESCRIPTION\n  Trigger a SIGSEGV (in this case) when the following is run:\n\n    IXQueryTestResource reset.\n    IXQueryTestResource current theTree\n\n  WARNING: your image will hang and the gem process dies.\nEXAMPLES\n  ./boom \n  ./boom -h\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:00.36629605293274-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'boom',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./boom -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts at: \'option\' ifAbsent: [  ] ifPresent: [ :optValue |  ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    IXQueryTestResource reset.
+    IXQueryTestResource current theTree ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  boom - boom sript utility template
+SYNOPSIS
+  boom [-h|--help]
+DESCRIPTION
+  Trigger a SIGSEGV (in this case) when the following is run:
+
+    IXQueryTestResource reset.
+    IXQueryTestResource current theTree
+
+  WARNING: your image will hang and the gem process dies.
+EXAMPLES
+  ./boom 
+  ./boom -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.98805499076843-08:00'],#modificationTime:@2}

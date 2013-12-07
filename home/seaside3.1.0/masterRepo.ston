@@ -1,1 +1,4 @@
-TDObjectGatewayNode{#name:'masterRepo',#contents:'(TDMonticelloRepository\n  fromDescription:\n    \'http://smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main\')\n  repository'}
+TDObjectGatewayNode{#name:'masterRepo',#contents:'(TDMonticelloRepository
+  fromDescription:
+    \'http://smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main\')
+  repository'}

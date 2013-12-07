@@ -1,1 +1,92 @@
-TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :command | \n| opts args repo loads projectName project baseline configuration |\n\"for help: ./load -h\"\ncommand\n  getOptsMixedLongShort:\n    {#(\'baseline\' $b #\'required\').\n    #(\'configuration\' $c #\'required\').\n    #(\'help\' $h #\'none\').\n    #(\'load\' $l #\'required\').\n    #(\'project\' $p #\'required\').\n    #(\'repo\' $r #\'required\')}\n  optionsAndArguments: [ :options :operands | \n    opts := options.\n    args := operands ].\nprojectName := \'Example\'.\nbaseline := true.\nopts\n  at: \'baseline\'\n  ifAbsent: [ baseline := false ]\n  ifPresent: [ :pName | \n    projectName := pName.\n    baseline := true ].\nopts\n  at: \'configuration\'\n  ifAbsent: [ configuration := false ]\n  ifPresent: [ :pName | \n    projectName := pName.\n    configuration := true ].\nopts\n  at: \'project\'\n  ifAbsent: [ project := false ]\n  ifPresent: [ :pName | \n    projectName := pName.\n    project := true ].\nopts\n  at: \'load\'\n  ifAbsent: [ loads := \'default\' ]\n  ifPresent: [ :loadList | loads := loadList findTokens: \' \' ].\nopts\n  at: \'repo\'\n  ifAbsent: [ \n    (topez lookup: \'repo\' ifAbsent: [  ])\n      ifNotNil: [ :node | repo := node dotSelfObject ] ]\n  ifPresent: [ :description | \n    | mc |\n    mc := topez toolInstanceFor: \'mc\'.\n    repo := mc resolveRepositoryReference: description ].\nopts\n  at: \'help\'\n  ifAbsent: [ \n    | metacello get |\n    metacello := Metacello new.\n    configuration\n      ifTrue: [ metacello configuration: projectName ]\n      ifFalse: [ \n        project\n          ifTrue: [ metacello project: projectName ]\n          ifFalse: [ metacello baseline: projectName ] ].\n    metacello repository: repo description.\n    get := metacello copy.\n    get get.\n\n    metacello \nonConflict: [:ex | ex allow];\nload: loads ]\n  ifPresent: [ :ignored | \n    TDManPage\n      viewManPage:\n        \'NAME\n  load - load sript utility template\nSYNOPSIS\n  load [-h|--help]\n       [--baseline=<baseline-name>]| \n           [--configuration=<configuration-name>]|[--project=<project-name>]\n       [--repo=<repository-reference>]\n       [--load=<load-list>]\nDESCRIPTION\n\n  default <project-name> is for baseline Example.\n  default <repository-reference> is ./repo.\n  default <load-list> is default.\nEXAMPLES\n  ./load\n  ./load --baseline=Example --repo=@exampleDir --load=Tests\n  ./load --baseline=External --repo=@externalDir --load=Tests\n  ./load --baseline=Sample --repo=@sampleDir --load=Tests\n  ./load --load=Core\n  ./load --load=`Core Tests`\n  ./load --repo=@repo\n  ./load --repo=filetree://opt/git/PharoCompatibility/repository\n\'\n      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:02:01.11969900131226-08:00'],#modificationTime:@2}
+TDScriptLeafNode{#name:'load',#contents:'[ :topez :objIn :tokens :command | 
+| opts args repo loads projectName project baseline configuration |
+\"for help: ./load -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'baseline\' $b #\'required\').
+    #(\'configuration\' $c #\'required\').
+    #(\'help\' $h #\'none\').
+    #(\'load\' $l #\'required\').
+    #(\'project\' $p #\'required\').
+    #(\'repo\' $r #\'required\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+projectName := \'Example\'.
+baseline := true.
+opts
+  at: \'baseline\'
+  ifAbsent: [ baseline := false ]
+  ifPresent: [ :pName | 
+    projectName := pName.
+    baseline := true ].
+opts
+  at: \'configuration\'
+  ifAbsent: [ configuration := false ]
+  ifPresent: [ :pName | 
+    projectName := pName.
+    configuration := true ].
+opts
+  at: \'project\'
+  ifAbsent: [ project := false ]
+  ifPresent: [ :pName | 
+    projectName := pName.
+    project := true ].
+opts
+  at: \'load\'
+  ifAbsent: [ loads := \'default\' ]
+  ifPresent: [ :loadList | loads := loadList findTokens: \' \' ].
+opts
+  at: \'repo\'
+  ifAbsent: [ 
+    (topez lookup: \'repo\' ifAbsent: [  ])
+      ifNotNil: [ :node | repo := node dotSelfObject ] ]
+  ifPresent: [ :description | 
+    | mc |
+    mc := topez toolInstanceFor: \'mc\'.
+    repo := mc resolveRepositoryReference: description ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | metacello get |
+    metacello := Metacello new.
+    configuration
+      ifTrue: [ metacello configuration: projectName ]
+      ifFalse: [ 
+        project
+          ifTrue: [ metacello project: projectName ]
+          ifFalse: [ metacello baseline: projectName ] ].
+    metacello repository: repo description.
+    get := metacello copy.
+    get get.
+
+    metacello 
+onConflict: [:ex | ex allow];
+load: loads ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  load - load sript utility template
+SYNOPSIS
+  load [-h|--help]
+       [--baseline=<baseline-name>]| 
+           [--configuration=<configuration-name>]|[--project=<project-name>]
+       [--repo=<repository-reference>]
+       [--load=<load-list>]
+DESCRIPTION
+
+  default <project-name> is for baseline Example.
+  default <repository-reference> is ./repo.
+  default <load-list> is default.
+EXAMPLES
+  ./load
+  ./load --baseline=Example --repo=@exampleDir --load=Tests
+  ./load --baseline=External --repo=@externalDir --load=Tests
+  ./load --baseline=Sample --repo=@sampleDir --load=Tests
+  ./load --load=Core
+  ./load --load=`Core Tests`
+  ./load --repo=@repo
+  ./load --repo=filetree://opt/git/PharoCompatibility/repository
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:32.67332196235657-08:00'],#modificationTime:@2}
