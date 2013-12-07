@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit f9789419997c681d1792241cc090b4d759bf51c3
+TDTxtLeafNode{#name:'status',#contents:'commit c472c84d14c1230ce12c3d11789417fae79cb005
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Fri Dec 6 20:12:56 2013 -0800
+Date:   Sat Dec 7 12:05:31 2013 -0800
 
-    Issue #37: fix TDFileSystemDirectoryNode>>removeAsChildOfFileSystemDirectoryNode: ... preparing to allow dropping off objects in the proxy strucutre (not planning on simply using STON to drop refs ... I want pure object refs to have an inderect reference)
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-06T20:13:02.2644259929657-08:00']}
+    Issue #37: implement `mount` command ...
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-07T12:05:34.03178095817566-08:00']}
