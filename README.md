@@ -2,6 +2,19 @@
 
 The `.ston` files sprinkled throught this directory hierarchy are the serialized remnants of script objects.
 
-I `mount` the **home** directory into [tODE](https://github.com/dalehenrich/tode) running in a GemStone/S instance. The `mount` command makes the directory structure within the shell environment of tODE where I can `edit` or execute the scripts as if they were in the native object structure.
+To make the scripts available within [tODE](https://github.com/dalehenrich/tode), clone the git repository:
 
-By using disk/git to store my scripting objects it becomes very easy to share these objects across repositories.
+```Shell
+cd /opt/git
+git clone git@github.com:dalehenrich/todeHome.git
+```
+then execute the following 
+commands at the tODE command line:
+
+```Shell
+mount /opt/git/todeHome/home /
+cd /home
+```
+Any edits you make to scripts from within tODE will immediately show up as changes to the
+file in the repository. Any edits that you make to the files on disk (via checkout/pull request) 
+will be immediately available within tODE.
