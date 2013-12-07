@@ -1,15 +1,2 @@
 TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :windowId | 
-| dir diskPath gatewayRootNode rootNode path nodePath basePath |
-nodePath := \'/tmp/tests/ston/gateway\'.
-diskPath := \'/tmp/todeRoot\' , nodePath.
-dir := ServerFileDirectory on: diskPath.
-dir assureExistence.
-basePath := \'/tmp/tests/ston\'.
-topez ensureChildrenExistIn: basePath.
-rootNode := topez lookup: basePath.
-path := nodePath findTokens: \'/\'.
-gatewayRootNode := TDObjectGatewayNode new
-  name: path last;
-  contents: \'ServerFileDirectory on: \' , diskPath printString.
-rootNode addChildNode: gatewayRootNode.
-gatewayRootNode ]',#creationTime:DateAndTime['2013-12-06T17:30:33.38348603248596-08:00'],#modificationTime:@2}
+3+4 ]',#creationTime:DateAndTime['2013-12-06T17:30:33.38348603248596-08:00'],#modificationTime:DateAndTime['2013-12-06T18:42:24.89620304107666-08:00']}

@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit b91b435bd0d3f17539d6ecddbfa530d9b0ad2d12
+TDTxtLeafNode{#name:'status',#contents:'commit f9789419997c681d1792241cc090b4d759bf51c3
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Fri Dec 6 17:08:52 2013 -0800
+Date:   Fri Dec 6 20:12:56 2013 -0800
 
-    Issue #37: fix an rsync bug ... when copying more than one directory...
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:@2}
+    Issue #37: fix TDFileSystemDirectoryNode>>removeAsChildOfFileSystemDirectoryNode: ... preparing to allow dropping off objects in the proxy strucutre (not planning on simply using STON to drop refs ... I want pure object refs to have an inderect reference)
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-06T20:13:02.2644259929657-08:00']}

@@ -1,2 +1,2 @@
-TDTopezLeafNode{#name:'test',#contents:'# test class TDShellClsCommandTests TDShellProtocolCommandTests TDShellStonCommandTests
-test class   TDShellStonCommandTests',#creationTime:DateAndTime['2013-12-06T17:30:33.336590051651-08:00'],#modificationTime:@2}
+TDTopezLeafNode{#name:'test',#contents:'#ts run TDShellObjToObjRsyncCommandTests>>testRsyncDir
+test package Topez-Server-Tests',#creationTime:DateAndTime['2013-12-06T17:30:33.336590051651-08:00'],#modificationTime:DateAndTime['2013-12-06T18:30:10.60611009597778-08:00']}
