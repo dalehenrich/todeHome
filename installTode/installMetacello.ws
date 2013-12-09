@@ -4,11 +4,11 @@ Transcript
 [ 
 Metacello new
   baseline: 'Metacello';
-  repository: 'github://dalehenrich/metacello-work:master/repository';
+  repository: 'filetree:///opt/git/metacello-work/repository';
   get.
 Metacello new
   baseline: 'Metacello';
-  repository: 'github://dalehenrich/metacello-work:master/repository';
+  repository: 'filetree:///opt/git/metacello-work/repository';
   load: 'ALL' ]
   on: Warning
   do: [ :ex | 

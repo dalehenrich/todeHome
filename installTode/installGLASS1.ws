@@ -3,11 +3,11 @@ Transcript
   show: '-----Upgrading GLASS1 to most recent master version'.
 Metacello new
   baseline: 'GLASS1';
-  repository: 'github://glassdb/glass:master/repository';
+  repository: 'filetree:///opt/git/glass/repository';
   get.
 Metacello new
   baseline: 'GLASS1';
-  repository: 'github://glassdb/glass:master/repository';
+  repository: 'filetree:///opt/git/glass/repository';
   onConflict: [ :ex | ex allow ];
   onWarning: [ :ex | 
         Transcript
