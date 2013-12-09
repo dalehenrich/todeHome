@@ -1,0 +1,60 @@
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'Turns out Number class>>readFrom: is not implemented and we need a way to parse numbers...
+
+======================================
+======================================
+======================================
+======================================
+break method GsQueryGrammar number @19
+run
+GsQueryGrammarTestCase debug: #testLiteral1
+%
+======================================
+break method GsQueryGrammarTestCase testLiteral1
+run
+GsQueryGrammarTestCase debug: #testLiteral1
+%
+======================================
+break method PPPredicateObjectParser parseOn: @9
+GsQueryGrammarTestCase debug: #testLiteral1
+======================================
+================FAILING======================
+======================================
+topaz 1> run
+GsQueryGrammarTestCase debug: #testExpression1 =====> \'(each.age <= 54) & (each.name = \'\'Dale\'\')\'
+%
+11:09:38 GsQueryGrammarTestCase debug: #testExpression1 - start...FAILURE: Unable to parse \'((each.age) <= 54) & ((each.name) = \'\'Dale\'\')\'
+-----------------------------------------------------
+GemStone: Error         Nonfatal
+a ResumableTestFailure occurred (error 2753), Unable to parse \'((each.age) <= 54) & ((each.name) = \'\'Dale\'\')\'
+Error Category: 231169 [GemStone] Number: 2753  Arg Count: 1 Context : 59878657 exception : 59880961
+Arg 1: [20 sz:0 cls: 76289 UndefinedObject] nil
+topaz 1> break list
+1: PPPredicateObjectParser >> parseOn: @ -1 (disabled)
+
+[59927297 sz:2 cls: 13468161 PPFailure] a PPFailure
+  message             [16192769 sz:15 cls: 74753 String] letter expected
+  position            [10 sz:0 cls: 74241 SmallInteger] 1 == 0x1
+
+======================================
+======================================
+topaz 1> run
+GsQueryGrammarTestCase debug: #testLiteral1 =====> \'3\'
+%
+11:21:10 GsQueryGrammarTestCase debug: #testLiteral1 - start...FAILURE: Unable to parse \'3\'
+-----------------------------------------------------
+GemStone: Error         Nonfatal
+a ResumableTestFailure occurred (error 2753), Unable to parse \'3\'
+Error Category: 231169 [GemStone] Number: 2753  Arg Count: 1 Context : 59886593 exception : 59887873
+Arg 1: [20 sz:0 cls: 76289 UndefinedObject] nil
+
+[59973121 sz:2 cls: 13468161 PPFailure] a PPFailure
+  message             [59978497 sz:16 cls: 74753 String] \'false\' expected
+  position            [2 sz:0 cls: 74241 SmallInteger] 0 == 0x0
+
+======================================
+================PASSING======================
+======================================
+GsQueryGrammarTestCase debug: #testFormula2 =====>\'(each.firstName = name) | (each.lastName = name)\'
+%
+11:15:07 GsQueryGrammarTestCase debug: #testFormula2 - start...pass; 0 page(s); CPU=0.0%; 1 ms
+',#runs:RunArray{#runs:[798,43,897,3,763,50,98],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],@9,@6,[TextColor{#color:Color{#rgb:536871424}}],[@7]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-09T11:12:11.06961989402771-08:00'],#modificationTime:DateAndTime['2013-12-09T12:13:35.24456310272217-08:00']}

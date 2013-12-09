@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit f067b7fe5d170078e4da00c35c8046deee3890e5
+TDTxtLeafNode{#name:'status',#contents:'commit 095805907b8d507ee7b517787cb8edeb75611812
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Sat Nov 9 15:30:44 2013 -0800
+Date:   Mon Dec 9 15:08:55 2013 -0800
 
-    implement GsInspectInteraction to support tODE and GemTools
-',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:@2}
+    improve error message when FileDirectory>>createDirectory: fails ...  implement DateTime>>asDateAndTime ... remove extension methods for obsolete (and deleted in 3.2) ExecutableBlock
+',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-09T15:08:59.0944139957428-08:00']}
