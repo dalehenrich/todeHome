@@ -9,16 +9,16 @@ looseChanges := node block
 gemNRS := GsNetworkResourceString new
   protocol: \'tcp\';
   node: \'foos\';
-  netldi: \'53436\';
+  netldi: \'46522\';
   resource: \'task\';
   body: GsNetLDI thenetobj;
   yourself.
 systemUser := GsExternalSession new
-  stoneNRS: (GsNetworkResourceString stoneNRSForStoneName: System stoneName onHost: (System stoneVersionReport at: \'nodeName\'));
+  stoneNRS: System stoneName;
   gemNRS: gemNRS;
   username: \'SystemUser\';
   password: \'swordfish\';
-  yourself .
+  yourself.
 [ 
 systemUser login.
 looseChanges
@@ -36,4 +36,4 @@ looseChanges
     (systemUser executeString: \'System commitTransaction\')
       ifFalse: [ nil error: \'expected true\' ] ] ]
   ensure: [ systemUser ifNotNil: [ systemUser logout ] ].
-true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-09T21:21:26.95016598701477-08:00']}
+true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-10T14:34:36.41986799240112-08:00']}

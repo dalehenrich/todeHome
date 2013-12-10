@@ -6,10 +6,47 @@ load aa-ixtests.tpz
 running for example
 GsQueryGrammarTestCase runEx or
 GsQueryParserTestCase runEx.
-
 fails pretty much all of them
 
 Fails to parse (doesn\'t compile correctly) most of query strings. 
+-------------------------------------
+set user Ernie p swordfish
+display oops
+level 1
+login
+run
+GsQueryParserTestCase runEx
+%
+-------------------------------------
+======================================
+dkh 12/10/2013 15:07
+======================================
+topaz 1> run
+GsQueryParserTestCase runEx
+%
+SUnit log file already open
+[306615297 sz:37 cls: 74753 String] 47 run, 47 passed, 0 failed, 0 errors
+======================================
+dkh 12/10/2013 14:38
+======================================
+topaz 1> run
+GsQueryParserTestCase runEx
+%
+[309541121 sz:1 cls: 66817 Array] a Array
+  #1 [309540609 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
+======================================
+dkh 12/10/2013 14:12
+======================================
+topaz 1> run
+GsQueryParserTestCase runEx
+%
+SUnit log file already open
+[306610177 sz:5 cls: 66817 Array] a Array
+  #1 [306609665 sz:43 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral10
+  #2 [306609153 sz:43 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral11
+  #3 [306608641 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral8
+  #4 [306608129 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral9
+  #5 [306607617 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
 ======================================
 ======================================
 topaz 1> run
@@ -195,4 +232,4 @@ SUnit log file already open
   #31 [58512129 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
   #32 [58511617 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression9
   #33 [58511105 sz:50 cls: 74753 String] GsQueryParserTestCase debug: #testRangeExpression1
-',#runs:RunArray{#runs:[3656,13,637,41,482,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-10T11:02:27.66138792037964-08:00']}
+',#runs:RunArray{#runs:[4989,13,637,41,482,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-10T15:07:36.49255990982056-08:00']}
