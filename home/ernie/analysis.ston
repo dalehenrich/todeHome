@@ -1,4 +1,39 @@
-TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'db break @1 PPPredicateObjectParser>>parseOn:
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'Ported all those tests to ernie.
+If you load ernie/install.tpz into clean image
+then login as Ernie swordfish
+load aa-ixtests.tpz
+
+running for example
+GsQueryGrammarTestCase runEx or
+GsQueryParserTestCase runEx.
+
+fails pretty much all of them
+
+Fails to parse (doesn\'t compile correctly) most of query strings. 
+======================================
+  #1 [206343937 sz:46 cls: 74753 String] GsQueryGrammarTestCase debug: #testExpression1
+  #2 [206343425 sz:44 cls: 74753 String] GsQueryGrammarTestCase debug: #testLiteral10
+======================================
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testLiteral11
+  self
+    parse:
+      \'#(1.23)\'
+    rule: #\'literal\'
+%
+method: GsQueryGrammarTestCase
+testLiteral12
+  self
+    parse:
+      \'1.23\'
+    rule: #\'literal\'
+%
+======================================
+======================================
+======================================
+db break @1 PPPredicateObjectParser>>parseOn:
 /home/ernie/debug GsQueryParserTestCase testExpression1
 ======================================
 Probably not a bad idea to push my Number edit into SystemUser and rerun the full suite 
@@ -64,4 +99,4 @@ SUnit log file already open
   #31 [58512129 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
   #32 [58511617 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression9
   #33 [58511105 sz:50 cls: 74753 String] GsQueryParserTestCase debug: #testRangeExpression1
-',#runs:RunArray{#runs:[46,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:303,#lastRun:3,#lastOffset:201}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-09T21:13:23.44300389289856-08:00']}
+',#runs:RunArray{#runs:[978,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-10T06:03:52.34803104400635-08:00']}
