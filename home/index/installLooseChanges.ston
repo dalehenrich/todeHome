@@ -11,14 +11,14 @@ gemNRS := GsNetworkResourceString new
   node: \'foos\';
   netldi: \'53436\';
   resource: \'task\';
-  body: GsNetLDI gemnetobject;
+  body: GsNetLDI thenetobj;
   yourself.
 systemUser := GsExternalSession new
-  stoneNRS: GsNetworkResourceString defaultFromCurrentStone;
+  stoneNRS: (GsNetworkResourceString stoneNRSForStoneName: System stoneName onHost: (System stoneVersionReport at: \'nodeName\'));
   gemNRS: gemNRS;
   username: \'SystemUser\';
   password: \'swordfish\';
-  yourself.
+  yourself .
 [ 
 systemUser login.
 looseChanges
@@ -36,4 +36,4 @@ looseChanges
     (systemUser executeString: \'System commitTransaction\')
       ifFalse: [ nil error: \'expected true\' ] ] ]
   ensure: [ systemUser ifNotNil: [ systemUser logout ] ].
-true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:@2}
+true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-09T21:21:26.95016598701477-08:00']}
