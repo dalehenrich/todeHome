@@ -1,0 +1,42 @@
+TDScriptLeafNode{#name:'test',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./test -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | base |
+    base := {16r123a.
+    1.
+    1.1.
+    1e23.
+    1d23.
+    1s23.
+    1.1e-23.
+    16r1.
+    16#1.
+    16r1.
+    16r1ABCDEF.
+    12345.
+    (SmallInteger minimumValue)}.
+    (base , (base collect: [:each | each negated]))
+      collect: [ :number | 
+        {number.
+        (Number fromStream: number printString readStream)} ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  test - test sript utility template
+SYNOPSIS
+  test [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./test --help
+  ./test -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-09T16:12:32.66645097732544-08:00'],#modificationTime:DateAndTime['2013-12-09T17:22:08.83595490455627-08:00']}

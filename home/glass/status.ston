@@ -1,6 +1,8 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 095805907b8d507ee7b517787cb8edeb75611812
+TDTxtLeafNode{#name:'status',#contents:'commit ceaa978930e040b9f6f998d325d13a9b4ce2b837
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 9 15:08:55 2013 -0800
+Date:   Mon Dec 9 17:57:24 2013 -0800
 
-    improve error message when FileDirectory>>createDirectory: fails ...  implement DateTime>>asDateAndTime ... remove extension methods for obsolete (and deleted in 3.2) ExecutableBlock
-',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-09T15:08:59.0944139957428-08:00']}
+    fix sentButNotImplemented:
+      - use proper method in DateTime>>asDateAndTime
+      - implement ExecBlock>>forkAndWait
+',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-09T17:57:27.55089902877808-08:00']}

@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 4ac0b1eb1f427b0d3a4159aeb3d6dfbdff679c8a
+TDTxtLeafNode{#name:'status',#contents:'commit f7c2f7640af21cc0f0a3d8466d743316270e73cc
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 9 15:03:16 2013 -0800
+Date:   Mon Dec 9 17:42:09 2013 -0800
 
-    tweak TDScriptLeafNode>>minimalScriptTemplate
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-09T15:03:19.46737289428711-08:00']}
+    some patches to fix issue when using cp on proxied object structure
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-09T17:47:56.17517399787903-08:00']}

@@ -27,5 +27,5 @@ TDTxtLeafNode{#name:'numericLiterals',#contents:Text{#string:'{
     16r1.
     16#1.
     16r-1.
-    16r1ABCDEFGHIJK.
-}',#runs:RunArray{#runs:[344],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-09T14:43:25.04106593132019-08:00'],#modificationTime:DateAndTime['2013-12-09T14:52:23.26294589042664-08:00']}
+    16r1ABCDEF.
+}',#runs:RunArray{#runs:[339],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:339,#lastRun:1,#lastOffset:338}},#creationTime:DateAndTime['2013-12-09T14:43:25.04106593132019-08:00'],#modificationTime:DateAndTime['2013-12-09T17:06:58.91711592674255-08:00']}

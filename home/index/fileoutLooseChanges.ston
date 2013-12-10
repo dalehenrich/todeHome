@@ -7,6 +7,7 @@ classToFilenameMap := Dictionary new
   at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
   at: #\'Array\' put: #(\'array2.gs\');
   at: #\'BagUnicodeEnumerator\' put: #(\'bagenumerator.gs\');
+  at: #\'BinaryFloat\' put: #(\'binfloat.gs\');
   at: #\'BtreeBasicLeafNode\' put: #(\'btreebasicleaf.gs\');
   at: #\'BtreeComparisonForCompare\' put: #(\'btreecompforcompare.gs\');
   at: #\'BtreeComparisonForSort\' put: #(\'btreecompforsort.gs\');
@@ -53,6 +54,8 @@ classToFilenameMap := Dictionary new
   at: #\'IndexedQueryEvaluator\' put: #(\'indexquery.gs\');
   at: #\'IndexList\' put: #(\'indexlist.gs\');
   at: #\'IndexManager\' put: #(\'IndexManager.gs\');
+  at: #\'Integer\' put: #(\'integer2.gs\');
+  at: #\'Number\' put: #(\'number.gs\');
   at: #\'PathEvaluator\' put: #(\'pathevaluator.gs\');
   at: #\'PathTerm\' put: #(\'pathterm.gs\');
   at: #\'QueryExecuter\' put: #(\'queryexecuter.gs\');
@@ -103,4 +106,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:@2}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-09T17:36:16.01007699966431-08:00']}
