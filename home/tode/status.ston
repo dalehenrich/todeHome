@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit f7c2f7640af21cc0f0a3d8466d743316270e73cc
+TDTxtLeafNode{#name:'status',#contents:'commit c75f30ea37e7ebfb7f7e3296ff91bb918e77be28
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 9 17:42:09 2013 -0800
+Date:   Tue Dec 10 08:22:40 2013 -0800
 
-    some patches to fix issue when using cp on proxied object structure
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-09T17:47:56.17517399787903-08:00']}
+    fix a couple of issues that popped up while working with classes/methods from a different user\'s UserGlobals dictionary
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-10T08:22:42.86847710609436-08:00']}

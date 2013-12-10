@@ -11,8 +11,104 @@ fails pretty much all of them
 
 Fails to parse (doesn\'t compile correctly) most of query strings. 
 ======================================
-  #1 [206343937 sz:46 cls: 74753 String] GsQueryGrammarTestCase debug: #testExpression1
-  #2 [206343425 sz:44 cls: 74753 String] GsQueryGrammarTestCase debug: #testLiteral10
+======================================
+topaz 1> run
+GsQueryParserTestCase runEx
+%
+SUnit log file already open
+[307133697 sz:28 cls: 66817 Array] a Array
+  #1 [307134721 sz:45 cls: 74753 String] GsQueryParserTestCase debug: #testExpression1
+  #2 [307135233 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression10
+  #3 [307135745 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression11
+  #4 [307136257 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression12
+  #5 [307439361 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression13
+  #6 [307438849 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression14
+  #7 [307438337 sz:45 cls: 74753 String] GsQueryParserTestCase debug: #testExpression2
+  #8 [307437825 sz:46 cls: 74753 String] GsQueryParserTestCase debug: #testExpression3x
+  #9 [307437057 sz:45 cls: 74753 String] GsQueryParserTestCase debug: #testExpression7
+  #10 [307436033 sz:45 cls: 74753 String] GsQueryParserTestCase debug: #testExpression8
+  #11 [307435521 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula1
+  #12 [307434241 sz:43 cls: 74753 String] GsQueryParserTestCase debug: #testFormula1x
+  #13 [307432961 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula2
+  #14 [307432449 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula3
+  #15 [307431169 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula4
+  #16 [307430657 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula5
+  #17 [307429377 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testFormula6
+  #18 [307428865 sz:43 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral10
+  #19 [307428097 sz:43 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral11
+  #20 [307426305 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral8
+  #21 [307425793 sz:42 cls: 74753 String] GsQueryParserTestCase debug: #testLiteral9
+  #22 [307425281 sz:55 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression10
+  #23 [307424769 sz:55 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression11
+  #24 [307424257 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression5
+  #25 [307423745 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression6
+  #26 [307423233 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
+  #27 [307422721 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression9
+  #28 [307422209 sz:50 cls: 74753 String] GsQueryParserTestCase debug: #testRangeExpression1
+======================================
+======================================
+topaz 1> run
+GsQueryGrammarTestCase runEx
+%
+[59278593 sz:2 cls: 66817 Array] a Array
+  #1 [59279105 sz:46 cls: 74753 String] GsQueryGrammarTestCase debug: #testExpression1
+======================================
+======================================
+======================================
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression15
+  self
+    parse:
+      \'((each.age) <= 54)\'
+    rule: #\'expression\'
+%
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression16
+  self
+    parse:
+      \'((age) <= 54)\'
+    rule: #\'expression\'
+%
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression17
+  self
+    parse:
+      \'((1) <= 54)\'
+    rule: #\'expression\'
+%
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression18
+  self
+    parse:
+      \'((1))\'
+    rule: #\'expression\'
+%
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression19
+  self
+    parse:
+      \'(((1) <= 54))\'
+    rule: #\'expression\'
+%
+category: \'as yet unclassified\'
+set compile_env: 0
+method: GsQueryGrammarTestCase
+testExpression20
+  self
+    parse:
+      \'(each.age <= 54) & (each.name = \'\'Dale\'\')\'
+    rule: #\'expression\'
+%
 ======================================
 category: \'as yet unclassified\'
 set compile_env: 0
@@ -99,4 +195,4 @@ SUnit log file already open
   #31 [58512129 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression8
   #32 [58511617 sz:54 cls: 74753 String] GsQueryParserTestCase debug: #testPredicateExpression9
   #33 [58511105 sz:50 cls: 74753 String] GsQueryParserTestCase debug: #testRangeExpression1
-',#runs:RunArray{#runs:[978,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-10T06:03:52.34803104400635-08:00']}
+',#runs:RunArray{#runs:[3656,13,637,41,482,55,4036],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.47274589538574-08:00'],#modificationTime:DateAndTime['2013-12-10T11:02:27.66138792037964-08:00']}

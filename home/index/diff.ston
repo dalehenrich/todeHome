@@ -1,12 +1,12 @@
-TDScriptLeafNode{#name:'diff',#contents:'[ :topez :objIn :tokens :windowId | 
+TDScriptLeafNode{#name:'diff',#contents:'[ :topez :objIn :tokens :command | 
 | node looseChanges diffs differ diffTool |
 node := topez lookup: \'/home/index/looseChanges\'.
 looseChanges := node block
   value: topez
   value: objIn
   value: tokens
-  value: windowId.
-\tlooseChanges := looseChanges sort: [:a :b | (a at: 1) name <= (b at: 1) name].
+  value: command.
+looseChanges := looseChanges sort: [ :a :b | (a at: 1) name <= (b at: 1) name ].
 diffs := looseChanges
   collect: [ :ar | 
     | diff beh selector local remote persistentMethodDict sessionMethod |
@@ -25,4 +25,4 @@ diffs := looseChanges
       yourself ].
 differ := TDGitDiffer new diffs: diffs.
 diffTool := topez toolInstanceFor: \'mg\'.
-diffTool gitdiff: differ gitTool: self ]',#creationTime:DateAndTime['2013-12-06T17:30:31.02999806404114-08:00'],#modificationTime:@2}
+diffTool gitdiff: differ gitTool: self ]',#creationTime:DateAndTime['2013-12-06T17:30:31.02999806404114-08:00'],#modificationTime:DateAndTime['2013-12-10T06:35:38.21932196617126-08:00']}

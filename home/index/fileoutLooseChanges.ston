@@ -1,4 +1,4 @@
-TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
+TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :command | 
 | gsTool path classToFilenameMap externalMethodMap current packages node looseChanges |
 gsTool := topez toolInstanceFor: \'gs\'.
 path := \'/export/foos2/users/dhenrich/3.0/l_gss64bit/image\'.
@@ -84,7 +84,7 @@ looseChanges := node block
   value: topez
   value: objIn
   value: tokens
-  value: windowId.
+  value: command.
 looseChanges
   do: [ :ar | 
     | beh cat meth set selector |
@@ -94,9 +94,9 @@ looseChanges
     meth := MethodReference class: beh selector: selector asSymbol.
     set := externalMethodMap
       at: meth actualClass theNonMetaClass name
-      ifAbsent: [ externalMethodMap at: meth actualClass name put: Set new ].
+      ifAbsent: [ externalMethodMap at: meth actualClass theNonMetaClass name put: Set new ].
     set add: meth ].
-gsTool
+gsTool 
   gsfileout: path
   externalMethodMap: externalMethodMap
   classToFilenameMap: classToFilenameMap
@@ -106,4 +106,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-09T17:36:16.01007699966431-08:00']}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-10T06:47:47.98206901550293-08:00']}

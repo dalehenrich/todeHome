@@ -31,7 +31,7 @@ opts
           ifAbsent: [ self error: \'No user named\' , self username printString , \' found.\' ])
           symbolList.
         cls := symbolList objectNamed: testClassName asSymbol.
-        cls runEx ] ]
+        cls debugEx ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -50,4 +50,4 @@ EXAMPLES
   ./debug GsQueryGrammarTestCase testLiteral1
   ./debug -c GsQueryGrammarTestCase 
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.49714303016663-08:00'],#modificationTime:DateAndTime['2013-12-09T21:02:30.93372011184692-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.49714303016663-08:00'],#modificationTime:DateAndTime['2013-12-10T06:55:01.07244896888733-08:00']}
