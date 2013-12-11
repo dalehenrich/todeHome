@@ -1,0 +1,43 @@
+TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./xxx -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'remote\' $r #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'remote\'
+      ifAbsent: [ ClassOrganizer newWithRoot: Object fromUserId: \'Ernie\' ]
+      ifPresent: [ 
+        | desc session |
+        desc := GsSessionDescription new
+          name: \'Ernie\';
+          stoneHost: \'foos\';
+          stoneName: \'j_gs64stone\';
+          gemHost: \'foos\';
+          netLDI: 36040;
+          username: \'Ernie\';
+          password: \'swordfish\';
+          yourself.
+        session := GsExternalSession forSessionDescription: desc.
+        [  ]
+          ensure: [ session logout ] ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  xxx - xxx sript utility template
+SYNOPSIS
+  xxx [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./xxx --help
+  ./xxx -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-10T20:44:44.40475606918335-08:00'],#modificationTime:DateAndTime['2013-12-10T22:00:02.7233829498291-08:00']}

@@ -1,2 +1,1 @@
-TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :windowId | 
-3+4 ]',#creationTime:DateAndTime['2013-12-06T17:30:33.38348603248596-08:00'],#modificationTime:DateAndTime['2013-12-06T18:42:24.89620304107666-08:00']}
+TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :windowId | (((AllUsers userWithId: \'DataCurator\' ifAbsent: [ nil ]) symbolList objectNamed: #TDTopezServer))]',#creationTime:DateAndTime['2013-12-06T17:30:33.38348603248596-08:00'],#modificationTime:DateAndTime['2013-12-10T19:52:13.21482992172241-08:00']}
