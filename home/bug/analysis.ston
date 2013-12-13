@@ -1,10 +1,16 @@
-TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'I\'m getting jenkins running with a lousy connection and some times the downloads time out and .zip .err and .out files are left in /tmp/. On the next run jenkins fails and I\'ve got to manually delete those leftover files in the /tmp/ directory.
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'j_
+  - 43419  P2  indexing failures in bugtst after checkins r31793, r31765
+  - 43049  P2  Indexing system calls to deprecated methods
 
-The three solutions I can think of to fix that are
-1. get a better connection
-2. append a random string to the front or end of those filenames so they don\'t conflict.
-3. check for and delete those filenames before starting the downloads.
+  [status : battery test running ... bugtst 5, 6, 12]
 
-I don\'t imagine I\'ll have two images downloading the same file at the same time so 3 would be the easiest probably to implement, but two may be more robust in a multiuser system
+l_
+  - 43488  P2  Upgrade/conversion broken
 
-Let me know what you think.',#runs:RunArray{#runs:[691],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:@9}
+  [status : build in progress, then smkconvtst{?) ]
+
+tODE:
+
+  - Issue 58: git integration for packages
+    https://github.com/dalehenrich/tode/issues/58
+',#runs:RunArray{#runs:[3,187,8,90,1,100],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,@7,@6,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:289,#lastRun:5,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-13T15:06:58.85397505760193-08:00']}
