@@ -7,10 +7,10 @@ TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'j_
 l_
   - 43488  P2  Upgrade/conversion broken
 
-  [status : build in progress, then smkconvtst{?) ]
+  [status : battery test running/retunning smkconvtst{?) ]
 
 tODE:
 
   - Issue 58: git integration for packages
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[3,187,8,90,1,100],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,@7,@6,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:289,#lastRun:5,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-13T15:06:58.85397505760193-08:00']}
+',#runs:RunArray{#runs:[3,187,8,97,1,100],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,@7,@6,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:278,#lastRun:4,#lastOffset:79}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-14T07:55:16.72157788276672-08:00']}

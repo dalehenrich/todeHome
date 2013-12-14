@@ -1,0 +1,101 @@
+TDSmalltalkLeafNode{#name:'employees',#contents:'| Conan Lurleen Fred MyEmployees |
+Object
+  subclass: \'Address\'
+  instVarNames:
+    {\'street\'.
+    \'zip\'}
+  classVars: {}
+  classInstVars: {}
+  poolDictionaries: {}
+  inDictionary: UserGlobals.
+Object
+  subclass: \'Department\'
+  instVarNames:
+    {\'deptName\'.
+    \'phone\'}
+  classVars: {}
+  classInstVars: {}
+  poolDictionaries: {}
+  inDictionary: UserGlobals.
+Object
+  subclass: \'Name\'
+  instVarNames:
+    {\'first\'.
+    \'last\'}
+  classVars: {}
+  classInstVars: {}
+  poolDictionaries: {}
+  inDictionary: UserGlobals.
+Object
+  subclass: \'Employee\'
+  instVarNames:
+    {\'name\'.
+    \'empNum\'.
+    \'jobTitle\'.
+    \'department\'.
+    \'address\'.
+    \'favoriteTune\'}
+  classVars: {}
+  classInstVars: {}
+  poolDictionaries: {}
+  inDictionary: UserGlobals.
+(Smalltalk at: #\'Employee\')
+  compileAccessingMethodsFor: (Smalltalk at: #\'Employee\') allInstVarNames.
+(Smalltalk at: #\'Name\')
+  compileAccessingMethodsFor: (Smalltalk at: #\'Name\') allInstVarNames.
+(Smalltalk at: #\'Address\')
+  compileAccessingMethodsFor: (Smalltalk at: #\'Address\') allInstVarNames.
+(Smalltalk at: #\'Department\')
+  compileAccessingMethodsFor: (Smalltalk at: #\'Department\') allInstVarNames.
+IdentityBag
+  subclass: \'BagOfEmployees\'
+  instVarNames: {}
+  classVars: {}
+  classInstVars: {}
+  poolDictionaries: {}
+  inDictionary: UserGlobals.\t\"Make some new Employees, and store them in a BagOfEmployees.\"
+Conan := (Smalltalk at: #\'Employee\') new.
+Conan
+  name:
+    ((Smalltalk at: #\'Name\') new
+      first: \'Conan\';
+      last: \'Librarian\').
+Conan
+  address:
+    ((Smalltalk at: #\'Address\') new
+      street: \'444 West West\';
+      zip: 97232).
+Conan
+  empNum: 1;
+  jobTitle: \'librarian\';
+  favoriteTune: \'I Feel Pretty\'.
+Conan
+  department:
+    ((Smalltalk at: #\'Department\') new
+      deptName: \'books\';
+      phone: 3334).
+Fred := (Smalltalk at: #\'Employee\') new.
+Fred
+  name:
+    ((Smalltalk at: #\'Name\') new
+      first: \'Fred\';
+      last: \'Jones\').
+Fred
+  address:
+    ((Smalltalk at: #\'Address\') new
+      street: \'E. Elm\';
+      zip: 97333).
+Fred
+  empNum: 1;
+  jobTitle: \'welder\';
+  favoriteTune: \'Am I Blue?\'.
+Fred
+  department:
+    ((Smalltalk at: #\'Department\') new
+      deptName: \'welding\';
+      phone: 3333).
+MyEmployees := (Smalltalk at: #\'BagOfEmployees\') new.
+MyEmployees
+  add: Fred;
+  add: Conan.
+UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-14T08:18:15.86819005012512-08:00']}
