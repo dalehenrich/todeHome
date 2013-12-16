@@ -1,14 +1,15 @@
-TDSmalltalkLeafNode{#name:'index',#contents:'(UserGlobals at: #\'MyEmployees\') halt
+TDSmalltalkLeafNode{#name:'index',#contents:'(UserGlobals at: #\'MyEmployees\')
   createEqualityIndexOn: \'name.first\' withLastElementClass: String;
   createEqualityIndexOn: \'name.last\' withLastElementClass: String;
-  createEqualityIndexOn: \'address.street\' withLastElementClass: String;
-  createEqualityIndexOn: \'address.zip\'
-    withLastElementClass: Integer
-    createEqualityIndexOn: \'jobTitle\'
-    withLastElementClass: String;
-  createEqualityIndexOn: \'department.deptName\' withLastElementClass: String;
-  createEqualityIndexOn: \'department.phone\'
-    withLastElementClass: Number
-    createEqualityIndexOn: \'favoriteTune\'
-    withLastElementClass: String;
-  createEqualityIndexOn: \'empNum\' withLastElementClass: Number',#creationTime:DateAndTime['2013-12-14T08:17:30.17571496963501-08:00'],#modificationTime:DateAndTime['2013-12-14T08:19:35.71470403671265-08:00']}
+  yourself.
+true
+  ifTrue: [ 
+    (UserGlobals at: #\'MyEmployees\')
+      createEqualityIndexOn: \'address.street\' withLastElementClass: String;
+      createEqualityIndexOn: \'address.zip\' withLastElementClass: Integer;
+      createEqualityIndexOn: \'jobTitle\' withLastElementClass: String;
+      createEqualityIndexOn: \'department.deptName\' withLastElementClass: String;
+      createEqualityIndexOn: \'department.phone\' withLastElementClass: Number;
+      createEqualityIndexOn: \'favoriteTune\' withLastElementClass: String;
+      createEqualityIndexOn: \'empNum\' withLastElementClass: Number;
+      yourself ]',#creationTime:DateAndTime['2013-12-14T08:17:30.17571496963501-08:00'],#modificationTime:DateAndTime['2013-12-14T11:31:11.65637302398682-08:00']}

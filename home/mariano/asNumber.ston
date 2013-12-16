@@ -1,0 +1,27 @@
+TDScriptLeafNode{#name:'asNumber',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./asNumber -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    {(Time millisecondsToRun: [ 100000 timesRepeat: [ \'123.7\' asNumber ] ]).
+    (Time
+      millisecondsToRun: [ 100000 timesRepeat: [ Float fromString:\'123.7\'  ] ])} ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  asNumber - asNumber sript utility template
+SYNOPSIS
+  asNumber [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./asNumber --help
+  ./asNumber -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-14T16:26:19.55992889404297-08:00'],#modificationTime:DateAndTime['2013-12-14T16:32:04.96067309379578-08:00']}

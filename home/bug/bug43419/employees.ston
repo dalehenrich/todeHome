@@ -58,44 +58,44 @@ Conan := (Smalltalk at: #\'Employee\') new.
 Conan
   name:
     ((Smalltalk at: #\'Name\') new
-      first: \'Conan\';
-      last: \'Librarian\').
+      first: (String withAll: \'Conan\');
+      last: (String withAll: \'Librarian\')).
 Conan
   address:
     ((Smalltalk at: #\'Address\') new
-      street: \'444 West West\';
+      street: (String withAll: \'444 West West\');
       zip: 97232).
 Conan
   empNum: 1;
-  jobTitle: \'librarian\';
-  favoriteTune: \'I Feel Pretty\'.
+  jobTitle: (String withAll: \'librarian\');
+  favoriteTune: (String withAll: \'I Feel Pretty\').
 Conan
   department:
     ((Smalltalk at: #\'Department\') new
-      deptName: \'books\';
+      deptName: (String withAll: \'books\');
       phone: 3334).
 Fred := (Smalltalk at: #\'Employee\') new.
 Fred
   name:
     ((Smalltalk at: #\'Name\') new
-      first: \'Fred\';
-      last: \'Jones\').
+      first: (String withAll: \'Fred\');
+      last: (String withAll: \'Jones\')).
 Fred
   address:
     ((Smalltalk at: #\'Address\') new
-      street: \'E. Elm\';
+      street: (String withAll: \'E. Elm\');
       zip: 97333).
 Fred
   empNum: 1;
-  jobTitle: \'welder\';
-  favoriteTune: \'Am I Blue?\'.
+  jobTitle: (String withAll: \'welder\');
+  favoriteTune: (String withAll: \'Am I Blue?\').
 Fred
   department:
     ((Smalltalk at: #\'Department\') new
-      deptName: \'welding\';
+      deptName: (String withAll: \'welding\');
       phone: 3333).
 MyEmployees := (Smalltalk at: #\'BagOfEmployees\') new.
 MyEmployees
   add: Fred;
   add: Conan.
-UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-14T08:18:15.86819005012512-08:00']}
+UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-14T11:30:30.04518795013428-08:00']}

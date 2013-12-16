@@ -1,16 +1,24 @@
 TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'j_
   - 43419  P2  indexing failures in bugtst after checkins r31793, r31765
-  - 43049  P2  Indexing system calls to deprecated methods
 
-  [status : battery test running ... bugtst 5, 6, 12]
+k_
+  - checkpoint for old index unit test status ...
 
 l_
   - 43488  P2  Upgrade/conversion broken
+      near line 79 of file /export/foos2/users/dhenrich/3.0/l_gss64bit/test_results50/tests/battery/smkconvtst-1214-112051/2.2.6Upgrade/convregress.out, ERROR: UNEXPECTED ERROR
+      near line 79 of file /export/foos2/users/dhenrich/3.0/l_gss64bit/test_results50/tests/battery/smkconvtst-1214-112051/2.4.4.5Upgrade/convregress.out, ERROR: UNEXPECTED ERROR
+      near line 79 of file /export/foos2/users/dhenrich/3.0/l_gss64bit/test_results50/tests/conv/smkconvtst-1215-122536/3.0.1Upgrade/convregress.out, ERROR: UNEXPECTED ERROR
+      -------------
+      bug 43561:
+        near line 3665 of file /export/foos2/users/dhenrich/3.0/l_gss64bit/test_results50/tests/battery/smkconvtst-1214-112051/2.4.4.5SeasideUpgrade/upgradeTo3x.out, ERROR: UNEXPECTED ERROR
+        near line 3657 of file /export/foos2/users/dhenrich/3.0/l_gss64bit/test_results50/tests/conv/smkconvtst-1215-122536/3.0.1SeasideUpgrade/upgradeTo3x.out, ERROR: UNEXPECTED ERROR
 
-  [status : battery test running/retunning smkconvtst{?) ]
+m_
+  - vacant
 
 tODE:
 
-  - Issue 58: git integration for packages
+  - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[3,187,8,97,1,100],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,@7,@6,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:278,#lastRun:4,#lastOffset:79}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-14T07:55:16.72157788276672-08:00']}
+',#runs:RunArray{#runs:[3,73,62,994,1,115],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[],@10],#lastIndex:1122,#lastRun:4,#lastOffset:983}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-15T18:05:20.64512991905212-08:00']}
