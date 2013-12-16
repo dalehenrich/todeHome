@@ -1,0 +1,26 @@
+TDScriptLeafNode{#name:'startZinc',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./startZinc -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    WAGsZincAdaptor startOn: 8383
+     ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  startZinc - startZinc sript utility template
+SYNOPSIS
+  startZinc [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./startZinc --help
+  ./startZinc -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T10:20:02.1756010055542-08:00'],#modificationTime:DateAndTime['2013-12-16T10:20:17.6535050868988-08:00']}

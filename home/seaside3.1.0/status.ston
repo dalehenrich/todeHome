@@ -1,6 +1,9 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 391dea843350f2145fc112aa5d4043899e60d120
+TDTxtLeafNode{#name:'status',#contents:'commit f2a266ca9fd515283fd9b0fe554e9284ad3fc72d
+Merge: e5107b6 b1fe391
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Sat Sep 14 17:31:55 2013 +0200
+Date:   Mon Dec 2 07:16:17 2013 -0800
 
-    Seaside-GemStone240-Core needed
-',#creationTime:DateAndTime['2013-12-06T17:30:33.04363393783569-08:00'],#modificationTime:@2}
+    Merge pull request #4 from jbrichau/master
+    
+    Getting the build green
+',#creationTime:DateAndTime['2013-12-06T17:30:33.04363393783569-08:00'],#modificationTime:DateAndTime['2013-12-16T08:14:26.59892892837524-08:00']}

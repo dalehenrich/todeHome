@@ -1,0 +1,56 @@
+TDScriptLeafNode{#name:'jLoad',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./jLoad -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'seaside\' $s #\'none\').
+    #(\'zinc\' $z #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'seaside\'
+      ifPresent: [ :ignored | 
+        Metacello new
+          baseline: \'Seaside3\';
+          repository: \'github://jbrichau/Seaside31:master/repository\';
+          get.
+        Metacello new
+          baseline: \'Seaside3\';
+          repository: \'github://jbrichau/Seaside31:master/repository\';
+          load: \'CI\' ].
+    opts
+      at: \'zinc\'
+      ifPresent: [ :ignored | 
+        Metacello new
+          baseline: \'Zinc\';
+          repository: \'github://glassdb/zinc:gemstone3.1/repository\';
+          get.
+        Metacello new
+          baseline: \'Zinc\';
+          repository: \'github://glassdb/zinc:gemstone3.1/repository\';
+          load.
+        false
+          ifTrue: [ 
+            Metacello image
+              baseline: \'Seaside3\';
+              load: \'Zinc-Seaside\' ] ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  jLoad - jLoad sript utility template
+SYNOPSIS
+  jLoad [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./jLoad -h
+
+  ./jLoad --seaside
+  ./jLoad --zinc
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T08:17:20.47630906105042-08:00'],#modificationTime:DateAndTime['2013-12-16T09:25:27.39754295349121-08:00']}

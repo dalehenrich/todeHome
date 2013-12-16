@@ -1,8 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit ceaa978930e040b9f6f998d325d13a9b4ce2b837
+TDTxtLeafNode{#name:'status',#contents:'commit 3f347c0819a3d995efe938e5d95517f5518ff03c
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 9 17:57:24 2013 -0800
+Date:   Fri Nov 8 16:26:43 2013 -0800
 
-    fix sentButNotImplemented:
-      - use proper method in DateTime>>asDateAndTime
-      - implement ExecBlock>>forkAndWait
-',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-09T17:57:27.55089902877808-08:00']}
+    Object>>confirm:, Object>>inform:, and Warning>>defaultAction converted to use GsInteractions ... the GemStone 2.4.x edition
+',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-16T08:16:04.8326370716095-08:00']}
