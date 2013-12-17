@@ -2,13 +2,14 @@ TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'j_
   - 43419  P2  indexing failures in bugtst after checkins r31793, r31765
   - 43552  P3  should deprecate index creation protocol that depends upon constraints
 
-    partial 43552 ... testing for further fixes needed ... 
+    partial 43552 ... heading toward resolution/checkin
 
 k_
   - checkpoint for old index unit test status ...
 
 l_
-  - vacant
+  - 43561  P3  seaside bootstrap packages needs to be upgraded for 3.2
+    just starting ...
 
 m_
   - Seaside3.1.0 and Zinc for Johan
@@ -20,4 +21,4 @@ tODE:
     https://github.com/dalehenrich/tode/issues/58
   - Issue 62: `CMD-.` must interrupt GemStone
     https://github.com/dalehenrich/tode/issues/62
-',#runs:RunArray{#runs:[3,220,62,104,1,211],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[],@10],#lastIndex:224,#lastRun:3,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-16T23:13:44.10038304328918-08:00']}
+',#runs:RunArray{#runs:[3,216,62,186,1,211],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[],@10],#lastIndex:375,#lastRun:4,#lastOffset:93}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-17T08:30:41.61079692840576-08:00']}
