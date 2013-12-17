@@ -1,0 +1,42 @@
+TDScriptLeafNode{#name:'test',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./test -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'dummy\' $d #\'none\').
+    #(\'splice\' $s #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | nodePath parentNode stack node semaphore |
+    nodePath := \'/tmp/sessionTemps/yyy/\'.
+    topez ensureChildrenExistIn: nodePath.
+    parentNode := topez lookup: nodePath.
+    semaphore := opts
+      at: \'dummy\'
+      ifPresent: [ :ignored | {} ]
+      ifAbsent: [ Semaphore new ].
+    node := semaphore
+      asTDObjectNode: parentNode
+      topez: parentNode topez
+      aspect: #\'view\'.
+    node inspect.
+    node name: \'semaphore\'.
+    opts at: \'splice\' ifPresent: [ :ignored | parentNode halt addChildNode: node ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  test - test sript utility template
+SYNOPSIS
+  test [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./test --help
+  ./test -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T16:30:24.0945360660553-08:00'],#modificationTime:DateAndTime['2013-12-16T19:31:55.84706902503967-08:00']}

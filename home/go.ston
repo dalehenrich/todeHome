@@ -1,1 +1,2 @@
-TDTopezLeafNode{#name:'go',#contents:'cd bug/bug43419',#creationTime:DateAndTime['2013-12-14T11:15:17.47836899757385-08:00'],#modificationTime:DateAndTime['2013-12-14T11:15:36.34983491897583-08:00']}
+TDTopezLeafNode{#name:'go',#contents:'# cd /home/bug/bug43419
+cd /home/bug/interrupt',#creationTime:DateAndTime['2013-12-14T11:15:17.47836899757385-08:00'],#modificationTime:DateAndTime['2013-12-16T17:20:00.45514297485352-08:00']}

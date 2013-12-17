@@ -1,0 +1,31 @@
+TDScriptLeafNode{#name:'delay',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./delay -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'echo\' $e #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+     opts
+      at: \'echo\'
+      ifPresent: [ :ignored | System performOnServer: \'echo $GS_LGC_DEBUG\' ].
+    (Delay forSeconds: 15) wait.
+    ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  delay - delay sript utility template
+SYNOPSIS
+  delay [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./delay --help
+  ./delay -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T13:02:30.46160507202148-08:00'],#modificationTime:DateAndTime['2013-12-16T16:31:13.34311699867249-08:00']}

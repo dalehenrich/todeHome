@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit d34aeb6ec161e6e43b51ba7d6a4022b42af7834d
+TDTxtLeafNode{#name:'status',#contents:'commit 5de8171aee1ff8f288e210651908e86929f1844d
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Fri Dec 13 10:29:42 2013 -0800
+Date:   Mon Dec 16 20:30:33 2013 -0800
 
-    Issue #58: checkpoint for `mv versions -g` work
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-13T10:29:42.52208304405212-08:00']}
+    remove superfluous logging
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-16T20:30:36.95468592643738-08:00']}
