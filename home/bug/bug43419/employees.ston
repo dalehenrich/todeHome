@@ -80,6 +80,7 @@ Fred
     ((Smalltalk at: #\'Name\') new
       first: (String withAll: \'Fred\');
       last: (String withAll: \'Jones\')).
+Fred name: \'Jones\'.
 Fred
   address:
     ((Smalltalk at: #\'Address\') new
@@ -98,4 +99,4 @@ MyEmployees := (Smalltalk at: #\'BagOfEmployees\') new.
 MyEmployees
   add: Fred;
   add: Conan.
-UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-14T11:30:30.04518795013428-08:00']}
+UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-16T21:17:22.29544591903687-08:00']}

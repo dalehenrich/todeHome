@@ -1,3 +1,12 @@
 TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'Error 2292 , a ImproperOperation occurred (error 2292), reason:rtErrPathNotTraversable, The class String does not have an instance variable #\'first\' on the index path. (ImproperOperation)
 
-from bugtst5.out ... but cannot reproduce yet in tODE image...',#runs:RunArray{#runs:[251],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-14T10:57:00.20244598388672-08:00'],#modificationTime:DateAndTime['2013-12-14T11:19:43.74253988265991-08:00']}
+from bugtst5.out ... but cannot reproduce yet in tODE image...
+
+If I force a String into the Name slot I get this error:
+
+a IndexingErrorPreventingCommit occurred (error 2321), a LookupError occurred (error 2295), reason:rtErrObjectInvalidOffset, The object \'Jones\' does not have an instance variable with the given name #\'first\'  This error occurred during index maintenance.  Consequently, this transaction must be aborted. 
+
+---------------------------
+error 2292 is coming about because BagOfEmployees has a constraint ...
+---------------------------
+',#runs:RunArray{#runs:[616,100,28],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1072693248}}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-14T10:57:00.20244598388672-08:00'],#modificationTime:DateAndTime['2013-12-16T21:51:26.1120069026947-08:00']}
