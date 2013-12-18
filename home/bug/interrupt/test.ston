@@ -26,7 +26,9 @@ opts
       aspect: #\'view\'.
     node inspect.
     node name: \'semaphore\'.
-    opts at: \'splice\' ifPresent: [ :ignored | parentNode halt addChildNode: node ] ]
+    opts
+      at: \'splice\'
+      ifPresent: [ :ignored | parentNode halt addChildNode: node ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -34,9 +36,15 @@ opts
   test - test sript utility template
 SYNOPSIS
   test [-h|--help]
+  test [-d|--dummy] [-s|--splice]
 DESCRIPTION
+
+  --dummy use and Array instead of deathly Semaphort
+  -- splice actually install node in /tmp/sessionTemps otherwise node just
+     created
 EXAMPLES
   ./test --help
   ./test -h
+  ./test -d -s
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T16:30:24.0945360660553-08:00'],#modificationTime:DateAndTime['2013-12-16T19:31:55.84706902503967-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T16:30:24.0945360660553-08:00'],#modificationTime:DateAndTime['2013-12-17T11:24:10.39138603210449-08:00']}

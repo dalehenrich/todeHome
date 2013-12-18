@@ -22,7 +22,7 @@ opts
         Metacello new
           baseline: \'Seaside3\';
           repository: \'github://jbrichau/Seaside31:master/repository\';
-          load: \'CI\' ].
+          load: #(\'default\' \'Zinc-Seaside\' ) ].
     opts
       at: \'zinc\'
       ifPresent: [ :ignored | 
@@ -53,4 +53,4 @@ EXAMPLES
   ./jLoad --seaside
   ./jLoad --zinc
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T08:17:20.47630906105042-08:00'],#modificationTime:DateAndTime['2013-12-16T09:25:27.39754295349121-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T08:17:20.47630906105042-08:00'],#modificationTime:DateAndTime['2013-12-17T12:44:49.88904404640198-08:00']}

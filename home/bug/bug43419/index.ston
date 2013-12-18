@@ -1,15 +1,54 @@
-TDSmalltalkLeafNode{#name:'index',#contents:'(UserGlobals at: #\'MyEmployees\')
-  createEqualityIndexOn: \'name.first\' withLastElementClass: String;
-  createEqualityIndexOn: \'name.last\' withLastElementClass: String;
-  yourself.
-true
-  ifTrue: [ 
-    (UserGlobals at: #\'MyEmployees\')
-      createEqualityIndexOn: \'address.street\' withLastElementClass: String;
-      createEqualityIndexOn: \'address.zip\' withLastElementClass: Integer;
-      createEqualityIndexOn: \'jobTitle\' withLastElementClass: String;
-      createEqualityIndexOn: \'department.deptName\' withLastElementClass: String;
-      createEqualityIndexOn: \'department.phone\' withLastElementClass: Number;
-      createEqualityIndexOn: \'favoriteTune\' withLastElementClass: String;
-      createEqualityIndexOn: \'empNum\' withLastElementClass: Number;
-      yourself ]',#creationTime:DateAndTime['2013-12-14T08:17:30.17571496963501-08:00'],#modificationTime:DateAndTime['2013-12-14T11:31:11.65637302398682-08:00']}
+TDScriptLeafNode{#name:'index',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./index -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'constrain\' $c #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'constrain\'
+      ifPresent: [ :ignored | 
+        (UserGlobals at: #\'MyEmployees\')
+          createEqualityIndexOn: \'name.first\' ;
+          createEqualityIndexOn: \'name.last\' ;
+          createEqualityIndexOn: \'address.street\' ;
+          createEqualityIndexOn: \'address.zip\' ;
+          createEqualityIndexOn: \'jobTitle\' ;
+          createEqualityIndexOn: \'department.deptName\';
+          createEqualityIndexOn: \'department.phone\';
+          createEqualityIndexOn: \'favoriteTune\' ;
+          createEqualityIndexOn: \'empNum\' ;
+          yourself   ]
+      ifAbsent: [ 
+        (UserGlobals at: #\'MyEmployees\')
+          createEqualityIndexOn: \'name.first\' withLastElementClass: String;
+          createEqualityIndexOn: \'name.last\' withLastElementClass: String;
+          createEqualityIndexOn: \'address.street\' withLastElementClass: String;
+          createEqualityIndexOn: \'address.zip\' withLastElementClass: Integer;
+          createEqualityIndexOn: \'jobTitle\' withLastElementClass: String;
+          createEqualityIndexOn: \'department.deptName\'
+            withLastElementClass: String;
+          createEqualityIndexOn: \'department.phone\'
+            withLastElementClass: Number;
+          createEqualityIndexOn: \'favoriteTune\' withLastElementClass: String;
+          createEqualityIndexOn: \'empNum\' withLastElementClass: Number;
+          yourself ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  index - index sript utility template
+SYNOPSIS
+  index [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./index --help
+  ./index -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-17T15:53:52.21344590187073-08:00'],#modificationTime:DateAndTime['2013-12-17T15:56:49.57075810432434-08:00']}

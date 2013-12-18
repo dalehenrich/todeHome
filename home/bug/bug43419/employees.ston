@@ -1,102 +1,207 @@
-TDSmalltalkLeafNode{#name:'employees',#contents:'| Conan Lurleen Fred MyEmployees |
-Object
-  subclass: \'Address\'
-  instVarNames:
-    {\'street\'.
-    \'zip\'}
-  classVars: {}
-  classInstVars: {}
-  poolDictionaries: {}
-  inDictionary: UserGlobals.
-Object
-  subclass: \'Department\'
-  instVarNames:
-    {\'deptName\'.
-    \'phone\'}
-  classVars: {}
-  classInstVars: {}
-  poolDictionaries: {}
-  inDictionary: UserGlobals.
-Object
-  subclass: \'Name\'
-  instVarNames:
-    {\'first\'.
-    \'last\'}
-  classVars: {}
-  classInstVars: {}
-  poolDictionaries: {}
-  inDictionary: UserGlobals.
-Object
-  subclass: \'Employee\'
-  instVarNames:
-    {\'name\'.
-    \'empNum\'.
-    \'jobTitle\'.
-    \'department\'.
-    \'address\'.
-    \'favoriteTune\'}
-  classVars: {}
-  classInstVars: {}
-  poolDictionaries: {}
-  inDictionary: UserGlobals.
-(Smalltalk at: #\'Employee\')
-  compileAccessingMethodsFor: (Smalltalk at: #\'Employee\') allInstVarNames.
-(Smalltalk at: #\'Name\')
-  compileAccessingMethodsFor: (Smalltalk at: #\'Name\') allInstVarNames.
-(Smalltalk at: #\'Address\')
-  compileAccessingMethodsFor: (Smalltalk at: #\'Address\') allInstVarNames.
-(Smalltalk at: #\'Department\')
-  compileAccessingMethodsFor: (Smalltalk at: #\'Department\') allInstVarNames.
-IdentityBag
-  subclass: \'BagOfEmployees\'
-  instVarNames: {}
-  classVars: {}
-  classInstVars: {}
-  poolDictionaries: {}
-  inDictionary: UserGlobals.\t\"Make some new Employees, and store them in a BagOfEmployees.\"
-Conan := (Smalltalk at: #\'Employee\') new.
-Conan
-  name:
-    ((Smalltalk at: #\'Name\') new
-      first: (String withAll: \'Conan\');
-      last: (String withAll: \'Librarian\')).
-Conan
-  address:
-    ((Smalltalk at: #\'Address\') new
-      street: (String withAll: \'444 West West\');
-      zip: 97232).
-Conan
-  empNum: 1;
-  jobTitle: (String withAll: \'librarian\');
-  favoriteTune: (String withAll: \'I Feel Pretty\').
-Conan
-  department:
-    ((Smalltalk at: #\'Department\') new
-      deptName: (String withAll: \'books\');
-      phone: 3334).
-Fred := (Smalltalk at: #\'Employee\') new.
-Fred
-  name:
-    ((Smalltalk at: #\'Name\') new
-      first: (String withAll: \'Fred\');
-      last: (String withAll: \'Jones\')).
-Fred name: \'Jones\'.
-Fred
-  address:
-    ((Smalltalk at: #\'Address\') new
-      street: (String withAll: \'E. Elm\');
-      zip: 97333).
-Fred
-  empNum: 1;
-  jobTitle: (String withAll: \'welder\');
-  favoriteTune: (String withAll: \'Am I Blue?\').
-Fred
-  department:
-    ((Smalltalk at: #\'Department\') new
-      deptName: (String withAll: \'welding\');
-      phone: 3333).
-MyEmployees := (Smalltalk at: #\'BagOfEmployees\') new.
-MyEmployees
-  add: Fred;
-  add: Conan.
-UserGlobals at: #\'MyEmployees\' put: MyEmployees',#creationTime:DateAndTime['2013-12-14T08:09:33.07665801048279-08:00'],#modificationTime:DateAndTime['2013-12-16T21:17:22.29544591903687-08:00']}
+TDScriptLeafNode{#name:'employees',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./employees -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'constrain\' $c #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | Conan Lurleen Fred MyEmployees |
+    opts
+      at: \'constrain\'
+      ifPresent: [ :ignored | 
+        Object
+          subclass: \'Address\'
+          instVarNames:
+            {\'street\'.
+            \'zip\'}
+          classVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals
+          constraints:
+            {{\'street\'.
+            String}.
+            {\'zip\'.
+            Integer}}
+          isInvariant: false.
+        Object
+          subclass: \'Department\'
+          instVarNames:
+            {\'deptName\'.
+            \'phone\'}
+          classVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals
+          constraints:
+            {{\'deptName\'.
+            String}.
+            {\'phone\'.
+            Number}}
+          isInvariant: false.
+        Object
+          subclass: \'Name\'
+          instVarNames:
+            {\'first\'.
+            \'last\'}
+          classVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals
+          constraints:
+            {{\'first\'.
+            String}.
+            {\'last\'.
+            String}}
+          isInvariant: false.
+        Object
+          subclass: \'Employee\'
+          instVarNames:
+            {\'name\'.
+            \'empNum\'.
+            \'jobTitle\'.
+            \'department\'.
+            \'address\'.
+            \'favoriteTune\'}
+          classVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals
+          constraints:
+            {{\'name\'.
+            (Smalltalk at: #Name)}.
+            {\'empNum\'.
+            Number}.
+            {\'jobTitle\'.
+            String}.
+            {\'department\'.
+            (Smalltalk at: #Department)}.
+            {\'address\'.
+            (Smalltalk at: #Address)}.
+            {\'favoriteTune\'.
+            String}}
+          isInvariant: false.
+        IdentityBag
+          subclass: \'BagOfEmployees\'
+          instVarNames: {}
+          classVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals
+          constraints: (Smalltalk at: #Employee)
+          isInvariant: false ]
+      ifAbsent: [ 
+        Object
+          subclass: \'Address\'
+          instVarNames:
+            {\'street\'.
+            \'zip\'}
+          classVars: {}
+          classInstVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals.
+        Object
+          subclass: \'Department\'
+          instVarNames:
+            {\'deptName\'.
+            \'phone\'}
+          classVars: {}
+          classInstVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals.
+        Object
+          subclass: \'Name\'
+          instVarNames:
+            {\'first\'.
+            \'last\'}
+          classVars: {}
+          classInstVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals.
+        Object
+          subclass: \'Employee\'
+          instVarNames:
+            {\'name\'.
+            \'empNum\'.
+            \'jobTitle\'.
+            \'department\'.
+            \'address\'.
+            \'favoriteTune\'}
+          classVars: {}
+          classInstVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals.
+        IdentityBag
+          subclass: \'BagOfEmployees\'
+          instVarNames: {}
+          classVars: {}
+          classInstVars: {}
+          poolDictionaries: {}
+          inDictionary: UserGlobals\t\"Make some new Employees, and store them in a BagOfEmployees.\" ].
+    (Smalltalk at: #\'Employee\')
+      compileAccessingMethodsFor: (Smalltalk at: #\'Employee\') allInstVarNames.
+    (Smalltalk at: #\'Name\')
+      compileAccessingMethodsFor: (Smalltalk at: #\'Name\') allInstVarNames.
+    (Smalltalk at: #\'Address\')
+      compileAccessingMethodsFor: (Smalltalk at: #\'Address\') allInstVarNames.
+    (Smalltalk at: #\'Department\')
+      compileAccessingMethodsFor: (Smalltalk at: #\'Department\') allInstVarNames.
+    Conan := (Smalltalk at: #\'Employee\') new.
+    Conan
+      name:
+        ((Smalltalk at: #\'Name\') new
+          first: (String withAll: \'Conan\');
+          last: (String withAll: \'Librarian\')).
+    Conan
+      address:
+        ((Smalltalk at: #\'Address\') new
+          street: (String withAll: \'444 West West\');
+          zip: 97232).
+    Conan
+      empNum: 1;
+      jobTitle: (String withAll: \'librarian\');
+      favoriteTune: (String withAll: \'I Feel Pretty\').
+    Conan
+      department:
+        ((Smalltalk at: #\'Department\') new
+          deptName: (String withAll: \'books\');
+          phone: 3334).
+    Fred := (Smalltalk at: #\'Employee\') new.
+    Fred
+      name:
+        ((Smalltalk at: #\'Name\') new
+          first: (String withAll: \'Fred\');
+          last: (String withAll: \'Jones\')).
+    Fred
+      address:
+        ((Smalltalk at: #\'Address\') new
+          street: (String withAll: \'E. Elm\');
+          zip: 97333).
+    Fred
+      empNum: 1;
+      jobTitle: (String withAll: \'welder\');
+      favoriteTune: (String withAll: \'Am I Blue?\').
+    Fred
+      department:
+        ((Smalltalk at: #\'Department\') new
+          deptName: (String withAll: \'welding\');
+          phone: 3333).
+    MyEmployees := (Smalltalk at: #\'BagOfEmployees\') new.
+    MyEmployees
+      add: Fred;
+      add: Conan.
+    UserGlobals at: #\'MyEmployees\' put: MyEmployees ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  employees - employees sript utility template
+SYNOPSIS
+  employees [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./employees --help
+  ./employees -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-17T15:57:47.49383401870728-08:00'],#modificationTime:DateAndTime['2013-12-17T16:11:23.16261911392212-08:00']}

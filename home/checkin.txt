@@ -1,0 +1,9 @@
+M       image/unorderedcoll3.gs
+M       image/unorderedcoll.gs
+M       image/idxquerymethods.gs
+M       image/IndexManager.gs
+M       tests/bugtst/bugtst12.tst
+M       tests/bugtst/bugtst13.tst
+M       tests/bugtst/bugtst5.tst
+M       tests/bugtst/bugtst6.tst
+

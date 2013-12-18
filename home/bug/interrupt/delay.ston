@@ -4,18 +4,14 @@ TDScriptLeafNode{#name:'delay',#contents:'[ :topez :objIn :tokens :command |
 command
   getOptsMixedLongShort:
     {#(\'help\' $h #\'none\').
-    #(\'echo\' $e #\'none\')}
+    }
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-     opts
-      at: \'echo\'
-      ifPresent: [ :ignored | System performOnServer: \'echo $GS_LGC_DEBUG\' ].
-    (Delay forSeconds: 15) wait.
-    ]
+    (Delay forSeconds: 15) wait ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -24,8 +20,10 @@ opts
 SYNOPSIS
   delay [-h|--help]
 DESCRIPTION
+  delay for 15 seconds ... ample time to interrupt the process
+
 EXAMPLES
   ./delay --help
   ./delay -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T13:02:30.46160507202148-08:00'],#modificationTime:DateAndTime['2013-12-16T16:31:13.34311699867249-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T13:02:30.46160507202148-08:00'],#modificationTime:DateAndTime['2013-12-17T11:26:02.752690076828-08:00']}
