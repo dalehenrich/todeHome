@@ -7,8 +7,12 @@ k_
 l_
   - 43561  P3  seaside bootstrap packages needs to be upgraded for 3.2
 
-    still seeing errors during smkconvtst....
+  2.4.4.5SeasideUpgrade:
+    #64 [166636545 sz:38  String] SecureHashAlgorithmTest>>#testExample1
+    #65 [166635777 sz:38  String] SecureHashAlgorithmTest>>#testExample2
+    #66 [166632705 sz:38  String] SecureHashAlgorithmTest>>#testExample3
 
+    rebuild and retest smkconv ... then see where this error is coming from
 m_
   - Seaside3.1.0 and Zinc for Johan (loaded ...)
 
@@ -16,4 +20,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[3,11,62,154,1,12,1,115],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[@11,TextEmphasis{#emphasisCode:1,#setMode:true}],@10,[],@10],#lastIndex:245,#lastRun:8,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-18T17:03:17.22940301895142-08:00']}
+',#runs:RunArray{#runs:[3,11,62,428,1,12,1,115],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[@11,TextEmphasis{#emphasisCode:1,#setMode:true}],@10,[],@10],#lastIndex:466,#lastRun:4,#lastOffset:389}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-18T17:23:35.30151700973511-08:00']}

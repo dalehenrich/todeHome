@@ -1,0 +1,182 @@
+----------------------------
+----------------------------
+hit url several times after fresh image startup... then hit ByteArray(Object)>>_errorIndexOutOfRange: ... 
+----------------------------
+1. OffsetError(AbstractException)>>_signalWith: @5 line 25
+2. OffsetError(AbstractException)>>signal @2 line 47
+3. ByteArray(Object)>>_error:args: @15 line 11
+4. ByteArray(Object)>>_errorIndexOutOfRange: @2 line 6
+5. ByteArray>>at: @4 line 13
+6. SocketStream>>next @13 line 10
+----------------------------
+lastRead is 4097 which is what caused the error ... cylcing like mad
+inBuffer is the badBoy ...
+----------------------------
+.               -> SocketStream[inbuf:4kb/outbuf:4kb]
+..              -> SocketStream>>next @13 line 10
+(class)@        -> SocketStream
+(oop)@          -> 236033537
+autoFlush@      -> false
+binary@         -> true
+bufferSize@     -> 4096
+inBuffer@       ->  ...
+inNextToWrite@  -> 1
+lastRead@       -> 4097
+outBuffer@      ->  ...
+outNextToWrite@ -> 1
+recentlyRead@   -> 0
+shouldSignal@   -> true
+socket@         -> aSocketStreamSocket
+timeout@        -> 30
+----------------------------
+7. ZnLineReader>>processNext @5 line 4
+8. ZnLineReader>>nextLine @3 line 3
+----------------------------
+.         -> aZnLineReader
+..        -> ZnLineReader>>nextLine @3 line 3
+(class)@  -> ZnLineReader
+(oop)@    -> 248872705
+buffer@   -> ' ...
+limit@    -> 4096
+position@ -> 4096
+stream@   -> SocketStream[inbuf:4kb/outbuf:4kb]
+----------------------------
+position is maxes out ... so this boy is spinning
+----------------------------
+
+9. ZnRequestLine>>readFrom: @3 line 3
+10. ZnRequestLine class>>readFrom: @3 line 3
+11. ZnRequest>>readHeaderFrom: @2 line 2
+12. ZnRequest(ZnMessage)>>readBinaryFrom: @2 line 3
+13. ZnRequest class(ZnMessage class)>>readBinaryFrom: @3 line 3
+14. [] in ExecBlock1(ZnZincServerAdaptor)>>configureServerForBinaryReading @2 line 4
+15. [] in ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>readRequest: @3 line 6
+16. [] in ExecBlock0(ZnSingleThreadedServer)>>withMaximumEntitySizeDo: @2 line 6
+17. [] in ZnMaximumEntitySize class(DynamicVariable class)>>value:during: @3 line 9
+18. ZnMaximumEntitySize class(ExecBlock)>>ensure: @2 line 12
+19. ZnMaximumEntitySize class(DynamicVariable class)>>value:during: @6 line 10
+20. ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>withMaximumEntitySizeDo: @5 line 5
+21. ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>readRequest: @2 line 6
+22. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>readRequestSafely: @2 line 4
+23. ZnManagingMultiThreadedServer(ExecBlock)>>on:do: @3 line 42
+24. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>readRequestSafely: @3 line 5
+25. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeOneRequestResponseOn: @2 line 7
+26. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeRequestResponseLoopOn: @2 line 10
+27. [] in ZnCurrentServer class(DynamicVariable class)>>value:during: @3 line 9
+28. ZnCurrentServer class(ExecBlock)>>ensure: @2 line 12
+29. ZnCurrentServer class(DynamicVariable class)>>value:during: @6 line 10
+30. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeRequestResponseLoopOn: @4 line 8
+31. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 9
+32. ZnManagingMultiThreadedServer(ExecBlock)>>ensure: @2 line 12
+33. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 10
+34. [] in ExecBlock0(ExecBlock)>>ifCurtailed: @2 line 6
+35. ExecBlock0(ExecBlock)>>ensure: @2 line 12
+36. ZnManagingMultiThreadedServer(ExecBlock)>>ifCurtailed: @3 line 8
+37. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 11
+38. GsProcess>>_start @7 line 16
+39. UndefinedObject(GsNMethod class)>>_gsReturnToC @1 line 1
+----------------------------
+----------------------------
+.        -> anArray( GsProcess(oop=235852033, status=waiting on a GsSocket, priority=30, block=anExecBlock, args=anArray( ), ProcessorScheduler >> _swi...
+(class)@ -> Array
+(oop)@   -> 236886017
+(size)@  -> 4
+1@       -> GsProcess(oop=235852033, status=waiting on a GsSocket, priority=30, block=anExecBlock, args=anArray( ), ProcessorScheduler >> _switchFrom:t...
+2@       -> GsProcess(oop=235880705, status=waiting on a Delay, priority=15, ProcessorScheduler >> _switchFrom:to: (envId 0) @2 line 8 ProcessorSchedul...
+3@       -> GsProcess(oop=236887041, status=waiting on a GsSocket, with a timeout, priority=25, block=anExecBlock, args=anArray( ), ProcessorScheduler ...
+4@       -> error printing
+----------------------------
+----------------------------
+dkh 12/18/2013 20:25
+----------------------------
+.        -> anArray( GsProcess(oop=235880705, status=waiting on a Delay, priority=15, ProcessorScheduler >> _switchFrom:to: (envId 0) @2 line 8 Process...
+(class)@ -> Array
+(oop)@   -> 249011457
+(size)@  -> 4
+1@       -> GsProcess(oop=235880705, status=waiting on a Delay, priority=15, ProcessorScheduler >> _switchFrom:to: (envId 0) @2 line 8 ProcessorSchedul...
+2@       -> GsProcess(oop=236887041, status=waiting on a GsSocket, with a timeout, priority=25, block=anExecBlock, args=anArray( ), ProcessorScheduler ...
+3@       -> GsProcess(oop=238950657, status=ready, priority=15, ProcessorScheduler >> _switchFrom:to: (envId 0) @2 line 8 ProcessorScheduler >> yield (...
+4@       -> error printing
+
+----------------------------
+----------------------------
+2@       -> GsProcess(oop=236887041, status=waiting on a GsSocket, with a timeout, priority=25, block=anExecBlock, args=anArray( ), ProcessorScheduler ...
+----------------------------
+1. ProcessorScheduler>>_switchFrom:to: @2 line 8
+2. ProcessorScheduler>>_reschedule @6 line 9
+3. ProcessorScheduler>>_waitForSocket:timeout: @9 line 20
+4. GsSocket>>readWillNotBlockWithin: @22 line 37
+5. SocketStreamSocket(SpSocket)>>waitForNonBlockingReadActivityUpToMs: @3 line 6
+6. SocketStreamSocket>>waitForDataFor:ifClosed:ifTimedOut: @20 line 12
+7. SocketStreamSocket>>waitForDataFor: @2 line 6
+8. SocketStreamSocket>>receiveDataSignallingTimeout:into:startingAt: @2 line 6
+9. SocketStream>>receiveData @5 line 12
+----------------------------
+The socket shown here answers `false	` to #isConnected ... so this socket has no business being still connected ... maybe there's something funky with our socket, because  we are in read wait...
+----------------------------
+.               -> aGsSocket
+..              -> SocketStream>>receiveData @5 line 12SocketStream[inbuf:4kb/outbuf:4kb]/aSocketStreamSocket/
+(class)@        -> GsSocket
+(oop)@          -> 235852289
+fileDescriptor@ -> 14
+lineNumber@     -> nil
+pollArrayOfs@   -> 2
+readWaiters@    -> GsProcess(oop=236887041, status=waiting on a GsSocket, with a timeout, priority=25, block=anExecBlock, args=anArray( ), ProcessorScheduler ...
+readyEvents@    -> 0
+selectWaiters@  -> nil
+writeWaiters@   -> nil
+----------------------------
+10. SocketStream>>next @7 line 7
+----------------------------
+The outBuffer looks exactly like the message that was received by the browser....
+----------------------------
+.               -> SocketStream[inbuf:4kb/outbuf:4kb]
+..              -> SocketStream>>next @7 line 7
+(class)@        -> SocketStream
+(oop)@          -> 249079297
+autoFlush@      -> false
+binary@         -> true
+bufferSize@     -> 4096
+inBuffer@       -> GET / HTTP/1.1 Host: foos:8383 Connection: keep-alive Cache-Control: max-age=0 Accept: text/html,application/xhtml+xml,application/xml;q...
+inNextToWrite@  -> 1141
+lastRead@       -> 1140
+outBuffer@      -> HTTP/1.1 403 Forbidden Content-Length: 512 Date: Thu, 19 Dec 2013 04:24:56 GMT Server: Zinc HTTP Components 1.0 Content-Type: text/plain...
+outNextToWrite@ -> 1
+recentlyRead@   -> 380
+shouldSignal@   -> true
+socket@         -> aSocketStreamSocket
+timeout@        -> 30
+----------------------------
+11. ZnLineReader>>processNext @5 line 4
+12. ZnLineReader>>nextLine @3 line 3
+13. ZnRequestLine>>readFrom: @3 line 3
+14. ZnRequestLine class>>readFrom: @3 line 3
+15. ZnRequest>>readHeaderFrom: @2 line 2
+16. ZnRequest(ZnMessage)>>readBinaryFrom: @2 line 3
+17. ZnRequest class(ZnMessage class)>>readBinaryFrom: @3 line 3
+18. [] in ExecBlock1(ZnZincServerAdaptor)>>configureServerForBinaryReading @2 line 4
+19. [] in ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>readRequest: @3 line 6
+20. [] in ExecBlock0(ZnSingleThreadedServer)>>withMaximumEntitySizeDo: @2 line 6
+21. [] in ZnMaximumEntitySize class(DynamicVariable class)>>value:during: @3 line 9
+22. ZnMaximumEntitySize class(ExecBlock)>>ensure: @2 line 12
+23. ZnMaximumEntitySize class(DynamicVariable class)>>value:during: @6 line 10
+24. ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>withMaximumEntitySizeDo: @5 line 5
+25. ZnManagingMultiThreadedServer(ZnSingleThreadedServer)>>readRequest: @2 line 6
+26. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>readRequestSafely: @2 line 4
+27. ZnManagingMultiThreadedServer(ExecBlock)>>on:do: @3 line 42
+28. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>readRequestSafely: @3 line 5
+29. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeOneRequestResponseOn: @2 line 7
+30. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeRequestResponseLoopOn: @2 line 10
+31. [] in ZnCurrentServer class(DynamicVariable class)>>value:during: @3 line 9
+32. ZnCurrentServer class(ExecBlock)>>ensure: @2 line 12
+33. ZnCurrentServer class(DynamicVariable class)>>value:during: @6 line 10
+34. ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>executeRequestResponseLoopOn: @4 line 8
+35. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 9
+36. ZnManagingMultiThreadedServer(ExecBlock)>>ensure: @2 line 12
+37. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 10
+38. [] in ExecBlock0(ExecBlock)>>ifCurtailed: @2 line 6
+39. ExecBlock0(ExecBlock)>>ensure: @2 line 12
+40. ZnManagingMultiThreadedServer(ExecBlock)>>ifCurtailed: @3 line 8
+41. [] in ZnManagingMultiThreadedServer(ZnMultiThreadedServer)>>serveConnectionsOn: @2 line 11
+42. GsProcess>>_start @7 line 16
+43. UndefinedObject(GsNMethod class)>>_gsReturnToC @1 line 1

@@ -8,9 +8,10 @@ command
     args := operands ].
 opts
   at: \'help\'
-  ifAbsent: [ 
-    WAGsZincAdaptor startOn: 8383
-     ]
+  ifAbsent: [ | gs |
+\t\tgs := topez toolInstanceFor: \'gs\'.
+\t\tgs gshaltOnOutOfMemory: 60.
+\t\tWAGsZincAdaptor startOn: 8383 ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -23,4 +24,4 @@ EXAMPLES
   ./startZinc --help
   ./startZinc -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T10:20:02.1756010055542-08:00'],#modificationTime:DateAndTime['2013-12-16T10:20:17.6535050868988-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T10:20:02.1756010055542-08:00'],#modificationTime:DateAndTime['2013-12-18T20:12:20.04060506820679-08:00']}

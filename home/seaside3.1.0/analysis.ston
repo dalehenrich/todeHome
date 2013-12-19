@@ -1,0 +1,24 @@
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'I\u00E2\u0080\u0099m working on the Zinc server adaptor for Seaside 3.1 but I got stuck.
+
+Launching the following from Gemtools brings up the server and makes it respond to requests nicely. Trying to do the same from a topaz session though, immediately throws an out-of-mem exception.
+
+WAGsZincAdaptor startOn: 8383
+
+If you break the blocking call in Gemtools and run the line above again, you also run out-of-mem after a couple of times (but only after _also_ connecting to the server from your web browser).
+First question about this is why that does not happen in gem tools? I tried turning the auto commit off but that did not change anything.
+
+
+Following advice in [1], I started investigating from gemtools and got this for the byte sizes in temp obj memory on 75% full:
+
+#\'ByteArray\'->22153440, #\'GsMethodDictionary\'->3073088, #\'GsMethodLookupCache\'->2224064, #\'GsProcess\'->562224, #\'String\'->415504, #\'Array\'->340168, #\'SocketStream\'->322680, #\'ExecBlock\'->201664, #\'VariableContext\'->175552, #\'SocketStreamSocket\'->150696,  \u00E2\u0080\u00A60
+
+The process browser shows over 100 threads displayed as follows:
+
+(priority=25) ready [oop= \u00E2\u0080\u00A6. ]
+
+I guess this is where Dale started having nightmares. The stack traces show the out-of-mem always happens in the ZnNetworkingUtils>>setSocketStreamParameters: method.
+
+All of this is using the current Zinc version on github for gemstone 3.1 [2]  and my version of the Seaside 3.1 port [3]
+To try, load Seaside from my repo, load the \u00E2\u0080\u0098Zinc-Seaside\u00E2\u0080\u0099 group from the baseline and hit the above.
+
+Any ideas are welcome',#runs:RunArray{#runs:[1531],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-18T18:09:30.40795993804932-08:00'],#modificationTime:DateAndTime['2013-12-18T18:10:02.15597796440125-08:00']}

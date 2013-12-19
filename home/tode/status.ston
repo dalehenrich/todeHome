@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 23c62c0b371ac1d2b1fd48d0c47903e605c91bd3
+TDTxtLeafNode{#name:'status',#contents:'commit 3775b691971693a19353e630a4ce295356eca10d
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Wed Dec 18 17:04:51 2013 -0800
+Date:   Wed Dec 18 19:08:15 2013 -0800
 
-    tweaks and cleanup of various sorts
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-18T17:04:51.69598007202148-08:00']}
+    CMD-SHIFT-P: opens window with printString of client list ... `ps debug` command open debugger on given process ...
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-18T19:08:18.21054005622864-08:00']}
