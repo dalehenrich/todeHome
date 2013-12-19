@@ -1,0 +1,28 @@
+TDScriptLeafNode{#name:'bootstrap',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bootstrap -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    GLASSProjectSupport 
+      release: ConfigurationOfGLASS
+      version: \'1.0-beta.9.1\'
+      buildDirectory: \'/export/foos2/users/dhenrich/3.0/l_gss64bit\' ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bootstrap - bootstrap sript utility template
+SYNOPSIS
+  bootstrap [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./bootstrap --help
+  ./bootstrap -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-18T11:45:56.50478792190552-08:00'],#modificationTime:DateAndTime['2013-12-18T13:04:11.26898002624512-08:00']}

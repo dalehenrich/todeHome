@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 5de8171aee1ff8f288e210651908e86929f1844d
+TDTxtLeafNode{#name:'status',#contents:'commit 23c62c0b371ac1d2b1fd48d0c47903e605c91bd3
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 16 20:30:33 2013 -0800
+Date:   Wed Dec 18 17:04:51 2013 -0800
 
-    remove superfluous logging
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-17T11:20:00.71544408798218-08:00']}
+    tweaks and cleanup of various sorts
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-18T17:04:51.69598007202148-08:00']}

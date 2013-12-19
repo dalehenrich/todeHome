@@ -1,0 +1,63 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | constraints cls |
+    constraints := {}.
+    Object
+      subclass: \'Employee\'
+      instVarNames:
+        {\'name\'.
+        \'empNum\'.
+        \'jobTitle\'.
+        \'department\'.
+        \'address\'.
+        \'favoriteTune\'}
+      classVars: {}
+      classInstVars: {}
+      poolDictionaries: {}
+      inDictionary: UserGlobals.
+    cls := IdentityBag
+      subclass: \'BagOfEmployees\'
+      instVarNames: {}
+      classVars: {}
+      poolDictionaries: {}
+      inDictionary: UserGlobals
+      constraints: (Smalltalk at: #\'Employee\')
+      isInvariant: false.
+    constraints
+      add:
+        {cls.
+        (cls varyingConstraint)}.
+    cls := IdentityBag
+      subclass: \'BagOfEmployees\'
+      instVarNames: {}
+      classVars: {}
+      classInstVars: {}
+      poolDictionaries: {}
+      inDictionary: UserGlobals.
+    constraints
+      add:
+        {cls.
+        (cls varyingConstraint)} .
+\t\tconstraints]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-18T16:34:19.62735891342163-08:00'],#modificationTime:DateAndTime['2013-12-18T16:52:22.35069489479065-08:00']}

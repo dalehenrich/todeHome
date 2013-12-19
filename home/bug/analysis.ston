@@ -1,24 +1,19 @@
 TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'j_
-  - 43419  P2  indexing failures in bugtst after checkins r31793, r31765
-  - 43552  P3  should deprecate index creation protocol that depends upon constraints
+  - vacant
 
-    revisit 43419 solution ... this bug is not an indexing bug as much as a 
-    constraints bug
 k_
   - checkpoint for old index unit test status ...
 
 l_
   - 43561  P3  seaside bootstrap packages needs to be upgraded for 3.2
-    just starting ...
+
+    still seeing errors during smkconvtst....
 
 m_
   - Seaside3.1.0 and Zinc for Johan (loaded ...)
-  - `CMD-.` work ... must be done using Linux for now...
 
 tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-  - Issue 62: `CMD-.` must interrupt GemStone
-    https://github.com/dalehenrich/tode/issues/62
-',#runs:RunArray{#runs:[3,256,62,129,1,69,1,211],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[@11,TextEmphasis{#emphasisCode:1,#setMode:true}],@10,[],@10],#lastIndex:261,#lastRun:3,#lastOffset:1}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-17T18:42:46.6551148891449-08:00']}
+',#runs:RunArray{#runs:[3,11,62,154,1,12,1,115],#values:[[],[TextColor{#color:Color{#rgb:0}}],@6,[TextColor{#color:Color{#rgb:0}}],[@11,TextEmphasis{#emphasisCode:1,#setMode:true}],@10,[],@10],#lastIndex:245,#lastRun:8,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:30.22867488861084-08:00'],#modificationTime:DateAndTime['2013-12-18T17:03:17.22940301895142-08:00']}
