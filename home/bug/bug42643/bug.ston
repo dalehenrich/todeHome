@@ -9,19 +9,21 @@ command
     #(\'identity\' nil #\'none\').
     #(\'index\' $i #\'none\').
     #(\'force\' $f #\'none\').
-    #(\'nsc\' $n #\'none\')}
+    #(\'nsc\' $n #\'optional\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-    | result |
+    | result indexPaths |
     opts
       at: \'nsc\'
-      ifPresent: [ :ignored | 
-        | nsc |
-        nsc := topez evaluateCommandString: \'./createNsc\'.
+      ifPresent: [ :nscCreationScriptName | 
+        | scriptName nsc |
+        scriptName := \'createNsc\'.
+        nscCreationScriptName ifNotNil: [ scriptName := nscCreationScriptName ].
+        nsc := topez evaluateCommandString: \'./\' , scriptName.
         result := UserGlobals at: #\'SetValued_Query5\' put: nsc ].
     opts
       at: \'force\'
@@ -35,33 +37,38 @@ opts
           removeAllIncompleteIndexes;
           removeAllIndexes.
         result := UserGlobals at: #\'SetValued_Query5\' ].
-    opts
-      at: \'index\'
-      ifPresent: [ :ignored | 
-        | identity equality speced |
-        IndexManager
-          removeAllIncompleteIndexes;
-          removeAllIndexes.
-        speced := false.
-        identity := equality := true.
+    indexPaths := args.
+    args isEmpty
+      ifTrue: [ indexPaths := #(\'path1.value1\') ].
+    indexPaths
+      do: [ :pathString | 
         opts
-          at: \'equality\'
-          ifPresent: [ :ignored | speced := true ]
-          ifAbsent: [ equality := false ].
-        opts
-          at: \'identity\'
-          ifPresent: [ :ignored | speced := true ]
-          ifAbsent: [ identity := false ].
-        speced
-          ifFalse: [ identity := equality := true ].
-        equality
-          ifTrue: [ 
-            (UserGlobals at: #\'SetValued_Query5\')
-              createEqualityIndexOn: \'path1.value1\'
-              withLastElementClass: String ].
-        identity
-          ifTrue: [ (UserGlobals at: #\'SetValued_Query5\') createIdentityIndexOn: \'path1.value1\' ].
-        result := UserGlobals at: #\'SetValued_Query5\' ].
+          at: \'index\'
+          ifPresent: [ :ignored | 
+            | identity equality speced |
+            IndexManager
+              removeAllIncompleteIndexes;
+              removeAllIndexes.
+            speced := false.
+            identity := equality := true.
+            opts
+              at: \'equality\'
+              ifPresent: [ :ignored | speced := true ]
+              ifAbsent: [ equality := false ].
+            opts
+              at: \'identity\'
+              ifPresent: [ :ignored | speced := true ]
+              ifAbsent: [ identity := false ].
+            speced
+              ifFalse: [ identity := equality := true ].
+            equality
+              ifTrue: [ 
+                (UserGlobals at: #\'SetValued_Query5\')
+                  createEqualityIndexOn: pathString
+                  withLastElementClass: String ].
+            identity
+              ifTrue: [ (UserGlobals at: #\'SetValued_Query5\') createIdentityIndexOn: pathString ] ].
+        result := UserGlobals at: #\'SetValued_Query5\' ifAbsent: [  ] ].
     result ]
   ifPresent: [ :ignored | 
     TDManPage
@@ -71,14 +78,17 @@ opts
 SYNOPSIS
   bug [-h|--help]
   bug [-c|--clean][-f|--force]
-  bug [-n|--nsc]
-  bug -i|--index [--equality|--identity]
+  bug [-n|--nsc=[<creation-script-name>]]
+  bug -i|--index [--equality|--identity] [<path-string>...]
 \t
 DESCRIPTION
 EXAMPLES
   ./bug --help
   ./bug -n
+  ./bug --nsc=createNsc
+  ./bug -f
   ./bug -i
-  ./bug -i --equality
+  ./bug -i --equality path1.value1
+  ./bug -ci --nsc=createNsc --identity --equality
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T12:38:14.77236008644104-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T14:55:27.08349108695984-08:00']}
