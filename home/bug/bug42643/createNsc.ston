@@ -20,9 +20,16 @@ opts
         path1:
             (SampleIndexObject new
                 value1: index printString;
+\t\t\tpath2:
+            (SampleIndexObject new
+                value1: (index + 4) printString;
+                yourself);
                 path1: (set := Set new);
                 yourself);
-        path2: 10 * index.
+        path2:
+            (SampleIndexObject new
+                value1: (index + 2) printString;
+                yourself).
       index * 2 + 1 to: index * 2 + 2 do: [ :jndex | 
         \"3 4 ... 5 6\"
         set
@@ -43,8 +50,15 @@ opts
             (sample2 := SampleIndexObject new
                 value1: index printString immediateInvariant;
                 path1: (set := Set new);
+path2:
+            (SampleIndexObject new
+                value1: (index + 4) printString;
+                yourself) immediateInvariant;
                 yourself);
-        path2: (10 * index) immediateInvariant.
+        path2:
+            (SampleIndexObject new
+                value1: (index + 2) printString;
+                yourself) immediateInvariant.
       sample1 immediateInvariant.
       sample2 immediateInvariant.
       (index - 3) * 2 + 1 to: (index - 3) * 2 + 2 do: [ :jndex | 
@@ -59,7 +73,7 @@ opts
         sample2 immediateInvariant.
         set2 add: \'dale\'.
         set2 immediateInvariant ] ].
-\t\tnsc ]
+    nsc ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -72,4 +86,4 @@ EXAMPLES
   ./createNsc --help
   ./createNsc -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T12:05:15.18104290962219-08:00'],#modificationTime:DateAndTime['2013-12-20T12:31:19.40880298614502-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T12:05:15.18104290962219-08:00'],#modificationTime:DateAndTime['2013-12-20T15:11:37.97827100753784-08:00']}

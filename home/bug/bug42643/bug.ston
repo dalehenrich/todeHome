@@ -40,15 +40,15 @@ opts
     indexPaths := args.
     args isEmpty
       ifTrue: [ indexPaths := #(\'path1.value1\') ].
+            IndexManager
+              removeAllIncompleteIndexes;
+              removeAllIndexes.
     indexPaths
       do: [ :pathString | 
         opts
           at: \'index\'
           ifPresent: [ :ignored | 
             | identity equality speced |
-            IndexManager
-              removeAllIncompleteIndexes;
-              removeAllIndexes.
             speced := false.
             identity := equality := true.
             opts
@@ -89,6 +89,7 @@ EXAMPLES
   ./bug -f
   ./bug -i
   ./bug -i --equality path1.value1
+  # reproduce bug
   ./bug -ci --nsc=createNsc --identity --equality
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T14:55:27.08349108695984-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T15:14:12.12328505516052-08:00']}
