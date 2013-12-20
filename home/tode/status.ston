@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 51e628c3b1a25302bcca5e2ec71781ea706766a8
+TDTxtLeafNode{#name:'status',#contents:'commit 0c739e3e6df1a523b6b3d6f22e8c38663d11e70d
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Thu Dec 19 07:29:52 2013 -0800
+Date:   Thu Dec 19 19:34:10 2013 -0800
 
-    get `cd` to work when a `cd`ing into a proxy node wrapping a filesystem leaf node wrapping a gateway node ...
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-19T07:30:20.44572496414185-08:00']}
+    use correct workinCopy in  TDRepositoryPackageBrowser>>browseVersionsFor:
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-19T19:34:14.02219390869141-08:00']}
