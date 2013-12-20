@@ -3,7 +3,6 @@ TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'This is the only index-re
   Object>>getDepListAndAddPathTerm:withIVOffset:logging:
 
 --------------------
---------------------
 This is stack for call to getDepListAndAddPathTerm:withIVOffset:logging:
 --------------------
 1. SampleIndexObject(Object)>>getDepListAndAddPathTerm:withIVOffset:logging: @3 line 6
@@ -110,4 +109,4 @@ pathTerms\" are expected to have been already taken care of, but in the case of 
 invariant object we are skipping the creation of dependencies ... presumably this would break for another equality index that \"shared\" the pathterms.
 
 BTW, I am suspicious that we appear to be skipping creating dependencies for all of the children as well ... the skipping of creating dependencies should only be done for leaf terms!
-',#runs:RunArray{#runs:[68,5511],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T10:45:24.49493789672852-08:00']}
+',#runs:RunArray{#runs:[68,5490],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:146,#lastRun:2,#lastOffset:77}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T12:01:46.41612911224365-08:00']}
