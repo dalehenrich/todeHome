@@ -43,14 +43,18 @@ expression := \'GsQuery defaultQueryOptions: (GsQueryOptions new
     setReorderPredicates;
     setTransformCommonPaths).
 System commit\'.
-opts at: \'init\' ifPresent: [ :optValue | expression := \'GsQueryFormula
+opts
+  at: \'init\'
+  ifPresent: [ :optValue | 
+    expression := \'GsQueryFormula
     negatedOperatorMap;
     inverseOperatorMap;
     comparisonSelectorMap.
 System commit\' ].
 opts
   at: \'noRestrictedClasses\'
-  ifPresent: [ :optValue | expression := \'| cls index set |
+  ifPresent: [ :optValue | 
+    expression := \'| cls index set |
 cls := GsPackagePolicy.
 index := cls class allInstVarNames indexOfIdentical: #\'\'restrictedClasses\'\'.
 set := cls instVarAt: index.
@@ -124,9 +128,14 @@ DESCRIPTION
       comparisonSelectorMap.
 
   The verbose option logs detailed information to the Transcript.
+
+  With --noRestrictedClasses, the restricted classes set for session
+  methods is cleared, allowing free editting of all methods and classes
+  in the system.
+\t\t\t\t
 EXAMPLES
 
   ./installTestQueryOptions
   ./installTestQueryOptions --noRestrictedClasses
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.20399689674377-08:00'],#modificationTime:@2}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.20399689674377-08:00'],#modificationTime:DateAndTime['2013-12-20T10:58:30.79373788833618-08:00']}

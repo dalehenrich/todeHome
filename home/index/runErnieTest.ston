@@ -1,0 +1,35 @@
+TDScriptLeafNode{#name:'runErnieTest',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./runErnieTest -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+   | symbolList cls testClassName testSelector |
+testClassName := args at: 1.
+testSelector := args at: 2.
+symbolList := (AllUsers
+  userWithId: \'Ernie\'
+  ifAbsent: [ self error: \'No user named\' , self username printString , \' found.\' ])
+  symbolList.
+cls := symbolList objectNamed: testClassName asSymbol.
+cls debug: testSelector asSymbol 
+     ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  runErnieTest - run Ernie tests
+SYNOPSIS
+  runErnieTest [-h|--help]
+  runErnieTest <ernie-test-class-name> <test-selector>
+DESCRIPTION
+EXAMPLES
+  ./runErnieTest --help
+  ./runErnieTest <ernie-test-class-name> <test-selector>
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T11:00:36.98472809791565-08:00'],#modificationTime:DateAndTime['2013-12-20T11:02:57.48789501190186-08:00']}

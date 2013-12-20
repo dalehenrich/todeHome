@@ -4,6 +4,7 @@ TDScriptLeafNode{#name:'browse',#contents:'[ :topez :objIn :tokens :command |
 command
   getOptsMixedLongShort:
     {#(\'help\' $h #\'none\').
+    #(\'find\' $f #\'required\').
     #(\'class\' $c #\'required\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
@@ -14,21 +15,32 @@ opts
     | classDefs |
     classDefs := {}.
     opts
-      at: \'class\'
-      ifPresent: [ :className | 
-        classDefs
-          add:
-            ((TDSymbolDictionaryDefinition new
-              symbolDictionaryName: #\'UserGlobals\';
-              username: \'Ernie\';
-              yourself) classDefinitionNamed: className) ]
-      ifAbsent: [ 
+      at: \'find\'
+      ifPresent: [ :regexPattern | 
         | shellTool |
-        shellTool := topez toolInstanceFor: \'find\'.
-        classDefs := shellTool
-          findSymbolDictionary: #\'UserGlobals\'
-          username: \'Ernie\'.
-        classDefs add: TestAsserter asTDClassDefinition ].
+        shellTool := topez toolInstanceFor: \'sh\'.
+        (shellTool findRegex: regexPattern)
+          ifNotNil: [ :regex | 
+            classDefs := ((shellTool findSymbolDictionary: #\'UserGlobals\' username: \'Ernie\')
+              select: [ :def | regex search: def theClassName asString ])
+              ] ]
+      ifAbsent: [ 
+        opts
+          at: \'class\'
+          ifPresent: [ :className | 
+            classDefs
+              add:
+                ((TDSymbolDictionaryDefinition new
+                  symbolDictionaryName: #\'UserGlobals\';
+                  username: \'Ernie\';
+                  yourself) classDefinitionNamed: className) ]
+          ifAbsent: [ 
+            | shellTool |
+            shellTool := topez toolInstanceFor: \'find\'.
+            classDefs := shellTool
+              findSymbolDictionary: #\'UserGlobals\'
+              username: \'Ernie\'.
+            classDefs add: TestAsserter asTDClassDefinition ] ].
     classDefs
       editUsing: (TDEditorSpec topez: topez editorAspect: #\'definitionList\').
     classDefs ]
@@ -41,6 +53,7 @@ SYNOPSIS
   browse [-h|--help]
   browse --class=<ernie-class-name>
   browse -c <ernie-class-name>
+  browse --find=<ernie-class-name-regex>
 
 DESCRIPTION
 EXAMPLES
@@ -48,5 +61,6 @@ EXAMPLES
   ./browse -h
   ./browse
   ./browse -c GsQueryGrammarTestCase
+  ./browse -f classic
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.50334811210632-08:00'],#modificationTime:DateAndTime['2013-12-10T05:27:43.62034296989441-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:30.50334811210632-08:00'],#modificationTime:DateAndTime['2013-12-20T11:23:16.18818306922913-08:00']}

@@ -1,0 +1,134 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'clean\' $c #\'none\').
+    #(\'equality\' nil #\'none\').
+    #(\'identity\' nil #\'none\').
+    #(\'index\' $i #\'none\').
+    #(\'force\' $f #\'none\').
+    #(\'nsc\' $n #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | result |
+    opts
+      at: \'nsc\'
+      ifPresent: [ :ignored | 
+        | nsc |
+        nsc := Set new.
+        1 to: 2 do: [ :index | 
+          | sample set set2 |
+          sample := SampleIndexObject new.
+          nsc add: sample.
+          sample
+            value1: index;
+            path1:
+                (SampleIndexObject new
+                    value1: index printString;
+                    path1: (set := Set new);
+                    yourself);
+            path2: 10 * index.
+          index * 2 + 1 to: index * 2 + 2 do: [ :jndex | 
+            \"3 4 ... 5 6\"
+            set
+              add:
+                (SampleIndexObject new
+                  value1: jndex;
+                  path1: (set2 := Set new);
+                  path2: 10 * jndex;
+                  yourself).
+            set2 add: \'henrichs\' copy ] ].
+        7 to: 8 do: [ :index | 
+          | sample1 sample2 set set2 |
+          sample1 := SampleIndexObject new.
+          nsc add: sample1.
+          sample1
+            value1: index;
+            path1:
+                (sample2 := SampleIndexObject new
+                    value1: index printString immediateInvariant;
+                    path1: (set := Set new);
+                    yourself);
+            path2: (10 * index) immediateInvariant.
+          sample1 immediateInvariant.
+          sample2 immediateInvariant.
+          (index - 3) * 2 + 1 to: (index - 3) * 2 + 2 do: [ :jndex | 
+            \"9 10 ... 11 12\"
+            set
+              add:
+                (sample2 := SampleIndexObject new
+                  value1: jndex immediateInvariant;
+                  path1: (set2 := Set new);
+                  path2: (10 * jndex) immediateInvariant;
+                  yourself).
+            sample2 immediateInvariant.
+            set2 add: \'dale\'.
+            set2 immediateInvariant ].
+          set immediateInvariant.
+          result := set ].
+        UserGlobals at: #\'SetValued_Query5\' put: nsc ].
+    opts
+      at: \'force\'
+      ifPresent: [ :ignored | 
+        UserGlobals removeKey: #\'SetValued_Query5\' ifAbsent: [  ].
+        result := IndexManager current resetAllIndexes ].
+    opts
+      at: \'clean\'
+      ifPresent: [ :ignored | 
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes.
+        result := UserGlobals at: #\'SetValued_Query5\' ].
+    opts
+      at: \'index\'
+      ifPresent: [ :ignored | 
+        | identity equality speced |
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes.
+        speced := false.
+        identity := equality := true.
+        opts
+          at: \'equality\'
+          ifPresent: [ :ignored | speced := true ]
+          ifAbsent: [ equality := false ].
+        opts
+          at: \'identity\'
+          ifPresent: [ :ignored | speced := true ]
+          ifAbsent: [identity := false ].
+        speced
+          ifFalse: [ identity := equality := true ].
+        equality
+          ifTrue: [ 
+            (UserGlobals at: #\'SetValued_Query5\')
+              createEqualityIndexOn: \'path1.value1\'
+              withLastElementClass: String ].
+        identity
+          ifTrue: [ (UserGlobals at: #\'SetValued_Query5\') createIdentityIndexOn: \'path1.value1\' ].
+        result := UserGlobals at: #\'SetValued_Query5\' ].
+    result ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+  bug [-c|--clean][-f|--force]
+  bug [-n|--nsc]
+  bug -i|--index [--equality|--identity]
+\t
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug -n
+  ./bug -i
+  ./bug -i --equality
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T09:53:11.04551792144775-08:00']}

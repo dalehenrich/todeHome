@@ -1,0 +1,19 @@
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
+  - 42643  P2  Trouble creating indexes containing invariant objects
+    first order characterization...
+
+k_
+  - checkpoint for old index unit test status ...
+
+l_
+  - 42807  F3  ClassOrganizer>>referencesToLiteral:in:
+  - 43049  P2  Indexing system calls to deprecated methods
+
+m_
+  - Seaside3.1.0 and Zinc for Johan (proposed bugfix)
+
+tODE:
+
+  - Issue 58: git integration for packages :: in progress
+    https://github.com/dalehenrich/tode/issues/58
+',#runs:RunArray{#runs:[454],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:222,#lastRun:1,#lastOffset:221}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-20T11:57:40.50394201278687-08:00']}

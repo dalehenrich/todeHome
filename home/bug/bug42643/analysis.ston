@@ -1,0 +1,113 @@
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'This is the only index-related method that tests for invariance:
+
+  Object>>getDepListAndAddPathTerm:withIVOffset:logging:
+
+--------------------
+--------------------
+This is stack for call to getDepListAndAddPathTerm:withIVOffset:logging:
+--------------------
+1. SampleIndexObject(Object)>>getDepListAndAddPathTerm:withIVOffset:logging: @3 line 6
+2. PathTerm>>addMappingsForObject:logging: @13 line 19
+3. IndexManager>>_addMappingsFor:on: @97 line 91
+4. [] in IndexManager>>_buildIndex:for:on: @31 line 35
+5. IndexManager(ExecBlock)>>onSynchronous:do: @2 line 14
+6. [] in IndexManager>>_buildIndex:for:on: @2 line 37
+7. IndexManager(ExecBlock)>>ensure: @2 line 12
+8. IndexManager>>_buildIndex:for:on: @6 line 48
+9. IndexManager>>createIdentityIndexFor:on: @3 line 2
+10. [] in Set(UnorderedCollection)>>createIdentityIndexOn: @2 line 14
+11. IndexManager>>execStartingIndexMaintenance: @19 line 34
+12. [] in IndexManager>>executeStartingIndexMaintenance: @3 line 22
+13. IndexManager(ExecBlock)>>ensure: @2 line 12
+14. IndexManager>>executeStartingIndexMaintenance: @3 line 23
+15. Set(UnorderedCollection)>>createIdentityIndexOn: @5 line 13
+16. [] in Executed Code
+17. Dictionary(AbstractDictionary)>>at:ifPresent: @4 line 6
+18. [] in Executed Code
+19. Dictionary(AbstractDictionary)>>at:ifPresent:ifAbsent: @3 line 5
+20. Dictionary>>at:ifAbsent:ifPresent: @2 line 5
+21. [] in Executed Code
+22. TDTopezServer>>evaluateCommand:objIn: @12 line 11
+23. TDTopezServer>>evaluateSTONCommand: @8 line 6
+24. Executed Code
+25. UndefinedObject(GsNMethod class)>>_gsReturnToC @1 line 1
+--------------------
+
+The following reproduces the bug:
+
+  ./bug -cni --identity --equality
+
+and then this to reset:
+
+  ./bug -f
+
+No problem when just creating identity index:
+
+  ./bug -cni --identity
+
+So there is something going on with an interaction between identity/equality indexes.
+-----------------Error---------------------
+a IndexingErrorPreventingCommit occurred (error 2321), a LookupError occurred (error 2294), reason:rtErrObjectPathTermNotInDependencyList, The object aSampleIndexObject did not have the path term #\'path1\' in its dependency list.   This error occurred during index maintenance.  Consequently, this transaction must be aborted. 
+-----------------
+--------------------
+Error stack:
+--------------------
+1. IndexingErrorPreventingCommit(AbstractException)>>_signalWith: @6 line 25
+2. LookupError(AbstractException)>>signal @2 line 47
+3. SampleIndexObject(Object)>>_error:args: @15 line 11
+4. SampleIndexObject(Object)>>_errorPathTermNotInDependencyList: @3 line 5
+5. IdentityIndex>>traverse:upTo: @18 line 19
+6. IndexManager>>_addMappingsFor:on: @108 line 98
+7. [] in IndexManager>>_buildIndex:for:on: @31 line 35
+8. IndexManager(ExecBlock)>>onSynchronous:do: @2 line 14
+9. [] in IndexManager>>_buildIndex:for:on: @2 line 37
+10. IndexManager(ExecBlock)>>ensure: @2 line 12
+11. IndexManager>>_buildIndex:for:on: @6 line 48
+12. IndexManager>>createIdentityIndexFor:on: @3 line 2
+13. [] in Set(UnorderedCollection)>>createIdentityIndexOn: @2 line 14
+14. IndexManager>>execStartingIndexMaintenance: @19 line 34
+15. [] in IndexManager>>executeStartingIndexMaintenance: @3 line 22
+16. IndexManager(ExecBlock)>>ensure: @2 line 12
+17. IndexManager>>executeStartingIndexMaintenance: @3 line 23
+18. Set(UnorderedCollection)>>createIdentityIndexOn: @5 line 13
+19. [] in Executed Code
+20. Dictionary(AbstractDictionary)>>at:ifPresent: @4 line 6
+21. [] in Executed Code
+22. Dictionary(AbstractDictionary)>>at:ifPresent:ifAbsent: @3 line 5
+23. Dictionary>>at:ifAbsent:ifPresent: @2 line 5
+24. [] in Executed Code
+25. TDTopezServer>>evaluateCommand:objIn: @12 line 11
+26. TDTopezServer>>evaluateSTONCommand: @8 line 6
+27. Executed Code
+28. UndefinedObject(GsNMethod class)>>_gsReturnToC @1 line 1
+--------------------
+6. IndexManager>>_addMappingsFor:on: @108 line 98
+........
+      indexObj firstPathTerm == pathTerm
+        ifTrue: [ 
+          \" see if need to traverse to the first unshared path term \"
+          1 to: bag size do: [ :i | 
+            object := bag _at: i.
+            pathTerm addMappingsForObject: object logging: false.
+            i \\\\ 100 == 0
+              ifTrue: [ self commitIndexMaintenance: indexObj at: i ] ] ]
+        ifFalse: [ 
+          1 to: bag size do: [ :i | 
+            \" traverse up to the point of the unshared path term \"
+            object := bag _at: i.
+            object := indexObj traverse: object upTo: pathTerm.
+            pathTerm addMappingsForObject: object logging: false.
+            i \\\\ 100 == 0
+              ifTrue: [ self commitIndexMaintenance: indexObj at: i ] ] ]
+--------------------
+The call to Object>>getDepListAndAddPathTerm:withIVOffset:logging: is made from PathTerm>>addMappingsForObject:logging: ... the error is emanating from IdentityIndex>>traverse:upTo: which is only called in the second branch ... 
+--------------------
+--------------------
+--------------------
+--------------------
+My guess at this point is that the problem has to do with the call to IdentityIndex>>_findFirstUnsharedPathTerm in the beginning of IndexManager>>_addMappingsFor:on: ... Once an index has been added the \"shared
+pathTerms\" are expected to have been already taken care of, but in the case of the 
+invariant object we are skipping the creation of dependencies ... presumably this would break for another equality index that \"shared\" the pathterms.
+
+BTW, I am suspicious that we appear to be skipping creating dependencies for all of the children as well ... the skipping of creating dependencies should only be done for leaf terms!
+',#runs:RunArray{#runs:[68,5511],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T10:45:24.49493789672852-08:00']}
