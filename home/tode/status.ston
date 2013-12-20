@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 3775b691971693a19353e630a4ce295356eca10d
+TDTxtLeafNode{#name:'status',#contents:'commit 51e628c3b1a25302bcca5e2ec71781ea706766a8
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Wed Dec 18 19:08:15 2013 -0800
+Date:   Thu Dec 19 07:29:52 2013 -0800
 
-    CMD-SHIFT-P: opens window with printString of client list ... `ps debug` command open debugger on given process ...
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-18T19:08:18.21054005622864-08:00']}
+    get `cd` to work when a `cd`ing into a proxy node wrapping a filesystem leaf node wrapping a gateway node ...
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-19T07:30:20.44572496414185-08:00']}

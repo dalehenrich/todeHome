@@ -1,0 +1,99 @@
+ZnMultiThreadedServer>>serveConnectionsOn: sits on an accept and when there is a connection [New stream: <stream oop>], it goes ahead and forks a thread that calls ZnMultiThreadedServer>>executeRequestResponseLoopOn: [Executing request/response loop], which in turns will repeatedly call ZnMultiThreadedServer>>executeOneRequestResponseOn: [executeOneRequestResponseOn: <stream oop>].
+
+Notice the the two consecutive `New stream` log entries. A few seconds after the `executeOneRequestResponseOn: 235797249`,
+I get the OffsetError and the subsequent stack.
+
+Starting Zinc adaptor
+2013-12-19 16:17:4.6404129028320312E+01 933506 I Starting adaptor: #'WAGsZincAdaptor' for aZnManagingMultiThreadedServer(running 8383)
+2013-12-19 16:17:5.0855662107467651E+01 932969 D New stream: 238828545
+2013-12-19 16:17:5.1235259056091309E+01 932969 D New stream: 238820097
+2013-12-19 16:17:5.1637319087982178E+01 932862 D Executing request/response loop
+2013-12-19 16:17:5.2037153959274292E+01 932862 D executeOneRequestResponseOn: 238828545
+atEnd[0]: 238828545
+atEnd[1]: true
+atEnd[0]: 238828545
+atEnd[1]: true
+2013-12-19 16:17:5.4029779911041260E+01 932862 I Read aZnRequest(GET /)
+2013-12-19 16:17:5.4424418926239014E+01 932862 T GET / 403 512B 3ms
+2013-12-19 16:17:5.4801518917083740E+01 932862 I Wrote aZnResponse(403 Forbidden text/plain;charset=utf-8 512B)
+atEnd[0]: 238828545
+atEnd[1]: true
+atEnd[0]: 238828545
+atEnd[1]: true
+2013-12-19 16:17:5.6791455030441284E+01 204035 D Executing request/response loop
+2013-12-19 16:17:5.7186542987823486E+01 204035 D executeOneRequestResponseOn: 238820097
+atEnd[0]: 238820097
+atEnd[1]: true
+atEnd[0]: 238820097
+atEnd[1]: true
+atEnd[0]: 238820097
+atEnd[1]: true
+--------------------
+I put the following logging into SocketStream>>atEnd:
+
+atEnd
+  "There is nothing more to read when
+	there is no more data in our inBuffer, the socket
+	is disconnected and there is none available on the socket.
+	Note that we need to check isConnected before isDataAvailable,
+	otherwise data may sneak in in the meantime. But we check the
+	buffer first, because it is faster."
+
+  self isInBufferEmpty
+    ifFalse: [ ^ false ].
+  Transcript
+    cr;
+    show: 'atEnd[0]: ' , self asOop printString.
+  Transcript
+    cr;
+    show: 'atEnd[1]: ' , self isConnected printString.
+  ^ self isConnected not
+    and: [ 
+      Transcript
+        cr;
+        show: 'atEnd[2]: ' , self isDataAvailable printString.
+      self isDataAvailable not ]
+----------------------
+inspection of SocketStream 238820097:
+----------------------
+.               -> SocketStream[inbuf:4kb/outbuf:4kb]
+..              -> SocketStream>>next @13 line 10
+(class)@        -> SocketStream
+(oop)@          -> 238820097
+autoFlush@      -> false
+binary@         -> true
+bufferSize@     -> 4096
+inBuffer@       ->  ...
+inNextToWrite@  -> 1
+lastRead@       -> 4097
+outBuffer@      ->  ...
+outNextToWrite@ -> 1
+recentlyRead@   -> 0
+shouldSignal@   -> true
+socket@         -> aSocketStreamSocket
+timeout@        -> 30
+----------------------
+reveals that the inBuffer is full of zeros, implying that there was no data on the socket, yet according to the logging, SocketStream>>isDataAvailable returns true, so there is likely to be faulty logic there.
+----------------------
+----------------------
+From the logging in SocketStream>>atEnd it is clear that SocketStream>>atEnd 
+returns <true> if the socket isConnected!
+
+But then that means that SocketStream>>next will think that there is data available after the SocketStream>>receiveData call:
+----------------------
+next
+  "Return next byte, if inBuffer is empty
+	we recieve some more data and try again."
+
+  self atEnd
+    ifTrue: [ ^ nil ].
+  self isInBufferEmpty
+    ifTrue: [ 
+      self receiveData.
+      self atEnd
+        ifTrue: [ ^ nil ] ].
+  lastRead := lastRead + 1.
+  ^ inBuffer at: lastRead
+----------------------
+...and that causes lastRead to be incremented and we are off to the races ...
+					

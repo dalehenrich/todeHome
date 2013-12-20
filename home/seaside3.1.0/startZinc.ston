@@ -2,16 +2,21 @@ TDScriptLeafNode{#name:'startZinc',#contents:'[ :topez :objIn :tokens :command |
 | opts args |
 \"for help: ./startZinc -h\"
 command
-  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
-  ifAbsent: [ | gs |
-\t\tgs := topez toolInstanceFor: \'gs\'.
-\t\tgs gshaltOnOutOfMemory: 60.
-\t\tWAGsZincAdaptor startOn: 8383 ]
+  ifAbsent: [ 
+    | gs |
+    Transcript
+      cr;
+      show: \'Starting Zinc adaptor\'.
+    gs := topez toolInstanceFor: \'gs\'.
+    gs gshaltOnOutOfMemory: 60.
+    WAGsZincAdaptor startOn: 8383 ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -22,6 +27,6 @@ SYNOPSIS
 DESCRIPTION
 EXAMPLES
   ./startZinc --help
-  ./startZinc -h
+  ./startZinc
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T10:20:02.1756010055542-08:00'],#modificationTime:DateAndTime['2013-12-18T20:12:20.04060506820679-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-16T10:20:02.1756010055542-08:00'],#modificationTime:DateAndTime['2013-12-19T14:40:48.6357569694519-08:00']}
