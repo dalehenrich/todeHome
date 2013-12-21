@@ -34,8 +34,8 @@ This is stack for call to getDepListAndAddPathTerm:withIVOffset:logging:
 
 The following reproduces the bug:
 
-  ./bug -ci --nsc=createNsc --identity --equality
-  ./bug -ci --nsc=createNsc --equality path1.value1 path1.path2.value1
+  ./bug -fci --nsc=createNsc --identity --equality
+  ./bug -fci --nsc=createNsc --equality path1.value1 path1.path2.value1
 
 and then this to reset:
 
@@ -130,4 +130,9 @@ so the dependents are correctly calculated and we are down to the two failure mo
   ./bug -ci --nsc=createNsc --equality path1.value1 path1.path2.value1
 
 and they are breaking because of traversal issues.
-',#runs:RunArray{#runs:[68,6336],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T16:42:56.20505595207214-08:00']}
+--------------------
+--------------------
+It looks like PathTerm>>_ivOffsetFor: can be used if we are missing the deplist (when the object is invariant) ...
+
+Given the expense of doing the lookup (instance variable name to offset) it may actually be a better idea to go ahead and put invariant objects into the dependency list ... if they are not the last term ...
+',#runs:RunArray{#runs:[68,6703],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1731,#lastRun:2,#lastOffset:1662}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T20:35:42.18499207496643-08:00']}
