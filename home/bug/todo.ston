@@ -1,16 +1,21 @@
 TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
-  - 42807  F3  ClassOrganizer>>referencesToLiteral:in:
-    see SystemNavigation>>newSendersOf:in: for the implementation
+  - development/tODE master
 
+l_
+  - 42807  F3  ClassOrganizer>>referencesToLiteral:in:
+    build (running)
+    slowtest (next)
+
+n_
   - 43049  P2  Indexing system calls to deprecated methods
+  - 43582  P3  Seaside tests not passing
+  - 43127  P3  Deprecated message sends in Seaside filein
+    collecting stacks (running)
+    will need to write new mcz files for GLASS 1.0-beta.9.1
+      (ergo 43582 work)
 
 k_
   - checkpoint for old index unit test status ...
-
-l_
-  - 42643  P2  Trouble creating indexes containing invariant objects
-    ...build and slowtest...
-
 
 m_
   - Seaside3.1.0 and Zinc for Johan (proposed bugfix)
@@ -19,4 +24,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[515],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-20T21:24:31.57408595085144-08:00']}
+',#runs:RunArray{#runs:[123,1,190,1,75,1,245],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6,[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6,[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6],#lastIndex:409,#lastRun:7,#lastOffset:17}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-21T11:42:11.31319999694824-08:00']}

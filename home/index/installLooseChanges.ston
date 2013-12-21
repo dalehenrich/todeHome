@@ -1,24 +1,13 @@
 TDScriptLeafNode{#name:'installLooseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
-| node looseChanges systemUser gemNRS |
-node := topez lookup: \'/home/index/looseChanges\'.
-looseChanges := node block
-  value: topez
-  value: objIn
-  value: tokens
-  value: windowId.
-gemNRS := GsNetworkResourceString new
-  protocol: \'tcp\';
-  node: \'foos\';
-  netldi: \'46522\';
-  resource: \'task\';
-  body: GsNetLDI thenetobj;
-  yourself.
-systemUser := GsExternalSession new
-  stoneNRS: System stoneName;
-  gemNRS: gemNRS;
-  username: \'SystemUser\';
-  password: \'swordfish\';
-  yourself.
+| looseChanges systemUser gemNRS stoneNRS |
+looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
+gemNRS := GsNetworkResourceString gemNRSForNetLDI: \'58054\' onHost: \'foos\'.
+stoneNRS := GsNetworkResourceString defaultStoneNRSFromCurrent.
+systemUser := GsExternalSession
+  gemNRS: gemNRS
+  stoneNRS: stoneNRS
+  username: \'SystemUser\'
+  password: \'swordfish\'.
 [ 
 systemUser login.
 looseChanges
@@ -36,4 +25,4 @@ looseChanges
     (systemUser executeString: \'System commitTransaction\')
       ifFalse: [ nil error: \'expected true\' ] ] ]
   ensure: [ systemUser ifNotNil: [ systemUser logout ] ].
-true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-10T14:34:36.41986799240112-08:00']}
+true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-21T07:07:06.79133200645447-08:00']}

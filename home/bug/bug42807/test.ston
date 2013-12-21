@@ -1,0 +1,60 @@
+TDScriptLeafNode{#name:'test',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./test -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | bugClass classOrganizer classSet instance literal references |
+    bugClass := Bug42807.
+    classOrganizer := ClassOrganizer new.
+    classSet := ClassSet new.
+    classSet add: bugClass.
+    instance := bugClass new.
+    args isEmpty
+      ifTrue: [ 
+        | passed failures |
+        failures := {}.
+        passed := 0. bugClass selectors
+          do: [ :selector | 
+            literal := instance perform: selector.
+            references := classOrganizer
+              referencesToLiteral: literal
+              in: classSet.
+            (references at: 1) size >= 2
+              ifTrue: [ passed := passed + 1 ]
+              ifFalse: [ failures add: \'FAILED\' -> selector ] ].
+        {(\'passed: \' , passed printString , \' failures: \'
+          , (bugClass selectors size - passed) printString).
+        failures} ]
+      ifFalse: [ 
+        | method selector |
+        selector := (args at: 1) asSymbol.
+        literal := instance perform: selector.
+        method := bugClass compiledMethodAt: selector.
+        references := classOrganizer referencesToLiteral: literal in: classSet.
+        {((references at: 1) size >= 2
+          ifTrue: [ \'passed\' ]
+          ifFalse: [ \'FAILED\' ]).
+        references.
+        method.
+        (method literals).
+        (method literals _refersToLiteral: literal)} ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  test - test sript utility template
+SYNOPSIS
+  test [-h|--help][-m|--meta] [<selector>]
+DESCRIPTION
+EXAMPLES
+  ./test --help
+  ./test 
+  ./test lit_string 
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-21T08:17:42.46691203117371-08:00'],#modificationTime:DateAndTime['2013-12-21T09:33:31.86697292327881-08:00']}

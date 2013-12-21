@@ -1,0 +1,29 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | a1  a2 |
+\t\t\"Array>>hasIdenticalContents:\"
+    a1 := #(\'string\').
+    a2 := {(\'string\' copy)}.
+    a1 hasIdenticalContents: a2 ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-21T07:48:13.96393609046936-08:00'],#modificationTime:DateAndTime['2013-12-21T07:56:44.94400191307068-08:00']}

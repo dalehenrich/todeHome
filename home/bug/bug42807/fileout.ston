@@ -1,0 +1,29 @@
+TDScriptLeafNode{#name:'fileout',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./fileout -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | stream gsTool |
+    stream := WriteStream on: String new.
+    gsTool := topez toolInstanceFor: \'gs\'.
+    gsTool gsfileoutClass: \'Bug42807\' header: \'\' on: stream.
+    stream contents ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  fileout - fileout sript utility template
+SYNOPSIS
+  fileout [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./fileout --help
+  ./fileout -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-21T09:37:16.33099699020386-08:00'],#modificationTime:DateAndTime['2013-12-21T09:51:17.78069305419922-08:00']}
