@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 0c7b93e30a20a5971d99a38cb36aca7933415219
+TDTxtLeafNode{#name:'status',#contents:'commit 905eeca07eb6b6e70cc9e87b0efc36bdf170cb89
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Fri Dec 20 17:22:03 2013 -0800
+Date:   Sat Dec 21 11:53:10 2013 -0800
 
-    bugfixes for `mv` and \'cp` when proxies are involved ... add `isInvariant` and `dependents` fields to navigator/inspector ... TDTopezServer>>evaluateCommandString: allows you to execute a command string from smalltalk --- let the command line parser do all of the work
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-20T17:22:04.37796998023987-08:00']}
+    bugfix TDFileSystemDirectoryNode>>addChildFileSystemLeafNode: ... add TDGemStoneTool>>gsfileoutClass:header:on:
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-21T11:53:14.04129004478455-08:00']}
