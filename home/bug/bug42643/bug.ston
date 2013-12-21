@@ -6,9 +6,10 @@ command
     {#(\'help\' $h #\'none\').
     #(\'clean\' $c #\'none\').
     #(\'equality\' nil #\'none\').
+    #(\'force\' $f #\'none\').
     #(\'identity\' nil #\'none\').
     #(\'index\' $i #\'none\').
-    #(\'force\' $f #\'none\').
+    #(\'modify\' $m #\'required\').
     #(\'nsc\' $n #\'optional\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
@@ -20,14 +21,21 @@ opts
     opts
       at: \'nsc\'
       ifPresent: [ :nscCreationScriptName | 
-        | scriptName nsc |
+        | scriptName nsc ar variant invariant |
         scriptName := \'createNsc\'.
         nscCreationScriptName ifNotNil: [ scriptName := nscCreationScriptName ].
-        nsc := topez evaluateCommandString: \'./\' , scriptName.
+        ar := topez evaluateCommandString: \'./\' , scriptName.
+        nsc := ar at: 1.
+        variant := ar at: 2.
+        invariant := ar at: 3.
+        UserGlobals at: #\'SetValued_Query5_variant\' put: variant.
+        UserGlobals at: #\'SetValued_Query5_invariant\' put: invariant.
         result := UserGlobals at: #\'SetValued_Query5\' put: nsc ].
     opts
       at: \'force\'
       ifPresent: [ :ignored | 
+        UserGlobals removeKey: #\'SetValued_Query5_variant\' ifAbsent: [  ].
+        UserGlobals removeKey: #\'SetValued_Query5_invariant\' ifAbsent: [  ].
         UserGlobals removeKey: #\'SetValued_Query5\' ifAbsent: [  ].
         result := IndexManager current resetAllIndexes ].
     opts
@@ -40,9 +48,9 @@ opts
     indexPaths := args.
     args isEmpty
       ifTrue: [ indexPaths := #(\'path1.value1\') ].
-            IndexManager
-              removeAllIncompleteIndexes;
-              removeAllIndexes.
+    IndexManager
+      removeAllIncompleteIndexes;
+      removeAllIndexes.
     indexPaths
       do: [ :pathString | 
         opts
@@ -69,6 +77,27 @@ opts
             identity
               ifTrue: [ (UserGlobals at: #\'SetValued_Query5\') createIdentityIndexOn: pathString ] ].
         result := UserGlobals at: #\'SetValued_Query5\' ifAbsent: [  ] ].
+    opts
+      at: \'modify\'
+      ifPresent: [ :modifier | 
+        | sample variant invariant nsc query  |
+        nsc := UserGlobals at: #\'SetValued_Query5\'.
+        query := (String withAll: \'each.path1.path2.value1 = \'\'-1000\'\'\')
+          asQueryOn: nsc.
+        query isEmpty
+          ifFalse: [ self error: \'query should be empty right now\' ].
+        variant := UserGlobals at: #\'SetValued_Query5_variant\' ifAbsent: [  ].
+        invariant := UserGlobals
+          at: #\'SetValued_Query5_invariant\'
+          ifAbsent: [  ].
+        modifier = \'variant\'
+          ifTrue: [ sample := variant ].
+        modifier = \'invariant\'
+          ifTrue: [ sample := invariant ].
+        sample path1 path2 value1: (String withAll: \'-1000\').
+        query isEmpty
+          ifTrue: [ self error: \'query should NOT be empty right now\' ].
+        ].
     result ]
   ifPresent: [ :ignored | 
     TDManPage
@@ -80,6 +109,7 @@ SYNOPSIS
   bug [-c|--clean][-f|--force]
   bug [-n|--nsc=[<creation-script-name>]]
   bug -i|--index [--equality|--identity] [<path-string>...]
+  bug [--modify=variant|invariant]
 \t
 DESCRIPTION
 EXAMPLES
@@ -92,4 +122,4 @@ EXAMPLES
   # reproduce bug
   ./bug -ci --nsc=createNsc --identity --equality
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T15:14:12.12328505516052-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T07:09:31.10542893409729-08:00'],#modificationTime:DateAndTime['2013-12-20T16:15:17.27486610412598-08:00']}

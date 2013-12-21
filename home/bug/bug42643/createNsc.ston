@@ -9,21 +9,22 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | nsc |
+    | nsc invariantSample variantSample |
     nsc := Set new.
     1 to: 2 do: [ :index | 
       | sample set set2 |
       sample := SampleIndexObject new.
       nsc add: sample.
+      variantSample := sample.
       sample
         value1: index;
         path1:
             (SampleIndexObject new
                 value1: index printString;
-\t\t\tpath2:
-            (SampleIndexObject new
-                value1: (index + 4) printString;
-                yourself);
+                path2:
+                    (SampleIndexObject new
+                        value1: (index + 4) printString;
+                        yourself);
                 path1: (set := Set new);
                 yourself);
         path2:
@@ -50,16 +51,17 @@ opts
             (sample2 := SampleIndexObject new
                 value1: index printString immediateInvariant;
                 path1: (set := Set new);
-path2:
-            (SampleIndexObject new
-                value1: (index + 4) printString;
-                yourself) immediateInvariant;
+                path2:
+                    (SampleIndexObject new
+                        value1: (index + 4) printString;
+                        yourself);
                 yourself);
         path2:
             (SampleIndexObject new
                 value1: (index + 2) printString;
                 yourself) immediateInvariant.
       sample1 immediateInvariant.
+      invariantSample := sample1.
       sample2 immediateInvariant.
       (index - 3) * 2 + 1 to: (index - 3) * 2 + 2 do: [ :jndex | 
         \"9 10 ... 11 12\"
@@ -73,7 +75,9 @@ path2:
         sample2 immediateInvariant.
         set2 add: \'dale\'.
         set2 immediateInvariant ] ].
-    nsc ]
+    {nsc.
+\t\tvariantSample.
+    invariantSample} ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -86,4 +90,4 @@ EXAMPLES
   ./createNsc --help
   ./createNsc -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T12:05:15.18104290962219-08:00'],#modificationTime:DateAndTime['2013-12-20T15:11:37.97827100753784-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-20T12:05:15.18104290962219-08:00'],#modificationTime:DateAndTime['2013-12-20T15:27:36.25698590278625-08:00']}

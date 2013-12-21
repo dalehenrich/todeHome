@@ -115,4 +115,19 @@ indexes...a second equality index with a shared path should fail as well.
 Second equality index is failing as well:
 
   ./bug -ci --nsc=createNsc --equality path1.value1 path1.path2.value1
-',#runs:RunArray{#runs:[68,5828],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1729,#lastRun:2,#lastOffset:1660}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T15:17:35.45431709289551-08:00']}
+
+this should work:
+
+  ./bug -ci --nsc=createNsc --modify=variant --equality path1.path2.value1
+
+while this will fail, becuase of missing dependencies (BUT IT DOES NOT!):
+
+  ./bug -ci --nsc=createNsc --modify=invariant --equality path1.path2.value1
+
+so the dependents are correctly calculated and we are down to the two failure modes:
+
+  ./bug -ci --nsc=createNsc --identity --equality
+  ./bug -ci --nsc=createNsc --equality path1.value1 path1.path2.value1
+
+and they are breaking because of traversal issues.
+',#runs:RunArray{#runs:[68,6336],#values:[[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:55:09.32525992393494-08:00'],#modificationTime:DateAndTime['2013-12-20T16:42:56.20505595207214-08:00']}
