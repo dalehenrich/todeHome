@@ -1,7 +1,1 @@
-TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'`/home/tode/xxx > out`
-
-presents some problems ... forces TDProxyNode to behave like a directory node ... gets pretty nasty ... I might have to make this an error when sitting over proxies ...
-
-should see what an rsync into object nodes is like ... 
-
-maybe play a little bit more with this puppy ...',#runs:RunArray{#runs:[299],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:299,#lastRun:1,#lastOffset:298}},#creationTime:DateAndTime['2013-12-06T17:30:33.13375997543335-08:00'],#modificationTime:DateAndTime['2013-12-06T21:29:34.11281394958496-08:00']}
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'`cp` of directoryNode is incorrect need to recursively copy ALL of the nodes',#runs:RunArray{#runs:[76],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1,#lastRun:1,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:33.13375997543335-08:00'],#modificationTime:DateAndTime['2013-12-21T20:42:25.7086009979248-08:00']}

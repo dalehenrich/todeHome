@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 905eeca07eb6b6e70cc9e87b0efc36bdf170cb89
+TDTxtLeafNode{#name:'status',#contents:'commit 10b78156ec06330dbb0d4645e21c0e6a389aef31
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Sat Dec 21 11:53:10 2013 -0800
+Date:   Sat Dec 21 20:31:42 2013 -0800
 
-    bugfix TDFileSystemDirectoryNode>>addChildFileSystemLeafNode: ... add TDGemStoneTool>>gsfileoutClass:header:on:
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-21T11:53:14.04129004478455-08:00']}
+    tests for `mv` and `cp` commands (about time) ... leaf-based `mv` and `cp` tests written and passing for obj to obj operations ...
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-21T20:31:46.19574999809265-08:00']}
