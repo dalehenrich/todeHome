@@ -1,6 +1,7 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 10b78156ec06330dbb0d4645e21c0e6a389aef31
+TDTxtLeafNode{#name:'status',#contents:'commit 82d228a3919cfe4bea83561f444b4a30b81c1faa
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Sat Dec 21 20:31:42 2013 -0800
+Date:   Mon Dec 23 09:33:59 2013 -0800
 
-    tests for `mv` and `cp` commands (about time) ... leaf-based `mv` and `cp` tests written and passing for obj to obj operations ...
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-21T20:31:46.19574999809265-08:00']}
+    checkpoint: all tests (including `fs to obj` and `obj to fs` tests) are passing:
+      104 run, 104 passes, 0 expected defects, 0 failures, 0 errors, 0 unexpected passes
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T09:34:02.17794609069824-08:00']}

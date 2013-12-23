@@ -1,1 +1,17 @@
-TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'`cp` of directoryNode is incorrect need to recursively copy ALL of the nodes',#runs:RunArray{#runs:[76],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1,#lastRun:1,#lastOffset:0}},#creationTime:DateAndTime['2013-12-06T17:30:33.13375997543335-08:00'],#modificationTime:DateAndTime['2013-12-21T20:42:25.7086009979248-08:00']}
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'dkh 12/23/2013 08:52
+  104 run, 83 passes, 0 expected defects, 18 failures, 3 errors, 0 unexpected passes
+-----
+  - TDDirectoryNode>>moveProxyLeafNode:as:
+dkh 12/23/2013 08:59
+  104 run, 83 passes, 0 expected defects, 21 failures, 0 errors, 0 unexpected passes
+-----
+  - TDShellFsToObjMvCpCommandTests>>moveNodeOperator
+dkh 12/23/2013 09:03
+  104 run, 85 passes, 0 expected defects, 19 failures, 0 errors, 0 unexpected passes
+-----
+  - banish copyNodeOperator and moveNodeOperator
+dkh 12/23/2013 09:20
+  104 run, 96 passes, 0 expected defects, 8 failures, 0 errors, 0 unexpected passes
+-----
+dkh 12/23/2013 09:32
+  104 run, 104 passes, 0 expected defects, 0 failures, 0 errors, 0 unexpected passes',#runs:RunArray{#runs:[23,132,20,96,49,20,3,83,10,45,20,85,26,85],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1023}}],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1023}}],[],[TextColor{#color:Color{#rgb:0}}],@18,[TextColor{#color:Color{#rgb:1023}}],[TextColor{#color:@21}],@22,[TextColor{#color:@21}],[@23],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1023}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-06T17:30:33.13375997543335-08:00'],#modificationTime:DateAndTime['2013-12-23T09:32:18.70970892906189-08:00']}

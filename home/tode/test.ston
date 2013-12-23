@@ -1,3 +1,3 @@
 TDTopezLeafNode{#name:'test',#contents:'#ts run TDShellObjToObjRsyncCommandTests>>testRsyncDir
 #test package Topez-Server-Tests
-test class TDShellObjToObjMvCpCommandTests',#creationTime:DateAndTime['2013-12-06T17:30:33.336590051651-08:00'],#modificationTime:DateAndTime['2013-12-21T13:03:55.85087108612061-08:00']}
+test class TDShellObjToObjMvCpCommandTests TDShellFsToFsMvCpCommandTests TDShellFsToObjMvCpCommandTests TDShellObjToFsMvCpCommandTests',#creationTime:DateAndTime['2013-12-06T17:30:33.336590051651-08:00'],#modificationTime:DateAndTime['2013-12-22T21:06:51.87946105003357-08:00']}

@@ -1,9 +1,9 @@
-TDTxtLeafNode{#name:'status',#contents:'commit f2a266ca9fd515283fd9b0fe554e9284ad3fc72d
-Merge: e5107b6 b1fe391
-Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 2 07:16:17 2013 -0800
+TDTxtLeafNode{#name:'status',#contents:'commit e3957f5f5e7cfb8092c669ed54d22ed635f38fe0
+Merge: f2a266c b6d59fd
+Author: Johan Brichau <johan@inceptive.be>
+Date:   Tue Dec 17 12:49:43 2013 -0800
 
-    Merge pull request #4 from jbrichau/master
+    Merge pull request #5 from jbrichau/master
     
-    Getting the build green
-',#creationTime:DateAndTime['2013-12-06T17:30:33.04363393783569-08:00'],#modificationTime:DateAndTime['2013-12-16T08:14:26.59892892837524-08:00']}
+    Picked up changes from the Gemstone port of Seaside30 and merged them into Seaside31
+',#creationTime:DateAndTime['2013-12-06T17:30:33.04363393783569-08:00'],#modificationTime:DateAndTime['2013-12-23T08:00:17.26768207550049-08:00']}
