@@ -1,5 +1,0 @@
-TDTopezLeafNode{#name:'clean',#contents:'cls remove BagOfEmployees
-cls remove Employee
-cls remove Name
-cls remove Department
-cls remove Address',#creationTime:DateAndTime['2013-12-17T16:06:14.99659109115601-08:00'],#modificationTime:DateAndTime['2013-12-17T16:07:29.15278100967407-08:00']}

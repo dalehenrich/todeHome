@@ -1,7 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 82d228a3919cfe4bea83561f444b4a30b81c1faa
+TDTxtLeafNode{#name:'status',#contents:'commit 072a05fb427546289f105f3c4b2dc5588fc7ea11
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 23 09:33:59 2013 -0800
+Date:   Mon Dec 23 12:53:01 2013 -0800
 
-    checkpoint: all tests (including `fs to obj` and `obj to fs` tests) are passing:
-      104 run, 104 passes, 0 expected defects, 0 failures, 0 errors, 0 unexpected passes
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T09:34:02.17794609069824-08:00']}
+    full range of `mv` and `cp` tests implemented and passing
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T12:53:03.82346606254578-08:00']}

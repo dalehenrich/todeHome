@@ -1,0 +1,139 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'boom\' $b #\'none\').
+    #(\'clean\' $c #\'none\').
+    #(\'equality\' nil #\'none\').
+    #(\'force\' $f #\'none\').
+    #(\'identity\' nil #\'none\').
+    #(\'index\' $i #\'none\').
+    #(\'modify\' $m #\'required\').
+    #(\'nsc\' $n #\'optional\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | result indexPaths |
+    opts
+      at: \'boom\'
+      ifPresent: [ :ignored | 
+        \"replace opts with Dictionary with all options set to reproduce the bug\"
+        opts := Dictionary new
+          at: \'clean\' put: nil;
+          at: \'force\' put: nil;
+          at: \'index\' put: nil;
+          at: \'nsc\' put: \'createNsc\';
+          at: \'identity\' put: nil;
+          at: \'equality\' put: nil;
+          yourself ].
+    opts
+      at: \'force\'
+      ifPresent: [ :ignored | 
+        UserGlobals removeKey: #\'SetValued_Query5_variant\' ifAbsent: [  ].
+        UserGlobals removeKey: #\'SetValued_Query5_invariant\' ifAbsent: [  ].
+        UserGlobals removeKey: #\'SetValued_Query5\' ifAbsent: [  ].
+        result := IndexManager current resetAllIndexes ].
+    opts
+      at: \'clean\'
+      ifPresent: [ :ignored | 
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes.
+        result := UserGlobals at: #\'SetValued_Query5\' ifAbsent:[] ].
+    opts
+      at: \'nsc\'
+      ifPresent: [ :nscCreationScriptName | 
+        | scriptName nsc ar variant invariant |
+        scriptName := \'createNsc\'.
+        nscCreationScriptName ifNotNil: [ scriptName := nscCreationScriptName ].
+        ar := topez evaluateCommandString: \'./\' , scriptName.
+        nsc := ar at: 1.
+        variant := ar at: 2.
+        invariant := ar at: 3.
+        UserGlobals at: #\'SetValued_Query5_variant\' put: variant.
+        UserGlobals at: #\'SetValued_Query5_invariant\' put: invariant.
+        result := UserGlobals at: #\'SetValued_Query5\' put: nsc ].
+    indexPaths := args.
+    args isEmpty
+      ifTrue: [ indexPaths := #(\'path1.value1\') ].
+    IndexManager
+      removeAllIncompleteIndexes;
+      removeAllIndexes.
+    indexPaths
+      do: [ :pathString | 
+        opts
+          at: \'index\'
+          ifPresent: [ :ignored | 
+            | identity equality speced |
+            speced := false.
+            identity := equality := true.
+            opts
+              at: \'equality\'
+              ifPresent: [ :ignored | speced := true ]
+              ifAbsent: [ equality := false ].
+            opts
+              at: \'identity\'
+              ifPresent: [ :ignored | speced := true ]
+              ifAbsent: [ identity := false ].
+            speced
+              ifFalse: [ identity := equality := true ].
+            equality
+              ifTrue: [ 
+                (UserGlobals at: #\'SetValued_Query5\')
+                  createEqualityIndexOn: pathString
+                  withLastElementClass: String ].
+            identity
+              ifTrue: [ (UserGlobals at: #\'SetValued_Query5\') createIdentityIndexOn: pathString ] ].
+        result := UserGlobals at: #\'SetValued_Query5\' ifAbsent: [  ] ].
+    opts
+      at: \'modify\'
+      ifPresent: [ :modifier | 
+        | sample variant invariant nsc query |
+        nsc := UserGlobals at: #\'SetValued_Query5\'.
+        query := (String withAll: \'each.path1.path2.value1 = \'\'-1000\'\'\')
+          asQueryOn: nsc.
+        query isEmpty
+          ifFalse: [ self error: \'query should be empty right now\' ].
+        variant := UserGlobals at: #\'SetValued_Query5_variant\' ifAbsent: [  ].
+        invariant := UserGlobals
+          at: #\'SetValued_Query5_invariant\'
+          ifAbsent: [  ].
+        modifier = \'variant\'
+          ifTrue: [ sample := variant ].
+        modifier = \'invariant\'
+          ifTrue: [ sample := invariant ].
+        sample path1 path2 value1: (String withAll: \'-1000\').
+        query isEmpty
+          ifTrue: [ self error: \'query should NOT be empty right now\' ] ].
+    result ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+  bug [-c|--clean][-f|--force]
+  bug [-n|--nsc=[<creation-script-name>]]
+  bug -i|--index [--equality|--identity] [<path-string>...]
+  bug [--modify=variant|invariant]
+  bug [-b|--boom]
+\t
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug -n
+  ./bug --nsc=createNsc
+  ./bug -f
+  ./bug -i
+  ./bug -i --equality path1.value1
+  # reproduce bug
+  ./bug -b
+  ./bug -ci --nsc=createNsc --identity --equality
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-23T15:23:38.30707597732544-08:00'],#modificationTime:@2}

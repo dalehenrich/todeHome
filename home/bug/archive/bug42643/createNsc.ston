@@ -1,0 +1,93 @@
+TDScriptLeafNode{#name:'createNsc',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./createNsc -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | nsc invariantSample variantSample |
+    nsc := Set new.
+    1 to: 2 do: [ :index | 
+      | sample set set2 |
+      sample := SampleIndexObject new.
+      nsc add: sample.
+      variantSample := sample.
+      sample
+        value1: index;
+        path1:
+            (SampleIndexObject new
+                value1: index printString;
+                path2:
+                    (SampleIndexObject new
+                        value1: (index + 4) printString;
+                        yourself);
+                path1: (set := Set new);
+                yourself);
+        path2:
+            (SampleIndexObject new
+                value1: (index + 2) printString;
+                yourself).
+      index * 2 + 1 to: index * 2 + 2 do: [ :jndex | 
+        \"3 4 ... 5 6\"
+        set
+          add:
+            (SampleIndexObject new
+              value1: jndex;
+              path1: (set2 := Set new);
+              path2: 10 * jndex;
+              yourself).
+        set2 add: \'henrichs\' copy ] ].
+    7 to: 8 do: [ :index | 
+      | sample1 sample2 set set2 |
+      sample1 := SampleIndexObject new.
+      nsc add: sample1.
+      sample1
+        value1: index;
+        path1:
+            (sample2 := SampleIndexObject new
+                value1: index printString immediateInvariant;
+                path1: (set := Set new);
+                path2:
+                    (SampleIndexObject new
+                        value1: (index + 4) printString;
+                        yourself);
+                yourself);
+        path2:
+            (SampleIndexObject new
+                value1: (index + 2) printString;
+                yourself) immediateInvariant.
+      sample1 immediateInvariant.
+      invariantSample := sample1.
+      sample2 immediateInvariant.
+      (index - 3) * 2 + 1 to: (index - 3) * 2 + 2 do: [ :jndex | 
+        \"9 10 ... 11 12\"
+        set
+          add:
+            (sample2 := SampleIndexObject new
+              value1: jndex immediateInvariant;
+              path1: (set2 := Set new);
+              path2: (10 * jndex) immediateInvariant;
+              yourself).
+        sample2 immediateInvariant.
+        set2 add: \'dale\'.
+        set2 immediateInvariant ] ].
+    {nsc.
+\t\tvariantSample.
+    invariantSample} ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  createNsc - createNsc sript utility template
+SYNOPSIS
+  createNsc [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./createNsc --help
+  ./createNsc -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-23T15:23:38.32116794586182-08:00'],#modificationTime:@2}

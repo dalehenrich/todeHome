@@ -1,0 +1,24 @@
+TDScriptLeafNode{#name:'xx',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./xx -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ DateAndTime fromString: \'Sat, 7 Dec 2013 08:57:19 -0800\' ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  xx - xx sript utility template
+SYNOPSIS
+  xx [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./xx --help
+  ./xx -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-23T15:25:28.50496697425842-08:00'],#modificationTime:@2}

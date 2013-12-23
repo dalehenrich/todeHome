@@ -1,3 +1,0 @@
-TDSmalltalkLeafNode{#name:'x',#contents:'(Smalltalk at: #\'Name\') new
-  first: (String withAll: \'Fred\');
-  last: (String withAll: \'Jones\')',#creationTime:DateAndTime['2013-12-14T11:24:38.23397994041443-08:00'],#modificationTime:DateAndTime['2013-12-14T11:24:44.87185788154602-08:00']}
