@@ -1,1 +1,34 @@
-TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :windowId | (((AllUsers userWithId: \'DataCurator\' ifAbsent: [ nil ]) symbolList objectNamed: #TDTopezServer))]',#creationTime:DateAndTime['2013-12-06T17:30:33.38348603248596-08:00'],#modificationTime:DateAndTime['2013-12-10T19:52:13.21482992172241-08:00']}
+TDScriptLeafNode{#name:'xxx',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./xxx -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'move\' $m #\'none\').
+    #(\'lookup\' $l #\'required\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'lookup\'
+      ifPresent: [ :ignored | GsIndexSpec categoryOfSelector: (args at: 1) asSymbol ].
+    opts
+      at: \'move\'
+      ifPresent: [ :ignored | GsIndexSpec moveMethod: (args at: 1) asSymbol toCategory: (args at: 2)] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  xxx - xxx sript utility template
+SYNOPSIS
+  xxx [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./xxx --help
+  ./xxx --lookup createIndexesOn:
+  ./xxx --move createIndexesOn: `Index Creation`
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T08:47:51.55779600143433-08:00'],#modificationTime:DateAndTime['2013-12-24T08:52:09.02499794960022-08:00']}

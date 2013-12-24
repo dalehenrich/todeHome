@@ -25,35 +25,41 @@ opts
       collect: [ :wc | \'*\' , wc packageName asLowercase ].
     package
       behaviorAndMethodDictDo: [ :beh :methodDict | 
-        methodDict keys
-          do: [ :selector | 
-            | cat |
-            (beh == Behavior
-              and: [ selector == #\'_compileMethod:category:using:\' ]) not
-              ifTrue: [ 
+        ((package methodAndCategoryDictionaryFor: beh) at: 2)
+          keysAndValuesDo: [ :cat :selectors | 
+            selectors
+              do: [ :sel | 
                 | add |
-                add := false.
-                cat := (beh categoryOfSelector: selector) asString asLowercase.
-                (cat beginsWith: \'*\')
+                (beh == Behavior
+                  and: [ sel == #\'_compileMethod:category:using:\' ]) not
                   ifTrue: [ 
-                    packagePrefixes
-                      detect: [ :prefix | cat beginsWith: prefix ]
-                      ifNone: [ add := true ] ]
-                  ifFalse: [ add := true ].
-                add
-                  ifTrue: [ 
-                    | ar persistentMethodDict sessionMethod |
-                    ar := {beh.
-                    cat.
-                    selector}.
-                    persistentMethodDict := beh persistentMethodDictForEnv: 0.
-                    (persistentMethodDict at: selector ifAbsent: [  ])
-                      ifNil: [ loose add: ar ]
-                      ifNotNil: [ :baseMethod | 
-                        sessionMethod := beh compiledMethodAt: selector.
-                        (uncondtionalOverrides
-                          or: [ sessionMethod sourceString ~= baseMethod sourceString ])
-                          ifTrue: [ loose add: ar ] ] ] ] ] ].
+                    add := false.
+                    (cat beginsWith: \'*\')
+                      ifTrue: [ 
+                        packagePrefixes
+                          detect: [ :prefix | cat asLowercase beginsWith: prefix ]
+                          ifNone: [ add := true ] ]
+                      ifFalse: [ add := true ].
+                    add
+                      ifTrue: [ 
+                        | ar persistentMethodDict sessionMethod |
+                        ar := {beh.
+                        cat.
+                        sel}.
+                        persistentMethodDict := beh
+                          persistentMethodDictForEnv: 0.
+                        (persistentMethodDict at: sel ifAbsent: [  ])
+                          ifNil: [ loose add: ar ]
+                          ifNotNil: [ :baseMethod | 
+                            sessionMethod := beh compiledMethodAt: sel.
+                            (uncondtionalOverrides
+                              or: [ sessionMethod sourceString ~= baseMethod sourceString ])
+                              ifTrue: [ loose add: ar ]
+                              ifFalse: [ 
+                                sessionMethod == baseMethod 
+                                  ifTrue: [ 
+                                    (((beh _baseCategorys: 0) at: cat ifAbsent: [ #() ]) includes: sel)
+                                      ifFalse: [ loose add: ar ] ] ] ] ] ] ] ] ].
     loose ]
   ifPresent: [ :ignored | 
     TDManPage
@@ -77,4 +83,4 @@ EXAMPLES
   ./looseChanges
   ./looseChanges --raw
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.236083984375-08:00'],#modificationTime:DateAndTime['2013-12-10T14:07:49.31861996650696-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.236083984375-08:00'],#modificationTime:DateAndTime['2013-12-24T09:49:58.37266111373901-08:00']}
