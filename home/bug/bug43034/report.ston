@@ -1,0 +1,13 @@
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'We allow an equality index to contain a mixture of String and Unicode
+objects, which can lead to failed lookups in the Btree
+for an equality index. Specifically the < and > methods may produce
+different results for a String, Unicode7 pair depending on which
+class is the receiver . Unicode receivers will use the current
+IcuCollator default to do the compare.
+
+For example, a mix of String and Unicode7 observed in the kermit repository.
+Likewise DoubleByteString and Unicode16 is a problem.
+
+Should we specifically exclude Unicode strings from being added
+to an index in 3.1.0.x ?
+',#runs:RunArray{#runs:[582],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-24T07:43:34.90715193748474-08:00']}

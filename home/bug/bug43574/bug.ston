@@ -1,0 +1,63 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'boom\' $b #\'none\').
+    #(\'clean\' $b #\'none\').
+    #(\'create\' $c #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'clean\'
+      ifPresent:
+        [ :ignored | 
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes.
+        UserGlobals removeKey: #\'coll\' ifAbsent: [  ] ].
+          opts
+      at: \'create\'
+      ifPresent: [ :ignored | 
+        | nsc |
+        UserGlobals at: #\'coll\' put: (nsc := IdentityBag new).
+        5
+          timesRepeat: [ 
+            | class1 |
+            class1 := (Smalltalk at: #\'Class1\') new
+              aaa: \'aaa\';
+              bbb: \'bb\';
+              yourself.
+            nsc add: class1 ].
+        GsIndexSpec new
+          equalityIndex: \'each.aaa\' lastElementClass: String;
+          equalityIndex: \'each.bbb\' lastElementClass: String;
+          createIndexesOn: nsc ].
+    opts
+      at: \'boom\'
+      ifPresent: [ :ignored | 
+        | class2 nsc |
+        nsc := UserGlobals at: #\'coll\'.
+        class2 := (Smalltalk at: #\'Class2\') new
+          aaa: \'aa\';
+          yourself.
+        nsc add: class2 ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug --clean
+  ./bug --create --boom
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-24T07:37:27.80601692199707-08:00']}

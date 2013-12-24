@@ -1,18 +1,22 @@
-TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
-  - development/tODE master
-
-l_
-  - vacant
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'l_
+  - 43034  P2  Unicode strings may cause Index problems in 3.1.x
+    tODE scripts are chock full of Unicode7 strings ... can\'t use them
+    in indexes right now ... RelRelate errors
+  - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
+    queued up ... 43034 first
 
 n_
-  - 43049  P2  Indexing system calls to deprecated methods
-  - 43582  P3  Seaside tests not passing
   - 43127  P3  Deprecated message sends in Seaside filein
     proposed fix being tested. These packages need to be copied to
     GemSource if successful:
       ConfigurationOfGsCore-dkh.288
       Core.v3-DaleHenrichs.75
       Bootstrap.v3-DaleHenrichs.229
+  - 43049  P2  Indexing system calls to deprecated methods
+  - 43582  P3  Seaside tests not passing
+
+j_
+  - development/tODE master
 
 k_
   - checkpoint for old index unit test status ...
@@ -24,4 +28,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[346,23,7,29,229],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],@6,@9,@6],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-23T19:33:02.87185406684875-08:00']}
+',#runs:RunArray{#runs:[501,23,7,29,361],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],@6,@9,@6],#lastIndex:186,#lastRun:1,#lastOffset:185}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-24T07:41:57.03067088127136-08:00']}

@@ -1,0 +1,30 @@
+TDScriptLeafNode{#name:'install',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./install -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | cls1 cls2 |
+cls1 := Object subclass: \'Class1\' instVarNames: #(\'aaa\' \'bbb\') inDictionary: UserGlobals.
+cls2 := Object subclass: \'Class2\' instVarNames: #(\'aaa\') inDictionary: UserGlobals.
+cls1 compileMissingAccessingMethods.
+cls2 compileMissingAccessingMethods.
+     ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  install - install sript utility template
+SYNOPSIS
+  install [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./install --help
+  ./install -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:57.78077793121338-08:00'],#modificationTime:DateAndTime['2013-12-24T07:19:19.72779488563538-08:00']}
