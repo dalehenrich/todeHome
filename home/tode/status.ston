@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 072a05fb427546289f105f3c4b2dc5588fc7ea11
+TDTxtLeafNode{#name:'status',#contents:'commit 2a827135d3dc01e6d332b02a2930df8348a537fb
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 23 12:53:01 2013 -0800
+Date:   Mon Dec 23 19:26:16 2013 -0800
 
-    full range of `mv` and `cp` tests implemented and passing
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T12:53:03.82346606254578-08:00']}
+    fix problem when listing package versions in a repository. loadedVersions for TDMonticelloTool>>mrpackageNamesIn: not quite calculated correctly and tweak working copy calculation
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T19:26:19.68905591964722-08:00']}

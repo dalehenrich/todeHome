@@ -2,46 +2,80 @@ TDScriptLeafNode{#name:'patch',#contents:'[ :topez :objIn :tokens :command |
 | opts args |
 \"for help: ./patch -h\"
 command
-  getOptsMixedLongShort: {#(\'help\' $h #\'none\').#(\'core\' nil #\'none\').#(\'bootstrap\' nil #\'none\')}
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'core\' nil #\'none\').
+    #(\'bootstrap\' nil #\'none\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-    | commitMessage mc versionName repo snapshot reference version systemOrganizerDef newSource |
+    | commitMessage mc versionName repo theSnapshot reference version ancestry newInfo newVersion newVersionName updateDefsBlock savePackage defs |
     commitMessage := \'fix for Bug43127: Deprecated message sends in Seaside filein\'.
     mc := topez toolInstanceFor: \'mc\'.
-    versionName := \'Core.v3-dkh.74\'.
+    savePackage := false.
+    defs := {}.
+    opts
+      at: \'bootstrap\'
+      ifPresent: [ :ignored | 
+        savePackage := true.
+        versionName := \'Bootstrap.v3-dkh.228\'.
+        newVersionName := \'Bootstrap.v3-DaleHenrichs.229\'.
+        updateDefsBlock := [ :snapshot | 
+        | newSource def |
+        def := snapshot definitions
+          detect: [ :definition | 
+            definition className = #\'SystemLoginNotification\'
+              and: [ definition classIsMeta and: [ definition selector == #\'subscriptions\' ] ] ].
+        defs add: def.
+        newSource := (SystemLoginNotification class
+          compiledMethodAt: #\'subscriptions\') sourceString withSqueakLineEndings.
+        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource.
+        def := snapshot definitions
+          detect: [ :definition | 
+            definition className = #\'SessionMethodTransactionBoundaryPolicy\'
+              and: [ definition classIsMeta and: [ definition selector == #\'install\' ] ] ].
+        defs add: def.
+        newSource := (SessionMethodTransactionBoundaryPolicy class
+          compiledMethodAt: #\'install\') sourceString withSqueakLineEndings.
+        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource. snapshot ] ].
+    opts
+      at: \'core\'
+      ifPresent: [ :ignored | 
+        savePackage := true.
+        versionName := \'Core.v3-dkh.74\'.
+        newVersionName := \'Core.v3-DaleHenrichs.75\'.
+        updateDefsBlock := [ :snapshot | 
+        | newSource def |
+        def := snapshot definitions
+          detect: [ :definition | 
+            definition className = #\'SystemOrganizer\'
+              and: [ 
+                definition classIsMeta
+                  and: [ definition selector == #\'resetSystemOrganization\' ] ] ].
+        defs add: def.
+        newSource := (SystemOrganizer class
+          compiledMethodAt: #\'resetSystemOrganization\') sourceString
+          withSqueakLineEndings.
+        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource.
+\t\t\t\tsnapshot ] ].
     repo := mc resolveRepositoryReference: (args at: 1).
     reference := GoferResolvedReference name: versionName repository: repo.
     version := reference version.
-    snapshot := version snapshot.
-    systemOrganizerDef := snapshot definitions
-      detect: [ :definition | 
-        definition className = #\'SystemOrganizer\'
-          and: [ 
-            definition classIsMeta
-              and: [ definition selector == #\'resetSystemOrganization\' ] ] ].
-    newSource := (SystemOrganizer class
-      compiledMethodAt: #\'resetSystemOrganization\') sourceString
-      withSqueakLineEndings.
-    systemOrganizerDef
-      instVarAt: (systemOrganizerDef class _ivOffsetOf: #\'source\')
-      put: newSource.
-    true
+    theSnapshot := updateDefsBlock value: version snapshot.
+    (true and: [ savePackage ])
       ifTrue: [ 
-        | ancestry newInfo newVersion |
         ancestry := MCWorkingAncestry new addAncestor: version info.
-        newInfo := ancestry
-          infoWithName: \'Core.v3-DaleHenrichs.75\'
-          message: commitMessage.
+        newInfo := ancestry infoWithName: newVersionName message: commitMessage.
         newVersion := MCVersion
           package: version package
           info: newInfo
-          snapshot: snapshot
+          snapshot: theSnapshot
           dependencies: version dependencies.
-        repo storeVersion: newVersion ] ]
+        repo storeVersion: newVersion ].
+    defs ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -56,4 +90,4 @@ EXAMPLES
   ./patch --help
   ./patch --core @repo
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-23T16:21:14.71539092063904-08:00'],#modificationTime:DateAndTime['2013-12-23T18:49:15.85368704795837-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-23T16:21:14.71539092063904-08:00'],#modificationTime:DateAndTime['2013-12-23T19:15:13.67184710502625-08:00']}
