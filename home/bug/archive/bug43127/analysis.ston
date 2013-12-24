@@ -1,9 +1,26 @@
-TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'deprecated methods during Seaside Filein:
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'--------------------
+foos:n_gss64bit>svn commit -m\"fix bug 43127\"
+Sending        build/release/PACKING.be
+Adding  (bin)  examples/monticello/repository/Bootstrap.v3-DaleHenrichs.229.mcz
+Adding  (bin)  examples/monticello/repository/ConfigurationOfGsCore-dkh.288.mcz
+Adding  (bin)  examples/monticello/repository/Core.v3-DaleHenrichs.75.mcz
+Sending        image/auditimage.gs
+Sending        image/bootstrapMaster30.topaz
+Sending        image/fileinseaside.topaz
+Sending        image/monticello/orderedcollection.gs
+Sending        image/restoreruby.topaz
+Sending        image/restoreseaside.topaz
+Transmitting file data ..........
+Committed revision 32219.
+--------------------
+
+deprecated methods during Seaside Filein:
 []      Deprecated: copyFrom:count:into:startingAt:
-      Deprecated: dictionaryAndSymbolOf: Obsolete in GemStone/64 v3.1, use dictionariesAndSymbolsOf:
-      Deprecated: Object>>changeToSegment: deprecated v3.0. Use #objectSecurityPolicy: instead.
+[]      Deprecated: dictionaryAndSymbolOf: Obsolete in GemStone/64 v3.1, use dictionariesAndSymbolsOf:
+[]      Deprecated: Object>>changeToSegment: deprecated v3.0. Use #objectSecurityPolicy: instead.
 []      Deprecated: System class >> startAdminGcSession deprecated v3.2.  Use startAdminGem instead
 []      Deprecated: System class >> startAllReclaimGcSessions deprecated v3.2.  Use startReclaimGem instead
+
 
 in image directory:
   image/monticello/orderedcollection.gs
@@ -48,4 +65,4 @@ Item was changed:
 -   ar := System myUserProfile symbolList dictionaryAndSymbolOf: self.
     (ar at: 1) at: #\'SystemOrganization\' put: self new!
 
-',#runs:RunArray{#runs:[45,49,2,99,2,812,1,13,14,1,53,107,20,7,53,7,44,1204],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:Color{#rgb:0}}],[@15,TextEmphasis{#emphasisCode:1,#setMode:true}],@14,[TextColor{#color:Color{#rgb:536871424}}],@14,[],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],@23,[],[@24],@29,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1038,#lastRun:10,#lastOffset:0}},#creationTime:DateAndTime['2013-12-23T15:37:20.77612209320068-08:00'],#modificationTime:DateAndTime['2013-12-23T18:10:10.04614591598511-08:00']}
+',#runs:RunArray{#runs:[676,46,51,2,101,2,813,1,13,14,1,53,107,20,7,53,7,44,1204],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@13,@6,[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6,[TextColor{#color:Color{#rgb:536871424}}],@6,[],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:536871424}}],@23,[],[@24],@29,[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T12:09:53.33157205581665-08:00'],#modificationTime:@34}
