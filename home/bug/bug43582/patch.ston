@@ -4,8 +4,10 @@ TDScriptLeafNode{#name:'patch',#contents:'[ :topez :objIn :tokens :command |
 command
   getOptsMixedLongShort:
     {#(\'help\' $h #\'none\').
+    #(\'bootstrap\' nil #\'none\').
     #(\'core\' nil #\'none\').
-    #(\'bootstrap\' nil #\'none\')}
+    #(\'squeak\' nil #\'none\').
+    #(\'tools\' nil #\'none\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
@@ -13,7 +15,7 @@ opts
   at: \'help\'
   ifAbsent: [ 
     | commitMessage mc versionName repo theSnapshot reference version ancestry newInfo newVersion newVersionName updateDefsBlock savePackage defs |
-    commitMessage := \'fix for Bug43127: Deprecated message sends in Seaside filein\'.
+    commitMessage := \'fix bug 43582 Seaside tests not passing. unimplemented methods and undefined symbols\'.
     mc := topez toolInstanceFor: \'mc\'.
     savePackage := false.
     defs := {}.
@@ -21,46 +23,94 @@ opts
       at: \'bootstrap\'
       ifPresent: [ :ignored | 
         savePackage := true.
-        versionName := \'Bootstrap.v3-dkh.228\'.
-        newVersionName := \'Bootstrap.v3-DaleHenrichs.229\'.
+        versionName := \'Bootstrap.v3-DaleHenrichs.229\'.
+        newVersionName := \'Bootstrap.v3-DaleHenrichs.230\'.
         updateDefsBlock := [ :snapshot | 
         | newSource def |
         def := snapshot definitions
           detect: [ :definition | 
-            definition className = #\'SystemLoginNotification\'
-              and: [ definition classIsMeta and: [ definition selector == #\'subscriptions\' ] ] ].
+            definition className = #\'SentButNotImplementedTest\'
+              and: [ definition selector == #\'testSentButNotImplemented\' ] ].
         defs add: def.
-        newSource := (SystemLoginNotification class
-          compiledMethodAt: #\'subscriptions\') sourceString withSqueakLineEndings.
+        newSource := (SentButNotImplementedTest
+          compiledMethodAt: #\'testSentButNotImplemented\') sourceString
+          withSqueakLineEndings.
         def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource.
         def := snapshot definitions
           detect: [ :definition | 
-            definition className = #\'SessionMethodTransactionBoundaryPolicy\'
-              and: [ definition classIsMeta and: [ definition selector == #\'install\' ] ] ].
+            definition className = #\'UndefinedSymbolsTest\'
+              and: [ definition selector == #\'testUndefinedSymbols\' ] ].
         defs add: def.
-        newSource := (SessionMethodTransactionBoundaryPolicy class
-          compiledMethodAt: #\'install\') sourceString withSqueakLineEndings.
-        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource. snapshot ] ].
+        newSource := (UndefinedSymbolsTest
+          compiledMethodAt: #\'testUndefinedSymbols\') sourceString
+          withSqueakLineEndings.
+        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource.
+        snapshot ] ].
     opts
       at: \'core\'
       ifPresent: [ :ignored | 
         savePackage := true.
-        versionName := \'Core.v3-dkh.74\'.
-        newVersionName := \'Core.v3-DaleHenrichs.75\'.
+        versionName := \'Core.v3-DaleHenrichs.75\'.
+        newVersionName := \'Core.v3-DaleHenrichs.76\'.
         updateDefsBlock := [ :snapshot | 
         | newSource def |
-        def := snapshot definitions
-          detect: [ :definition | 
-            definition className = #\'SystemOrganizer\'
-              and: [ 
-                definition classIsMeta
-                  and: [ definition selector == #\'resetSystemOrganization\' ] ] ].
-        defs add: def.
-        newSource := (SystemOrganizer class
-          compiledMethodAt: #\'resetSystemOrganization\') sourceString
+        {{\'SystemOrganizer\'.
+        \'fileOutClasses:on:\'}}
+          do: [ :ar | 
+            | className selector |
+            className := (ar at: 1) asSymbol.
+            selector := (ar at: 2) asSymbol.
+            def := snapshot definitions
+              detect: [ :definition | definition className = className and: [ definition selector == selector ] ].
+            defs add: def.
+            newSource := ((Smalltalk at: className) compiledMethodAt: selector)
+              sourceString withSqueakLineEndings.
+            def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource ].
+        snapshot ] ].
+    opts
+      at: \'tools\'
+      ifPresent: [ :ignored | 
+        savePackage := true.
+        versionName := \'OB-Tools.v3-dkh.136\'.
+        newVersionName := \'OB-Tools.v3-DaleHenrichs.137\'.
+        updateDefsBlock := [ :snapshot | 
+        | newSource def |
+        {{\'OGStackFrame\'.
+        \'finalBlockHome\'}.
+        {\'OGStackFrame\'.
+        \'finalBlockHomeFor:\'}.
+        {\'OTCmdThroughDebugger\'.
+        \'execute\'}}
+          do: [ :ar | 
+            | className selector |
+            className := (ar at: 1) asSymbol.
+            selector := (ar at: 2) asSymbol.
+            def := snapshot definitions
+              detect: [ :definition | definition className = className and: [ definition selector == selector ] ].
+            defs add: def.
+            newSource := ((Smalltalk at: className) compiledMethodAt: selector)
+              sourceString withSqueakLineEndings.
+            def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource ].
+        snapshot ] ].
+    opts
+      at: \'squeak\'
+      ifPresent: [ :ignored | 
+        savePackage := true.
+        versionName := \'Squeak.v3-dkh.297\'.
+        newVersionName := \'Squeak.v3-DaleHenrichs.298\'.
+        updateDefsBlock := [ :snapshot | 
+        | newSource def |
+        newSource := (ExecBlock compiledMethodAt: #\'forkAndWait\') sourceString
           withSqueakLineEndings.
-        def instVarAt: (def class _ivOffsetOf: #\'source\') put: newSource.
-\t\t\t\tsnapshot ] ].
+        def := MCMethodDefinition
+          className: \'ExecBlock\'
+          selector: \'forkAndWait\'
+          category: \'*squeak\'
+          timeStamp: \'\'
+          source: newSource.
+        defs add: def.
+        snapshot definitions add: def.
+        snapshot ] ].
     repo := mc resolveRepositoryReference: (args at: 1).
     reference := GoferResolvedReference name: versionName repository: repo.
     version := reference version.
@@ -83,11 +133,11 @@ opts
   patch - patch sript utility template
 SYNOPSIS
   patch [-h|--help] 
-  patch --core|--bootstrap <repository-spec>
-  patch --core|--bootstrap @<repository-path>
+  patch --core|--tools|--squeak|--bootstrap <repository-spec>
+  patch --core|--tools|--squeak|--bootstrap @<repository-path>
 DESCRIPTION
 EXAMPLES
   ./patch --help
-  ./patch --core @repo
+  ./patch --bootstrap @repo
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T12:09:16.29154109954834-08:00'],#modificationTime:@2}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T12:09:16.29154109954834-08:00'],#modificationTime:DateAndTime['2013-12-24T16:49:16.9301769733429-08:00']}
