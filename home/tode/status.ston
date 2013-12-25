@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 2a827135d3dc01e6d332b02a2930df8348a537fb
+TDTxtLeafNode{#name:'status',#contents:'commit 3dac06dfb36dd49962aa017946eb0bc4a4b5c33e
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Mon Dec 23 19:26:16 2013 -0800
+Date:   Tue Dec 24 19:13:08 2013 -0800
 
-    fix problem when listing package versions in a repository. loadedVersions for TDMonticelloTool>>mrpackageNamesIn: not quite calculated correctly and tweak working copy calculation
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-23T19:26:19.68905591964722-08:00']}
+    add support for updating method category only for gs fileouts..
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-24T19:13:11.85091209411621-08:00']}
