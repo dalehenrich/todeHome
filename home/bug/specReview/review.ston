@@ -1,0 +1,36 @@
+TDScriptLeafNode{#name:'review',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./review -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | spec |
+    spec := GsIndexSpec new
+      equalityIndex: \'each.sons.*.numberOfChildren\'
+        lastElementClass: SmallInteger
+        options:
+          GsIndexOptions requirePathTerms + GsIndexOptions reducedConflict;
+      unicodeIndex: \'each.lastName\'
+        collator: (IcuCollator forLocaleNamed: \'en_GB\')
+        options:
+          GsIndexOptions requirePathTerms + GsIndexOptions requireUnicodeStrings;
+      yourself.
+    spec printString ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  review - review sript utility template
+SYNOPSIS
+  review [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./review --help
+  ./review -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T20:52:09.74360394477844-08:00'],#modificationTime:DateAndTime['2013-12-24T20:53:23.5509819984436-08:00']}
