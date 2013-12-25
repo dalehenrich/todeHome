@@ -1,0 +1,45 @@
+PAGE 14:
+-----------------------
+"
+GsIndexSpecifications can be concatenated using the #, operator.
+  specA := GsIndexSpec new
+    equalityIndex: 'each.age' lastElementClass: SmallInteger; yourself.
+  specB := GsIndexSpec new equalityIndex: 'each.father.age' lastElementClass: Integer;
+    yourself.
+   specA, specB createIndexesOn: aCollection.
+"
+The bit about using #, does not apply, so this section can be deleted.
+-----------------------
+-----------------------
+PAGE 15:
+-----------------------
+The actual operators on GsIndexOptions (and GsOptions in general) are #+ and #-.
+
+The #+ operator adds an option to the option instance. The #- removes the option
+from the option instance:
+"
+GsIndexOptions can be combined using the #+ operator. For example, 
+the create a unicode index that requires the indexed variable be a 
+Unicode string and that requires path terms:
+
+  aSpec := GsIndexSpec new
+    unicodeIndex: 'each.lastName'
+    collator: (IcuCollator forLocaleNamed: 'en_GB') 
+    options: (GsIndexOptions requireUnicodeStrings +
+                  GsIndexOptions reducedConflict);
+    yourself.
+
+  anOption := GsIndexOptions requireUnicodeStrings + GsIndexOptions reducedConflict,
+  aSpec := GsIndexSpec new
+    unicodeIndex: 'each.lastName'
+      collator: (IcuCollator forLocaleNamed: 'en_GB')
+      options: anOption;
+    equalityIndex: 'each.age' 
+      lastElementClass: SmallInteger
+      options: anOption - GsIndexOptions requireUnicodeStrings;
+     yourself.
+
+"
+
+-----------------------
+

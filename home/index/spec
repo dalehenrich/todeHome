@@ -1,5 +1,5 @@
 New Indexing Features for GemStone Smalltalk 64bit v3.2
-                                                          [Dale Henrichs: v0.10]
+                                                          [Dale Henrichs: v0.11]
 
 -------------------------------------------------------------------------------
 OVERVIEW
@@ -44,9 +44,10 @@ New Index Creation API
       equalityIndex: 'each.father.firstName' lastElementClass: String;
       yourself.
 
-  Note that the reserved variable "each" is required in every index path.  
-  Using the old API, it was correct to create an index on empty string, ''. 
-  Using the new API, the equivalent would be 'each'.
+  Note that the reserved variable "each" is now allowed and recommended for
+  use in an index path. Using the old API, it was correct to create an 
+  index on empty string, ''. Using the new API, the equivalent would be 
+  'each'.
 
   One then uses the spec to create the indexes on an nsc:
 
@@ -98,10 +99,10 @@ There are three different independent options available:
   requireUnicodeStrings (meaningful for unicode indexes only)
 
 Any combination of the above options may be specified as  
-arguments to the options keyword. Use the #, message to
+arguments to the options keyword. Use the #+ message to
 combine multiple options:
 
-  GsIndexOptions requirePathTerms , GsIndexOptions reducedConflict
+  GsIndexOptions requirePathTerms + GsIndexOptions reducedConflict
  
 Creating a reduced conflict index:
 
@@ -119,12 +120,12 @@ Examples of the other options:
  GsIndexSpec new
   equalityIndex: 'each.sons.*.numberOfChildren'
     lastElementClass: SmallInteger
-    options: GsIndexOptions requirePathTerms , 
+    options: GsIndexOptions requirePathTerms +
                GsIndexOptions reducedConflict;
   unicodeIndex: 'each.lastName'
     collator: (IcuCollator forLocaleNamed: 'en_GB')
     options:
-      GsIndexOptions requirePathTerms , 
+      GsIndexOptions requirePathTerms +
         GsIndexOptions requireUnicodeStrings;
   yourself
 
