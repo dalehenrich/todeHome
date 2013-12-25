@@ -1,0 +1,77 @@
+TDScriptLeafNode{#name:'categorize',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./categorize -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'GsQueryOptions\' nil #\'required\').
+    #(\'GsQueryPredicate\' nil #\'none\').
+    #(\'uncat\' nil #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    opts
+      at: \'GsQueryPredicate\'
+      ifPresent: [ :ignored | 
+        | class |
+        class := GsQueryPredicate class.
+        class selectors
+          do: [ :sel | class moveMethod: sel toCategory: #\'instance creation\' ] ].
+    opts
+      at: \'GsQueryOptions\'
+      ifPresent: [ :cat | 
+        | class source categories uncategorized classSelectors |
+        source := cat asSymbol.
+        class := GsQueryOptions.
+        categories := class categoryNames.
+        categories remove: source.
+        classSelectors := class class selectors.
+        (class selectorsIn: #\'private\')
+          do: [ :sel | class moveMethod: sel toCategory: #\'Private\' ].
+        uncategorized := class selectors.
+        uncategorized
+          do: [ :sel | 
+            | setter |
+            (classSelectors includes: sel)
+              ifTrue: [ class moveMethod: sel toCategory: #\'Accessing\' ].
+            (sel endsWith: \':\')
+              ifTrue: [ 
+                (classSelectors includes: (sel copyWithout: $:) asSymbol)
+                  ifTrue: [ class moveMethod: sel toCategory: #\'Accessing\' ] ] ].
+        categories
+          do: [ :category | uncategorized removeAllFoundIn: (class selectorsIn: category) ].
+        uncategorized
+          do: [ :sel | class moveMethod: sel toCategory: #\'Private\' ].
+        uncategorized ].
+    opts
+      at: \'uncat\'
+      ifPresent: [ :ignored | 
+        | class categories uncategorized |
+        \"GsQueryOptions\"
+        class := Smalltalk at: (args at: 1).
+        categories := class categoryNames.
+        categories remove: #\'as yet unclassified\' ifAbsent: [  ].
+        uncategorized := class selectors.
+        categories
+          do: [ :category | uncategorized removeAllFoundIn: (class selectorsIn: category) ].
+        uncategorized ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  categorize - categorize sript utility template
+SYNOPSIS
+  categorize [-h|--help] 
+  categorize --GsQueryOptions=<uncat-category>
+  categorize --uncat <class-name>
+DESCRIPTION
+EXAMPLES
+  ./categorize --help
+  ./categorize --GsQueryOptions=`as yet unclassified` 
+  ./categorize --GsQueryPredicate
+  ./categorize --uncat GsQueryFormula
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-25T08:03:47.68209791183472-08:00'],#modificationTime:DateAndTime['2013-12-25T09:57:50.25796508789062-08:00']}

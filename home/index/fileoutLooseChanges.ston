@@ -6,6 +6,7 @@ classToFilenameMap := Dictionary new
   at: #\'AbstractBagEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
   at: #\'Array\' put: #(\'array2.gs\');
+  at: #\'BagEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'BagUnicodeEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'BinaryFloat\' put: #(\'binfloat.gs\');
   at: #\'BtreeBasicLeafNode\' put: #(\'btreebasicleaf.gs\');
@@ -30,28 +31,39 @@ classToFilenameMap := Dictionary new
   at: #\'EqualityIndexQueryEvaluator\' put: #(\'equalityquery.gs\');
   at: #\'EqualityIndexSpecification\' put: #(\'equalityindexspec.gs\');
   at: #\'Gs32DisjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');
+  at: #\'Gs32Optimizer\' put: #(\'idxquerymethods.gs\');
   at: #\'GsAbstractQueryOptimizer\' put: #(\'idxquerymethods.gs\');
   at: #\'GsAbstractQueryPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsAbstractReferenceAssociation\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsClassicQueryBlockOptimizer\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsClassicConjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');
   at: #\'GsClauseOptimizer\' put: #(\'idxquerymethods.gs\');
   at: #\'GsCompoundClause\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsConstantConstantPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsConstantPathPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsOptions\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsConstantReferenceAssociation\' put: #(\'idxquerymethods.gs\');
   at: #\'GsIndexOptions\' put: #(\'idxquerymethods.gs\');
   at: #\'GsIndexSpec\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsOptions\' put: #(\'idxquerymethods.gs\');
   at: #\'GsPathConstantPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsPathPathPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsPackage\' put: #(\'gspackage.gs\');
-  at: #\'GsRangeQueryPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQuery\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryFormula\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryFormulaVisitor\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryGrammar\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryLiteral\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryLiteralArray\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryLiteralValue\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryOptions\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryParser\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsQueryPathReferenceAssociation\' put: #(\'idxquerymethods.gs\');
   at: #\'GsQueryPredicate\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsRangeQueryPredicate\' put: #(\'idxquerymethods.gs\');
   at: #\'GsUnaryClause\' put: #(\'idxquerymethods.gs\');
+  at: #\'GsVariableReferenceAssociation\' put: #(\'idxquerymethods.gs\');
   at: #\'IdentityIndex\' put: #(\'identityindex.gs\');
+  at: #\'IdentityIndexQueryEvaluator\' put: #(\'identityquery.gs\');
   at: #\'IdentityIndexSpecification\' put: #(\'identityindexspec.gs\');
   at: #\'IndexedQueryEvaluator\' put: #(\'indexquery.gs\');
   at: #\'IndexList\' put: #(\'indexlist.gs\');
@@ -59,11 +71,13 @@ classToFilenameMap := Dictionary new
   at: #\'Integer\' put: #(\'integer2.gs\');
   at: #\'Number\' put: #(\'number.gs\');
   at: #\'Object\' put: #(\'object4.gs\');
+  at: #\'OptionalTermPathEvaluator\' put: #(\'idxquerymethods.gs\');
   at: #\'PathEvaluator\' put: #(\'pathevaluator.gs\');
   at: #\'PathTerm\' put: #(\'pathterm.gs\');
   at: #\'QueryExecuter\' put: #(\'queryexecuter.gs\');
   at: #\'RangeEqualityIndex\' put: #(\'rangeindex.gs\');
   at: #\'RangeIndexReadStream\' put: #(\'rangeindexreadstr.gs\');
+  at: #\'RcRangeEqualityIndex\' put: #(\'rcrangeindex.gs\');
   at: #\'RcUnicodeIndexSpecification\' put: #(\'idxquerymethods.gs\');
   at: #\'RcUnicodeRangeEqualityIndex\' put: #(\'rcunicoderangeindex.gs\');
   at: #\'SelectorPathEvaluator\' put: #(\'idxquerymethods.gs\');
@@ -94,7 +108,7 @@ looseChanges
       at: meth actualClass theNonMetaClass name
       ifAbsent: [ externalMethodMap at: meth actualClass theNonMetaClass name put: Set new ].
     set add: meth ].
-gsTool 
+gsTool
   gsfileout: path
   externalMethodMap: externalMethodMap
   classToFilenameMap: classToFilenameMap
@@ -104,4 +118,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-24T12:53:56.27643203735352-08:00']}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-25T15:10:29.41245293617249-08:00']}

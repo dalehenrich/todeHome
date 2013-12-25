@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 3dac06dfb36dd49962aa017946eb0bc4a4b5c33e
+TDTxtLeafNode{#name:'status',#contents:'commit 29bee416d4f0f95bfbf472095058851509e20fbd
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Tue Dec 24 19:13:08 2013 -0800
+Date:   Wed Dec 25 15:50:34 2013 -0800
 
-    add support for updating method category only for gs fileouts..
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-24T19:13:11.85091209411621-08:00']}
+    allow fur updating both class-side and instance-side method categories for gs fileouts..
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-25T15:50:37.25990891456604-08:00']}

@@ -1,12 +1,15 @@
-TDTxtLeafNode{#name:'todo',#contents:Text{#string:'l_
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'NEED to UPDATE and rebuild j_!!!
+
+l_
   - spec review ... update spec to match Lisa\'s docs, update code to match spec
-    ...in progress 
+    ...building....
   - 43572  P2  Indexing classes lack method categories
-    ...in progress
+    ...I believe that all Indexing methods have been categorized
 
   - 43034  P2  Unicode strings may cause Index problems in 3.1.x
     tODE scripts are chock full of Unicode7 strings ... can\'t use them
-    in indexes right now ... RelRelate errors
+      in indexes right now ... RelRelate errors
+    unicode only index option
   - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
     queued up ... 43034 first
 
@@ -26,4 +29,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[799],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:540,#lastRun:1,#lastOffset:539}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-24T20:43:43.03723096847534-08:00']}
+',#runs:RunArray{#runs:[911],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:138,#lastRun:1,#lastOffset:137}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-25T15:51:12.49762606620789-08:00']}
