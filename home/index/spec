@@ -139,7 +139,9 @@ New Query API
 
   The following expression:
 
-    (GsQuery fromString: 'each.age <= 18') executeOn: nsc.
+    (GsQuery fromString: 'each.age <= 18')
+      on: nsc;
+      queryResult.
 
   is equivalent to the following old-style select block expression:
 
@@ -161,10 +163,10 @@ New Query API
     GsQuery fromString: 
       '(each.firstName = ''Dale'') not'.
 
-  The system will transform queries containing #not to an equivalent form 
-  of the query without the #not, using De Morgan's Laws, so that optimized 
-  queries may still be performed in the presence of a #not. In the above 
-  simple case the query is transformed to: 
+  By default, the system will transform queries containing #not to an 
+  equivalent form of the query without the #not, using De Morgan's Laws, so
+  that optimized queries may still be performed in the presence of a #not. In 
+  the above simple case the query is transformed to: 
 
     GsQuery fromString: 
       '(each.firstName ~= ''Dale'')'.
@@ -181,6 +183,9 @@ New Query API
  
   and so on.
 
+  One can control whether or not query optimizations are performed by default
+  through the use of query options.
+
   One may directly write range queries of the form:
 
     GsQuery fromString: '18 <= each.age < 50'.
@@ -190,11 +195,19 @@ New Query API
     GsQuery fromString: '18 > each.age < 50'.
 
   The system correctly recognizes that fact and the query is converted to a 
-  valid form.
+  valid form:
 
     GsQuery fromString: '(18 > each.age) & (each.age < 50)'.
 
-  This conversion occurs during GsQuery creation, before the optimize step.
+  This conversion occurs during GsQuery creation.
+
+  With the default query options set, the query:
+
+    GsQuery fromString: '(18 > each.age) & (each.age < 50)'.
+
+  is further optimized to the following form:
+
+    GsQuery fromString: '(each.age < 18)'.
 
   Query Variables
   ---------------
@@ -210,23 +223,14 @@ New Query API
     (GsQuery fromString: 'min <= each.age < max')
       bind: 'min' to: 18;
       bind: 'max' to: 50;
-      executeOn: nsc.
-
-  Basic Query Functions
-  ---------------------
-
-  #executeOn: causes a query result to be calculated for the given `nsc`.
-  #executeOn: is a convenience method for the following standard sequence:
-
-    (GsQuery fromString: '(each.firstName ~= ''Dale'')')
       on: nsc;
-      optimize;
-      execute.
+      queryResult.
 
-  The #on: message binds an `nsc` to the query and evaluators are bound to
-  each predicate in the query formula. After binding an `nsc`, the message 
-  #hasIndexEvaluators can be used to determine if each of the predicates
-  is using an index on the nsc.
+  Query Options
+  -------------
+
+  Query Optimization
+  ---------------------
 
   The #optimize message performs a number of optimizations on the query 
   formula. A query may be sent the #optimize message before being bound to 
