@@ -3,8 +3,6 @@ TDTxtLeafNode{#name:'todo',#contents:Text{#string:'NEED to UPDATE and rebuild j_
 l_
   - spec review ... update spec to match Lisa\'s docs, update code to match spec
     ...building....
-  - 43572  P2  Indexing classes lack method categories
-    ...I believe that all Indexing methods have been categorized
 
   - 43034  P2  Unicode strings may cause Index problems in 3.1.x
     tODE scripts are chock full of Unicode7 strings ... can\'t use them
@@ -29,4 +27,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[911],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:138,#lastRun:1,#lastOffset:137}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-25T15:51:12.49762606620789-08:00']}
+',#runs:RunArray{#runs:[791],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:139,#lastRun:1,#lastOffset:138}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-26T07:08:26.93648409843445-08:00']}
