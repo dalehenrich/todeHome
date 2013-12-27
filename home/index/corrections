@@ -42,4 +42,107 @@ Unicode string and that requires path terms:
 "
 
 -----------------------
+-----------------------
+PAGE 17:
+-----------------------
+The method `GsQuery class>>fromSelectBlock:on:options:` is not available. I prefer
+not to support the use of the SelectBlock forms other than for convenience of writing
+validations. A certain number of optimizations are performed during the conversion from
+a select block and I do not intend to support all query options for the SelectBlock form.
+-----------------------
+#asQueryOn: is also available as a shortcut:
 
+  'each.firstName = ''Dale''' asQueryOn: nsc
+-----------------------
+-----------------------
+PAGE 21:
+-----------------------
+In this quote, you mention `Since query results are not cached`:
+"
+Other Collection protocol
+
+GsQuery instances also understand messages such as #size and #includes:. 
+Since query results are not cached, each use of these messages will execute 
+the query. Normally, for performing this type of processing, you should define 
+a temporary containing the query results and operate on that.
+"
+
+however, the section immediately following discusses caching and if caching is turned on
+then #size and #includes: should be valid without having to resort to temps...
+-----------------------
+-----------------------
+PAGE 22:
+-----------------------
+This statement is not correct:
+"Note that by accessing the formula directly, you bypass any auto-optimization."
+
+Only the #originalFormula method provides access to the non-optimized variant.
+-----------------------
+-----------------------
+PAGE 23:
+-----------------------
+In the following example:
+"
+For example, for the existing query:
+            query := GsQuery
+               fromString: '((1 <= each.numberOfChildren) not &
+                     (each.numberOfChildren <= 3)) not'
+               on: myEmployees
+               options: (GsQueryOptions default remove: GsQueryOptions autoOptimize).
+"
+I think I would prefer that we use the #clear* methods to "remove the option"....especially if you are
+going to refuse to document the #+ and #- messages:).
+
+So the example would become:
+
+            query := GsQuery
+               fromString: '((1 <= each.numberOfChildren) not &
+                     (each.numberOfChildren <= 3)) not'
+               on: myEmployees
+               options: (GsQueryOptions default clearAutoOptimize).
+
+There are #clear* and #set* messages for each of the options.
+-----------------------
+-----------------------
+PAGE 27:
+-----------------------
+We can probably justify creating GsIndexSpec>>unicodeIndex: that creates unicode indexes using default collator...
+-----------------------
+I don't think it necessary to make this statement:
+"
+While you may create a unicode index by explicitly specifying the default IcuCollator (IcuCollator default), 
+it is recommended that Unicode String indexes be created with a specific IcuCollator, rather than the default.
+"
+When you specify a collator for index creation we copy the collator and make it invariant, so collators are protected
+from being changed ... 
+-----------------------
+-----------------------
+PAGE 28:
+-----------------------
+
+"
+Another example, with a more complex query:
+    GsQuery fromString: '(each.firstName = ''Dale'') & ((each.age <= 18) | (each.age > 55)) not'.
+would be transformed to:
+    GsQuery fromString: '(each.firstName ~= ''Dale'') | ((each.age > 18) & (each.age <= 55))'.
+"
+is actually optimized to:
+
+  (each.firstName = 'Dale') & (18 < each.age <= 55)
+
+Note that the #not message only applies to the second predicate ... if you want the #not to apply to the 
+whole query then you need to put the rest of the query in parens.
+-----------------------
+-----------------------
+PAGE 29:
+-----------------------
+This phrase:
+"
+This optimization requires that the variables in the query be bound to values.
+"
+Should be changed to this one:
+
+  This optimization requires that the collection and any variables be bound to the query.
+
+... two occurences.
+-----------------------

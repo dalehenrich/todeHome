@@ -139,7 +139,9 @@ New Query API
 
   The following expression:
 
-    (GsQuery fromString: 'each.age <= 18') executeOn: nsc.
+    (GsQuery fromString: 'each.age <= 18')
+      on: nsc;
+      queryResult.
 
   is equivalent to the following old-style select block expression:
 
@@ -161,10 +163,10 @@ New Query API
     GsQuery fromString: 
       '(each.firstName = ''Dale'') not'.
 
-  The system will transform queries containing #not to an equivalent form 
-  of the query without the #not, using De Morgan's Laws, so that optimized 
-  queries may still be performed in the presence of a #not. In the above 
-  simple case the query is transformed to: 
+  By default, the system will transform queries containing #not to an 
+  equivalent form of the query without the #not, using De Morgan's Laws, so
+  that optimized queries may still be performed in the presence of a #not. In 
+  the above simple case the query is transformed to: 
 
     GsQuery fromString: 
       '(each.firstName ~= ''Dale'')'.
@@ -181,6 +183,9 @@ New Query API
  
   and so on.
 
+  One can control whether or not query optimizations are performed by default
+  through the use of query options.
+
   One may directly write range queries of the form:
 
     GsQuery fromString: '18 <= each.age < 50'.
@@ -190,11 +195,19 @@ New Query API
     GsQuery fromString: '18 > each.age < 50'.
 
   The system correctly recognizes that fact and the query is converted to a 
-  valid form.
+  valid form:
 
     GsQuery fromString: '(18 > each.age) & (each.age < 50)'.
 
-  This conversion occurs during GsQuery creation, before the optimize step.
+  This conversion occurs during GsQuery creation.
+
+  With the default query options set, the query:
+
+    GsQuery fromString: '(18 > each.age) & (each.age < 50)'.
+
+  is further optimized to the following form:
+
+    GsQuery fromString: '(each.age < 18)'.
 
   Query Variables
   ---------------
@@ -210,83 +223,144 @@ New Query API
     (GsQuery fromString: 'min <= each.age < max')
       bind: 'min' to: 18;
       bind: 'max' to: 50;
-      executeOn: nsc.
-
-  Basic Query Functions
-  ---------------------
-
-  #executeOn: causes a query result to be calculated for the given `nsc`.
-  #executeOn: is a convenience method for the following standard sequence:
-
-    (GsQuery fromString: '(each.firstName ~= ''Dale'')')
       on: nsc;
-      optimize;
-      execute.
+      queryResult.
 
-  The #on: message binds an `nsc` to the query and evaluators are bound to
-  each predicate in the query formula. After binding an `nsc`, the message 
-  #hasIndexEvaluators can be used to determine if each of the predicates
-  is using an index on the nsc.
+  Query Options
+  -------------
 
-  The #optimize message performs a number of optimizations on the query 
-  formula. A query may be sent the #optimize message before being bound to 
-  an nsc using the #on: message, however some optimizations cannot be 
-  performed without an bound nsc. Similarly, a query may be sent the #
-  optimize message before variable values are bound, but some 
-  optimizations may not be performed.
+  The class GsQueryOptions defines a set of class side methods that may be used
+  to specify a variety of options that affect the way a GsQuery is handled.
 
-  Here's a list of the optimizations performed:
+  Query Handling
+    autoOptimize
+    ------------
+    cacheQueryResult
+    ----------------
 
-    - convert clauses modified by `not` using De Morgan's Laws
+  Optimizations
+    applyDeMorgansLaws
+    ------------------
+
+    Apply De Morgan's Laws to eliminate `not` in queries:
+
+        The negation of a conjunction is the disjunction of the negations.
+        The negation of a disjunction is the conjunction of the negations.
+
+    Where:
 
           (each.firstName = 'Dale') not
 
-        becomes:
+    becomes:
 
           (each.firstName ~= 'Dale')
 
-    - convert predicates with common path-path operands to an equivalent
-      constant predicate
+    and:
 
-          (each.firstName = each.firstName) 
+          ((1 <= each.numberOfChildren) & (each.numberOfChildren <= 4)) not
 
-        becomes:
+    becomes:
 
-          (true)
+          (each.numberOfChildren < 1) | (each.numberOfChildren > 4)
+    and:
 
-    - replace constant-path predicates with equivalent path-constant 
-      predicates
+          ((1 > each.numberOfChildren) | (each.numberOfChildren > 4)) not
 
-          (19 > each.age) 
+    becomes:
 
-        becomes:
+          (1 <= each.numberOfChildren) & (each.numberOfChildren <= 4)
 
-          (each.age < 19)
+    consolidateEnumerablePredicates
+    -------------------------------
 
-    - eliminate redundant predicates. i.e., predicates that fall within range
-      of other predicates
+    Consolidate path-constant predicates to single enumerated predicate
+    if an index exists that has an enumerated path term and predicates
+    using the enumerated path  term can be combined into a single 
+    predicate
 
-          (each.age < 19) & (each.age < 4)
+          (each.firstName = 'Martin') | (each.lastName = 'Martin')
 
-        becomes:
+    becomes:
 
-          (each.age < 4)
+          (each.firstName|lastName = 'Martin')
 
-        Note that elimination of redundant predicates requires that any 
-        variables in the query be bound to values.
+    consolidateRangePredicates
+    --------------------------
 
-    - convert 2 path-constant predicates into a range predicate when possible
+    Convert 2 path-constant predicates into a single range predicate when possible
 
           (each.age > 4) & (each.age < 19)
 
-        becomes:
+    becomes:
 
           (4 < each.age < 19)
 
-        Note that elimination of redundant predicates requires that any 
-        variables in the query be bound to values.
+    normalizePredicates
+    -------------------
 
-    - reorder predicates based on following ordering rules:
+    Replace constant-path predicates with equivalent path-constant predicates.
+
+          (19 > each.age) 
+
+    becomes:
+
+          (each.age < 19)
+
+    removeRedundantPredicates
+    -------------------------
+
+    Eliminate redundant predicates. i.e., predicates that fall within range
+	  of other predicates
+
+          (each.age < 19) & (each.age < 4)
+
+    becomes:
+
+          (each.age < 4)
+
+    removeUnaryConstantPredicates
+    -----------------------------
+
+    Other optimizations may result in predicates that are unary constants true
+    or false. These are removed, or the entire expression is simplified, 
+    depending on the logic.
+
+    1. (true) & <other predicates>
+
+      becomes:
+
+        <other predicates>
+
+    2. (true) | <other predicates> 
+
+      becomes: 
+
+        (true)
+
+    3. (false) & <other predicates> 
+
+      becomes: 
+
+        (false)
+
+    4. (false) | <other predicates> 
+
+       becomes: 
+
+         <other predicates>
+
+    For example:
+
+      (true) & (each.name = 'Dale') & (each.gender == #male)
+
+    becomes:
+
+      (each.name = 'Dale') & (each.gender == #male)
+
+    reorderPredicates
+    -----------------
+
+    Reorder predicates based on following ordering rules:
         constant predicates
         indexed predicates
         identity comparison predicates
@@ -301,22 +375,34 @@ New Query API
           (true) & (each.name = 'Dale') & 
           (each.gender == #male) & (each.age <= 21)
 
-        Note that some of the reordering optimizations require an nsc and 
-        any variables to be bound to the query.
+    transformCommonPaths
+    --------------------
 
-    - consolidate path-constant predicates to single enumerated predicate
-      if an index exists that has an enumerated path term and predicates
-      using the enumerated path  term can be combined into a single 
-      predicate
+    Convert predicates with common path-path operands to an equivalent 
+	  constant predicate.
 
-          (each.firstName = 'Martin') | (each.lastName = 'Martin')
+          (each.firstName = each.firstName) 
 
         becomes:
 
-          (each.firstName|lastName = 'Martin')
+          (true)
 
-        Note that some of the consolidation optimizations require an nsc and 
-        any variables to be bound to the query.
+    Option Operators
+    ----------------
+
+    The #+ method is used to combine two instances of GsOption. Each of the 
+    options set in the argument is set in the receiver.
+
+    The #- method is used to negate the options set in the args. Each of the
+    options set in the argument is cleared in the receiver.
+
+    For each named option (instance variable) in a GsOption there is class-
+    side method that returns an instance of the option class with only the 
+    corresponding set. On the instance-side, there two methods for each
+    option: one for setting the option; and one for clearing the option.
+    The set option method is formed by prepending the 'set' string to the 
+    name of he option. The clear option method is formed by prepending the 
+    'clear' string to the name of the option.
 
   Original Formula
   ----------------
@@ -330,7 +416,7 @@ New Query API
 
   When the original formula is recorded all of the bound state is removed
   (nsc, bound variable values, etc.) so that stale values are not kept alive.
-  
+
   If one wants to create a new query from an original formula do the following:
 
     query := GsQuery 
@@ -341,45 +427,28 @@ New Query API
     originalFormula := query originalFormula.
     originalQuery := GsQuery fromFormula: originalFormula.
 
-  Query Execution
+  Collection Protocol
   ---------------
 
-  The #execute message causes the query result to be calculated. Note that
-  I have chosen not to use #select, because we are not using a block to 
-  perform the query. Using #select would tend to imply that #reject and 
-  #detect would be supported.
+  Once a query has been bound to a collection, one may use some of the more
+  common collection methods to access the elements of the query result:
 
-  Reject functionality can be achieved by forming the query using `not`:
+    any
+    anyIfNone:
+    collect:
+    detect:
+    detect:ifNone:
+    do:
+    includes:
+    isEmpty
+    reject:
+    select:
+    size
 
-    (each.firstName = 'Dale') not
-
-  or by `negating` the query formula itself:
-
-    query := GsQuery fromString: '(each.firstName = ''Dale'')'.
-    negatedQuery := GsQuery fromFormula: query formula not. 
-    rejectEquivalent := negatedQuery executeOn: nsc.
-
-  Detect functionality can be achieved by using #do: or #do:for: and 
-  exiting the block early:
-
-    (GsQuery fromString: '(each.firstName = ''Dale'')')
-      do: [:each | ^each]
-      on: nsc
-
-  where the #do:on: message is a shortcut for the following sequence:
-
-    (GsQuery fromString: '(each.firstName = ''Dale'')')
-      on: nsc;
-      optimize;
-      do: [:each | ^each]
-
-  Detect:ifNone: functionality can be achieved by using #do:ifEmpty: or 
-  #do:ifEmpty:for: as follows:
-
-    (GsQuery fromString: '(each.firstName = ''Dale'')')
-      do: [:each | ^each]
-      ifEmpty: [self error: 'No elements matched the query' ]
-      on: nsc
+  When practical, the messages are applied to each element of the result 
+  without first calculating the entire result set. For the block-based 
+  messages the implication is that an early return from the block will 
+  avoid the overhead of calculation the entire result set.
 
   Query Streams
   -------------
@@ -388,27 +457,11 @@ New Query API
   #readStreamOn:, #reversedReadStream, and #reversedReadStreamOn:. For
   example:
 
-    stream := (GsQuery fromString: '(each.firstName = ''Dale'')')
-      readStreamOn: nsc.
+    stream := ((GsQuery fromString: '(each.firstName = ''Dale'')')
+      on: nsc) readStream.
     [ stream atEnd ] whileFalse: [ 
 	  element := stream next.
 	  "..." ].
-
-  #readStreamOn: is similar to #executeOn: in that it is a short cut for 
-  the longer query form which includes explicit calls to #on:, #optimize 
-  and variable binding:
-
-    query := (GsQuery fromString: '(each.firstName = ''Dale'')')
-      on: nsc;
-      optimize.
-    stream := query readStream.
-    [ stream atEnd ] whileFalse: [ 
-	  element := stream next.
-	  "..." ].
-
-  There are similarities between the #do:* and #*readStream* families of
-  evaluation, but I have not yet determined what level of implementation 
-  sharing there will be between them. 
 
   Invariance and Queries
   -------------
@@ -452,38 +505,6 @@ New Query API
   It is important to note that there are no plans to allow the effects of
   optimizations to be reversed.
 
-  Consequently the form of the formula depends upon which part of the
-  life cycle the formula is accessed. The fact that all formulas are 
-  invariant simply means that the following sequence of operations are 
-  safe:
-
-    query := GsQuery fromString: '(each.age > min) & (each.age < max)'.
-    savedFormula := query formula.
-    query
-      bind: 'min' to: 9;
-      bind: 'max' to: 4;
-      on: nsc;
-      optimize.
-    newQuery := GsQuery fromFormula: savedFormula.
-    newQuery
-      bind: 'min' to: 4;
-      bind: 'max' to: 9;
-      on: nsc;
-      optimize.
-    anotherFormula := newQuery formula.
-    anotherQuery := anotherFormula asQuery
-    anotherQuery
-      bind: 'min' to: 3;
-      bind: 'max' to: 30;
-      on: nsc;
-      optimize.
-    finalQuery := anotherFormula asQuery
-    finalQuery
-      bind: 'min' to: 30;
-      bind: 'max' to: 3;
-      on: nsc;
-      optimize.
-
   Instances of GsQuery are not normally invariant. If one wants to share 
   a query, use the #immediateInvariant message.
 
@@ -497,19 +518,10 @@ New Query API
     min := 6.
     max := 55.
     nsc select: {:each | (each.age > min) & (each.age < max)}.
-    
-    (GsQuery 
+
+    ((GsQuery 
       fromSelectBlock: {:each | (each.age > min) & (each.age < max)})
-        executeOn: nsc.
-
-    (GsQuery 
-      fromSelectBlock: {:each | (each.age > min) & (each.age < max)}
-      on: nsc) execute.
-
-    (GsQuery fromString: '(each.age > min) & (each.age < max)')
-      bind: 'min' to: min;
-      bind: 'max' to: max;
-      executeOn: nsc.
+        on: nsc) queryResult
 
   produce exactly the same results. 
 
@@ -542,8 +554,8 @@ Set-valued Path Term
     GsIndexSpec new
       equalityIndex: 'each.children.*.age' lastElementClass: SmallInteger;
       createIndexesOn: myEmployees.
-    (GsQuery fromString: 'each.children.*.age <= 18')
-      executeOn: myEmployees.
+    (GsQuery fromString: 'each.children.*.age <= 18' on: myEmployees) 
+      queryResult.
 
   The select block sytax will be extended to allow '*' in path terms in order
   to maintain compatibility with existing 32 bit usage:
@@ -575,7 +587,7 @@ Enumerated Path Term
       createIndexesOn: myEmployees.
     (GsQuery fromString: 'each.firstName|lastName = name')
       bind: 'name' to: 'Allen';
-      executeOn: myEmployees.
+      on: myEmployees.
 
   The value of each instance variable listed in the path term will be 
   considered in the query. Changes to either of the instance variables will
@@ -595,7 +607,7 @@ Selector Path Term
       createIndexesOn: myEmployees.
     (GsQuery fromString: 'each.#car.color = color')
       bind: 'color' to: 'blue';
-      executeOn: myEmployees.
+      on: myEmployees.
 
   The query will send the message `car` to each element of `myEmployees` and then 
   access the `color` instance variable of the result.
@@ -648,7 +660,7 @@ Heterogeneous Collections
         requirePathTerms: true;
       identityIndex: 'each.father' 
          requirePathTerms: true;
-	createIndexesOn: nsc.
+	    createIndexesOn: nsc.
 
   Note that in that case where a required path term is a prefix of a
   heterogeneous path, the required path will be applied to both indexes:
@@ -685,20 +697,18 @@ DateTime and DateAndTime
   operations on instance of the two classes are not as efficient as they 
   could be.
 
-  Martin suggests that both DateTime and DateAndTime should be encrypted by 
-  converting the date and time information into signed UTC microseconds since 
-  an epoch. The second encryption word with a full SmallInteger range will be 
-  used to store the microseconds value. 
+  In version 3.2 all instances of DateTime are "encrypted". The "encruption"
+  is the values of the `year` and `day` instance variables are encoded into
+  one 64 bit word and the `milliseconds` instance variable is encoded as a 
+  SmallInteger into the another 64 bit word.
 
-  For DateTime, UTC microseconds represents the exact value of the `seconds`
-  instance variable, since the resolution for DateTime is in milliseconds.
+  For DataAndTime instances, the class of the seconds instance variable is used
+  to determine whether or not the DateAndTime instance can be "encrypted". If
+  the instance variable is a SmallInteger, the instance is "fully cached".
+  If the instance variable is a ScaledDecimal, the instance is "fully cached".
+  If the instance variable is a SmallDouble, the instance is "fully cached".
+  Otherwise the DateAndTime is not encrypted.
 
-  The DateAndTime class can use different Number instances to get different
-  levles of resolution (i.e., ScaledDecimal, SmallDouble or Integer) so 
-  microseconds may not provide an exact representation.  Therefore the first 
-  encrcryption word will have a handful of bytes allocated to indicate whether 
-  or not the signed microseconds represents an exact match or is within a 
-  microsecond of the exact value.
 
 Unicode String Indexes
 ------------------------
@@ -736,7 +746,7 @@ Unicode String Indexes
     (GsQuery fromString: 'each.firstName = name')
       bind: 'name' to: 'Allen';
       on: myEmployees collator: (IcuCollator forLocaleNamed: 'en_GB');
-      execute.
+      queryResult.
 
   and the collator for the index is #= to the collator specified in the 
   query, then the index will be used to satisfy the query. Otherwise the 
@@ -750,7 +760,8 @@ Unicode String Indexes
 
     (GsQuery fromString: 'each.#car.color = color')
       bind: 'color' to: 'blue';
-      executeOn: myEmployees.
+      on: myEmployees;
+      queryResult.
 
   For a given Unicode string and a given Unicode collator, a Unicode sort
   key can be produced. The bytes of the sort key are created such that two
