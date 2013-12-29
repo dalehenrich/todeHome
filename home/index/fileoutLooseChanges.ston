@@ -1,7 +1,7 @@
 TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :command | 
 | gsTool path classToFilenameMap externalMethodMap current packages looseChanges |
 gsTool := topez toolInstanceFor: \'gs\'.
-path := \'/export/foos2/users/dhenrich/3.0/l_gss64bit/image\'.
+path := \'/export/foos2/users/dhenrich/3.0/j_gss64bit/image\'.
 classToFilenameMap := Dictionary new
   at: #\'AbstractBagEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
@@ -118,4 +118,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-25T15:10:29.41245293617249-08:00']}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-26T17:05:32.66263508796692-08:00']}

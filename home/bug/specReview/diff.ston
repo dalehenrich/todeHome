@@ -21,4 +21,4 @@ diffs := looseChanges
       yourself ].
 differ := TDGitDiffer new diffs: diffs.
 diffTool := topez toolInstanceFor: \'mg\'.
-diffTool gitdiff: differ gitTool: self ]',#creationTime:DateAndTime['2013-12-29T06:57:37.02926707267761-08:00'],#modificationTime:@2}
+diffTool gitdiff: differ gitTool: self ]',#creationTime:DateAndTime['2013-12-26T08:19:07.63445496559143-08:00'],#modificationTime:@2}

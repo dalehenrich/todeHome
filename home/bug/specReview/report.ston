@@ -1,0 +1,19 @@
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'-------------------------
+-------------------------
+-------------------------
+dkh 12/26/2013 11:18
+-------------------------
+  GsQuery fromString: \'18 > each.age < 50\'.
+is supposed to be converted into a valid query of the form:
+  \'(18 > each.age) & (each.age < 50)\'
+-------------------------
+  GsQuery fromString: \'18 > each.age < 50\'.
+is supposed to be converted into a valid query of the form:
+  \'(18 > each.age) & (each.age < 50)\'
+Now it is...
+---
+Sending        image/idxquerymethods.gs
+Transmitting file data .
+Committed revision 32224.
+-------------------------
+',#runs:RunArray{#runs:[569],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-26T08:34:26.90015196800232-08:00'],#modificationTime:DateAndTime['2013-12-26T11:18:08.48299789428711-08:00']}

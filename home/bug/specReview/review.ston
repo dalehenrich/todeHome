@@ -9,18 +9,16 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | spec |
-    spec := GsIndexSpec new
-      equalityIndex: \'each.sons.*.numberOfChildren\'
-        lastElementClass: SmallInteger
-        options:
-          GsIndexOptions requirePathTerms + GsIndexOptions reducedConflict;
-      unicodeIndex: \'each.lastName\'
-        collator: (IcuCollator forLocaleNamed: \'en_GB\')
-        options:
-          GsIndexOptions requirePathTerms + GsIndexOptions requireUnicodeStrings;
-      yourself.
-    spec printString ]
+    | query x y|
+    x := false & (false | true) not.
+    y := (false & (false | true)) not.
+    query := GsQuery
+      fromString:
+        \'(each.firstName = \'\'Dale\'\') & ((each.age <= 18) | (each.age > 55)) not\'.
+    {x.
+\t\ty.
+\t\tquery.
+    (query originalFormula)} ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -33,4 +31,4 @@ EXAMPLES
   ./review --help
   ./review -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T20:52:09.74360394477844-08:00'],#modificationTime:DateAndTime['2013-12-24T20:53:23.5509819984436-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T20:52:09.74360394477844-08:00'],#modificationTime:DateAndTime['2013-12-26T10:53:26.0208420753479-08:00']}

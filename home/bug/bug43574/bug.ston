@@ -15,13 +15,12 @@ opts
   ifAbsent: [ 
     opts
       at: \'clean\'
-      ifPresent:
-        [ :ignored | 
+      ifPresent: [ :ignored | 
         IndexManager
           removeAllIncompleteIndexes;
           removeAllIndexes.
         UserGlobals removeKey: #\'coll\' ifAbsent: [  ] ].
-          opts
+    opts
       at: \'create\'
       ifPresent: [ :ignored | 
         | nsc |
@@ -35,8 +34,8 @@ opts
               yourself.
             nsc add: class1 ].
         GsIndexSpec new
-          equalityIndex: \'each.aaa\' lastElementClass: String;
-          equalityIndex: \'each.bbb\' lastElementClass: String;
+          equalityIndex: \'each.aaa\' lastElementClass: \'aaa\' class;
+          equalityIndex: \'each.bbb\'lastElementClass: \'aaa\' class;
           createIndexesOn: nsc ].
     opts
       at: \'boom\'
@@ -60,4 +59,4 @@ EXAMPLES
   ./bug --clean
   ./bug --create --boom
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-24T07:37:27.80601692199707-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-29T07:15:40.49197888374329-08:00']}

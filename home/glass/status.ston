@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 4b4b8800a7e0426396d7fefd96d503d717295752
+TDTxtLeafNode{#name:'status',#contents:'commit 63de3ad1d203b894d87fbae08db706e7946aff57
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Tue Dec 24 18:03:43 2013 -0800
+Date:   Sun Dec 29 08:54:10 2013 -0800
 
-    eliminate use of some of the methods deprecated in 3.x ... fix bugs in Behavior>>methodsReferingToLiteral:, Behavior>>_basicRemoveSelector:environmentId:, and Behavior>>moveMethod:toCategory:. replace refs to obolete class ExecutableBlock with ExecBlock
-',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-24T18:03:46.43116092681885-08:00']}
+    move String>>findSelector to CharacterCollection
+',#creationTime:DateAndTime['2013-12-06T17:30:30.81038093566895-08:00'],#modificationTime:DateAndTime['2013-12-29T08:54:13.4594259262085-08:00']}

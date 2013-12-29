@@ -1,6 +1,6 @@
-TDTxtLeafNode{#name:'status',#contents:'commit 29bee416d4f0f95bfbf472095058851509e20fbd
+TDTxtLeafNode{#name:'status',#contents:'commit f251b54415289de2cc99a945885e574e5440fd9b
 Author: Dale Henrichs <dale.henrichs@gemtalksystems.com>
-Date:   Wed Dec 25 15:50:34 2013 -0800
+Date:   Sun Dec 29 08:52:48 2013 -0800
 
-    allow fur updating both class-side and instance-side method categories for gs fileouts..
-',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-25T15:50:37.25990891456604-08:00']}
+    another tweak to TDRepositoryPackageBrowser>>browseVersionsFor:
+',#creationTime:DateAndTime['2013-12-06T17:30:33.3291220664978-08:00'],#modificationTime:DateAndTime['2013-12-29T08:52:50.680016040802-08:00']}

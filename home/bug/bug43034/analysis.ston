@@ -1,1 +1,2 @@
-TDTxtLeafNode{#name:'analysis',#contents:nil,#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:@2}
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'I believe that the fundamental bug has to do with consistency ... right now the ordering of a String and Unicode string is a function of which character is compared first ... so if we can be consistent in our comparison in image and C code, we are okay ...
+',#runs:RunArray{#runs:[257],#values:[[]],#lastIndex:166,#lastRun:1,#lastOffset:165}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T07:39:47.39637589454651-08:00']}

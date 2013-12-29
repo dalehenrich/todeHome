@@ -1,0 +1,51 @@
+TDScriptLeafNode{#name:'compare',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./compare -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | unicodeString query greekCollator usCollator  strings charCollectionSort collatorSort greekCollatorSort unicodeStrings mixedStrings |
+    unicodeString := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.
+    query := \'each.unicodeField = string\'.
+    greekCollator := IcuCollator forLocaleNamed: \'el_GR\'.
+    usCollator := IcuCollator forLocaleNamed: \'en_US\'.
+    strings := {\'aaa\'.
+    \'bbb\'.
+    \'\u00F0\u00A3\u008E\u008F\'.\t\"Vietnamese (quad byte)\"
+    \'monday\'.
+    \'fl\u00C3\u00BC\u00C3\u009Fe\'.\t\"German\"
+    \'\u00CE\u0094\u00CE\u00B5\u00CF\u0085\u00CF\u0084\u00CE\u00AD\u00CF\u0081\u00CE\u00B1\'.\t\"Greek (double byte)\"
+    \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\'\t\"Greek(double byte)\"} collect: [ :str | String withAll: str ].
+    unicodeStrings := strings collect: [ :str | str asUnicodeString ].
+    mixedStrings := strings , unicodeStrings.
+    [ 
+    IcuCollator default: greekCollator.
+    charCollectionSort := mixedStrings
+      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b ].
+    collatorSort := mixedStrings
+      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: IcuCollator default ].
+    greekCollatorSort := mixedStrings
+      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: greekCollator ] ]
+      ensure: [ IcuCollator default: usCollator ].
+    {mixedStrings.
+    charCollectionSort.
+    collatorSort.
+    greekCollatorSort} ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  compare - compare sript utility template
+SYNOPSIS
+  compare [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./compare --help
+  ./compare -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T07:59:57.59434103965759-08:00'],#modificationTime:DateAndTime['2013-12-29T09:59:55.14004588127136-08:00']}
