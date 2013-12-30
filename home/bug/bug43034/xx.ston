@@ -14,7 +14,7 @@ opts
     usCollator := IcuCollator forLocaleNamed: \'en_US\'.
     unicodeString1 := \'\u00CE\u0094\u00CE\u00B5\u00CF\u0085\u00CF\u0084\u00CE\u00AD\u00CF\u0081\u00CE\u00B1\' asUnicodeString.
     string1 := String withAll: unicodeString1.
-    unicodeString2 := \'aaa\' asUnicodeString.
+    unicodeString2 := \'fl\u00C3\u00BC\u00C3\u009Fe\' asUnicodeString.
     string2 := String withAll: unicodeString2.
     collator := IcuCollator default.
     defaultBlock := [ :a :b | a _idxForCompareLessThanOrEqualTo: b ].
@@ -22,15 +22,17 @@ opts
     usBlock := [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: usCollator ].
     [ 
     IcuCollator default: greekCollator.
-    res := {}.
+    res := {{(string1 class).
+    (unicodeString1 class).
+    (string2 class).
+    (unicodeString2 class)}}.
     {defaultBlock.
     grBlock.
     usBlock}
       do: [ :compareBlock | 
+        res add: (compareBlock value: string1 value: string2).
         res add: (compareBlock value: unicodeString1 value: string2).
         res add: (compareBlock value: string1 value: unicodeString2).
-        res add: (compareBlock value: unicodeString2 value: string1).
-        res add: (compareBlock value: string2 value: unicodeString1).
         res add: \'...\' ] ]
       ensure: [ IcuCollator default: usCollator ].
     res ]
@@ -46,4 +48,4 @@ EXAMPLES
   ./xx --help
   ./xx -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T09:58:50.53003811836243-08:00'],#modificationTime:DateAndTime['2013-12-29T11:59:45.40001201629639-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T09:58:50.53003811836243-08:00'],#modificationTime:DateAndTime['2013-12-29T12:31:20.46579504013062-08:00']}

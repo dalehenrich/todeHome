@@ -10,4 +10,13 @@ Likewise DoubleByteString and Unicode16 is a problem.
 
 Should we specifically exclude Unicode strings from being added
 to an index in 3.1.0.x ?
-',#runs:RunArray{#runs:[582],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-24T07:43:34.90715193748474-08:00']}
+------------------------------
+dkh 12/29/2013 17:59
+------------------------------
+- implemented _idxFor*. When no collator is specified, Unicode instances are 
+  converted to a native String instance for comparison. Only \"clean\" way to 
+  handle Unicode strings when no collator specified.
+- implement #asString for Unicode classes to convert to native String instance.
+- make sure that Symbol, DoubleByteSymbol, and QuadByteSymbol instances fail
+  comparison when using collator ... no Unicode symbols so this is the correct
+  behavior...also fail for any non-CharacterCollection classes ...',#runs:RunArray{#runs:[1175],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-29T17:59:43.17458510398865-08:00']}

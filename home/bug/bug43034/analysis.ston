@@ -1,2 +1,19 @@
 TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'I believe that the fundamental bug has to do with consistency ... right now the ordering of a String and Unicode string is a function of which character is compared first ... so if we can be consistent in our comparison in image and C code, we are okay ...
-',#runs:RunArray{#runs:[257],#values:[[]],#lastIndex:166,#lastRun:1,#lastOffset:165}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T07:39:47.39637589454651-08:00']}
+
+dkh 12/29/2013 12:34
+--------
+xx shows that the String to DoubleByteString comparison is currently inconsistent with the Unicode to Unicode comparison of the same strings ... so it implies that _idxFor* messages involving unicode guys have to be compared WITHOUT USING A COLLATOR unless a collator is explicitly supplied ...
+
+dkh 12/29/2013 13:46
+--------
+Part of what needs to be done is to add #asString to each of the Unicode classes to return the \"native\" string, like MultiByteString (I think).
+
+dkh 12/29/2013 16:33
+--------
+final bit is to convert the _idx*CharacterCollection in Unicode classes to use asString to convert arg ... ala Unicode7>>_idxForCompareCharacterCollectionGreaterThanOrEqualToSelf:
+
+dkh 12/29/2013 18:00
+--------
+The real final bit is to change RelRelate to perform the same conversions and 
+comparisons...
+',#runs:RunArray{#runs:[258,20,306,20,1,9,145,20,1,9,111,194],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T18:01:28.46597290039062-08:00']}

@@ -26,6 +26,7 @@ classToFilenameMap := Dictionary new
   at: #\'CollectionBasedPathEvaluator\' put: #(\'idxquerymethods.gs\');
   at: #\'CollectionBasedPathTerm\' put: #(\'collbasedpathterm.gs\');
   at: #\'DependencyList\' put: #(\'dependencylist.gs\');
+  at: #\'DoubleByteSymbol\' put: #(\'doublebytesymbol.gs\');
   at: #\'EnumeratedPathEvaluator\' put: #(\'idxquerymethods.gs\');
   at: #\'EnumeratedPathTerm\' put: #(\'enumeratedpathterm.gs\');
   at: #\'EqualityIndexQueryEvaluator\' put: #(\'equalityquery.gs\');
@@ -70,10 +71,11 @@ classToFilenameMap := Dictionary new
   at: #\'IndexManager\' put: #(\'IndexManager.gs\');
   at: #\'Integer\' put: #(\'integer2.gs\');
   at: #\'Number\' put: #(\'number.gs\');
-  at: #\'Object\' put: #(\'object4.gs\');
+  at: #\'Object\' put: #(\'object.gs\');
   at: #\'OptionalTermPathEvaluator\' put: #(\'idxquerymethods.gs\');
   at: #\'PathEvaluator\' put: #(\'pathevaluator.gs\');
   at: #\'PathTerm\' put: #(\'pathterm.gs\');
+  at: #\'QuadByteSymbol\' put: #(\'quadbytesymbol.gs\');
   at: #\'QueryExecuter\' put: #(\'queryexecuter.gs\');
   at: #\'RangeEqualityIndex\' put: #(\'rangeindex.gs\');
   at: #\'RangeIndexReadStream\' put: #(\'rangeindexreadstr.gs\');
@@ -84,6 +86,7 @@ classToFilenameMap := Dictionary new
   at: #\'SelectorPathTerm\' put: #(\'selectorpathterm.gs\');
   at: #\'SetValuedPathEvaluator\' put: #(\'setpatheval.gs\');
   at: #\'SetValuedPathTerm\' put: #(\'setpathterm.gs\');
+  at: #\'Symbol\' put: #(\'symbol.gs\');
   at: #\'UndefinedObject\' put: #(\'undefin.gs\');
   at: #\'Unicode16\' put: #(\'icu.gs\');
   at: #\'Unicode32\' put: #(\'icu.gs\');
@@ -118,4 +121,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-26T17:05:32.66263508796692-08:00']}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-29T18:14:19.60279202461243-08:00']}

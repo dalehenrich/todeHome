@@ -9,7 +9,7 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | unicodeString query greekCollator usCollator  strings charCollectionSort collatorSort greekCollatorSort unicodeStrings mixedStrings |
+    | unicodeString query greekCollator usCollator strings charCollectionSort collatorSort greekCollatorSort unicodeStrings nativeStrings mixedStrings analysis nativeSort |
     unicodeString := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.
     query := \'each.unicodeField = string\'.
     greekCollator := IcuCollator forLocaleNamed: \'el_GR\'.
@@ -23,17 +23,34 @@ opts
     \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\'\t\"Greek(double byte)\"} collect: [ :str | String withAll: str ].
     unicodeStrings := strings collect: [ :str | str asUnicodeString ].
     mixedStrings := strings , unicodeStrings.
+    nativeStrings := mixedStrings collect: [ :str | str asString ].
+    analysis := {}.
     [ 
     IcuCollator default: greekCollator.
+    nativeSort := nativeStrings
+      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b  ].
     charCollectionSort := mixedStrings
-      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b ].
+      sortWithBlock: [ :a :b | 
+        | ans |
+        ans := a _idxForCompareLessThanOrEqualTo: b.
+        analysis
+          add:
+            {a.
+            (a class).
+            ans.
+            b.
+            (b class)}.
+        ans ].
     collatorSort := mixedStrings
       sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: IcuCollator default ].
     greekCollatorSort := mixedStrings
       sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: greekCollator ] ]
       ensure: [ IcuCollator default: usCollator ].
     {mixedStrings.
+    (mixedStrings sortWithBlock: [ :a :b | a <= b ]).
     charCollectionSort.
+    nativeSort.
+    analysis.
     collatorSort.
     greekCollatorSort} ]
   ifPresent: [ :ignored | 
@@ -48,4 +65,4 @@ EXAMPLES
   ./compare --help
   ./compare -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T07:59:57.59434103965759-08:00'],#modificationTime:DateAndTime['2013-12-29T09:59:55.14004588127136-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T07:59:57.59434103965759-08:00'],#modificationTime:DateAndTime['2013-12-29T16:19:54.67120504379272-08:00']}
