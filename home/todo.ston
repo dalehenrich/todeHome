@@ -2,9 +2,9 @@ TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
   - 43034  P2  Unicode strings may cause Index problems in 3.1.x
     as concluded in bug 43601, must disallow addition of Unicode instances
     to equality indexes ... mixed Unicode collections must use unicode indexes
+    [....running smoke tests ...]
     [....waiting for 43601 bugfix from Allen ...]
-    [....waiting for j_ build, then verify that you can\'t add Unicode
-\t      strings to equality index ...]
+    [....verified error when adding Unicode strings to equality index ...]
     - added GsIndexSpec>>unicodeIndex:
     - implement #asString for Unicode classes to convert to native String instance.
     - make sure that Symbol, DoubleByteSymbol, and QuadByteSymbol instances fail
@@ -31,4 +31,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[1336],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1086,#lastRun:1,#lastOffset:1085}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-30T12:35:06.71768689155579-08:00']}
+',#runs:RunArray{#runs:[1337],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-30T15:17:31.32488989830017-08:00']}
