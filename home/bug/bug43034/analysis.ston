@@ -16,4 +16,26 @@ dkh 12/29/2013 18:00
 --------
 The real final bit is to change RelRelate to perform the same conversions and 
 comparisons...
-',#runs:RunArray{#runs:[258,20,306,20,1,9,145,20,1,9,111,194],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T18:01:28.46597290039062-08:00']}
+
+dkh 12/29/2013 20:22
+--------
+looks like the String instances are not being encoded correctly... (4th slot is zero):
+
+1@           -> \'monday\'
+2@           -> \'monday\'
+3@           -> -432345564227567616
+4@           -> 0
+5@           -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+6@           -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+7@           -> -432345564227567616
+8@           -> 0
+.......
+49@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+50@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+51@          -> -274088112717811711
+52@          -> 22559811099561
+53@          -> \'monday\'
+54@          -> \'monday\'
+55@          -> -414256114685159423
+56@          -> 12137595011072
+',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,759],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T20:26:59.91126489639282-08:00']}

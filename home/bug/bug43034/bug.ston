@@ -1,10 +1,9 @@
 TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
 | opts args |
-\"for help: ./index -h\"
+\"for help: ./bug -h\"
 command
   getOptsMixedLongShort:
     {#(\'help\' $h #\'none\').
-    #(\'boom\' $b #\'none\').
     #(\'clean\' $b #\'none\').
     #(\'create\' $c #\'none\')}
   optionsAndArguments: [ :options :operands | 
@@ -19,44 +18,50 @@ opts
         IndexManager
           removeAllIncompleteIndexes;
           removeAllIndexes.
-        UserGlobals removeKey: #\'coll\' ifAbsent: [  ] ].
+        UserGlobals removeKey: #\'coll\' ifAbsent: [  ].
+        UserGlobals removeKey: #\'greekColl\' ifAbsent: [  ] ].
     opts
       at: \'create\'
       ifPresent: [ :ignored | 
-        | nsc |
+        | nsc strings unicodeStrings greekNsc collator |
         UserGlobals at: #\'coll\' put: (nsc := IdentityBag new).
-        5
-          timesRepeat: [ 
-            | class1 |
-            class1 := (Smalltalk at: #\'Class1\') new
-              aaa: \'aaa\';
-              bbb: \'bb\';
-              yourself.
-            nsc add: class1 ].
+        strings := {\'aaa\'.
+        \'bbb\'.
+        \'\u00F0\u00A3\u008E\u008F\'.\t\"Vietnamese (quad byte)\"
+        \'monday\'.
+        \'fl\u00C3\u00BC\u00C3\u009Fe\'.\t\"German\"
+        \'\u00CE\u0094\u00CE\u00B5\u00CF\u0085\u00CF\u0084\u00CE\u00AD\u00CF\u0081\u00CE\u00B1\'.\t\"Greek (double byte)\"
+        \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\'\t\"Greek(double byte)\"} collect: [ :str | str asString ].
+        unicodeStrings := strings collect: [ :str | str asUnicodeString ].
+        nsc addAll: strings , unicodeStrings.
+        UserGlobals at: #\'greekColl\' put: (greekNsc := nsc copy).
+        collator := IcuCollator forLocaleNamed: \'el_GR\'.
         GsIndexSpec new
-          equalityIndex: \'each.aaa\' lastElementClass: \'aaa\' class;
-          equalityIndex: \'each.bbb\'lastElementClass: \'aaa\' class;
-          createIndexesOn: nsc ].
-    opts
-      at: \'boom\'
-      ifPresent: [ :ignored | 
-        | class2 nsc |
-        nsc := UserGlobals at: #\'coll\'.
-        class2 := (Smalltalk at: #\'Class2\') new
-          aaa: \'aa\';
-          yourself.
-        nsc add: class2 ] ]
+          equalityIndex: \'each\' lastElementClass: String;
+          createIndexesOn: nsc.
+        GsIndexSpec new
+          unicodeIndex: \'each\' collator: collator;
+          createIndexesOn: greekNsc.
+        {(nsc asArray
+          sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b ]).
+        (nsc sortAscending).
+        (greekNsc asArray
+          sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b collator: collator ]).
+        (greekNsc sortAscending).
+        nsc.
+        greekNsc} ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
         \'NAME
-  index - index sript utility template
+  bug - bug sript utility template
 SYNOPSIS
-  index [-h|--help]
+  bug [-h|--help]
+  bug [--clean] [--create]
 DESCRIPTION
 EXAMPLES
-  ./index --help
-  ./index --clean
-  ./index --create --boom
+  ./bug --help
+  ./bug --clean
+  ./bug --create --clean
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-29T07:15:40.49197888374329-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-29T20:17:08.52268290519714-08:00']}
