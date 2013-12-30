@@ -19,4 +19,10 @@ dkh 12/29/2013 17:59
 - implement #asString for Unicode classes to convert to native String instance.
 - make sure that Symbol, DoubleByteSymbol, and QuadByteSymbol instances fail
   comparison when using collator ... no Unicode symbols so this is the correct
-  behavior...also fail for any non-CharacterCollection classes ...',#runs:RunArray{#runs:[1175],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-29T17:59:43.17458510398865-08:00']}
+  behavior...also fail for any non-CharacterCollection classes ...
+
+dkh 12/30/2013 06:46
+------------------------------
+  #1 [99485953 sz:59  String] IcuSortedCollectionTestCase debug: #testUnorderedCollection
+
+',#runs:RunArray{#runs:[1320],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-30T06:47:11.09461808204651-08:00']}
