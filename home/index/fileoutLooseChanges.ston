@@ -4,6 +4,7 @@ gsTool := topez toolInstanceFor: \'gs\'.
 path := \'/export/foos2/users/dhenrich/3.0/j_gss64bit/image\'.
 classToFilenameMap := Dictionary new
   at: #\'AbstractBagEnumerator\' put: #(\'bagenumerator.gs\');
+  at: #\'AbstractCharacter\' put: #(\'abschar.gs\');
   at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
   at: #\'Array\' put: #(\'array2.gs\');
   at: #\'BagEnumerator\' put: #(\'bagenumerator.gs\');
@@ -121,4 +122,4 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-29T18:14:19.60279202461243-08:00']}
+      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2013-12-30T10:51:46.67536997795105-08:00']}

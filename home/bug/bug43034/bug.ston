@@ -9,21 +9,58 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | x y dbx dby xBytes yBytes |
-    xBytes := #[208 154 208 184 209 130 208 176 208 185].
-    x := (Utf8 withAll: xBytes) asUnicodeString.
-    dbx := String withAll: x.
-    yBytes := #[239 187 191 208 144 208 177 209 133 208 176 208 183 208 184 209 143].
-    y := (Utf8 withAll: yBytes) asUnicodeString.
-    dby := String withAll: y.
-    {(x < y).
-    (dbx < dby).
-    (x < dby).
-    (dbx < y).
-\t\tx = dbx.
-\t\ty = dby.
-    x.
-    y} ]
+    | unicodeString string btreeNode |
+    unicodeString := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.
+    string := String withAll: unicodeString.
+    btreeNode := BtreeNode new.
+    {(($a _idxBasicCanCompareWithClass: Character)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: $a withClass: Character)}).
+    ((DateTime now _idxBasicCanCompareWithClass: DateTime)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: DateTime now withClass: DateTime)}).
+    ((1.1 _idxBasicCanCompareWithClass: BinaryFloat)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: 1.1 withClass: BinaryFloat)}).
+    ((string _idxBasicCanCompareWithClass: Unicode7)
+      ->
+        {false.
+        (btreeNode _basicCanCompare: string withClass: Unicode7)}).
+    ((unicodeString _idxBasicCanCompareWithClass: Unicode7)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: unicodeString withClass: Unicode7)}).
+    ((string _idxBasicCanCompareWithClass: CharacterCollection)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: string withClass: CharacterCollection)}).
+    ((unicodeString _idxBasicCanCompareWithClass: CharacterCollection)
+      ->
+        {false.
+        (btreeNode
+          _basicCanCompare: unicodeString
+          withClass: CharacterCollection)}).
+    ((string _idxBasicCanCompareWithClass: string class)
+      ->
+        {true.
+        (btreeNode _basicCanCompare: string withClass: string class)}).
+    ((unicodeString _idxBasicCanCompareWithClass: string class)
+      ->
+        {false.
+        (btreeNode _basicCanCompare: unicodeString withClass: string class)}).
+    ((string _idxBasicCanCompareWithClass: unicodeString class)
+      ->
+        {false.
+        (btreeNode _basicCanCompare: string withClass: unicodeString class)}).
+    ((unicodeString _idxBasicCanCompareWithClass: unicodeString class)
+      ->
+        {true.
+        (btreeNode
+          _basicCanCompare: unicodeString
+          withClass: unicodeString class)})} ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -36,4 +73,4 @@ EXAMPLES
   ./bug --help
   ./bug -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T08:21:57.13248491287231-08:00'],#modificationTime:DateAndTime['2013-12-30T08:49:37.08804988861084-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T10:28:14.13504910469055-08:00'],#modificationTime:DateAndTime['2013-12-30T10:45:53.04944801330566-08:00']}

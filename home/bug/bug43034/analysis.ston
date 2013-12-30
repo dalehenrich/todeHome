@@ -63,4 +63,14 @@ Here are the same entries for equalityIndex (which sort \"correctly\"):
 dkh 12/29/2013 21:57
 --------
 String class>>withAll: is primitive 294 ... most likely need to convert unicode instances to native class instance for comparison and encrypting ... inverse of what was done to convert native class instances to unicode...
-',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,546,1,1069],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}],[@24,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T21:58:31.86088490486145-08:00']}
+
+dkh 12/30/2013 06:46
+------------------------------
+  #1 [99485953 sz:59  String] IcuSortedCollectionTestCase debug: #testUnorderedCollection
+
+dkh 12/29/2013 21:57
+--------
+need to go back to the version where I did the _idxForCompareUnicode* family of messages since we\'re going to coerce native strings to Unicode:
+  - 43601  P2  String/Unicode compare needs to coerce to Unicode
+
+',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,546,1,1453],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}],[@24,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:2900,#lastRun:14,#lastOffset:1452}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-30T11:11:51.97461199760437-08:00']}
