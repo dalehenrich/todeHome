@@ -19,7 +19,7 @@ comparisons...
 
 dkh 12/29/2013 20:22
 --------
-looks like the String instances are not being encoded correctly... (4th slot is zero):
+looks like the String instances are not being encoded correctly... (4th slot is zero) for Unicode indexes:
 
 1@           -> \'monday\'
 2@           -> \'monday\'
@@ -29,7 +29,7 @@ looks like the String instances are not being encoded correctly... (4th slot is 
 6@           -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
 7@           -> -432345564227567616
 8@           -> 0
-.......
+.......[Unicode instances...]
 49@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
 50@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
 51@          -> -274088112717811711
@@ -38,4 +38,25 @@ looks like the String instances are not being encoded correctly... (4th slot is 
 54@          -> \'monday\'
 55@          -> -414256114685159423
 56@          -> 12137595011072
-',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,759],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T20:26:59.91126489639282-08:00']}
+
+dkh 12/29/2013 21:43
+--------
+Here are the same entries for equalityIndex (which sort \"correctly\"):
+
+17@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+18@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+19@          -> -403515283267584000
+20@          -> 5497558138880
+21@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+22@          -> \'fl\u00C3\u00BC\u00C3\u009Fe\'
+23@          -> -288118224153674752
+24@          -> 6455342465024
+25@          -> \'monday\'
+26@          -> \'monday\'
+27@          -> -401542271844910848
+28@          -> 6597069766656
+29@          -> \'monday\'
+30@          -> \'monday\'
+31@          -> -401542271844910848
+32@          -> 6597069766656
+',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,546,1,816],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}],[@24,TextEmphasis{#emphasisCode:1,#setMode:true}],@23],#lastIndex:1470,#lastRun:14,#lastOffset:22}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-29T21:45:34.54983997344971-08:00']}
