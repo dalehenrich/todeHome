@@ -9,7 +9,7 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | unicodeString query greekCollator usCollator strings charCollectionSort collatorSort greekCollatorSort unicodeStrings nativeStrings mixedStrings analysis nativeSort |
+    | unicodeString query greekCollator usCollator strings charCollectionSort collatorSort greekCollatorSort unicodeStrings nativeStrings mixedStrings analysis nativeSort mixedSet|
     unicodeString := \'\u00CE\u009A\u00CF\u0085\u00CF\u0081\u00CE\u00B9\u00CE\u00B1\u00CE\u00BA\u00CE\u00AE\' asUnicodeString.
     query := \'each.unicodeField = string\'.
     greekCollator := IcuCollator forLocaleNamed: \'el_GR\'.
@@ -25,10 +25,11 @@ opts
     mixedStrings := strings , unicodeStrings.
     nativeStrings := mixedStrings collect: [ :str | str asString ].
     analysis := {}.
+\t\t\t\t\t\tmixedSet := mixedStrings asIdentitySet.
     [ 
     IcuCollator default: greekCollator.
     nativeSort := nativeStrings
-      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b  ].
+      sortWithBlock: [ :a :b | a _idxForCompareLessThanOrEqualTo: b ].
     charCollectionSort := mixedStrings
       sortWithBlock: [ :a :b | 
         | ans |
@@ -65,4 +66,4 @@ EXAMPLES
   ./compare --help
   ./compare -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T07:59:57.59434103965759-08:00'],#modificationTime:DateAndTime['2013-12-29T16:19:54.67120504379272-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-29T07:59:57.59434103965759-08:00'],#modificationTime:DateAndTime['2013-12-29T19:28:06.36038088798523-08:00']}

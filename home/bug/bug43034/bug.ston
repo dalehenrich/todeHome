@@ -1,43 +1,62 @@
 TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
 | opts args |
-\"for help: ./bug -h\"
+\"for help: ./index -h\"
 command
-  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'boom\' $b #\'none\').
+    #(\'clean\' $b #\'none\').
+    #(\'create\' $c #\'none\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-    | result |
-    result := {}.
-    {{\'abc\'.
-    \'def\'}}
-      do: [ :ar | 
-        | sample1 string1 unicode1 sample2 string2 unicode2 |
-\t\t\tsample1 := ar at: 1.
-        string1 := String withAll: sample1.
-        unicode1 := Unicode7 withAll: sample1.
-\t\t\tsample2 := ar at: 2.
-        string2 := String withAll: sample2.
-        unicode2 := Unicode7 withAll: sample2.
-        result
-          add:
-            {(string1 < string2).
-            (unicode1 < string2).
-            (string1 < unicode2).
-            (unicode1 < unicode2)} ].
-\t\tresult ]
+    opts
+      at: \'clean\'
+      ifPresent: [ :ignored | 
+        IndexManager
+          removeAllIncompleteIndexes;
+          removeAllIndexes.
+        UserGlobals removeKey: #\'coll\' ifAbsent: [  ] ].
+    opts
+      at: \'create\'
+      ifPresent: [ :ignored | 
+        | nsc |
+        UserGlobals at: #\'coll\' put: (nsc := IdentityBag new).
+        5
+          timesRepeat: [ 
+            | class1 |
+            class1 := (Smalltalk at: #\'Class1\') new
+              aaa: \'aaa\';
+              bbb: \'bb\';
+              yourself.
+            nsc add: class1 ].
+        GsIndexSpec new
+          equalityIndex: \'each.aaa\' lastElementClass: \'aaa\' class;
+          equalityIndex: \'each.bbb\'lastElementClass: \'aaa\' class;
+          createIndexesOn: nsc ].
+    opts
+      at: \'boom\'
+      ifPresent: [ :ignored | 
+        | class2 nsc |
+        nsc := UserGlobals at: #\'coll\'.
+        class2 := (Smalltalk at: #\'Class2\') new
+          aaa: \'aa\';
+          yourself.
+        nsc add: class2 ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
         \'NAME
-  bug - bug sript utility template
+  index - index sript utility template
 SYNOPSIS
-  bug [-h|--help]
+  index [-h|--help]
 DESCRIPTION
 EXAMPLES
-  ./bug --help
-  ./bug -h
+  ./index --help
+  ./index --clean
+  ./index --create --boom
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:44:01.98435711860657-08:00'],#modificationTime:DateAndTime['2013-12-24T07:50:16.80847811698914-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-29T07:15:40.49197888374329-08:00']}
