@@ -1,4 +1,14 @@
-TDTxtLeafNode{#name:'report',#contents:Text{#string:'43085  P3  Probably a bug that indexes can be create on same path with conflicting last element class
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'dkh 12/31/2013 07:35
+-------------------------
+fix bug 43805: Signal an error it there is an attempt to create an equality index on a path for which an equality index already exists with a different last element class
+
+Committed revision 32243.
+
+image/IndexManager.gs
+-------------------------
+-------------------------
+
+43085  P3  Probably a bug that indexes can be create on same path with conflicting last element class
 -------------------------
 One is allowed to (apparently) create two indexes with \"conflicting\" last element classes:
 
@@ -37,4 +47,4 @@ dkh 12/30/2013 16:32
 ---------------------
 Here\'s a sample error message:
 
-  a UserDefinedError occurred (error 2318), reason:halt, An \'equality\' index already exists on the path \'value\' for this collection.',#runs:RunArray{#runs:[101,27,1643],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-30T15:30:56.58214998245239-08:00'],#modificationTime:DateAndTime['2013-12-30T16:33:48.91450905799866-08:00']}
+  a UserDefinedError occurred (error 2318), reason:halt, An \'equality\' index already exists on the path \'value\' for this collection.',#runs:RunArray{#runs:[422,27,1643],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:219,#lastRun:1,#lastOffset:218}},#creationTime:DateAndTime['2013-12-31T07:43:02.31900000572205-08:00'],#modificationTime:@13}

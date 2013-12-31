@@ -57,4 +57,4 @@ EXAMPLES
   ./bug --clean --create --boom
   ./bug --clean --create --sort
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T15:32:21.07674503326416-08:00'],#modificationTime:DateAndTime['2013-12-30T16:13:45.77894592285156-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-31T07:43:02.31307697296143-08:00'],#modificationTime:@2}

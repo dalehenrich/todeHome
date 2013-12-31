@@ -1,0 +1,29 @@
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'dkh 12/31/2013 08:05
+----------------
+OptionalPathTerm has never been implemented/plugged in ... for starters ... secondly we need to be able to have a better message ...
+
+1. clean up error handling
+2. install OptionalPathTerm
+
+dkh 12/31/2013 08:14
+----------------
+UnorderedCollection>>_updateIndexesForAdditionOf:logging: is the likely source of the transaction error...
+
+dkh 12/31/2013 08:27
+----------------
+Mishandled return from PathTerm>>getMappingInfoFor:ifObject:atOffset:replaceWith:
+
+ 7. OffsetError(AbstractException)>>signal @2 line 47
+ 8. Array(Object)>>_error:args: @15 line 11
+ 9. Array(Object)>>_errorIndexOutOfRange: @2 line 6
+ 10. Array>>at: @4 line 12
+ 11. [] in IdentityBag(UnorderedCollection)>>_updateIndexesForAdditionOf:logging: @106 line 131
+
+which is signalling a LookupError because of the ivOffset problem ... which is the reason for this bug.
+
+dkh 12/31/2013 09:10
+----------------
+SetValuedPathTerm>>getMappingInfoFor:ifObject:atOffset:replaceWith: returns the incorrect Error array ... should be return two slot array with exception in second slot.
+
+UnorderedCollection>>_updateIndexesForAdditionOf:logging: should be signalling second slot...
+',#runs:RunArray{#runs:[1176],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-31T07:00:30.62931203842163-08:00'],#modificationTime:DateAndTime['2013-12-31T09:11:49.42438006401062-08:00']}

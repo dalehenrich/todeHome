@@ -34,8 +34,8 @@ opts
               yourself.
             nsc add: class1 ].
         GsIndexSpec new
-          equalityIndex: \'each.aaa\' lastElementClass: \'aaa\' class;
-          equalityIndex: \'each.bbb\'lastElementClass: \'aaa\' class;
+          unicodeIndex: \'each.aaa\';
+          unicodeIndex: \'each.bbb\';
           createIndexesOn: nsc ].
     opts
       at: \'boom\'
@@ -57,6 +57,6 @@ DESCRIPTION
 EXAMPLES
   ./bug --help
   ./bug --clean
-  ./bug --create --boom
+  ./bug --clean --create --boom
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-29T07:15:40.49197888374329-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-31T09:49:54.08104395866394-08:00']}

@@ -1,12 +1,12 @@
-TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
-  - 43601  P2  String/Unicode compare needs to coerce to Unicode
-    [validate Allen\'s fix using bug43034 sort/compare code]
-  - 43600  P3  QuadByteSymbol index support
-  - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'m_
+  - vacant
 
-m_
-  - 43085  P3  Probably a bug that indexes can be create on same path with conflicting last element class
-    [build with fix in progress....]
+j_
+  - 43605  P2  Incorrect handling of errors during IdxNewObjAddedToNsc()
+    [rebuild and smoke test]
+  - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
+  - 43601  P2  String/Unicode compare needs to coerce to Unicode
+    [validate Allen\'s fix using bug43034 sort/compare code when available]
 
 n_
   - 43576  P2  Added Character>>sameAs: why?
@@ -21,4 +21,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[372,1,266],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6],#lastIndex:129,#lastRun:1,#lastOffset:128}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-30T21:52:17.46756196022034-08:00']}
+',#runs:RunArray{#runs:[580],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:121,#lastRun:1,#lastOffset:120}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-31T10:21:23.11350703239441-08:00']}
