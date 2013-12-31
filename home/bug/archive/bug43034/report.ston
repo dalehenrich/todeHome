@@ -1,4 +1,30 @@
-TDTxtLeafNode{#name:'report',#contents:Text{#string:'We allow an equality index to contain a mixture of String and Unicode
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'dkh 12/30/2013 21:41
+------------------------------
+- fix bug43034: as concluded in bug 43601, must disallow addition of Unicode instances
+  to equality indexes whose lastElementClass is a CharactererCollection?. if you
+  want to index mixed Unicode/Native? collections then you must use a unicode indexes.
+- added GsIndexSpec?>>unicodeIndex:
+- implement #asString for Unicode classes to convert Unicode to native String instance.
+- make sure that Symbol, DoubleByteSymbol?, and QuadByteSymbol? instances fail
+  comparison when using collator (_idxFor*:collator:)... no Unicode symbols so this is the correct
+  behavior...also fail for any non-CharacterCollection? classes ...
+
+Committed revision 32241.
+
+image/abschar.gs
+image/btreenode.gs
+image/charcoll.gs
+image/doublebytesymbol.gs
+image/icu.gs
+image/idxquerymethods.gs
+image/number.gs
+image/object.gs
+image/quadbytesymbol.gs
+image/symbol.gs
+------------------------------
+------------------------------
+------------------------------
+We allow an equality index to contain a mixture of String and Unicode
 objects, which can lead to failed lookups in the Btree
 for an equality index. Specifically the < and > methods may produce
 different results for a String, Unicode7 pair depending on which
@@ -34,4 +60,4 @@ dkh 12/30/2013 12:23
 Removed all of the added _idxFor* methods in Unicode classes ... bugfix for 
 43601 should make the standard _idxFor* CharacterCollection methods work ...
 
-',#runs:RunArray{#runs:[1718],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:1641,#lastRun:1,#lastOffset:1640}},#creationTime:DateAndTime['2013-12-24T07:42:36.19235610961914-08:00'],#modificationTime:DateAndTime['2013-12-30T12:24:04.0611469745636-08:00']}
+',#runs:RunArray{#runs:[2706],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-30T21:52:49.41896104812622-08:00'],#modificationTime:@9}

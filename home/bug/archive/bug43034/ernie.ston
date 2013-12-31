@@ -32,4 +32,4 @@ EXAMPLES
   ./ernie IXQueryUnicodeTestCase testLessThanIndexedQuery
   ./ernie -c IXQueryUnicodeTestCase
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T17:17:24.06852006912231-08:00'],#modificationTime:DateAndTime['2013-12-30T17:22:35.87812304496765-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T21:52:49.40718102455139-08:00'],#modificationTime:@2}

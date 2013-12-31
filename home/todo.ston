@@ -1,17 +1,6 @@
 TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
-  - 43034  P2  Unicode strings may cause Index problems in 3.1.x
-    as concluded in bug 43601, must disallow addition of Unicode instances
-    to equality indexes ... mixed Unicode collections must use unicode indexes
-    [....loading ernie...]
-    [....waiting for 43601 bugfix from Allen ...]
-    [....verified error when adding Unicode strings to equality index ...]
-    - added GsIndexSpec>>unicodeIndex:
-    - implement #asString for Unicode classes to convert to native String instance.
-    - make sure that Symbol, DoubleByteSymbol, and QuadByteSymbol instances fail
-      comparison when using collator ... no Unicode symbols so this is the correct
-      behavior...also fail for any non-CharacterCollection classes ...
-    - _idxFor*:collator: methods reworked
   - 43601  P2  String/Unicode compare needs to coerce to Unicode
+    [validate Allen\'s fix using bug43034 sort/compare code]
   - 43600  P3  QuadByteSymbol index support
   - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
 
@@ -32,4 +21,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[1083,1,266],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6],#lastIndex:250,#lastRun:1,#lastOffset:249}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-30T17:11:10.25075888633728-08:00']}
+',#runs:RunArray{#runs:[372,1,266],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6],#lastIndex:129,#lastRun:1,#lastOffset:128}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-30T21:52:17.46756196022034-08:00']}
