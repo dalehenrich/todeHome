@@ -73,4 +73,13 @@ dkh 12/29/2013 21:57
 need to go back to the version where I did the _idxForCompareUnicode* family of messages since we\'re going to coerce native strings to Unicode:
   - 43601  P2  String/Unicode compare needs to coerce to Unicode
 
-',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,546,1,1453],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}],[@24,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:2900,#lastRun:14,#lastOffset:1452}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-30T11:11:51.97461199760437-08:00']}
+dkh 12/30/2013 16:16
+--------
+[ernie0]
+[105142017 sz:1  Array]  a Array
+  #1 [105142785 sz:55  String] IXQueryUnicodeTestCase debug: #testLessThanIndexedQuery
+ERROR: WRONG VALUE
+
+dkh 12/30/2013 17:56
+--------
+Turns out that I was too aggressive removing some of the _idxFor*:collator: methods, namely the implementations in UndefinedObject are REQUIRED.',#runs:RunArray{#runs:[258,20,306,20,1,9,144,21,1,9,111,546,1,1483,1,322],#values:[[],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}],@10,[TextColor{#color:@13}],[],[TextColor{#color:Color{#rgb:0}}],@16,[TextColor{#color:@19}],[],[TextColor{#color:Color{#rgb:0}}],[@24,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@29,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:43:47.41688990592957-08:00'],#modificationTime:DateAndTime['2013-12-30T17:57:28.21096611022949-08:00']}

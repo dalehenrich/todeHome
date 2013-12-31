@@ -1,0 +1,35 @@
+TDScriptLeafNode{#name:'ernie',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./ernie -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\').
+\t#(\'class\' $c #\'none\').
+\t}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [| ernieArgs|
+\t\topts at: \'class\' ifPresent: [:ignored | ernieArgs := (args at: 1)]
+\t\tifAbsent: [  
+    ernieArgs := (args at: 1), \' \', (args at: 2)] .
+\t\ttopez
+      evaluateCommandString:
+        \'/home/ernie/debug \', ernieArgs]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  ernie - ernie sript utility template
+SYNOPSIS
+  ernie [-h|--help] <test-class-name> <test-selector>
+  ernie -c|--class <test-class-name>
+DESCRIPTION
+EXAMPLES
+  ./ernie --help
+  ./ernie -h
+  ./ernie IXQueryUnicodeTestCase testLessThanIndexedQuery
+  ./ernie -c IXQueryUnicodeTestCase
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T17:17:24.06852006912231-08:00'],#modificationTime:DateAndTime['2013-12-30T17:22:35.87812304496765-08:00']}

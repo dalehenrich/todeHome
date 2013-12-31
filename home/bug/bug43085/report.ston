@@ -1,0 +1,40 @@
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'43085  P3  Probably a bug that indexes can be create on same path with conflicting last element class
+-------------------------
+One is allowed to (apparently) create two indexes with \"conflicting\" last element classes:
+
+| nsc |
+nsc := Set new.
+nsc
+createEqualityIndexOn: \'value\' withLastElementClass: Float;
+createEqualityIndexOn: \'value\' withLastElementClass: String;
+yourself.
+
+And when the following is attempted:
+
+nsc
+add: \'1\' -> 1.1;
+add: \'2\' -> \'hello\'
+
+An error:
+
+a ArgumentTypeError occurred (error 2719), reason:rtErrRangeEqualityIndexInvalidClassKindForBtree,
+invalid kind for btree in path terms, \'2\'->\'hello\'
+
+is signalled ... yet this condition should be detected when the attempt to create the second index is made ... in the end for basic last element classes there is a formula that is used to signal the ArgumentTypeError that is class based (see BtreeBasicLeafNode>>_canCompare:withClass:).
+
+If non-basic classes (see RangeEqualityIndex class>>isBasicClass: for definition of base classes) are involved no argument type error is thrown ... so the following index creation should still be allowed:
+
+| nsc |
+nsc := Set new.
+nsc
+createEqualityIndexOn: \'\' withLastElementClass: Association;
+createEqualityIndexOn: \'\' withLastElementClass: DateAndTime;
+yourself.
+
+of course, comparisons must be successfully made between instances of the two classes ... in this particular case, you will get comparison errors, but if the appropriate _idx* methods had been defined in the two classes, the comparisons would be successful and index creation is valid.
+
+dkh 12/30/2013 16:32
+---------------------
+Here\'s a sample error message:
+
+  a UserDefinedError occurred (error 2318), reason:halt, An \'equality\' index already exists on the path \'value\' for this collection.',#runs:RunArray{#runs:[101,27,1643],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-30T15:30:56.58214998245239-08:00'],#modificationTime:DateAndTime['2013-12-30T16:33:48.91450905799866-08:00']}

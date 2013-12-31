@@ -27,7 +27,11 @@ opts
     (stoneName beginsWith: \'k_\')
       ifTrue: [ netldiName := \'k_gs64ldi\' ].
     (stoneName beginsWith: \'l_\')
-      ifTrue: [ netldiName := \'l_gs64ldi\' ] ]
+      ifTrue: [ netldiName := \'l_gs64ldi\' ].
+    (stoneName beginsWith: \'m_\')
+      ifTrue: [ netldiName := \'m_gs64ldi\' ].
+    (stoneName beginsWith: \'n_\')
+      ifTrue: [ netldiName := \'n_gs64ldi\' ] ]
   ifPresent: [ :optValue | netldiName := optValue ].
 verbose
   ifTrue: [ 
@@ -136,6 +140,7 @@ DESCRIPTION
 EXAMPLES
 
   ./installTestQueryOptions
+  ./installTestQueryOptions --netldi=l_gs64ldi --noRestrictedClasses
   ./installTestQueryOptions --noRestrictedClasses
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.20399689674377-08:00'],#modificationTime:DateAndTime['2013-12-20T10:58:30.79373788833618-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-06T17:30:31.20399689674377-08:00'],#modificationTime:DateAndTime['2013-12-30T16:09:33.71586298942566-08:00']}
