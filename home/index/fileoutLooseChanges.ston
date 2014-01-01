@@ -2,14 +2,16 @@ TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens 
 | opts args |
 \"for help: ./fileoutLooseChanges -h\"
 command
-  getOptsMixedLongShort: {#(\'help\' $h #\'none\').#(\'path\' $p #\'required\')}
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'path\' $p #\'required\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-    | gsTool path classToFilenameMap externalMethodMap current packages looseChanges |
+    | gsTool path classToFilenameMap externalMethodMap looseChanges |
     gsTool := topez toolInstanceFor: \'gs\'.
     path := opts
       at: \'path\'
@@ -18,9 +20,6 @@ opts
     classToFilenameMap := topez
       evaluateCommandString: \'/home/index/classToFilenameMap\'.
     externalMethodMap := Dictionary new.
-    current := GsPackagePolicy current.
-    packages := {}.
-    current packages_Do: [ :pkg | packages add: pkg ].
     looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
     looseChanges
       do: [ :ar | 
@@ -57,4 +56,4 @@ EXAMPLES
   ./fileoutLooseChanges --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/fast50/gs/product/image
   ./fileoutLooseChanges
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T13:18:56.87730407714844-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T13:26:18.51121211051941-08:00']}
