@@ -2,31 +2,70 @@ TDScriptLeafNode{#name:'generateClassToFilenameMap',#contents:'[ :topez :objIn :
 | opts args |
 \"for help: ./generateClassToFilenameMap -h\"
 command
-  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'create\' $c #\'required\').
+    #(\'flush\' $f #\'none\').
+    #(\'path\' $p #\'required\')}
   optionsAndArguments: [ :options :operands | 
     opts := options.
     args := operands ].
 opts
   at: \'help\'
   ifAbsent: [ 
-    | path string stream line map|
+    | path string stream line map code |
+    path := opts
+      at: \'path\'
+      ifPresent: [ :optVal | optVal ]
+      ifAbsent: [ (System gemEnvironmentVariable: \'GEMSTONE\') , \'/image\' ].
+    path := opts
+      at: \'flush\'
+      ifPresent: [ :ignored | UserGlobals removeKey: #\'filenameMap\' ifAbsent: [  ] ].
     string := UserGlobals
       at: #\'filenameMap\'
       ifAbsent: [ 
-        path := \'/export/foos2/users/dhenrich/3.0/j_gss64bit/image\'.
         string := System
           performOnServer: \'grep \"^method\\:\\|^classmethod\\:\" \' , path , \'/*.gs\'.
         UserGlobals at: #\'filenameMap\' put: string ].
     stream := ReadStream on: string.
-\t\tmap := Dictionary new.
-    [ stream atEnd ] whileFalse: [ | parts files|line := stream nextLine.
-\t\t\tparts := line findTokens: \':\'.
-\t\t\tparts size = 3 ifTrue: [| className fileName|
-\t\t\t\tclassName := (parts at: 3) trimBoth.
-\t\t\t\tfileName := ((parts at:1) findTokens: \'/\') last.
-\t\t\t\tfiles := map at: className ifAbsent: [map at: className put: Set new].
-\t\t\t\t files add: fileName]].
-    map ]
+    map := Dictionary new.
+    [ stream atEnd ]
+      whileFalse: [ 
+        | parts files |
+        line := stream nextLine.
+        parts := line findTokens: \':\'.
+        parts size = 3
+          ifTrue: [ 
+            | className fileName |
+            className := (parts at: 3) trimBoth.
+            fileName := ((parts at: 1) findTokens: \'/\') last.
+            files := map
+              at: className
+              ifAbsent: [ map at: className put: Set new ].
+            files add: fileName ] ].
+    code := WriteStream on: String new.
+    code
+      nextPutAll: \'Dictionary new\';
+      cr.
+    map
+      keysAndValuesDo: [ :className :fileArray | 
+        code
+          tab;
+          nextPutAll: \'at: \' , className asSymbol printString , \' put: #(\'.
+        fileArray
+          do: [ :filename | 
+            code
+              nextPutAll: filename printString;
+              space ].
+        code
+          nextPutAll: \');\';
+          cr ].
+    code
+      tab;
+      nextPutAll: \'yourself\';
+      cr.
+    opts at: \'create\' ifPresent: [ :nodeName |  ].
+    {map . code}]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -34,9 +73,12 @@ opts
   generateClassToFilenameMap - generateClassToFilenameMap sript utility template
 SYNOPSIS
   generateClassToFilenameMap [-h|--help]
+  generateClassToFilenameMap [-f|--flush][--create=<st-node-name>] \\
+\t\t                      [--path=<image-directory>]
 DESCRIPTION
 EXAMPLES
   ./generateClassToFilenameMap --help
-  ./generateClassToFilenameMap -h
+  ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/fast50/gs/product/image
+  ./generateClassToFilenameMap --create=classToFilenameMap
 \'
-      topez: topez ] ] ',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T12:33:51.12744688987732-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T12:58:42.43410396575928-08:00']}
