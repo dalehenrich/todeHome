@@ -16,7 +16,7 @@ opts
     path := opts
       at: \'path\'
       ifPresent: [ :optVal | optVal ]
-      ifAbsent: [ (System gemEnvironmentVariable: \'GEMSTONE\') , \'/image\' ].
+      ifAbsent: [ self error: \'must specify --path\' ].
     classToFilenameMap := topez
       evaluateCommandString: \'/home/index/classToFilenameMap\'.
     externalMethodMap := Dictionary new.
@@ -49,11 +49,10 @@ opts
         \'NAME
   fileoutLooseChanges - fileoutLooseChanges sript utility template
 SYNOPSIS
-  fileoutLooseChanges [-h|--help][--path=<image-directory>]
+  fileoutLooseChanges [-h|--help]--path=<image-directory>
 DESCRIPTION
 EXAMPLES
   ./fileoutLooseChanges --help
-  ./fileoutLooseChanges --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/fast50/gs/product/image
-  ./fileoutLooseChanges
+  ./fileoutLooseChanges --path=/export/foos2/users/dhenrich/3.0/j_gss64bit/image
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T13:26:18.51121211051941-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T15:14:36.99814510345459-08:00']}

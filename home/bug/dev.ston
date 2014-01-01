@@ -1,5 +1,5 @@
 TDScriptLeafNode{#name:'dev',#contents:'[ :topez :objIn :tokens :command | 
-| opts args stoneNRS netldiName expression verbose |
+| opts args stoneNRS netldiName expression verbose codeGenBlock |
 \"for help: ./dev -h\"
 command
   getOptsMixedLongShort:
@@ -23,28 +23,35 @@ verbose
     Transcript
       cr;
       show: \'netldi=\' , netldiName printString ].
+codeGenBlock := [ :className :list :selectorString | 
+| stream |
+stream := WriteStream on: String new.
+stream
+  nextPutAll: className;
+  cr.
+list
+  do: [ :item | 
+    stream
+      tab;
+      nextPutAll: \' \' , selectorString , \' \' , item asSymbol printString , \';\';
+      cr ].
+stream
+  nextPutAll: \'yourself.\';
+  cr;
+  nextPutAll: \'System commit\';
+  cr;
+  yourself.
+stream ].
 opts
   at: \'remove\'
   ifPresent: [ :optValue | 
     | className selectors stream |
     className := args at: 1.
     selectors := args copyFrom: 2 to: args size.
-    stream := WriteStream on: String new.
-    stream
-      nextPutAll: className;
-      cr.
-    selectors
-      do: [ :sel | 
-        stream
-          tab;
-          nextPutAll: \' removeSelector: \' , sel asSymbol printString , \';\';
-          cr ].
-    stream
-      nextPutAll: \'yourself.\';
-      cr;
-      nextPutAll: \'System commit\';
-      cr;
-      yourself.
+    stream := codeGenBlock
+      value: className
+      value: selectors
+      value: \'removeSelector:\'.
     expression := stream contents ].
 opts
   at: \'prep\'
@@ -111,4 +118,4 @@ EXAMPLES
   ./dev --prep
   ./dev --remove IndexManager _createIndex:for:on:withLastElementClass:
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T07:11:28.36541199684143-08:00'],#modificationTime:DateAndTime['2014-01-01T08:22:20.98886895179749-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T07:11:28.36541199684143-08:00'],#modificationTime:DateAndTime['2014-01-01T15:18:49.02040696144104-08:00']}

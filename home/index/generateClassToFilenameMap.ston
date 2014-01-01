@@ -17,7 +17,7 @@ opts
     path := opts
       at: \'path\'
       ifPresent: [ :optVal | optVal ]
-      ifAbsent: [ (System gemEnvironmentVariable: \'GEMSTONE\') , \'/image\' ].
+      ifAbsent: [self errror: \'must specify path\'].
     path := opts
       at: \'flush\'
       ifPresent: [ :ignored | UserGlobals removeKey: #\'filenameMap\' ifAbsent: [  ] ].
@@ -87,11 +87,11 @@ opts
 SYNOPSIS
   generateClassToFilenameMap [-h|--help]
   generateClassToFilenameMap [-f|--flush][--create=<st-node-name>] \\
-\t\t                      [--path=<image-directory>]
+\t\t                      --path=<image-directory>
 DESCRIPTION
 EXAMPLES
   ./generateClassToFilenameMap --help
-  ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/fast50/gs/product/image
-  ./generateClassToFilenameMap --create=classToFilenameMap
+  ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/image
+  ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/image --create=classToFilenameMap
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T13:14:49.23615503311157-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T15:20:08.05095291137695-08:00']}
