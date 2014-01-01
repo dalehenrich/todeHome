@@ -1,0 +1,42 @@
+TDScriptLeafNode{#name:'generateClassToFilenameMap',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./generateClassToFilenameMap -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | path string stream line map|
+    string := UserGlobals
+      at: #\'filenameMap\'
+      ifAbsent: [ 
+        path := \'/export/foos2/users/dhenrich/3.0/j_gss64bit/image\'.
+        string := System
+          performOnServer: \'grep \"^method\\:\\|^classmethod\\:\" \' , path , \'/*.gs\'.
+        UserGlobals at: #\'filenameMap\' put: string ].
+    stream := ReadStream on: string.
+\t\tmap := Dictionary new.
+    [ stream atEnd ] whileFalse: [ | parts files|line := stream nextLine.
+\t\t\tparts := line findTokens: \':\'.
+\t\t\tparts size = 3 ifTrue: [| className fileName|
+\t\t\t\tclassName := (parts at: 3) trimBoth.
+\t\t\t\tfileName := ((parts at:1) findTokens: \'/\') last.
+\t\t\t\tfiles := map at: className ifAbsent: [map at: className put: Set new].
+\t\t\t\t files add: fileName]].
+    map ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  generateClassToFilenameMap - generateClassToFilenameMap sript utility template
+SYNOPSIS
+  generateClassToFilenameMap [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./generateClassToFilenameMap --help
+  ./generateClassToFilenameMap -h
+\'
+      topez: topez ] ] ',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T12:33:51.12744688987732-08:00']}

@@ -1,103 +1,18 @@
 TDScriptLeafNode{#name:'fileoutLooseChanges',#contents:'[ :topez :objIn :tokens :command | 
-| gsTool path classToFilenameMap externalMethodMap current packages looseChanges |
+| opts args |
+\"for help: ./fileoutLooseChanges -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [| gsTool path classToFilenameMap externalMethodMap current packages looseChanges |
 gsTool := topez toolInstanceFor: \'gs\'.
 path := \'/export/foos2/users/dhenrich/3.0/j_gss64bit/image\'.
-classToFilenameMap := Dictionary new
-  at: #\'AbstractBagEnumerator\' put: #(\'bagenumerator.gs\');
-  at: #\'AbstractCharacter\' put: #(\'abschar.gs\');
-  at: #\'AbstractIndexSpecification\' put: #(\'abstractindexspec.gs\');
-  at: #\'Array\' put: #(\'array2.gs\');
-  at: #\'BagEnumerator\' put: #(\'bagenumerator.gs\');
-  at: #\'BagUnicodeEnumerator\' put: #(\'bagenumerator.gs\');
-  at: #\'BinaryFloat\' put: #(\'binfloat.gs\');
-  at: #\'BtreeBasicLeafNode\' put: #(\'btreebasicleaf.gs\');
-  at: #\'BtreeComparisonForCompare\' put: #(\'btreecompforcompare.gs\');
-  at: #\'BtreeComparisonForSort\' put: #(\'btreecompforsort.gs\');
-  at: #\'BtreeComparisonQuerySpec\' put: #(\'btreecompquery.gs\');
-  at: #\'BtreeInteriorNode\' put: #(\'btreeinterior.gs\');
-  at: #\'BtreeLeafNode\' put: #(\'btreeleaf.gs\');
-  at: #\'BtreeNode\' put: #(\'btreenode.gs\');
-  at: #\'BtreeRangeComparisonQuerySpec\' put: #(\'btreerangecompquery.gs\');
-  at: #\'BtreeReadStream\' put: #(\'btreereadstr.gs\');
-  at: #\'BtreeUnicodeComparisonQuerySpec\' put: #(\'btreeunicodecompquery.gs\');
-  at: #\'BtreeUnicodeRangeComparisonQuerySpec\'
-    put: #(\'btreeunicodecompquery.gs\');
-  at: #\'CharacterCollection\' put: #(\'charcoll.gs\');
-  at: #\'ClassOrganizer\' put: #(\'classorganizer.gs\');
-  at: #\'CollectionBasedPathEvaluator\' put: #(\'idxquerymethods.gs\');
-  at: #\'CollectionBasedPathTerm\' put: #(\'collbasedpathterm.gs\');
-  at: #\'DependencyList\' put: #(\'dependencylist.gs\');
-  at: #\'DoubleByteSymbol\' put: #(\'doublebytesymbol.gs\');
-  at: #\'EnumeratedPathEvaluator\' put: #(\'idxquerymethods.gs\');
-  at: #\'EnumeratedPathTerm\' put: #(\'enumeratedpathterm.gs\');
-  at: #\'EqualityIndexQueryEvaluator\' put: #(\'equalityquery.gs\');
-  at: #\'EqualityIndexSpecification\' put: #(\'equalityindexspec.gs\');
-  at: #\'Gs32DisjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'Gs32Optimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsAbstractQueryOptimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsAbstractQueryPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsAbstractReferenceAssociation\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsClassicQueryBlockOptimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsClassicConjunctiveClauseOptimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsClauseOptimizer\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsCompoundClause\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsConstantConstantPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsConstantPathPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsConstantReferenceAssociation\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsIndexOptions\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsIndexSpec\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsOptions\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsPathConstantPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsPathPathPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsPackage\' put: #(\'gspackage.gs\');
-  at: #\'GsQuery\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryFormula\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryFormulaVisitor\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryGrammar\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryLiteral\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryLiteralArray\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryLiteralValue\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryOptions\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryParser\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryPathReferenceAssociation\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsQueryPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsRangeQueryPredicate\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsUnaryClause\' put: #(\'idxquerymethods.gs\');
-  at: #\'GsVariableReferenceAssociation\' put: #(\'idxquerymethods.gs\');
-  at: #\'IdentityIndex\' put: #(\'identityindex.gs\');
-  at: #\'IdentityIndexQueryEvaluator\' put: #(\'identityquery.gs\');
-  at: #\'IdentityIndexSpecification\' put: #(\'identityindexspec.gs\');
-  at: #\'IndexedQueryEvaluator\' put: #(\'indexquery.gs\');
-  at: #\'IndexList\' put: #(\'indexlist.gs\');
-  at: #\'IndexManager\' put: #(\'IndexManager.gs\');
-  at: #\'Integer\' put: #(\'integer2.gs\');
-  at: #\'Number\' put: #(\'number.gs\');
-  at: #\'Object\' put: #(\'object.gs\');
-  at: #\'OptionalPathTerm\' put: #(\'optionalpathterm.gs\');
-  at: #\'OptionalTermPathEvaluator\' put: #(\'idxquerymethods.gs\');
-  at: #\'PathEvaluator\' put: #(\'pathevaluator.gs\');
-  at: #\'PathTerm\' put: #(\'pathterm.gs\');
-  at: #\'QuadByteSymbol\' put: #(\'quadbytesymbol.gs\');
-  at: #\'QueryExecuter\' put: #(\'queryexecuter.gs\');
-  at: #\'RangeEqualityIndex\' put: #(\'rangeindex.gs\');
-  at: #\'RangeIndexReadStream\' put: #(\'rangeindexreadstr.gs\');
-  at: #\'RcRangeEqualityIndex\' put: #(\'rcrangeindex.gs\');
-  at: #\'RcEqualityIndexSpecification\' put: #(\'rcequalityindexspec.gs\');
-  at: #\'RcUnicodeIndexSpecification\' put: #(\'idxquerymethods.gs\');
-  at: #\'RcUnicodeRangeEqualityIndex\' put: #(\'rcunicoderangeindex.gs\');
-  at: #\'SelectorPathEvaluator\' put: #(\'idxquerymethods.gs\');
-  at: #\'SelectorPathTerm\' put: #(\'selectorpathterm.gs\');
-  at: #\'SetValuedPathEvaluator\' put: #(\'setpatheval.gs\');
-  at: #\'SetValuedPathTerm\' put: #(\'setpathterm.gs\');
-  at: #\'Symbol\' put: #(\'symbol.gs\');
-  at: #\'UndefinedObject\' put: #(\'undefin.gs\');
-  at: #\'Unicode16\' put: #(\'icu.gs\');
-  at: #\'Unicode32\' put: #(\'icu.gs\');
-  at: #\'Unicode7\' put: #(\'icu.gs\');
-  at: #\'UnicodeIndexSpecification\' put: #(\'idxquerymethods.gs\');
-  at: #\'UnicodeRangeEqualityIndex\' put: #(\'unicoderangeindex.gs\');
-  at: #\'UnorderedCollection\' put: #(\'unorderedcoll.gs\' \'unorderedcoll3.gs\');
-  yourself.
+classToFilenameMap := topez
+  evaluateCommandString: \'/home/index/classToFilenameMap\'.
 externalMethodMap := Dictionary new.
 current := GsPackagePolicy current.
 packages := {}.
@@ -124,4 +39,17 @@ gsTool
 !=========================================================================
 
 \'
-      withGemstoneLineEndings ]',#creationTime:DateAndTime['2013-12-06T17:30:31.12526488304138-08:00'],#modificationTime:DateAndTime['2014-01-01T10:38:35.0347580909729-08:00']}
+      withGemstoneLineEndings]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  fileoutLooseChanges - fileoutLooseChanges sript utility template
+SYNOPSIS
+  fileoutLooseChanges [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./fileoutLooseChanges --help
+  ./fileoutLooseChanges -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T12:13:08.82836103439331-08:00']}
