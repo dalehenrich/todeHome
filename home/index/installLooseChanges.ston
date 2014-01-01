@@ -1,7 +1,8 @@
 TDScriptLeafNode{#name:'installLooseChanges',#contents:'[ :topez :objIn :tokens :windowId | 
-| looseChanges systemUser gemNRS stoneNRS |
+| looseChanges systemUser gemNRS stoneNRS netldiName|
+\tnetldiName := System gemEnvironmentVariable: \'gs64ldi\'.
 looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
-gemNRS := GsNetworkResourceString gemNRSForNetLDI: \'58054\' onHost: \'foos\'.
+gemNRS := GsNetworkResourceString gemNRSForNetLDI: netldiName onHost: \'foos\'.
 stoneNRS := GsNetworkResourceString defaultStoneNRSFromCurrent.
 systemUser := GsExternalSession
   gemNRS: gemNRS
@@ -25,4 +26,4 @@ looseChanges
     (systemUser executeString: \'System commitTransaction\')
       ifFalse: [ nil error: \'expected true\' ] ] ]
   ensure: [ systemUser ifNotNil: [ systemUser logout ] ].
-true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2013-12-21T07:07:06.79133200645447-08:00']}
+true ]',#creationTime:DateAndTime['2013-12-06T17:30:31.18297600746155-08:00'],#modificationTime:DateAndTime['2014-01-01T10:41:52.6402370929718-08:00']}

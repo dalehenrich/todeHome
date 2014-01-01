@@ -1,0 +1,114 @@
+TDScriptLeafNode{#name:'dev',#contents:'[ :topez :objIn :tokens :command | 
+| opts args stoneNRS netldiName expression verbose |
+\"for help: ./dev -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'netldi\' nil #\'required\').
+    #(\'prep\' $p #\'none\').
+    #(\'remove\' $r #\'none\').
+    #(\'verbose\' $v #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+stoneNRS := GsNetworkResourceString defaultStoneNRSFromCurrent.
+netldiName := System gemEnvironmentVariable: \'gs64ldi\'.
+opts
+  at: \'verbose\'
+  ifAbsent: [ verbose := false ]
+  ifPresent: [ :ignored | verbose := true ].
+opts at: \'netldi\' ifPresent: [ :optValue | netldiName := optValue ].
+verbose
+  ifTrue: [ 
+    Transcript
+      cr;
+      show: \'netldi=\' , netldiName printString ].
+opts
+  at: \'remove\'
+  ifPresent: [ :optValue | 
+    | className selectors stream |
+    className := args at: 1.
+    selectors := args copyFrom: 2 to: args size.
+    stream := WriteStream on: String new.
+    stream
+      nextPutAll: className;
+      cr.
+    selectors
+      do: [ :sel | 
+        stream
+          tab;
+          nextPutAll: \' removeSelector: \' , sel asSymbol printString , \';\';
+          cr ].
+    stream
+      nextPutAll: \'yourself.\';
+      cr;
+      nextPutAll: \'System commit\';
+      cr;
+      yourself.
+    expression := stream contents ].
+opts
+  at: \'prep\'
+  ifPresent: [ :optValue | 
+    expression := \'| cls index set |
+cls := GsPackagePolicy.
+index := cls class allInstVarNames indexOfIdentical: #\'\'restrictedClasses\'\'.
+set := cls instVarAt: index.
+set removeAll: set.
+System commit\' ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | systemUser gemNRS |
+    expression
+      ifNil: [ 
+        Transcript
+          cr;
+          show: \'Nothing to do!\' ]
+      ifNotNil: [ 
+        verbose
+          ifTrue: [ 
+            Transcript
+              cr;
+              show: \'expression=\' , expression printString ].
+        gemNRS := GsNetworkResourceString new
+          protocol: \'tcp\';
+          node: \'foos\';
+          netldi: netldiName;
+          resource: \'task\';
+          body: \'gemnetobject\';
+          yourself.
+        systemUser := GsExternalSession new
+          stoneNRS: stoneNRS;
+          gemNRS: gemNRS;
+          username: \'SystemUser\';
+          password: \'swordfish\';
+          yourself.
+        [ 
+        systemUser login.
+        systemUser executeString: expression ]
+          ensure: [ systemUser ifNotNil: [ systemUser logout ] ] ] ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  dev - dev sript utility template
+SYNOPSIS
+  dev [-h|--help][--netldi=<netldi-name>][-v|--verbose]
+  dev --prep
+  dev --remove <class-name> <selector>...
+
+DESCRIPTION
+  Perform operations against SystemUser using external session.
+
+  With --remove option, remove the <selector> from the given <class-name>,
+\t\t
+  With --prep option, the restricted classes set for session
+  methods is cleared, allowing free editting of all methods and classes
+  in the system.
+
+EXAMPLES
+  ./dev --help
+  ./dev --prep
+  ./dev --remove IndexManager _createIndex:for:on:withLastElementClass:
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T07:11:28.36541199684143-08:00'],#modificationTime:DateAndTime['2014-01-01T08:22:20.98886895179749-08:00']}

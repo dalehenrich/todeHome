@@ -40,12 +40,14 @@ opts
     opts
       at: \'boom\'
       ifPresent: [ :ignored | 
-        | class2 nsc |
+        | class2 nsc audit|
         nsc := UserGlobals at: #\'coll\'.
         class2 := (Smalltalk at: #\'Class2\') new
           aaa: \'aa\';
           yourself.
-        nsc add: class2 ] ]
+        nsc add: class2.
+\t\t\taudit := nsc auditIndexes .
+\t\t\taudit= \'Indexes are OK\' ifFalse: [self error: \'failed audit\'] ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -59,4 +61,4 @@ EXAMPLES
   ./bug --clean
   ./bug --clean --create --boom
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2013-12-31T09:49:54.08104395866394-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2014-01-01T07:49:20.14406609535217-08:00']}

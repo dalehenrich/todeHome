@@ -1,18 +1,16 @@
-TDTxtLeafNode{#name:'todo',#contents:Text{#string:'m_
-  - vacant
-
-j_
-  - 43605  P2  Incorrect handling of errors during IdxNewObjAddedToNsc()
-    [rebuild and smoke test]
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
   - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
   - 43601  P2  String/Unicode compare needs to coerce to Unicode
     [validate Allen\'s fix using bug43034 sort/compare code when available]
 
-n_
+l_
   - 43576  P2  Added Character>>sameAs: why?
 
-l_
+m_
   - vacant
+
+n_
+ - vacant
 
 k_
   - checkpoint for old index unit test status ...
@@ -21,4 +19,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[580],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:121,#lastRun:1,#lastOffset:120}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2013-12-31T10:21:23.11350703239441-08:00']}
+',#runs:RunArray{#runs:[477],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:79,#lastRun:1,#lastOffset:78}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-01T07:05:47.06030797958374-08:00']}

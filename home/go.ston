@@ -20,7 +20,7 @@ opts
         nrs := GsNetworkResourceString defaultStoneNRSFromCurrent.
         stoneName := nrs body.
         stoneId := stoneName copyFrom: 1 to: 1.
-        goPath := \'/home/go_\' , stoneId ].
+        goPath := \'/home/bug/go_\' , stoneId ].
     topez evaluateCommandString: goPath ]
   ifPresent: [ :ignored | 
     TDManPage
@@ -38,4 +38,4 @@ EXAMPLES
   ./go --path=/home/go_l
   ./go
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T14:35:55.28791499137878-08:00'],#modificationTime:DateAndTime['2013-12-30T14:52:44.30230808258057-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-30T14:35:55.28791499137878-08:00'],#modificationTime:DateAndTime['2014-01-01T08:37:44.63882207870483-08:00']}
