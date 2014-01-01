@@ -1,0 +1,38 @@
+TDScriptLeafNode{#name:'previewFileout',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./previewFileout -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | classToFilenameMap looseChanges preview |
+    classToFilenameMap := topez
+      evaluateCommandString: \'/home/index/classToFilenameMap\'.
+    looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
+    preview := Set new.
+    looseChanges
+      do: [ :ar | 
+        | beh filenames |
+        beh := ar at: 1.
+        filenames := classToFilenameMap
+          at: beh
+          ifAbsent: [ self error: \'file not found for \' , beh asString ].
+        preview addAll: filenames ].
+    preview ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  previewFileout - previewFileout sript utility template
+SYNOPSIS
+  previewFileout [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./previewFileout --help
+  ./previewFileout
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T13:19:42.80699491500854-08:00'],#modificationTime:DateAndTime['2014-01-01T13:24:04.82724905014038-08:00']}
