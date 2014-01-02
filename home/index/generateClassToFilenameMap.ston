@@ -17,7 +17,7 @@ opts
     path := opts
       at: \'path\'
       ifPresent: [ :optVal | optVal ]
-      ifAbsent: [self errror: \'must specify path\'].
+      ifAbsent: [ self errror: \'must specify path\' ].
     path := opts
       at: \'flush\'
       ifPresent: [ :ignored | UserGlobals removeKey: #\'filenameMap\' ifAbsent: [  ] ].
@@ -58,9 +58,10 @@ opts
           nextPutAll: \'at: \' , className asSymbol printString , \' put: #(\'.
         fileArray
           do: [ :filename | 
+\t\t\t\t#(\'goodies.gs\' \'goodiesIndexing.gs\') includes: filename ifFalse: [\"exclude goodies code\"
             code
               nextPutAll: filename printString;
-              space ].
+              space ]].
         code
           nextPutAll: \');\';
           cr ].
@@ -94,4 +95,4 @@ EXAMPLES
   ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/image
   ./generateClassToFilenameMap --path=/export/foos2/users/dhenrich/3.0/l_gss64bit/image --create=classToFilenameMap
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-01T15:20:08.05095291137695-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:12.52878499031067-08:00'],#modificationTime:DateAndTime['2014-01-02T07:29:14.77291893959045-08:00']}

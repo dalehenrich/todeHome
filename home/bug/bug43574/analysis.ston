@@ -26,4 +26,63 @@ dkh 12/31/2013 09:10
 SetValuedPathTerm>>getMappingInfoFor:ifObject:atOffset:replaceWith: returns the incorrect Error array ... should be return two slot array with exception in second slot.
 
 UnorderedCollection>>_updateIndexesForAdditionOf:logging: should be signalling second slot...
-',#runs:RunArray{#runs:[1176],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-31T07:00:30.62931203842163-08:00'],#modificationTime:DateAndTime['2013-12-31T09:11:49.42438006401062-08:00']}
+
+dkh 1/1/2014 18:30
+----------------
+AUDIT FAILURE:
+
+object [164375297] of class Class2, path term <bbb> [164376065], depList [164376577]
+    -- DependencyList has no entry for path term
+
+ -- The number of entries in Btree [164373761] for pathTerm [164376065 offset 1] does not match the number of entries in the base collection (extra elements in either the base collection or btree).
+
+ -- The number of entries in a Btree does not match the number of entries in the base collection (extra elements in either the base collection or btree).
+
+dkh 1/1/2014 19:34
+----------------
+ -- The number of entries in Btree [164373761] for pathTerm [164376065 offset 1] does not match the number of entries in the base collection (extra elements in either the base collection or btree).
+
+ -- The number of entries in a Btree does not match the number of entries in the base collection (extra elements in either the base collection or btree).
+
+dkh 1/1/2014 19:34
+----------------
+PathTerm>>auditNscCounts:for:on:count: @35\'
+
+Counts are off ...
+
+dkh 1/1/2014 19:36
+----------------
+1. OptionalPathTerm(PathTerm)>>auditNscCounts:for:on:count: @35 line 29
+2. [] in IdentityBag(UnorderedCollection)>>_fastAuditEqualityIndexes @2 line 38
+3. IdentityBag>>do: @6 line 8
+4. [] in IdentityBag(UnorderedCollection)>>_fastAuditEqualityIndexes @31 line 37
+--------------------
+.           -> [] in IdentityBag(UnorderedCollection)>>_fastAuditEqualityIndexes @31 line 37
+..          -> GsProcess(oop=142320129, status=debug, priority=15, )
+(context)   -> aGsNMethod
+(home)      -> aGsNMethod
+(receiver)  -> anExecBlock0
+(self)      -> anIdentityBag( aClass2, aClass1, aClass1, aClass1, aClass1, aClass1)
+countArg    -> anArray( 0)
+rootTerm    -> anOptionalPathTerm on \'bbb\'( anUnicodeRangeEqualityIndex(bbb)( anOptionalPathTerm on \'bbb\'))
+j           -> 2
+resultArray -> anArray( 0)
+aString     -> \' -- The number of entries in Btree [\'
+rootTerm    -> anOptionalPathTerm on \'bbb\'( anUnicodeRangeEqualityIndex(bbb)( anOptionalPathTerm on \'bbb\'))
+j           -> 2
+sys         -> System
+btreeCounts -> anArray( anArray( 0), anArray( 0))
+sz          -> 2
+roots       -> anArray( anOptionalPathTerm on \'aaa\'( anUnicodeRangeEqualityIndex(aaa)( anOptionalPathTerm on \'aaa\')), anOptionalPathTerm on \'bbb\'( anUnicod...
+self        -> anIdentityBag( aClass2, aClass1, aClass1, aClass1, aClass1, aClass1)
+--------------------
+5. IdentityBag(ExecBlock)>>ensure: @2 line 12
+6. IdentityBag(UnorderedCollection)>>_fastAuditEqualityIndexes @8 line 50
+7. IdentityBag(UnorderedCollection)>>_fastAuditIndexes @9 line 15
+--------
+
+When btreeCounts entry has a 0 count ... the second audit error message is produced ...
+
+dkh 1/2/2014 07:23
+----------------
+Audit runs clean',#runs:RunArray{#runs:[2144,64,1695],#values:[[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1023}}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-31T07:00:30.62931203842163-08:00'],#modificationTime:DateAndTime['2014-01-02T07:23:48.11967992782593-08:00']}

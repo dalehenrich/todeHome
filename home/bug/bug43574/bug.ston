@@ -33,21 +33,23 @@ opts
               bbb: \'bb\';
               yourself.
             nsc add: class1 ].
-        GsIndexSpec new
+         GsIndexSpec new
           unicodeIndex: \'each.aaa\';
           unicodeIndex: \'each.bbb\';
           createIndexesOn: nsc ].
     opts
       at: \'boom\'
       ifPresent: [ :ignored | 
-        | class2 nsc audit|
+        | class2 nsc audit |
         nsc := UserGlobals at: #\'coll\'.
         class2 := (Smalltalk at: #\'Class2\') new
           aaa: \'aa\';
           yourself.
         nsc add: class2.
-\t\t\taudit := nsc auditIndexes .
-\t\t\taudit= \'Indexes are OK\' ifFalse: [self error: \'failed audit\'] ] ]
+        audit := nsc auditIndexes.
+        audit = \'Indexes are OK\'
+          ifFalse: [ self error: \'failed audit\' ] ].
+    UserGlobals at: #\'coll\' ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -61,4 +63,4 @@ EXAMPLES
   ./bug --clean
   ./bug --clean --create --boom
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2014-01-01T07:49:20.14406609535217-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2013-12-24T07:18:19.78407502174377-08:00'],#modificationTime:DateAndTime['2014-01-01T17:42:40.1596040725708-08:00']}
