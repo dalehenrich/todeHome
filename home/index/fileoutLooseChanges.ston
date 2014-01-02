@@ -11,8 +11,9 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | gsTool path classToFilenameMap externalMethodMap looseChanges |
+    | gsTool path classToFilenameMap externalMethodMap looseChanges warnings |
     gsTool := topez toolInstanceFor: \'gs\'.
+    warnings := Set new.
     path := opts
       at: \'path\'
       ifPresent: [ :optVal | optVal ]
@@ -23,14 +24,19 @@ opts
     looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
     looseChanges
       do: [ :ar | 
-        | beh cat meth set selector |
+        | beh cat meth set selector actualClassName |
         beh := ar at: 1.
         cat := ar at: 2.
         selector := ar at: 3.
         meth := MethodReference class: beh selector: selector asSymbol.
+        actualClassName := meth actualClass theNonMetaClass name.
+        (#(#\'ReadStreamLegacy\' #\'ReadStreamPortable\') includes: actualClassName)
+          ifTrue: [ 
+            \"have to hand edit fileouts to fix up the class names and replace duplicate methods\"
+            warnings add: actualClassName ].
         set := externalMethodMap
-          at: meth actualClass theNonMetaClass name
-          ifAbsent: [ externalMethodMap at: meth actualClass theNonMetaClass name put: Set new ].
+          at: actualClassName
+          ifAbsent: [ externalMethodMap at: actualClassName put: Set new ].
         set add: meth ].
     gsTool
       gsfileout: path
@@ -42,7 +48,12 @@ opts
 !=========================================================================
 
 \'
-          withGemstoneLineEndings ]
+          withGemstoneLineEndings.
+    warnings isEmpty not
+      ifTrue: [ 
+        self
+          inform:
+            \'You must had edit the methods produced for: \' , warnings printString ] ]
   ifPresent: [ :ignored | 
     TDManPage
       viewManPage:
@@ -55,4 +66,4 @@ EXAMPLES
   ./fileoutLooseChanges --help
   ./fileoutLooseChanges --path=/export/foos2/users/dhenrich/3.0/j_gss64bit/image
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-01T15:14:36.99814510345459-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T12:12:38.45081210136414-08:00'],#modificationTime:DateAndTime['2014-01-02T11:55:46.793860912323-08:00']}

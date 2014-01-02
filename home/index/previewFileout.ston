@@ -9,19 +9,30 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | classToFilenameMap looseChanges preview |
+    | classToFilenameMap looseChanges preview warnings |
     classToFilenameMap := topez
       evaluateCommandString: \'/home/index/classToFilenameMap\'.
     looseChanges := topez evaluateCommandString: \'/home/index/looseChanges\'.
     preview := Set new.
+\t\twarnings := Set new.
     looseChanges
       do: [ :ar | 
-        | beh filenames |
+        | beh filenames actualClassName |
         beh := ar at: 1.
+        actualClassName := beh theNonMetaClass name.
+        (#(#\'ReadStreamLegacy\' #\'ReadStreamPortable\') includes: actualClassName)
+          ifTrue: [ 
+            \"have to hand edit fileouts to fix up the class names and replace duplicate methods\"
+            warnings add: actualClassName ].
         filenames := classToFilenameMap
           at: beh theNonMetaClass name
           ifAbsent: [ self error: \'file not found for \' , beh asString ].
         preview addAll: filenames ].
+    warnings isEmpty not
+      ifTrue: [ 
+        self
+          inform:
+            \'You must had edit the methods produced for: \' , warnings printString ].
     preview ]
   ifPresent: [ :ignored | 
     TDManPage
@@ -35,4 +46,4 @@ EXAMPLES
   ./previewFileout --help
   ./previewFileout
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T13:19:42.80699491500854-08:00'],#modificationTime:DateAndTime['2014-01-01T13:39:17.86824011802673-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-01T13:19:42.80699491500854-08:00'],#modificationTime:DateAndTime['2014-01-02T11:55:32.83331108093262-08:00']}

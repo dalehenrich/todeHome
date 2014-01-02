@@ -26,4 +26,7 @@ topaz 1> stk
 7 PassiveObject >> activate (envId 0) @27 line 27 
 8 Executed Code @12 line 5 
 9 GsNMethod class >> _gsReturnToC (envId 0) @1 line 1 
-',#runs:RunArray{#runs:[73,33,1319],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:@8}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2014-01-02T09:11:21.31161189079285-08:00'],#modificationTime:DateAndTime['2014-01-02T09:12:03.63741898536682-08:00']}
+
+dkh 1/2/2014 11:35
+------------------
+readstrPortable.gs ',#runs:RunArray{#runs:[73,33,1377],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2014-01-02T09:11:21.31161189079285-08:00'],#modificationTime:DateAndTime['2014-01-02T11:35:09.33050298690796-08:00']}

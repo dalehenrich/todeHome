@@ -1,4 +1,6 @@
 TDSmalltalkLeafNode{#name:'classToFilenameMap',#contents:'Dictionary new
+  at: #\'ReadStreamLegacy\' put: #(\'readstr.gs\');
+  at: #\'ReadStreamPortable\' put: #(\'readstrPortable.gs\');
   at: #\'AbstractBagEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'AbstractCharacter\' put: #(\'abschar.gs\');
   at: #\'AbstractCollisionBucket\' put: #(\'abstractcollbkt.gs\');
@@ -246,7 +248,7 @@ TDSmalltalkLeafNode{#name:'classToFilenameMap',#contents:'Dictionary new
   at: #\'OptionalPathTerm\' put: #(\'optionalpathterm.gs\');
   at: #\'OptionalTermPathEvaluator\' put: #(\'idxquerymethods.gs\');
   at: #\'OrderedCollection\' put: #(\'orderedcollection.gs\');
-  at: #\'PassiveObject\' put: #(\'passiveobject2.gs\' \'passiveobject.gs\');
+  at: #\'PassiveObject\' put: #(\'passiveobject.gs\');
   at: #\'PathEvaluator\' put: #(\'pathevaluator.gs\');
   at: #\'PathPathBagEnumerator\' put: #(\'bagenumerator.gs\');
   at: #\'PathPathBagUnicodeEnumerator\' put: #(\'bagenumerator.gs\');
@@ -409,4 +411,4 @@ TDSmalltalkLeafNode{#name:'classToFilenameMap',#contents:'Dictionary new
   at: #\'VariableContext\' put: #(\'variablecon.gs\');
   at: #\'Warning\' put: #(\'Warning.gs\');
   at: #\'WriteStream\' put: #(\'writest.gs\' \'writestPortable.gs\');
-  yourself',#creationTime:DateAndTime['2014-01-01T12:08:46.00745797157288-08:00'],#modificationTime:DateAndTime['2014-01-02T07:27:25.66768097877502-08:00']}
+  yourself',#creationTime:DateAndTime['2014-01-01T12:08:46.00745797157288-08:00'],#modificationTime:DateAndTime['2014-01-02T11:59:46.40729308128357-08:00']}
