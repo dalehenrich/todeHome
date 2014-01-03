@@ -6,6 +6,8 @@ TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
 
 l_
   - 42364  F2  Nuke all indexes (efficiently)
+    [picked up Bill\'s code and installed as IndexManager>>removeAllIndexes]
+    [...need to go with some of the simple test cases]
 
 m_
   - 42596  C2  PassiveObject operations fail with portable streams installed
@@ -23,4 +25,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[299,1,98,1,305],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-02T13:22:08.63625192642212-08:00']}
+',#runs:RunArray{#runs:[299,1,93,1,135,1,305],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11,[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-02T17:43:46.62513899803162-08:00']}

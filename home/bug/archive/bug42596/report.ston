@@ -29,4 +29,18 @@ topaz 1> stk
 
 dkh 1/2/2014 11:35
 ------------------
-readstrPortable.gs ',#runs:RunArray{#runs:[73,33,1377],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2014-01-02T09:11:21.31161189079285-08:00'],#modificationTime:DateAndTime['2014-01-02T11:35:09.33050298690796-08:00']}
+readstrPortable.gs 
+
+dkh dkh 1/2/2014 18:50
+------------------
+fix bug 42596.
+
+Committed revision 32261.
+
+image/ReadWriteStream.gs
+image/ReadWriteStreamPortable.gs
+image/passiveobject.gs
+image/readstr.gs
+image/readstrPortable.gs
+tests/ernie/PassiveObject.gs
+',#runs:RunArray{#runs:[73,33,1616],#values:[[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2014-01-02T18:59:00.47464299201965-08:00'],#modificationTime:@13}

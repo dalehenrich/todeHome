@@ -24,8 +24,8 @@ opts
         analysis := Dictionary new.
         analysis at: \'depMap keys\' put: DependencyList depMapKeys.
         analysis at: \'depMap values\' put: DependencyList depMapValues.
-\t\t\tanalysis at: \'nsc roots\' put: IndexManager current getAllNSCRoots.
-\t\t\tanalysis at: \'shared dependency lists\' put: SharedDependencyLists.
+        analysis at: \'nsc roots\' put: IndexManager current getAllNSCRoots.
+        analysis at: \'shared dependency lists\' put: SharedDependencyLists allEntries asArray.
         report at: \'analyze\' put: analysis ].
     report ]
   ifPresent: [ :ignored | 
@@ -43,4 +43,4 @@ EXAMPLES
   ./bug --create --analyze
   ./bug --create --nuke --analyze
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:23:04.73310708999634-08:00'],#modificationTime:DateAndTime['2014-01-02T13:41:32.47672200202942-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:23:04.73310708999634-08:00'],#modificationTime:DateAndTime['2014-01-02T16:54:06.33989095687866-08:00']}
