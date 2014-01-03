@@ -52,4 +52,27 @@ ERROR 2321 , a IndexingErrorPreventingCommit occurred (error 2321), a LookupErro
 
 dkh 1/2/2014 16:30
 ------------------
-According to spec requiresPathTerm is supposed to be false ... will that be confusing? ',#runs:RunArray{#runs:[1899],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:22:39.05719304084778-08:00'],#modificationTime:DateAndTime['2014-01-02T16:31:00.34308695793152-08:00']}
+According to spec requiresPathTerm is supposed to be false ... will that be confusing? 
+
+dkh 1/2/2014 21:45
+------------------
+
+build/release/PACKING.be
+image/IndexManager.gs
+image/abstractindexspec.gs
+image/bomlastconv.gs
+image/equalityindexspec.gs
+image/identityindexspec.gs
+image/idxclasses.topaz
+image/idxmethods.topaz
+image/idxquerymethods.gs
+image/indexlist.gs
+image/optionalpathterm.gs
+image/pathterm.gs
+image/rcequalityindexspec.gs
+image/unorderedcoll3.gs
+tests/ernie/IXQueryOptionalNamedPathTerm.gs
+tests/ernie/IndexUnitTest.gs
+Transmitting file data ................
+Committed revision 32262.
+',#runs:RunArray{#runs:[2415],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:22:39.05719304084778-08:00'],#modificationTime:DateAndTime['2014-01-02T21:46:37.20409202575684-08:00']}

@@ -1,0 +1,154 @@
+TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'Changes to Bill\'s method:
+  - make allowances for modification tracking
+    - implication is that not dependentObjects are PathTerms
+    - cannot initialize SharedDependencyList (DepListTable)
+  - pick up any nsces that might not be in IndexManagers nsc roots.
+
+Need to worry about obsolete pathTerms (size == 0). Not sure that obsolete pathTerms
+aren\'t orphaned in the list. Should provide method for cleaning up the obsolete
+pathTerms and call that from here...
+------------------
+------------------
+GsIndexSpec new
+          equalityIndex: \'\' lastElementClass: String;
+          createIndexesOn: nsc
+------------------
+------------------
+
+dkh 1/3/2014 12:15
+------------------
+REMOVE_TRACKING (hot cache):
+--------------------
+elapsed CPU time: 5800 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+1384  30.99  30.99 1797.4 DependencyList class      >> set:for:
+1275  28.55  28.55 1655.8 Array                     >> at:
+ 376   8.42   8.42 488.3 Number                    >> negated
+ 351   7.86   7.86 455.8 System class              >> _sessionCacheStatAt:incrementBy:
+ 350   7.84  24.12 1398.7 System class              >> decrementProgressCountBy:
+ 332   7.43  62.54 3627.3 block in IndexManager     >> removeAllTracking
+ 327   7.32  99.57 5775.3 Collection                >> do:
+
+dkh 1/3/2014 12:20
+------------------
+REMOVE_INDEXES (after backup):
+--------------------
+elapsed CPU time: 12300 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+2749  25.08  25.08 3084.5 Array                     >> at:
+1764  16.09  16.09 1979.3 IdentityBag               >> add:
+1532  13.98  13.98 1719.0 DependencyList class      >> set:for:
+1086   9.91   9.91 1218.6 DependencyList class      >> for:
+ 650   5.93  80.84 9943.7 block in IndexManager     >> removeAllIndexes
+ 528   4.82   4.82 592.4 Array                     >> add:
+ 418   3.81   3.81 469.0 Object                    >> size
+ 416   3.79   3.79 466.8 System class              >> _sessionCacheStatAt:incrementBy:
+ 365   3.33  10.36 1274.7 System class              >> decrementProgressCountBy:
+ 355   3.24   3.24 398.3 Number                    >> negated
+ 355   3.24  99.81 12276.4 Collection                >> do:
+ 340   3.10   6.56 806.8 PathTerm                  >> getRootNsc
+ 328   2.99   2.99 368.0 SmallInteger              >> =
+
+dkh dkh 1/3/2014 12:26
+------------------
+OLD_REMOVE_INDEXES (after backup):
+--------------------
+elapsed CPU time: 8640 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+1484  19.54  19.54 1688.4 IdentityBag               >> _at:
+1383  18.21  18.21 1573.5 DependencyList class      >> set:for:
+1126  14.83  14.83 1281.1 Array                     >> at:
+1005  13.23  13.23 1143.4 DependencyList class      >> for:
+ 758   9.98  98.93 8547.8 IdentitySet               >> _cleanUpDependencies
+ 705   9.28   9.28 802.1 Object                    >> size
+ 379   4.99  64.01 5530.6 PathTerm                  >> cleanupDependencyListFor:
+ 347   4.57  36.67 3168.6 DependencyList            >> removeCompletelyPathTerm:for:
+ 327   4.31   4.31 372.0 PathTerm                  >> indicatesIndexOnRootNsc
+
+dkh 1/3/2014 12:31
+------------------
+REMOVE_TRACKING (after backup):
+--------------------
+elapsed CPU time: 6000 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+1437  30.72  30.72 1843.5 Array                     >> at:
+1419  30.34  30.34 1820.4 DependencyList class      >> set:for:
+ 377   8.06   8.06 483.6 System class              >> _sessionCacheStatAt:incrementBy:
+ 369   7.89  99.62 5976.9 Collection                >> do:
+ 354   7.57   7.57 454.1 Number                    >> negated
+ 339   7.25  22.88 1372.7 System class              >> decrementProgressCountBy:
+ 300   6.41  59.63 3577.9 block in IndexManager     >> removeAllTracking
+
+dkh 1/3/2014 13:01
+------------------
+REMOVE_BILL (after backup):
+--------------------
+elapsed CPU time: 21110 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+3422  17.28  17.28 3647.9 Array                     >> at:
+2366  11.95  11.95 2522.2 Object                    >> size
+2287  11.55  11.55 2437.9 DependencyList class      >> for:
+1622   8.19   8.19 1729.1 DependencyList class      >> set:for:
+1458   7.36 177.54 37478.4 Collection                >> do:
+ 815   4.12  15.18 3204.4 DependencyList            >> _removePathTerm:for:
+ 783   3.95  66.27 13989.1 DependencyList class      >> removePathTerm:for:
+ 695   3.51  14.82 3128.7 DependencyList class      >> from:
+ 658   3.32  62.31 13154.4 DependencyList class      >> removePathTerm:for:logging:
+ 638   3.22   3.22 680.1 DependencyList class      >> needsDepList:
+ 533   2.69   2.69 568.2 Object                    >> size:
+ 483   2.44   2.44 514.9 Object                    >> shallowCopy
+ 430   2.17   2.17 458.4 Array                     >> includesIdentical:
+ 397   2.00   4.44 938.1 Object                    >> copy
+ 389   1.96   4.99 1053.2 DepListTable              >> at:logging:
+ 377   1.90   1.90 401.9 System class              >> _sessionCacheStatAt:incrementBy:
+ 373   1.88   1.88 397.6 Number                    >> negated
+ 364   1.84   5.63 1187.5 System class              >> decrementProgressCountBy:
+ 338   1.71   1.71 360.3 Boolean                   >> not
+ 334   1.69  89.75 18947.1 block in IndexManager     >> removeAllIndexesBill
+ 332   1.68   1.68 353.9 SmallInteger              >> >
+ 316   1.60   3.41 720.6 PathTerm                  >> _isObsoletePathTerm
+ 315   1.59   3.02 638.5 Collection                >> isEmpty
+
+dkh 1/3/2014 13:28
+------------------
+REMOVE_INDEXES_(2) (after backup):
+--------------------
+elapsed CPU time: 10940 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+2391  24.90  24.90 2724.2 Array                     >> at:
+1593  16.59  16.59 1815.0 DependencyList class      >> set:for:
+1113  11.59  11.59 1268.1 IdentityBag               >> remove:ifAbsent:
+ 976  10.16  10.16 1112.0 DependencyList class      >> for:
+ 674   7.02  78.22 8557.6 block in IndexManager     >> removeAllIndexes
+ 536   5.58   5.58 610.7 Array                     >> add:
+ 427   4.45   4.45 486.5 Object                    >> size
+ 392   4.08   4.08 446.6 System class              >> _sessionCacheStatAt:incrementBy:
+ 383   3.99   3.99 436.4 Number                    >> negated
+ 383   3.99   3.99 436.4 SmallInteger              >> =
+ 330   3.44  11.51 1259.0 System class              >> decrementProgressCountBy:
+ 306   3.19  99.76 10913.8 Collection                >> do:
+
+dkh 1/3/2014 13:01
+------------------
+tracking:    elapsed CPU time: 6000 ms
+indexes:     elapsed CPU time: 12300 ms
+indexes(2):  elapsed CPU time: 10940 ms
+old indexes: elapsed CPU time: 8640 ms
+bill:        elapsed CPU time: 21110 ms
+------------------
+------------------
+\"Multiple dependencyLists per element (in some cases)\"
+        GsIndexSpec new
+          equalityIndex: \'each.key\' lastElementClass: String;
+          equalityIndex: \'each.value.key\' lastElementClass: String;
+          equalityIndex: \'each.value.value\' lastElementClass: String;
+          createIndexesOn: nsc.
+------------------
+------------------
+',#runs:RunArray{#runs:[178,1,285,177,1,18,20,7,22,5033,1,1070,13,182,1,310],#values:[[],[TextEmphasis{#emphasisCode:1,#setMode:true}],[],[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],[@20,TextEmphasis{#emphasisCode:1,#setMode:true}],@19,[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@27,TextEmphasis{#emphasisCode:1,#setMode:true}],@26],#lastIndex:7026,#lastRun:16,#lastOffset:16}},#creationTime:DateAndTime['2014-01-03T08:16:11.27592396736145-08:00'],#modificationTime:DateAndTime['2014-01-03T14:27:36.19989490509033-08:00']}

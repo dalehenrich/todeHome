@@ -1,19 +1,20 @@
-TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
-  - 43574  P2  mysterious error on adding nonhomogenous element to indexed collection
-    [running index battery tests]
-  - 43601  P2  String/Unicode compare needs to coerce to Unicode
-    [validate Allen\'s fix using bug43034 sort/compare code when available]
+TDTxtLeafNode{#name:'todo',#contents:Text{#string:'1. Seaside recursive dictionary
+-----
+j_
+  - vacant
 
 l_
   - 42364  F2  Nuke all indexes (efficiently)
     [picked up Bill\'s code and installed as IndexManager>>removeAllIndexes]
-    [...need to go with some of the simple test cases]
+    [...need to go with some of the simple test cases
+\t  not safe to destory all dependency map entires .... must only
+\t  remove path term entries]
+\t [--- destroy could be used with current algorithms]
+    [similar tricks can be played for removing indexes from a single
+\t  collection ...]
 
 m_
-  - 42596  C2  PassiveObject operations fail with portable streams installed
-    [proposed bugfix implemented...rebuilding]:
-      - modify ./bug to use ReadWriteStream and retest
-      - run smoke test
+  - vacant
 
 n_
  - vacant
@@ -25,4 +26,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[299,1,93,1,135,1,305],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11,[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-02T17:43:46.62513899803162-08:00']}
+',#runs:RunArray{#runs:[88,1,93,1,201,1,282],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11,[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:33,#lastRun:1,#lastOffset:32}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-03T11:01:39.57511401176453-08:00']}
