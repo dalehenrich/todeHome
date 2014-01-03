@@ -9,14 +9,32 @@ command
 opts
   at: \'help\'
   ifAbsent: [ 
-    | testObj passivated stream reactivated1 reactivated2 reactivated3 |
+    | testObj passivated reactivatedX stream reactivated1 reactivated2 reactivated3 reactivated4 |
     testObj := Array with: \'Hello\' with: \'world\'.
     passivated := (PassiveObject passivate: testObj) contents.
     reactivated1 := (PassiveObject newWithContents: passivated) activate.
-     stream := ReadStreamLegacy on: passivated.
+    stream := WriteStreamLegacy on: String new.
+    PassiveObject passivate: testObj toStream: stream.
+    reactivatedX := (PassiveObject newWithContents: stream contents) activate.
+    reactivated1 = reactivatedX
+      ifFalse: [ self error: \'passivation mismatch\' ].
+    stream := WriteStreamPortable on: String new.
+    PassiveObject passivate: testObj toStream: stream.
+    reactivatedX := (PassiveObject newWithContents: stream contents) activate.
+    reactivated1 = reactivatedX
+      ifFalse: [ self error: \'passivation mismatch\' ].
+    stream := ReadWriteStreamPortable on: String new.
+    PassiveObject passivate: testObj toStream: stream.
+    reactivatedX := (PassiveObject newWithContents: stream contents) activate.
+    reactivated1 = reactivatedX
+      ifFalse: [ self error: \'passivation mismatch\' ].
+    stream := ReadStreamLegacy on: passivated.
     reactivated2 := (PassiveObject newOnStream: stream) activate.
-   stream := ReadStreamPortable on: passivated.
+    stream := ReadStreamPortable on: passivated.
     reactivated3 := (PassiveObject newOnStream: stream) activate.
+    stream := ReadWriteStreamPortable with: passivated.
+\t\tstream reset.
+    reactivated4 := (PassiveObject newOnStream: stream) activate.
     {reactivated1.
     reactivated2.
     reactivated3} ]
@@ -32,4 +50,4 @@ EXAMPLES
   ./bug --help
   ./bug -h
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T09:12:22.29972696304321-08:00'],#modificationTime:DateAndTime['2014-01-02T09:17:57.4138491153717-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T09:12:22.29972696304321-08:00'],#modificationTime:DateAndTime['2014-01-02T15:26:05.74818301200867-08:00']}

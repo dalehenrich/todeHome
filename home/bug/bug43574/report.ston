@@ -49,4 +49,7 @@ coll add: Class2 create
 if I add the nonhomogenous element before creating the index, I get a better error. Well, except that the spec claims that requirePathTerms defaults to false.
 
 ERROR 2321 , a IndexingErrorPreventingCommit occurred (error 2321), a LookupError occurred (error 2295), reason:rtErrObjectInvalidOffset, The object aClass2 does not have an instance variable with the given name #\'bbb\' This error occurred during index maintenance. Consequently, this transaction must be aborted. (IndexingErrorPreventingCommit)
-',#runs:RunArray{#runs:[1773],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:108,#lastRun:1,#lastOffset:107}},#creationTime:DateAndTime['2013-12-24T07:22:39.05719304084778-08:00'],#modificationTime:DateAndTime['2013-12-24T07:24:18.69775390625-08:00']}
+
+dkh 1/2/2014 16:30
+------------------
+According to spec requiresPathTerm is supposed to be false ... will that be confusing? ',#runs:RunArray{#runs:[1899],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-24T07:22:39.05719304084778-08:00'],#modificationTime:DateAndTime['2014-01-02T16:31:00.34308695793152-08:00']}

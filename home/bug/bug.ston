@@ -1,0 +1,35 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort: {#(\'help\' $h #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+   | nsc result1 result2 partial1 partial2 |
+nsc := IdentitySet new.
+1 to: 20 do: [ :each | nsc add: each -> 1 ].\t
+nsc createEqualityIndexOn: \'value\' withLastElementClass: Integer.
+1 to: 20 do: [ :each | nsc add: each -> nil ].
+result1 := nsc select: { :assoc | (1 <= assoc.value) & (assoc.value >= nil) }.
+partial1 := nsc select: { :assoc | 1 <= assoc.value }.
+partial2 := nsc select: { :assoc | assoc.value >= nil }.
+result2 := partial1 * partial2.
+
+     ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help]
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug -h
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:19:58.45024108886719-08:00'],#modificationTime:DateAndTime['2014-01-02T13:20:07.46542501449585-08:00']}

@@ -1,0 +1,131 @@
+TDTxtLeafNode{#name:'report',#contents:Text{#string:'42364  F2  Nuke all indexes (efficiently)
+---------------------------------
+Here\'s the initial script I created for Bill, to nuke all indexes: 
+
+| set pathTerms| 
+pathTerms := IdentitySet new. 
+DependencyList depMapValues do: [epList | pathTerms addAll: depList]. 
+
+IndexManager current getAllNSCRoots do: [:uc | 
+uc _indexedPaths rootTerms do: [athTerm | 
+pathTerm needsDepList ifTrue: [ 
+(pathTerms includes: pathTerm) ifFalse: [ nil halt ]]]]. 
+
+\"set := IdentitySet new. 
+1 to: 10 do: [:i | 
+set add: i printString ]. 
+set createEqualityIndexOn: \'\' withLastElementClass: String. 
+set sortDescending.\" 
+
+\"{DependencyList depMapKeys. DependencyList depMapValues}.\" 
+
+DependencyList depMapKeys do: [ependentObject | 
+(DependencyList for: dependentObject) do: [athTerm | 
+DependencyList 
+removePathTerm: pathTerm 
+for: dependentObject]]. 
+
+IndexManager current getAllNSCRoots do: [:uc | 
+uc instVarAt: (uc class allInstVarNames indexOf: \'_indexedPaths\' asSymbol) put: nil]. 
+
+IndexManager current resetAllIndexes. 
+
+DependencyList depMapKeys notEmpty ifTrue: [ nil halt]. 
+DependencyList depMapValues notEmpty ifTrue: [ nil halt]. 
+
+Need to make sure that we\'ve got identity indexes covered well and that we truly have destroyed all remnants of the indexes ... 
+---------------------------------
+---------------------------------
+Here\'s a version that\'s an extended variation of code sent to the
+customer in HR8582 hitting this problem.
+
+This code \"re-uses\" the method IndexManager>>resetAllIndexes, which in
+it\'s original form only reset the instvar allIndexes to nil. I think this
+is safe, but could be re-named if there\'s any concern over it.
+
+category: \'Private\'
+method: IndexManager
+resetAllIndexes
+
+\"Clear all indexing structures by directly initializing appropriate
+structures, rather than iterating through the indexes individually.
+
+IndexManagerAutoCommitPolicy is used to periodically commit if
+temp object space gets low and to perform a final commit at end
+of operation.
+
+The removeAllIndexes progress count is used to track progress, but
+now tracks the number of indexed objects left that have path terms
+to remove.
+
+\"
+
+| sys depObjs |
+
+\"Setup progress counter\"
+sys := System.
+sys setIndexProgressCountTo: 
+UnorderedCollection statValueForRemovingAllIndexes.
+
+\"Perform using index manager auto commit..\"
+IndexManager current executeStartingIndexMaintenance: [
+
+[ \"Start ensure block..\"
+
+\"Directly remove pathTerms from the System DepMap\"
+depObjs := DependencyList depMapKeys.
+sys setIndexProgressCountTo: depObjs size.
+depObjs do: [:dependentObject |
+(DependencyList for: dependentObject) do: [:pathTerm |
+DependencyList
+removePathTerm: pathTerm
+for: dependentObject].
+sys decrementProgressCountBy: 1 ].
+
+\"Clear _indexedPaths field from all indexed collections\"
+IndexManager current getAllNSCRoots do: [:uc |
+uc _indexedPaths: nil].
+
+\"Initialize the SharedDependencyLists structure\"
+SharedDependencyLists initialize.
+
+\"Initialize IndexManager allIndexes reference\"
+allIndexes := nil.
+
+] ensure: [ sys setIndexProgressCountTo: 0 ]].
+%
+
+
+Original version to customer also included some consistency checks.
+A preliminary check caused problems for the customer due to extensive
+corruption of his indexes, so we dropped it to avoid problems. For
+the record it was:
+
+| pathTerms|
+
+\"Gather up all pathTerms\"
+pathTerms := IdentitySet new.
+DependencyList depMapValues do: [:depList | pathTerms addAll: depList].
+
+\"Consistency check on pathTerms\"
+IndexManager current getAllNSCRoots do: [:uc |
+uc _indexedPaths rootTerms do: [:pathTerm |
+pathTerm needsDepList ifTrue: [ 
+(pathTerms includes: pathTerm) ifFalse: [ 
+nil halt: \'Missing pathTerm from depMapValues\' ]]]].
+
+There were also some consistency checks at the end to double-check the
+results -- these seemed pretty redundant so I\'ve removed them from the
+method but should be included in the test coverage:
+
+\"Consistency check on results\"
+IndexManager current getAllNSCRoots notEmpty ifTrue: [
+nil halt: \'AllNSCRoots notEmpty\'].
+SharedDependencyLists notEmpty ifTrue: [
+nil halt: \'SharedDependencyLists notEmpty\'].
+DependencyList depMapKeys notEmpty ifTrue: [ 
+nil halt: \'depMapKeys notEmpty\'].
+DependencyList depMapValues notEmpty ifTrue: [ 
+nil halt: \'depMapValues notEmpty\']. 
+
+',#runs:RunArray{#runs:[28,1,12,35,4162],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2014-01-02T13:23:01.68769192695618-08:00'],#modificationTime:DateAndTime['2014-01-02T13:25:20.0826690196991-08:00']}

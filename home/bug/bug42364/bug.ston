@@ -1,0 +1,46 @@
+TDScriptLeafNode{#name:'bug',#contents:'[ :topez :objIn :tokens :command | 
+| opts args |
+\"for help: ./bug -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'analyze\' $c #\'none\').
+    #(\'create\' $c #\'none\').
+    #(\'nuke\' $n #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | report |
+    report := Dictionary new.
+    opts at: \'create\' ifPresent: [ :ignored |  ].
+    opts at: \'nuke\' ifPresent: [ :ignored |  ].
+    opts
+      at: \'analyze\'
+      ifPresent: [ :ignored | 
+        | analysis |
+        analysis := Dictionary new.
+        analysis at: \'depMap keys\' put: DependencyList depMapKeys.
+        analysis at: \'depMap values\' put: DependencyList depMapValues.
+\t\t\tanalysis at: \'nsc roots\' put: IndexManager current getAllNSCRoots.
+\t\t\tanalysis at: \'shared dependency lists\' put: SharedDependencyLists.
+        report at: \'analyze\' put: analysis ].
+    report ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  bug - bug sript utility template
+SYNOPSIS
+  bug [-h|--help][--analyze]
+  bug [--create][--nuke]
+DESCRIPTION
+EXAMPLES
+  ./bug --help
+  ./bug --analyze
+  ./bug --create --analyze
+  ./bug --create --nuke --analyze
+\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:23:04.73310708999634-08:00'],#modificationTime:DateAndTime['2014-01-02T13:41:32.47672200202942-08:00']}

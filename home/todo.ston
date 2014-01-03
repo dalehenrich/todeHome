@@ -5,8 +5,7 @@ TDTxtLeafNode{#name:'todo',#contents:Text{#string:'j_
     [validate Allen\'s fix using bug43034 sort/compare code when available]
 
 l_
-  - 42808  P3  Attempt to read beyond the end of the stream during indexed query evaluation
-  - 42812  P2  incorrect queryBlock result
+  - 42364  F2  Nuke all indexes (efficiently)
 
 m_
   - 42596  C2  PassiveObject operations fail with portable streams installed
@@ -24,4 +23,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[487,1,305],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],@6],#lastIndex:349,#lastRun:1,#lastOffset:348}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-02T13:05:28.46101093292236-08:00']}
+',#runs:RunArray{#runs:[299,1,98,1,305],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-02T13:22:08.63625192642212-08:00']}
