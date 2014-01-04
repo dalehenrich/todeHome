@@ -2,7 +2,6 @@ TDTxtLeafNode{#name:'analysis',#contents:Text{#string:'Changes to Bill\'s method
   - make allowances for modification tracking
     - implication is that not dependentObjects are PathTerms
     - cannot initialize SharedDependencyList (DepListTable)
-  - pick up any nsces that might not be in IndexManagers nsc roots.
 
 Need to worry about obsolete pathTerms (size == 0). Not sure that obsolete pathTerms
 aren\'t orphaned in the list. Should provide method for cleaning up the obsolete
@@ -151,4 +150,127 @@ bill:        elapsed CPU time: 21110 ms
           createIndexesOn: nsc.
 ------------------
 ------------------
-',#runs:RunArray{#runs:[178,1,285,177,1,18,20,7,22,5033,1,1070,13,182,1,310],#values:[[],[TextEmphasis{#emphasisCode:1,#setMode:true}],[],[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],[@20,TextEmphasis{#emphasisCode:1,#setMode:true}],@19,[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@27,TextEmphasis{#emphasisCode:1,#setMode:true}],@26],#lastIndex:7026,#lastRun:16,#lastOffset:16}},#creationTime:DateAndTime['2014-01-03T08:16:11.27592396736145-08:00'],#modificationTime:DateAndTime['2014-01-03T14:27:36.19989490509033-08:00']}
+
+dkh 1/3/2014 15:08
+------------------
+./bug --clean --test2=200000
+
+dkh 1/3/2014 15:09
+------------------
+REMOVE_INDEXES (after backup):
+--------------------
+elapsed CPU time: 5890 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+1270  24.21  24.21 1425.9 Array                     >> at:
+ 784  14.94  14.94 880.2 DependencyList class      >> set:for:
+ 663  12.64  12.64 744.4 IdentityBag               >> remove:ifAbsent:
+ 486   9.26   9.26 545.7 DependencyList class      >> for:
+ 418   7.97   7.97 469.3 Array                     >> add:
+ 377   7.19  78.82 4642.6 block in IndexManager     >> removeAllIndexes
+ 216   4.12   4.12 242.5 SmallInteger              >> =
+ 206   3.93   3.93 231.3 Object                    >> size
+ 198   3.77  99.56 5864.2 Collection                >> do:
+ 182   3.47   9.80 577.1 System class              >> decrementProgressCountBy:
+ 170   3.24   3.24 190.9 System class              >> _sessionCacheStatAt:incrementBy:
+ 162   3.09   3.09 181.9 Number                    >> negated
+
+dkh 1/3/2014 15:14
+------------------
+BILL (after backup):
+--------------------
+elapsed CPU time: 17330 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+2234  13.38  13.38 2318.6 Array                     >> at:
+1734  10.38  10.38 1799.6 Object                    >> size
+1719  10.29  10.29 1784.1 DependencyList class      >> set:for:
+1425   8.53   8.53 1478.9 DependencyList class      >> for:
+ 920   5.51 185.43 32134.9 Collection                >> do:
+ 597   3.58  76.61 13276.2 DependencyList class      >> removePathTerm:for:
+ 571   3.42  14.20 2460.7 DependencyList class      >> from:
+ 523   3.13  10.73 1859.8 DependencyList            >> _removePathTerm:for:
+ 485   2.90  73.03 12656.6 DependencyList class      >> removePathTerm:for:logging:
+ 335   2.01   2.01 347.7 DependencyList class      >> needsDepList:
+ 319   1.91   1.91 331.1 Object                    >> shallowCopy
+ 309   1.85   1.85 320.7 Array                     >> includesIdentical:
+ 304   1.82   3.72 645.5 PathTerm                  >> _isObsoletePathTerm
+ 295   1.77  21.63 3748.7 DepListTable              >> at:logging:
+ 292   1.75   1.75 303.1 AbstractDictionary        >> _atZ:
+ 290   1.74   3.65 632.0 Object                    >> copy
+ 266   1.59   1.59 276.1 DepListTable              >> depListBucketFor:
+ 245   1.47   1.47 254.3 DepListBucket             >> _bucketAt:
+ 240   1.44   1.44 249.1 Object                    >> size:
+ 239   1.43   3.55 615.4 System class              >> decrementProgressCountBy:
+ 235   1.41   1.41 243.9 Object                    >> objectSecurityPolicy
+ 219   1.31   2.56 443.2 Collection                >> isEmpty
+ 192   1.15   1.15 199.3 Boolean                   >> not
+ 182   1.09   1.09 188.9 Number                    >> negated
+ 178   1.07   1.07 184.7 Object                    >> _objectSecurityPolicy:
+ 172   1.03   1.03 178.5 System class              >> _sessionCacheStatAt:incrementBy:
+ 172   1.03   1.03 178.5 Object                    >> _status
+ 169   1.01   4.61 798.1 IdentityKeyValueDictionary >> at:otherwise:
+ 168   1.01   5.61 972.5 RedoLog                   >> addConflictObject:for:
+ 163   0.98   0.98 169.2 SmallInteger              >> \\\\
+ 154   0.92   0.92 159.8 System class              >> __sessionStateAt:
+ 153   0.92  92.86 16091.8 block in IndexManager     >> removeAllIndexesBill
+ 149   0.89   9.22 1597.2 RedoLog                   >> addLargeConflictObject:for:
+ 147   0.88   0.88 152.6 SmallInteger              >> bitShift:
+ 145   0.87   0.87 150.5 Object                    >> identityHash
+ 145   0.87   1.79 310.3 System class              >> redoLog
+ 138   0.83   0.83 143.2 Array                     >> replaceFrom:to:with:startingAt:
+ 134   0.80   2.71 470.1 Object                    >> _isLarge
+ 128   0.77   4.71 815.7 DepListBucket             >> at:
+ 107   0.64   0.64 111.0 SmallInteger              >> >
+
+dkh 1/3/2014 15:20
+------------------
+OLD (after backup):
+--------------------
+elapsed CPU time: 9610 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+1817  19.98  19.98 1919.7 DependencyList class      >> set:for:
+ 844   9.28   9.28 891.7 Array                     >> at:
+ 762   8.38   8.38 805.1 PathTerm                  >> _nextObjectFor:atInstVar:
+ 736   8.09   8.09 777.6 Object                    >> size
+ 677   7.44   7.44 715.3 DependencyList class      >> for:
+ 378   4.16  12.53 1204.4 block in PathTerm         >> cleanupDependencyListFor:
+ 256   2.81 144.24 13861.4 PathTerm                  >> cleanupDependencyListFor:
+ 236   2.59  67.17 6455.3 DependencyList            >> removeCompletelyPathTerm:for:
+ 220   2.42   9.77 939.2 DependencyList class      >> from:
+ 211   2.32   2.32 222.9 IdentityBag               >> _at:
+ 168   1.85   1.85 177.5 DepListTable              >> depListBucketFor:
+ 164   1.80   1.80 173.3 AbstractDictionary        >> _atZ:
+ 160   1.76   6.72 645.5 DependencyList            >> _removeCompletelyPathTerm:
+ 152   1.67   1.67 160.6 Object                    >> size:
+ 143   1.57   3.13 301.1 PathTerm                  >> _isObsoletePathTerm
+ 138   1.52   1.52 145.8 PathTerm                  >> indicatesIndexOnRootNsc
+ 128   1.41   1.41 135.2 Object                    >> objectSecurityPolicy
+ 126   1.39   1.39 133.1 DepListBucket             >> _bucketAt:
+ 120   1.32  98.59 9474.8 IdentitySet               >> _cleanUpDependencies
+ 107   1.18   1.18 113.0 Object                    >> _objectSecurityPolicy:
+
+dkh 1/3/2014 15:26
+------------------
+TRACKING (after backup):
+--------------------
+elapsed CPU time: 2970 ms
+tally     %  smpl%    ms class and method name
+----- -----  ----- ----- ---------------------
+ 694  29.47  29.47 875.2 DependencyList class      >> set:for:
+ 686  29.13  29.13 865.1 Array                     >> at:
+ 191   8.11  57.58 1710.1 block in IndexManager     >> removeAllTracking
+ 180   7.64  99.15 2944.8 Collection                >> do:
+ 174   7.39   7.39 219.4 System class              >> _sessionCacheStatAt:incrementBy:
+ 149   6.33   6.33 187.9 Number                    >> negated
+ 148   6.28  20.00 594.0 System class              >> decrementProgressCountBy:
+
+dkh 1/3/2014 15:10
+------------------
+tracking:    elapsed CPU time: 2970 ms
+indexes:     elapsed CPU time: 5890 ms
+old indexes: elapsed CPU time: 9610 ms
+bill:        elapsed CPU time: 17330 ms      
+------------------
+',#runs:RunArray{#runs:[178,1,217,177,1,18,20,7,22,5033,1,1070,13,182,1,376,3,6299,25,105],#values:[[],[TextEmphasis{#emphasisCode:1,#setMode:true}],[],[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],@9,[TextColor{#color:Color{#rgb:0}}],[@20,TextEmphasis{#emphasisCode:1,#setMode:true}],@19,[TextEmphasis{#emphasisCode:0,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@27,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[TextColor{#color:Color{#rgb:1023}}],[TextColor{#color:Color{#rgb:0}}],[TextEmphasis{#emphasisCode:0,#setMode:true}],[@38]],#lastIndex:195,#lastRun:3,#lastOffset:15}},#creationTime:DateAndTime['2014-01-03T08:16:11.27592396736145-08:00'],#modificationTime:DateAndTime['2014-01-03T16:11:15.02710509300232-08:00']}

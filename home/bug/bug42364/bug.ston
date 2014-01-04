@@ -21,12 +21,12 @@ UserGlobals
   at: #\'bug42364\'
   ifAbsent: [ UserGlobals at: #\'bug42364\' put: Dictionary new ].
 nsc := IdentitySet new.
-1 to: numSamples do: [ :i | 
+(UserGlobals at: #\'bug42364\') at: \'index\' put: nsc. 1 to: numSamples do: [ :i | 
   nsc add: (createBlock value: i).
   i \\\\ 100 = 0
     ifTrue: [ System commit ] ].
 indexSpec createIndexesOn: nsc.
-(UserGlobals at: #\'bug42364\') at: \'index\' put: nsc ].
+ ].
 opts
   at: \'help\'
   ifAbsent: [ 
@@ -118,4 +118,4 @@ EXAMPLES
   ./bug --clean --test2=2000000 
   ./bug --removeTracking 
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:23:04.73310708999634-08:00'],#modificationTime:DateAndTime['2014-01-03T14:55:34.92816305160522-08:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-01-02T13:23:04.73310708999634-08:00'],#modificationTime:DateAndTime['2014-01-03T15:00:14.4881329536438-08:00']}

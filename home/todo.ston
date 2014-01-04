@@ -5,13 +5,8 @@ j_
 
 l_
   - 42364  F2  Nuke all indexes (efficiently)
-    [picked up Bill\'s code and installed as IndexManager>>removeAllIndexes]
-    [...need to go with some of the simple test cases
-\t  not safe to destory all dependency map entires .... must only
-\t  remove path term entries]
-\t [--- destroy could be used with current algorithms]
-    [similar tricks can be played for removing indexes from a single
-\t  collection ...]
+    [final question is needsDepList clause preventing the nuking of Ilist directly
+\t  in removeAllIndexes on a collection itself ... I need to understand it]
 
 m_
   - vacant
@@ -26,4 +21,4 @@ tODE:
 
   - Issue 58: git integration for packages :: in progress
     https://github.com/dalehenrich/tode/issues/58
-',#runs:RunArray{#runs:[88,1,93,1,201,1,282],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}],[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11,[@12,TextEmphasis{#emphasisCode:1,#setMode:true}],@11],#lastIndex:33,#lastRun:1,#lastOffset:32}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-03T11:01:39.57511401176453-08:00']}
+',#runs:RunArray{#runs:[88,1,370],#values:[[TextColor{#color:Color{#rgb:0}}],[@7,TextEmphasis{#emphasisCode:1,#setMode:true}],[TextColor{#color:Color{#rgb:0}}]],#lastIndex:261,#lastRun:3,#lastOffset:171}},#creationTime:DateAndTime['2013-12-20T07:06:29.89436411857605-08:00'],#modificationTime:DateAndTime['2014-01-03T15:45:26.46031904220581-08:00']}
