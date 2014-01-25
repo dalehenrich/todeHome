@@ -1,5 +1,0 @@
-TDScriptLeafNode{#name:'issue209',#contents:'[ :topez :objIn :tokens :windowId | 
-MCRepositoryGroup default repositoriesDo: [ :rep | rep flushCache ].
-Metacello new
-  baseline: \'External\'; repository: \'github://dalehenrich/external:master/repository\';
-  get ]',#creationTime:DateAndTime['2013-12-06T17:30:30.23651790618896-08:00'],#modificationTime:@2}

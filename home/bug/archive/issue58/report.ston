@@ -1,8 +1,0 @@
-TDTxtLeafNode{#name:'report',#contents:Text{#string:'commit c472c84d14c1230ce12c3d11789417fae79cb005
-abbrev c472c84
-committer Dale Henrichs
-commitDate 1386446731
-subject Issue #37: implement `mount` command ...
---body
---body
-',#runs:RunArray{#runs:[172],#values:[[TextColor{#color:Color{#rgb:0}}]],#lastIndex:nil,#lastRun:nil,#lastOffset:nil}},#creationTime:DateAndTime['2013-12-23T15:25:28.5025999546051-08:00'],#modificationTime:@9}

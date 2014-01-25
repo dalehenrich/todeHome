@@ -1,5 +1,0 @@
-TDScriptLeafNode{#name:'confirm',#contents:'[ :topez :objIn :tokens :windowId | 
-(GsConfirmInteraction
-  prompt: \'Warning: \'\'you have been warned\'\'. Press \'\'Proceed\'\' to continue.\'
-  confirm: \'Proceed\'
-  cancel: \'Debug\') halt signal ]',#creationTime:DateAndTime['2013-12-23T15:25:18.12094902992249-08:00'],#modificationTime:@2}

@@ -1,6 +1,0 @@
-TDSmalltalkLeafNode{#name:'fileout',#contents:'| file |
-#(\'Cypress-Definitions\' \'Cypress-Mocks\' \'Cypress-Structure\' \'Cypress-Tests\')
-  do: [ :name | 
-    file := GsFile openWriteOnServer: \'/tmp/\' , name , \'.gs\'.
-    SystemOrganizer new fileOutCategory: name asSymbol on: file.
-    file close ]',#creationTime:DateAndTime['2013-12-06T17:30:32.87220692634583-08:00'],#modificationTime:@2}
